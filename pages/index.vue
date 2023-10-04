@@ -1,10 +1,9 @@
 <template>
-  <!-- <Default/> -->
   <!-- hero section -->
   <section class="relative py-10 lg:py-20 bg-white">
     <div class="mx-auto lg:max-w-7xl w-full px-5 sm:px-10 md:px-12 lg:px-5 flex flex-col lg:flex-row gap-10 lg:gap-36">
 
-      <div class="relative flex flex-col items-center text-center lg:text-left lg:py-7 xl:py-8 
+      <div class="relative flex flex-col items-center text-center lg:text-left lg:py-7 xl:py-8
             lg:items-start lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1 lg:w-1/2">
 
         <h1 class="text-3xl leading-tight sm:text-4xl md:text-4xl xl:text-5xl
@@ -33,10 +32,8 @@
 </template>
 
 <script>
-import Default from "../layouts/default";
 export default {
   name: "index",
-  components: { Default }
 }
 </script>
 
