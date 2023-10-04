@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 100vh;width: 100vw">
+  <div style="height: 100vh;">
     <TopNavBar/>
     <slot/>
     <Footer/>

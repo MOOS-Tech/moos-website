@@ -1,6 +1,6 @@
 <template>
 
-<nav class="flex items-center bg-gray-800 p-4 flex-wrap">
+<nav class="flex items-center bg-green-200 p-2 flex-wrap">
       <a href="#" class="mr-6 ml-3 inline-flex items-center">
         <img src="@/assets/images/navbarLogo.png" alt="Image Alt Text" class="h-12 w-15 mr-2" />
        
