@@ -1,8 +1,8 @@
 <template>
   <div
-    class="px-4 mb-8 py-8 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8"
+    class="px-4  py-8 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8"
   >
-    <div class="flex flex-col items-center w-full lg:flex-row">
+    <div class="flex flex-col items-center w-full justify-around lg:flex-row">
       <img
         class="p-2 max-h-[400px] max-w-[400px] h-auto w-auto"
         alt="logo"

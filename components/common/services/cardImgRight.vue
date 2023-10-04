@@ -1,9 +1,9 @@
 <template>
   <div
-    class="px-4 bg-white mb-8 rounded-3xl mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8"
+    class="px-4 bg-white  mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8"
   >
     <div
-      class="flex flex-col items-center justify-between w-full mb-10 lg:flex-row"
+      class="flex flex-col items-center justify-around w-full mb-10 lg:flex-row"
     >
       <div class="mb-16 lg:mb-0 lg:max-w-lg lg:pr-5">
         <CommonTitle v-if="ComTitle" :CardTitle="ComTitle" />
