@@ -1,6 +1,8 @@
 <template>
   <div class="pt-20 pb-10">
-    <div class="text-5xl text-black-200"><span class="font-bold">MOOS</span> {{CardTitle}}</div>
+    <div class="text-5xl text-black-200">
+      <span class="font-bold">MOOS</span> {{ CardTitle }}
+    </div>
   </div>
 </template>
 
