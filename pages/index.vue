@@ -104,13 +104,16 @@
   <div class="mx-auto w-full max-w-screen-lg bg-blue-700 px-5 ">
     <div class="grid gap-5 md:grid-cols-2 md:gap-10 lg:gap-20">
       
-      <div class=" bg-red-600  flex items-center p-12 py-6">
+      <div class = "  flex items-center p-12 py-6">
         <div class="mx-auto md:mx-0">
-          <h3 class="text-4xl font-bold text-white">Subscribe</h3>
-          <p class="mt-2 max-w-[20rem] text-lg text-white/80">Join our weekly digest. You'll also receive some of our best posts today.</p>
+          <h3 class="text-4xl font-bold">Ready to dive in?</h3> 
           <form action="" class="mt-4 flex flex-col">
-            <input type="email" name="email" id="email" placeholder="Enter your email" class="w-full rounded border border-white/50 bg-transparent px-3 py-2 text-white placeholder:text-white/50 md:max-w-[18rem]" />
-            <button type="submit" class="mt-4 w-full max-w-[14rem] rounded bg-white/30 px-14 py-2 text-center text-white">Subscribe</button>
+            <!-- <input type="email" name="email" id="email" placeholder="Enter your email" class="w-full rounded border border-white/50 bg-transparent px-3 py-2 text-white placeholder:text-white/50 md:max-w-[18rem]" /> -->
+            <FormInput type="name" name="name" id="name" placeholder="Name">
+              
+            </FormInput>
+            
+            <button type="submit" class="mt-4 w-full max-w-[14rem] rounded bg-white/30 px-14 py-2 text-cente">Subscribe</button>
           </form>
         </div>
       </div>
@@ -125,8 +128,14 @@
 </template>
 
 <script>
+
+import FormInput from "@/components/common/Form/FormInputField";
+
 export default {
   name: "index",
+  components: {
+    FormInput,
+  },
   data() {
     return {
       items: [
