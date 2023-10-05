@@ -1,11 +1,11 @@
 <template>
-     <section class=" pt-20  relative flex mb-10 overflow-hidden ">
+     <section class=" relative flex mb-10 overflow-hidden bg-green-and-black">
         <div class="lg:h-auto lg:max-w-none lg:mx-0 mx-auto ">
         <img src="@/assets/images/Vector_1.png" alt=""
           class="w-full  h-full lg:h-100 object-cover object-center absolute top-20 left-0 lg:absolute lg:max-h-100"
           style="z-index: -1; width: 1000px;">
       </div>
-      <div class=" mx-auto w-full px-20 lg:max-w-7xl items-center  ">
+      <div class=" mx-auto w-full px- lg:max-w-7xl items-center  ">
         <div class="grid md:grid-cols-2 md:gap-16 lg:gap-48 md:justify-normal">
           <div class=" p-12 py-6 ">
             <div class=" text-center justify-center ">
@@ -52,3 +52,15 @@ export default {
 }
 }
 </script>
+<style scoped>
+.bg-green-and-black {
+  background: linear-gradient(75deg, #E3716F 50%, rgb(255, 255, 255) 50%);
+  /* Other styling properties for the div */
+}
+@media (max-width: 640px) {
+    .bg-green-and-black {
+  background: #E3716F;
+}
+  }
+
+</style>

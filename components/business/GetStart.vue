@@ -1,42 +1,41 @@
 <template>
-    <div class="pt-20 lg:max-w-10xl w-full sm:px-10 md:px-12 px-5 lg:px-32 flex flex-col lg:flex-row py-10">
-      <section
-        class="pt-20 lg:max-w-10xl w-full sm:px-10 md:px-12 px-5 lg:px-10 py-10"
-      >
-        <!-- Title in a new row -->
-        <div class="mb-6">
-          <h2 class="text-3xl font-semibold text-neutral-800 mx-9">How To Get Started</h2>
-        </div>
-  
-        <!-- Cards in one row with separate columns -->
-        <div class="flex">
-          <div
-            class="flex flex-col sm:shrink-0 sm:grow sm:basis-0"
-            v-for="(card, index) in cards"
-            :key="index"
-          >
-            <a href="#!">
-              <div
-                class="h-8 w-8 mr-2 inline-flex items-center justify-center bg-green-200 text-black-200 rounded-full border border-black-300 text-white mx-2"
-              >
-                {{ index + 1 }}
-              </div>
-            </a>
-            <div class="">
-              <h5
-                class="mb-2 text-xl font-medium leading-tight text-neutral-800 mt-2 mx-2"
-              >
-                {{ card.title }}
-              </h5>
-              <p class="mb-4 text-base text-neutral-600 mx-2">
-                {{ card.description }}
-              </p>
+  <div class="pt-20 lg:max-w-10xl w-full sm:px-10 md:px-12 px-5 lg:px-32 flex flex-col lg:flex-row py-10">
+    <section class="pt-20 lg:max-w-10xl w-full sm:px-10 md:px-12 px-5 lg:px-10 py-10">
+      <!-- Title in a new row -->
+      <div class="mb-6">
+        <h2 class="text-3xl font-semibold text-neutral-800 mx-9">How To Get Started</h2>
+      </div>
+
+      <!-- Cards in one row with separate columns -->
+      <div class="flex flex-col sm:flex-row">
+        <div
+          class="flex flex-col sm:shrink-0 sm:grow sm:basis-0 "
+          v-for="(card, index) in cards"
+          :key="index"
+        >
+          <a href="#!">
+            <div
+              class="h-8 w-8 mr-2 inline-flex items-center justify-center bg-green-200 text-black-200 rounded-full border border-black-300 text-white mx-2"
+            >
+              {{ index + 1 }}
             </div>
+          </a>
+          <div class="">
+            <h5
+              class="mb-2 text-xl font-medium leading-tight text-neutral-800 mt-2 mx-2"
+            >
+              {{ card.title }}
+            </h5>
+            <p class="mb-4 text-base text-neutral-600 mx-2">
+              {{ card.description }}
+            </p>
           </div>
         </div>
-      </section>
-    </div>
-  </template>
+      </div>
+    </section>
+  </div>
+</template>
+
   
 
 <script>
