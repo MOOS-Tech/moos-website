@@ -37,42 +37,11 @@
           class="w-full  h-full lg:h-96 object-cover absolute top-40 left-0 lg:absolute lg:max-h-none "
           style="z-index: -1;">
       </div>
-      <div class="mx-4 flex flex-wrap flex-col gap-12 md:flex-row 
-    items-center justify-center">
-
-        <div class="w-full px-4 md:w-1/2 py-4 lg:w-1/4 bg-white shadow-3xl rounded-lg" v-for="(item, index) in items"
-          :key="index">
-          <div class="mx-auto mb-10 px-5">
-            <div>
-              <h3>
-                <a href="javascript:void(0)"
-                  class="text-dark hover:text-primary mb-4 inline-block text-xl font-semibold sm:text-2xl lg:text-xl xl:text-2xl">
-                  {{ item.title }}
-                </a>
-              </h3>
-              <p class="text-body-color text-base">
-                {{ item.description }}
-              </p>
-            </div>
-            <div class="flex justify-left mt-3">
-              <ul>
-                <li class="flex items-center" v-for="(item, index) in blogs" :key="index">
-                  <i class="fas fa-check-circle text-green-200"></i>
-                  <span class="text-gray-700 text-lg ml-3">{{ item }}</span>
-                </li>
-              </ul>
-            </div>
-            <div class="mt-10  flex flex-col items-center gap-4 lg:flex-row">
-              <FormButton class=" bg-white border-2 border-green-200 text-green-200 ">
-                Learn More
-              </FormButton>
-            </div>
-          </div>
-        </div>
-
+      <div class="mx-4 flex flex-wrap  gap-12 md:flex-row items-center justify-center">
+        <WhiteCard></WhiteCard>
       </div>
-
     </section>
+
     <!-- ====== Partner Section-->
     <section class="pt-20 lg:max-w-10xl w-full  sm:px-10 md:px-12 px-8 lg:px-10 flex flex-col lg:flex-row justify-center">
       <div class=" container w-full rounded-lg bg-white py-4 sm:justify-center  sm:px-10 md:px-12 lg:px-20">
@@ -92,12 +61,8 @@
     <section class="pt-20 lg:max-w-10xl w-full sm:px-10 md:px-12 px-5 lg:px-10 flex flex-col lg:flex-row">
       <div class="container py-10 mx-auto sm:flex sm:justify-center w-full sm:px-10 md:px-12 lg:px-20">
         <div class="flex flex-col text-center w-full items-center ">
-          <h1 class="sm:text-2xl text-4xl xl:text-5xl  title-font mb-4 text-black-200">During our pilot we achieved a
-            three
-            month
-            ROI, as we reduced our out of stock by 50% and spend
-            37% less time on stock counting.”</h1>
-          <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Danny Bailey, CFO</p>
+          <h1 class="sm:text-2xl text-4xl xl:text-5xl  title-font mb-4 text-black-200">{{ this.Quote }}</h1>
+          <p class="lg:w-2/3 mx-auto leading-relaxed text-base">{{ this.Speaker }}</p>
         </div>
       </div>
     </section>
@@ -106,7 +71,6 @@
     <section class=" pt-20 lg:max-w-10xl w-full sm:px-10 md:px-12 px-5 lg:px-10 flex flex-col lg:flex-row py-10 ">
       <div
         class="sm:flex sm:justify-center py-10 mx-auto lg:max-w-7xl w-full sm:px-10 md:px-12  rounded-lg bg-white shadow-3xl ">
-
         <div class="flex flex-col  sm:shrink-0 sm:grow sm:basis-0   items-center" v-for="(card, index) in cards"
           :key="index">
           <a href="#!">
@@ -120,41 +84,12 @@
               {{ card.description }}
             </p>
           </div>
-        
         </div>
-        
       </div>
     </section>
 
     <!-- ====== Map and the Contact Section-->
-    <section class=" pt-20 relative flex mb-10 ">
-      <div class=" mx-auto w-full px-5 lg:max-w-7xl items-center ">
-        <div class="grid gap-2 md:grid-cols-2 md:gap-12 lg:gap-48 mx-auto ">
-          <div class=" p-12 py-6 ">
-            <div class="mx-auto md:mx-0 text-center justify-center">
-              <h3 class="text-4xl font-bold">Ready to dive in?</h3>
-              <form action="" class="mt-4 flex flex-col mb-4">
-                <!-- <input type="email" name="email" id="email" placeholder="Enter your email" class="w-full rounded border border-white/50 bg-transparent px-3 py-2 text-white placeholder:text-white/50 md:max-w-[18rem]" /> -->
-                <FormInput type="name" name="name" id="name" placeholder="Name"></FormInput>
-                <FormInput type="email" name="email" id="email" placeholder="Email"></FormInput>
-                <FormInput type="email" name="email" id="email" placeholder="Email"></FormInput>
-              </form>
-              <FormButton>Book a Meeting</FormButton>
-            </div>
-          </div>
-          <div class="flex justify-center md:justify-end ">
-            <iframe width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" title="map" scrolling="no"
-              src="https://maps.google.com/maps?q=MOOS%20International,%20Spaklerweg%2014,%20B4,%201096%20BA%20Amsterdam,%20Netherlands&output=embed"
-              style=""></iframe>
-          </div>
-        </div>
-      </div>
-      <div class="lg:h-auto lg:max-w-none lg:mx-0 mx-auto ">
-        <img src="@/assets/images/Vector_1.png" alt=""
-          class="w-full  h-full lg:h-96 object-cover absolute top-20 left-0 lg:absolute lg:max-h-none "
-          style="z-index: -1; width: 950px;">
-      </div>
-    </section>
+    <MapAndContact></MapAndContact>
 
   </div>
 </template>
@@ -163,33 +98,21 @@
 
 import FormInput from "@/components/common/Form/FormInputField";
 import FormButton from "@/components/common/Form/FormButton";
+import WhiteCard from "~/components/HomePage/smallWhiteCard.vue";
+import MapAndContact from "~/components/HomePage/mapAndContact.vue";
 
 export default {
   name: "index",
   components: {
     FormInput,
-    FormButton
+    FormButton,
+    WhiteCard,
+    MapAndContact
   },
   data() {
     return {
-      items: [
-        {
-          date: 'Dec 22, 2023',
-          title: 'Inventory Management',
-          description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-        },
-        {
-          date: 'Jan 15, 2024',
-          title: 'Inventory Management',
-          description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-        },
-        {
-          date: 'Feb 10, 2024',
-          title: 'Inventory Management',
-          description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-        },
-      ],
-      blogs: ["Item 1", "Item 2", "Item 3"],
+
+
       users: [
         {
 
@@ -240,6 +163,9 @@ export default {
         },
         // Add more card objects as needed
       ],
+      Quote: "During our pilot we achieved a three month ROI, as we reduced our out of stock by 50% and spend 37% less time on stock counting.”",
+      Speaker : "Danny Bailey, CFO"
+
     };
   },
 }
