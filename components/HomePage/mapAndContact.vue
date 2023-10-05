@@ -5,8 +5,8 @@
           class="w-full  h-full lg:h-100 object-cover object-center absolute top-20 left-0 lg:absolute lg:max-h-100"
           style="z-index: -1; width: 1000px;">
       </div>
-      <div class=" mx-auto w-full px-5 lg:max-w-7xl items-center  ">
-        <div class="grid md:grid-cols-2 md:gap-16 lg:gap-48  md:justify-start">
+      <div class=" mx-auto w-full px-20 lg:max-w-7xl items-center  ">
+        <div class="grid md:grid-cols-2 md:gap-16 lg:gap-48 md:justify-normal">
           <div class=" p-12 py-6 ">
             <div class=" text-center justify-center ">
               <h3 class="text-4xl font-bold">Ready to dive in?</h3>

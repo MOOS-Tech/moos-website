@@ -89,7 +89,7 @@
     </section>
 
     <!-- ====== Map and the Contact Section-->
-    <MapAndContact></MapAndContact>
+    <MapAndContact/>
 
   </div>
 </template>
