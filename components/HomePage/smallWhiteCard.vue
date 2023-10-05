@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full px-4 mb-10 md:w-1/2  lg:w-1/4" v-for="(item, index) in items"
+  <div class="w-full px-4 mb-5 md:w-1/2  lg:w-1/4" v-for="(item, index) in items"
           :key="index">
      <div class="mx-auto p-10 bg-white shadow-3xl rounded-lg">
             <div>
@@ -22,7 +22,7 @@
               </ul>
             </div>
             <div class="mt-10  flex flex-col items-center gap-4 lg:flex-row">
-              <FormButton class=" bg-white border-2 border-green-200 text-green-200 ">
+              <FormButton class=" bg-white border-2 border-green-200 text-green-200 !important ">
                 Learn More
               </FormButton>
             </div>

@@ -1,6 +1,6 @@
 <template>
    
-        <button :id="id" class=" items-center py-4 text-sm font-bold text-white px-7 bg-green-200   transition duration-300 rounded-md h-12 w-45">
+        <button :id="id" class=" flex items-center  text-sm font-bold  px-5 bg-green-200  border-2 border-green-200 transition duration-300 rounded-md h-12 w-45">
         <template v-if="isLoading">
            
             <span class="text-small text-white">Loading...</span>

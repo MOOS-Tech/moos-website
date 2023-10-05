@@ -8,11 +8,11 @@
       />
     </NuxtLink>
     <button
-      class="text-white inline-flex p-3 hover:bg-gray-900 rounded lg:hidden ml-auto hover:text-white outline-none nav-toggler"
+      class="text-white inline-flex p-3 bg-opacity-25 rounded lg:hidden ml-auto hover:text-white outline-none nav-toggler"
       data-target="#navigation"
       @click="toggleNav"
     >
-      <i class="material-icons">menu</i>
+    <i class="fa-solid fa-bars text-white"></i>
     </button>
     <div
       class="top-navbar w-full lg:inline-flex lg:flex-grow lg:w-auto"
@@ -24,25 +24,25 @@
       >
         <NuxtLink
           to="/services"
-          class="lg:inline-flex lg:w-auto w-full px-5 py-2 rounded text-white items-center justify-center hover:bg-white hover:border hover:border-white hover:bg-opacity-25 hover:text-white"
+          class="lg:inline-flex lg:w-auto w-full px-5 py-2 mr-5 rounded text-white items-center justify-center hover:bg-white hover:border hover:border-white hover:bg-opacity-25 hover:text-white"
         >
           <span>Services</span>
         </NuxtLink>
         <NuxtLink
           to="/business_solutions"
-          class="lg:inline-flex lg:w-auto w-full px-5 py-2 rounded text-white items-center justify-center hover:bg-white hover:border hover:border-white hover:bg-opacity-25 hover:text-white"
+          class="lg:inline-flex lg:w-auto w-full px-5 py-2 mr-5  rounded text-white items-center justify-center hover:bg-white hover:border hover:border-white hover:bg-opacity-25 hover:text-white"
         >
           <span>Business Solution</span>
         </NuxtLink>
         <NuxtLink
           to="/technology"
-          class="lg:inline-flex lg:w-auto w-full px-5 py-2 rounded text-white items-center justify-center hover:bg-white hover:border hover:border-white hover:bg-opacity-25 hover:text-white"
+          class="lg:inline-flex lg:w-auto w-full px-5 py-2 mr-5  rounded text-white items-center justify-center hover:bg-white hover:border hover:border-white hover:bg-opacity-25 hover:text-white"
         >
           <span>Technology</span>
         </NuxtLink>
         <NuxtLink
           to="/our_company"
-          class="lg:inline-flex lg:w-auto w-full px-5 py-2 rounded text-white items-center justify-center hover:bg-white hover:border hover:border-white hover:bg-opacity-25 hover:text-white"
+          class="lg:inline-flex lg:w-auto w-full px-5 py-2 mr-5  rounded text-white items-center justify-center hover:bg-white hover:border hover:border-white hover:bg-opacity-25 hover:text-white"
         >
           <span>Our Company</span>
         </NuxtLink>
@@ -60,7 +60,11 @@
           class="lg:inline-flex lg:w-auto w-full px-5 py-2 rounded text-white items-center justify-center"
           href="#"
         >
-          <span>Book a Meeting</span>
+        
+        <FormButton class=" bg-white bg-opacity-25  border-white text-white rounded-md h-9 hover:bg-white hover:border hover:border-white hover:bg-opacity-25 hover:text-white">
+          Book a Meeting
+              </FormButton>
+         
         </a>
       </div>
     </div>
@@ -68,9 +72,14 @@
 </template>
 
 <script>
+import FormButton from "@/components/common/Form/FormButton";
 export default {
   name: "TopNavBar",
-
+  components: {
+   
+    FormButton,
+   
+  },
   data() {
     return {
       isNavOpen: false, // Add a data property to track the navigation state

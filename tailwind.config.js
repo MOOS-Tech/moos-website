@@ -31,7 +31,8 @@ export default {
         "brown":{
           100:"#E38B64",
           200:"#E3716F",
-          300:"#965251"
+          300:"#965251",
+          400:"FACDCC"
         }
     },
     boxShadow: {
