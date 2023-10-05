@@ -40,7 +40,7 @@
 
         <CommonTitle v-if="ComTitle" :CardTitle="ComTitle" />
         <P class="text-black-100 text-xl">{{ Para }}</P>
-        <h2 class="text-5xl pb-6 text-black-200">
+        <h2 class="text-3xl pb-6 text-black-200 font-semibold py-2">
           {{ CardTitle }}
         </h2>
         <ul class="text-black-100 list-none pl-5 text-xl">
