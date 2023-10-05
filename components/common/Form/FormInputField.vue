@@ -1,9 +1,9 @@
 <template>
   <!-- <div class=" mb-3" > -->
   <input
-    :type="text"
-    class="appearance-none block  bg-grey-lighter mt-2 mb-4 py-3 px-3 rounded-md bg-white border border-black-200 dark:border-black-200 text-black font-semibold focus:border-green-200 focus:outline-none"
-    :id="exampleFormControlInput2"
+    :type="type"
+    class="appearance-none block  bg-grey-lighter  mb-3 py-3 px-3 rounded-md bg-white  text-black font-semibold focus:border-green-200 focus:outline-none h-10 "
+   
     :placeholder="placeholder" />
   <label
     
