@@ -1,8 +1,8 @@
 <template>
    
-        <button :id="id" class="flex items-center py-4 text-sm font-bold text-white px-7 bg-purple-blue-500 hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 transition duration-300 rounded-xl">
+        <button :id="id" class=" items-center py-4 text-sm font-bold text-white px-7 bg-green-200   transition duration-300 rounded-md h-12 w-45">
         <template v-if="isLoading">
-            <b-spinner small class="mr-2" variant="light"></b-spinner>
+           
             <span class="text-small text-white">Loading...</span>
         </template>
         <template v-else>
