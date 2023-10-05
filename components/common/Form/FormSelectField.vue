@@ -1,28 +1,19 @@
 <template>
-  <!-- <div class=" mb-3" > -->
-  <input
-    :type="type"
-    class="appearance-none block  bg-grey-lighter  mb-3 py-3 px-3 rounded-md bg-white  text-black font-semibold focus:border-green-200 focus:outline-none h-10 "
-   
-    :placeholder="placeholder" />
-  <label
-    
-    class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-    >
-    {{ label }}
-  </label>
-<!-- </div> -->
+    <select id="id" name="name" autocomplete="autocomplete" class=" mb-3 py-2 px-3  focus:border-green-200 focus:outline-none block w-full rounded-md border-0   text-black-100 shadow-sm ">
+                <option>United States</option>
+                <option>Canada</option>
+                <option>Mexico</option>
+              </select>
 </template>
-
 <script>
 /* eslint-disable no-console */
 export default {
     name: "FormInput",
     props: {
         id: String,
-      groupId: String,
-      type: String,
-      label: String,
+     
+      name: String,
+      autocomplete: String,
       type: String,
       description: {
         default: "",
@@ -68,7 +59,3 @@ export default {
     },
 };
 </script>
-
-<style scoped>
-
-</style>
