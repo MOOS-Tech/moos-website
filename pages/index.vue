@@ -27,10 +27,9 @@
     <Blogs />
 
     <!-- ====== Partner Section-->
-    <section class="pt-20 lg:max-w-10xl w-full sm:px-10 md:px-12 px-8 lg:px-10 flex flex-col justify-center">
-      <div
-        class="flex lg-flex-row  py-4 mx-auto sm:flex  w-full sm:px-10 md:px-12 lg:px-44 flex-col items-center gap-4 lg:flex-row">
-        <h3 class="text-2xl font-bold text-black-100">OUR PARTNERS</h3>
+    <section class="pt-20 lg:max-w-7xl w-full sm:px-10 md:px-12 px-5 lg:px-10 flex mx-auto flex-col justify-center">
+      <div class="mx-auto max-w-2xl lg:mx-0">
+        <h3 class="text-2xl font-bold text-black-100">OUR PARTNERS</h3> 
       </div>
       <div class=" py-5 pb-10 ">
         <div class="mx-auto max-w-5xl px-6 lg:px-8 lg-flex-row">
@@ -59,7 +58,7 @@
     </section>
 
     <!-- ====== Card Sections-->
-    <section class="pt-20 pb-10 lg:max-w-10xl w-full sm:px-10 md:px-12 px-5 lg:px-10 flex flex-col lg:flex-row py-10">
+    <section class="pt-20 pb-10 lg:max-w-7xl w-full sm:px-10 md:px-12 px-5 lg:px-10 flex mx-auto flex-col lg:flex-row py-10">
       <div
         class="sm:flex sm:justify-center py-10 mx-auto lg:max-w-7xl w-full sm:px-10 md:px-12 rounded-lg bg-white shadow-3xl">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

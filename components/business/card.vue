@@ -20,7 +20,7 @@
           </div>
   
           <div
-            class="flex flex-1 lg:w-1/3 lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto max-w-3xl justify-center items-center"
+            class="flex flex-1 lg:w-1/3 lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto max-w-3xl justify-end items-center"
           >
             <img
               :src="imageUrl"

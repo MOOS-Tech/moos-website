@@ -1,13 +1,15 @@
 <template>
     <section
-      class="pt-20 lg:pb-10 lg:max-w-10xl w-full px-5 lg:px-10 sm:px-10 md:px-12 flex flex-col relative bg-green-100 background-triangle">
+      class=" lg:pb-10 w-full px-5 lg:px-10 sm:px-10 md:px-12 mx-auto  bg-green-100 background-triangle">
       <!-- <div class="lg:max-w-none lg:mx-0 mx-auto">
         <img src="@/assets/images/Rectangle.png" alt=""
           class="w-full h-full lg:h-96 object-cover absolute top-40 left-0 lg:absolute lg:max-h-none"
           style="z-index: -1" />
       </div> -->
-      <div class="mx-4 flex flex-wrap gap-12 md:flex-row items-center justify-center">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-12 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 py-10">
         <WhiteCard/>
+      </div>
       </div>
     </section>
   </template>
