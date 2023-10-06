@@ -134,7 +134,7 @@
 
     <!-- ====== Map and the Contact Section-->
 
-      <MapAndContact  />
+      <MapAndContact />
 
   </div>
 </template>
@@ -202,4 +202,6 @@ export default {
 </script>
 
 <style scoped>
+
+
 </style>

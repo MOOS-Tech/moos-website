@@ -12,9 +12,9 @@
             <h2 class="text-4xl pb-6 text-black-200 font-semibold py-2">
               {{ CardTitle }}
             </h2>
-            <ul class="text-black-100 list-none pl-5 text-xl">
+            <ul class="text-black-100 list-disc pl-5 text-xl ">
               <li v-for="(point, index) in CardBody" :key="index" class="pb-4">
-                <i class="fas fa-check text-green-500 mr-2"></i>{{ point }}
+               {{ point }}
               </li>
             </ul>
           </div>

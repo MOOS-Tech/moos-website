@@ -8,22 +8,18 @@
       :Para="data[0].Para"
     />
 
-    <div class="bg-green-50">
-      <card
-        :CardTitle="data[1].CardTitle"
-        :CardBody="data[1].CardBody"
-        :imageUrl="data[1].imageUrl"
-      />
-    </div>
+    <card
+      :CardTitle="data[1].CardTitle"
+      :CardBody="data[1].CardBody"
+      :imageUrl="data[1].imageUrl"
+    />
 
     <CardImgRight
       :CardTitle="data[2].CardTitle"
       :CardBody="data[2].CardBody"
       :imageUrl="data[2].imageUrl"
     />
-  </div>
 
-  <div class="bg-green-50 pb-0">
     <card
       :CardTitle="data[3].CardTitle"
       :CardBody="data[3].CardBody"

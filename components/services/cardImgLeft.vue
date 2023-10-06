@@ -28,7 +28,7 @@
     </div>
   </div> -->
   <div>
-  <section class="relative py-10 lg:py-20 px-5 lg:px-20">
+  <section class="relative py-10 lg:py-20 px-5 lg:px-20 bg-green-50">
     <div class="mx-auto lg:max-w-7xl w-full sm:px-10 md:px-12 flex flex-col lg:flex-row gap-12 lg:gap-40">
 
       <div class="flex flex-1 lg:w-1/2 lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto max-w-3xl">
