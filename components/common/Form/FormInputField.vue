@@ -2,7 +2,7 @@
   <!-- <div class=" mb-3" > -->
   <input
     :type="type"
-    class="appearance-none block  bg-grey-lighter  mb-3 py-3 px-3 rounded-md bg-white  text-black font-semibold focus:border-green-200 focus:outline-none h-10 "
+    class = "mb-3 rounded-[4px] border p-3 hover:outline-none focus:outline-none hover:border-green-200 h-10 w-72 sm:text-sm"
    
     :placeholder="placeholder" />
   <label

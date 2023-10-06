@@ -1,5 +1,7 @@
 <template>
-    <select id="id" name="name" autocomplete="autocomplete" class=" mb-3 py-2 px-3  focus:border-green-200 focus:outline-none block w-full rounded-md border-0   text-black-100 shadow-sm ">
+    <select id="id" name="name" autocomplete="autocomplete" class=" mb-3 py-2 px-3 h-10 sm:text-sm focus:border-green-200 focus:outline-none block w-72 rounded-md border-0   text-black-100 shadow-sm "
+    
+    :placeholder="placeholder">
                 <option>Request demonstration</option>
                 
               </select>

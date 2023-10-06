@@ -1,6 +1,7 @@
 <template>
     <!-- <div class=" mb-3" > -->
-        <textarea  id="id" rows="rows" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm  placeholder:text-gray-400  sm:text-sm sm:leading-6 h-40 focus:outline-none" ></textarea>
+        <textarea  id="id" rows="rows" class="block  rounded-md border-0  mb-3 py-3 px-3  text-gray-900 shadow-sm w-72 h-36  placeholder:text-gray-400  sm:text-sm sm:leading-6  focus:outline-none" 
+        :placeholder="placeholder"></textarea>
   </template>
   
   <script>
@@ -11,8 +12,7 @@
           id: String,
           rows: Number,
         type: String,
-        label: String,
-        type: String,
+        placeholder: String,
         description: {
           default: "",
           type: String,
