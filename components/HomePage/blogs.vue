@@ -29,9 +29,9 @@ export default {
 
     
     /* background: linear-gradient(180deg, transparent 30%, #1EB2A0 30%); */
-    background: linear-gradient(18.5deg, transparent 50%, #1EB2A0 50%) bottom left,
-            linear-gradient(-15deg, transparent 40%, #1EB2A0 40%) bottom right;
-background-size: 55% 70%, 45.1% 70%;
+    background: linear-gradient(18.5deg, transparent 50%, rgba(30, 178, 160, 0.5) 50%) bottom left,
+            linear-gradient(-15deg, transparent 40%, rgba(30, 178, 160, 0.5) 40%) bottom right;
+background-size: 55% 70%, 45% 70%;
 background-repeat: no-repeat;
 background-position: left bottom, right bottom;
 
@@ -40,7 +40,7 @@ background-position: left bottom, right bottom;
 
 @media (max-width: 640px) {
   .background-triangle {
-    background: #1EB2A0;
+    background: rgba(30, 178, 160, 0.5);
   }
 }
 </style>
