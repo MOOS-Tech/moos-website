@@ -36,7 +36,7 @@
           class="lg:absolute lg:w-full lg:h-full rounded-xl object-cover lg:max-h-none max-h-[550px] max-w-[250px]">
       </div>
 
-      <div class="relative flex flex-col items-center text-center lg:text-left lg:py-7 xl:py-8
+      <div class="relative flex flex-col items-center text-left lg:text-left lg:py-7 xl:py-8
         lg:items-start lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1 lg:w-1/2">
 
         <CommonTitle v-if="ComTitle" :CardTitle="ComTitle" />

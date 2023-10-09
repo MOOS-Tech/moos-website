@@ -2,23 +2,50 @@
   <div>
     <!-- hero section -->
     <section class="relative py-10 lg:py-20 bg-white px-5 lg:px-20">
-      <div class="mx-auto lg:max-w-7xl w-full sm:px-10 md:px-12 flex flex-col lg:flex-row gap-12 lg:gap-40">
-        <div
-          class="relative flex flex-col items-center text-center lg:text-left lg:py-7 xl:py-8 lg:items-start lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1 lg:w-1/2">
-          <h1 class="text-3xl leading-tight sm:text-4xl md:text-4xl xl:text-5xl text-gray">
-            MOOS for effortless inventory operations
-          </h1>
-          <p class="mt-8 text-gray-700">
-            Digitize your shelves & racks for full visibility where it happens:
-            the MOOS effortless inventory operating system​.
-          </p>
-          <div class="mt-10 flex flex-col items-center gap-4 lg:flex-row">
-            <FormButton class="text-white"> Book a Meeting </FormButton>
+     
+      <div class="overflow-hidden ">
+        <div class="mx-auto max-w-7xl lg:flex sm:px-10 md:px-12  w-full flex flex-col lg:flex-row  ">
+          <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-12  lg:mx-0 lg:min-w-full lg:max-w-none lg:flex-none ">
+            <div class="lg:w-full lg:max-w-lg ">
+              <div class="mx-auto lg:max-w-7xl w-full  flex flex-col lg:flex-row gap-12 lg:gap-40 pb-5">
+                <div
+                  class="relative flex flex-col items-center text-center lg:text-left lg:items-start  lg:py-7 lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1 lg:w-1/2">
+                  
+                  <CommonTitle  v-if="ComTitle" :CardTitle="ComTitle" />
+                  <p class="mt-8 text-gray-700">
+                    Digitize your shelves & racks for full visibility where it happens:
+                    the MOOS effortless inventory operating system​.
+                  </p>
+                  <div class="mt-10 flex flex-col items-center gap-4 lg:flex-row">
+                    <FormButton class="text-white"> Book a Meeting </FormButton>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mx-auto w-full flex flex-wrap items-center justify-center gap-6 sm:gap-8 lg:contents  " >
+              <div class="lg:ml-auto lg:flex-none lg:self-start" >
+                <div style="align-self: start;">
+                  <img
+                    src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=768&h=604&q=80"
+                    alt="" class="aspect-[4/3] w-[24rem] max-w-none rounded-2xl bg-gray-50 object-cover" />
+                </div>
+              </div>
+              <div
+                class="contents lg:col-span-2 lg:col-end-2 lg:ml-auto lg:flex lg:w-[37rem] lg:items-start lg:justify-end lg:gap-x-8 ">
+                <div class="order-first flex flex-none  justify-end self-end overflow-hidden lg:w-auto  ">
+                  <img
+                    src="https://images.unsplash.com/photo-1605656816944-971cd5c1407f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=768&h=604&q=80"
+                    alt="" class="aspect-[5/3] w-[24rem] max-w-none flex-none rounded-2xl bg-gray-50 object-cover" />
+                </div>
+                <div class="flex  flex-auto justify-center lg:w-auto lg:flex-none ">
+                  <img
+                    src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1152&h=842&q=80"
+                    alt="" class="aspect-[7/5] w-[37rem] max-w-none flex-none rounded-2xl bg-gray-50 object-cover" />
+                </div>
+
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="flex flex-1 lg:w-1/2 lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto max-w-3xl">
-          <img src="https://agencex-astro.vercel.app/images/image1.webp" alt="Hero image" width="2350" height="2359"
-            class="lg:absolute lg:w-full lg:h-full rounded-3xl object-cover lg:max-h-none max-h-96" />
         </div>
       </div>
     </section>
@@ -29,7 +56,7 @@
     <!-- ====== Partner Section-->
     <section class="pt-20 lg:max-w-7xl w-full sm:px-10 md:px-12 px-5 lg:px-10 flex mx-auto flex-col justify-center">
       <div class="mx-auto max-w-2xl lg:mx-0">
-        <h3 class="text-2xl font-bold text-black-100">OUR PARTNERS</h3> 
+        <h3 class="text-2xl font-bold text-black-100">OUR PARTNERS</h3>
       </div>
       <div class=" py-5 pb-10 ">
         <div class="mx-auto max-w-5xl px-6 lg:px-8 lg-flex-row">
@@ -58,7 +85,8 @@
     </section>
 
     <!-- ====== Card Sections-->
-    <section class="pt-20 pb-10 lg:max-w-7xl w-full sm:px-10 md:px-12 px-5 lg:px-10 flex mx-auto flex-col lg:flex-row py-10">
+    <section
+      class="pt-20 pb-10 lg:max-w-7xl w-full sm:px-10 md:px-12 px-5 lg:px-10 flex mx-auto flex-col lg:flex-row py-10">
       <div
         class="sm:flex sm:justify-center py-10 mx-auto lg:max-w-7xl w-full sm:px-10 md:px-12 rounded-lg bg-white shadow-3xl">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -82,7 +110,7 @@
 
     <!-- ====== Map and the Contact Section-->
 
-      <MapAndContact />
+    <MapAndContact />
 
   </div>
 </template>
@@ -103,6 +131,7 @@ export default {
   },
   data() {
     return {
+      ComTitle: "for effortless inventory operations",
       partners: [
         {
           avatar: "https://randomuser.me/api/portraits/men/20.jpg",
@@ -149,7 +178,23 @@ export default {
 };
 </script>
 
-<style scoped>
-
-
-</style>
+<style scoped></style>
+ <!-- <div class="mx-auto lg:max-w-7xl w-full sm:px-10 md:px-12 flex flex-col lg:flex-row gap-12 lg:gap-40">
+        <div
+          class="relative flex flex-col items-center text-center lg:text-left lg:py-7 xl:py-8 lg:items-start lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1 lg:w-1/2">
+          <h1 class="text-3xl leading-tight sm:text-4xl md:text-4xl xl:text-5xl text-gray">
+            MOOS for effortless inventory operations
+          </h1>
+          <p class="mt-8 text-gray-700">
+            Digitize your shelves & racks for full visibility where it happens:
+            the MOOS effortless inventory operating system​.
+          </p>
+          <div class="mt-10 flex flex-col items-center gap-4 lg:flex-row">
+            <FormButton class="text-white"> Book a Meeting </FormButton>
+          </div>
+        </div>
+        <div class="flex flex-1 lg:w-1/2 lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto max-w-3xl">
+          <img src="https://agencex-astro.vercel.app/images/image1.webp" alt="Hero image" width="2350" height="2359"
+            class="lg:absolute lg:w-full lg:h-full rounded-3xl object-cover lg:max-h-none max-h-96" />
+        </div>
+      </div> -->

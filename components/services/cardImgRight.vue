@@ -35,7 +35,7 @@
     <div class="mx-auto lg:max-w-7xl w-full sm:px-10 md:px-12 flex flex-col lg:flex-row gap-12 lg:gap-40">
 
       <!-- Switched the order of these two divs -->
-      <div class="relative flex flex-col items-center text-center lg:text-left lg:py-7 xl:py-8
+      <div class="relative flex flex-col items-center text-left lg:text-left lg:py-7 xl:py-8
         lg:items-start lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1 lg:w-1/2">
 
         <CommonTitle v-if="ComTitle" :CardTitle="ComTitle" />
