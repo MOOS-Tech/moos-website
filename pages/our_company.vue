@@ -6,6 +6,7 @@
       :imageUrl="data[0].imageUrl"
       :ComTitle="data[0].ComTitle"
       :Para="data[0].Para"
+      :boldText = "data[0].boldtext"
     />
    
 
@@ -45,6 +46,7 @@ export default {
 };
 const dummyData = [
   {
+    boldtext: "About",
     ComTitle: "<br/>our company​",
     CardTitle: "Our vision​​",
     Para: "Donec sit amet leo quis lectus malesuada viverra eu in libero. Donec purus ligula, ultrices at metus sed, porta semper libero. Cras consequat felis vel.",
@@ -58,7 +60,7 @@ const dummyData = [
   },
   {
     // ComTitle: 'E2E operating system 2',
-    CardTitle: "Inventory management​",
+    CardTitle: "Meet our founder​",
     CardBody: [
       "Low stock triggers​",
       "​Auto reordering and replenishment",
@@ -69,7 +71,7 @@ const dummyData = [
   },
   {
     // ComTitle: 'E2E operating system 2',
-    CardTitle: "Transaction​",
+    CardTitle: "Some faces behind MOOS​",
     CardBody: [
       "Real time insights in what happens in store/warehouse​",
       "Basis for payments, order-checks, theft detection​",

@@ -5,6 +5,7 @@
       :CardBody="data[0].CardBody"
       :imageUrl="data[0].imageUrl"
       :ComTitle="data[0].ComTitle"
+      :boldText="data[0].boldtext"
       :Para="data[0].Para"
     />
 
@@ -35,6 +36,7 @@ import CardImgRight from "~/components/services/cardImgRight.vue";
 
 const dummyData = [
   {
+    boldtext:"MOOS",
     ComTitle: "E2E operating system",
     CardTitle: "",
     Para: "​Platform offering multiple services. From inaccurate data and manual effort to real time, accurate, remote, automated insights​.",

@@ -38,12 +38,12 @@
       <div class="relative flex flex-col items-center text-left lg:text-left lg:py-7 xl:py-8
         lg:items-start lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1 lg:w-1/2">
 
-        <CommonTitle v-if="ComTitle" :CardTitle="ComTitle" />
+        <CommonTitle v-if="ComTitle" :CardTitle="ComTitle" :BoldText="boldText" />
         <P class="text-black-100 text-xl">{{ Para }}</P>
         <h2 class="text-3xl pb-6 text-black-200 font-semibold py-2">
           {{ CardTitle }}
         </h2>
-        <ul class="text-black-100 list-none pl-5 text-xl">
+        <ul class="text-black-100 list-none  text-xl">
           <li v-for="(point, index) in CardBody" :key="index" class="pb-4">
             <i class="fas fa-check text-green-500 mr-2"></i>{{ point }}
           </li>
@@ -64,7 +64,7 @@
 <script>
 export default {
   name: "card",
-  props: ["CardTitle", "CardBody", "imageUrl", "ComTitle", "Para"],
+  props: ["CardTitle", "CardBody", "imageUrl", "ComTitle", "Para","boldText"],
 };
 </script>
 

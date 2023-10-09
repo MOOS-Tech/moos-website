@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Card :imageUrl="data[0].imageUrl" :ComTitle="data[0].ComTitle" :Para="data[0].Para" />
+    <Card :imageUrl="data[0].imageUrl" :ComTitle="data[0].ComTitle" :Para="data[0].Para" :boldText="data[0].boldtext"/>
     <div class="bg-green-400 ">
      <TechnologyCard/>
     </div>
@@ -28,6 +28,7 @@ export default {
 }
 const dummyData = [
   {
+    boldtext : "MOOS",
     ComTitle: "the operating system for inventory management​​",
     Para: "Donec sit amet leo quis lectus malesuada viverra eu in libero. Donec purus ligula, ultrices at metus sed, porta semper libero. Cras consequat felis vel.",
 

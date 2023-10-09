@@ -2,8 +2,8 @@
   <div class="pt-20 lg:max-w-10xl w-full sm:px-10 md:px-12 px-5 lg:px-10 flex flex-col lg:flex-row py-10">
     <section class="pt-20 lg:max-w-10xl w-full sm:px-10 md:px-12 px-5 lg:px-10 py-10  mx-auto lg:max-w-7xl  bg-white">
       <!-- Title in a new row -->
-      <div class="mb-6">
-        <h2 class="text-3xl font-semibold text-neutral-800 mx-9">How To Get Started</h2>
+      <div class="mb-10">
+        <h2 class="text-3xl font-semibold text-black-200 ">How To Get Started</h2>
       </div>
 
       <!-- Cards in one row with separate columns -->
