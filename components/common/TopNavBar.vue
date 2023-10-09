@@ -28,15 +28,15 @@
           </button>
           <div v-if="isDropdownOpen"
             class="absolute top-12 w-full lg:w-80  bg-white border border-gray-300 rounded shadow-md z-10">
-            <NuxtLink to="/business_solutions" class="block px-4 py-2  hover:bg-green-200 hover:border hover:border-green-200  hover:text-white !important"  @click="closeDropdown">
+            <NuxtLink to="/UnmannedRetail" class="block px-4 py-2  hover:bg-green-200 hover:border hover:border-green-200  hover:text-white !important"  @click="closeDropdown">
               <i class="fa fa-archive mr-2" aria-hidden="true"></i>
               Unmanned Retail
             </NuxtLink>
-            <NuxtLink to="/business_solutions" class="block px-4 py-2  hover:bg-green-200 hover:border hover:border-green-200  hover:text-white !important"  @click="closeDropdown">
+            <NuxtLink to="/UnmannedRetail" class="block px-4 py-2  hover:bg-green-200 hover:border hover:border-green-200  hover:text-white !important"  @click="closeDropdown">
               <i class="fa fa-university mr-2" aria-hidden="true"></i>
               Warehousing Ops
             </NuxtLink>
-            <NuxtLink to="/business_solutions" class="block px-4 py-2  hover:bg-green-200 hover:border hover:border-green-200  hover:text-white !important"  @click="closeDropdown">
+            <NuxtLink to="/UnmannedRetail" class="block px-4 py-2  hover:bg-green-200 hover:border hover:border-green-200  hover:text-white !important"  @click="closeDropdown">
               <i class="fa fa-home mr-2" aria-hidden="true"></i>
               Multiple Stock-keeping Locations
             </NuxtLink>

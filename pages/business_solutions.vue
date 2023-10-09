@@ -1,23 +1,27 @@
 <template>
   <div>
-    <Card
-      :CardTitle="data[0].CardTitle"
-      :CardBody="data[0].CardBody"
-      :imageUrl="data[0].imageUrl"
-      :ComTitle="data[0].ComTitle"
-      :Para="data[0].Para"
-    />
+    <Card :CardTitle="data[0].CardTitle" :CardBody="data[0].CardBody" :imageUrl="data[0].imageUrl"
+      :ComTitle="data[0].ComTitle" :Para="data[0].Para" />
+    <div>
+      <MoosValueLeft />
+      <!-- <MoosValueRight/> -->
+    </div>
     <div>
       <GetStart />
     </div>
-      <!-- ====== Map and the Contact Section-->
-      <MapAndContact/>
+
+
+
+    <!-- ====== Map and the Contact Section-->
+    <MapAndContact />
   </div>
 </template>
 
 <script>
 import Card from "~/components/business/card.vue";
 import GetStart from "~/components/business/GetStart.vue";
+import MoosValueLeft from "~/components/business/moosValueLeft.vue";
+import MoosValueRight from "~/components/business/moosValueRight.vue";
 import MapAndContact from '~/components/HomePage/mapAndContact.vue';
 
 const dummyData = [
@@ -36,7 +40,7 @@ const dummyData = [
 ];
 
 export default {
-  components: { Card, GetStart, MapAndContact },
+  components: { Card, GetStart, MapAndContact, MoosValueLeft,MoosValueRight },
   name: "business_solutions",
 
   data() {
@@ -47,5 +51,4 @@ export default {
 };
 </script>
 
-<style >
-</style>
+<style ></style>
