@@ -1,15 +1,15 @@
 <template>
   <div>
-    <Card :CardTitle="data[0].CardTitle"
-     :CardBody="data[0].CardBody"
-      :imageUrl="data[0].imageUrl"
-      :ComTitle="data[0].ComTitle"
-       :Para="data[0].Para" 
-       :boldText="data[0].boldtext"/>
+    <Card :CardTitle="data[0].CardTitle" :CardBody="data[0].CardBody" :imageUrl="data[0].imageUrl"
+      :ComTitle="data[0].ComTitle" :Para="data[0].Para" :boldText="data[0].boldtext" />
     <div>
-        <div class=" lg:max-w-10xl w-full sm:px-10 md:px-12 px-5 lg:px-10 py-10  mx-auto lg:max-w-7xl  bg-white">
+      <div class="pt-10 lg:max-w-10xl w-full sm:px-10 md:px-12 px-5 lg:px-10 flex flex-col lg:flex-row ">
+        <section class=" lg:max-w-10xl w-full sm:px-10 md:px-12 px-5 lg:px-10 py-10  mx-auto lg:max-w-7xl  bg-white">
+          <!-- Title in a new row -->
+
           <h2 class="text-3xl font-semibold text-black-200 ">Values of the MOOS Way</h2>
-        </div>
+        </section>
+      </div>
       <MoosValueLeft />
       <MoosValueRight />
       <MoosValueLeft />
@@ -35,7 +35,7 @@ import MapAndContact from '~/components/HomePage/mapAndContact.vue';
 const dummyData = [
   {
     ComTitle: "<br/>for unmanned retail​",
-    boldtext:"MOOS",
+    boldtext: "MOOS",
     CardTitle: "Typical challenges for unmanned retail companies​",
     Para: "​Donec sit amet leo quis lectus malesuada viverra eu in libero. Donec purus ligula, ultrices at metus sed, porta semper libero. Cras consequat felis vel.",
     CardBody: [

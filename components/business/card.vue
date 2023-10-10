@@ -9,7 +9,7 @@
           >
             <CommonTitle v-if="ComTitle" :CardTitle="ComTitle" :BoldText="boldText"/>
             <P class="text-black-100 text-xl">{{ Para }}</P>
-            <h2 class="text-4xl pb-6 text-black-200 font-semibold py-2">
+            <h2 class="text-4xl text-black-200 font-semibold py-8 ">
               {{ CardTitle }}
             </h2>
             <ul class="text-black-100 list-disc pl-5 text-xl text-left">
