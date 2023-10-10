@@ -43,7 +43,7 @@
         <h2 class="text-5xl pb-6 text-black-200">
           {{ CardTitle }}
         </h2>
-        <P class="text-black-100 text-xl">{{ Para }}</P>
+        <P class="text-black-100 text-xl mt-8">{{ Para }}</P>
         
         <ul class="text-black-100 list-none  text-xl">
           <li v-for="(point, index) in CardBody" :key="index" class="pb-4">

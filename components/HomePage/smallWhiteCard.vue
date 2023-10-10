@@ -4,11 +4,11 @@
       <div>
         <h3>
           <a href="javascript:void(0)"
-            class="text-dark hover:text-primary mb-4 inline-block text-xl font-semibold sm:text-2xl lg:text-xl xl:text-2xl">
+            class=" text-black-200  mb-4 inline-block text-small-title-heading font-semibold sm:text-2xl lg:text-xl xl:text-2xl">
             {{ item.title }}
           </a>
         </h3>
-        <p class="text-body-color text-base">
+        <p class="text-black-200 text-tiny-title-heading ">
           {{ item.description }}
         </p>
       </div>

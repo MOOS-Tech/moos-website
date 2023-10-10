@@ -8,7 +8,7 @@
             class="relative flex flex-col items-center text-center lg:text-left lg:py-7 xl:py-8 lg:items-start lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1 lg:w-2/3"
           >
             <CommonTitle v-if="ComTitle" :CardTitle="ComTitle" :BoldText="boldText"/>
-            <P class="text-black-100 text-xl">{{ Para }}</P>
+            <P class="text-black-100 text-xl mt-8">{{ Para }}</P>
             <h2 class="text-4xl text-black-200 font-semibold py-8 ">
               {{ CardTitle }}
             </h2>

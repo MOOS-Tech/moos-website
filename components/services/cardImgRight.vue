@@ -39,7 +39,7 @@
         lg:items-start lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1 lg:w-1/2">
 
         <CommonTitle v-if="ComTitle" :CardTitle="ComTitle" :BoldText="boldText" />
-        <P class="text-black-100 text-xl">{{ Para }}</P>
+        <P class="text-black-100 text-xl mt-8">{{ Para }}</P>
         <h2 class="text-3xl pb-6 text-black-200 font-semibold py-2">
           {{ CardTitle }}
         </h2>

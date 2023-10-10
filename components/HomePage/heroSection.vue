@@ -10,7 +10,7 @@
                 class="relative flex flex-col items-center text-center lg:text-left lg:items-start  lg:py-7 lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1">
 
                 <CommonTitle v-if="ComTitle" :CardTitle="ComTitle" :BoldText="boldText" />
-                <p class="mt-8 text-gray-700">
+                <p class="mt-8 text-black-200 text-regular-title-heading ">
                   Digitize your shelves & racks for full visibility where it happens:
                   the MOOS effortless inventory operating system​.
                 </p>
@@ -58,7 +58,7 @@ export default {
   },
   data() {
     return {
-      ComTitle: "for effortless inventory operations",
+      ComTitle: " for effortless inventory operations",
       boldText: "MOOS"
     }
   }

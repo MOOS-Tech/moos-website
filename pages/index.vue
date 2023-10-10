@@ -9,7 +9,7 @@
     <!-- ====== Partner Section-->
     <section class="pt-20 lg:max-w-7xl w-full sm:px-10 md:px-12 px-5 lg:px-10 flex mx-auto flex-col justify-center">
       <div class="mx-auto max-w-2xl lg:mx-0">
-        <h3 class="text-2xl font-bold text-black-100">OUR PARTNERS</h3>
+        <h3 class="text-small-title-heading font-semibold text-black-100">OUR PARTNERS</h3>
       </div>
       <div class=" py-5 pb-10 ">
         <div class="mx-auto max-w-5xl px-6 lg:px-8 lg-flex-row">
@@ -31,7 +31,7 @@
             <img src="@/assets/images/quoteVector.png" class="h-8 w-8">
                 
             </div>
-          <h1 class="italic sm:text-2xl text-3xl xl:text-5xl  mb-4 text-black-100">
+          <h1 class="italic text-normal-title-heading   mb-4 text-black-200">
             {{ Quote }}
           </h1>
           <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
@@ -52,10 +52,10 @@
               <img src="@/assets/images/VueJS.png" alt="Image Alt Text" class="h-12 w-15 mx-auto mt-4" />
             </a>
             <div class="p-6">
-              <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 text-center">
+              <h5 class="mb-2  text-small-title-heading text-black-200 text-center">
                 {{ card.title }}
               </h5>
-              <p class="mb-4 text-base text-neutral-600">
+              <p class="mb-4 text-regular-title-heading text-black-200">
                 {{ card.description }}
               </p>
             </div>

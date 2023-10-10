@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
   content: [
     "./components/**/*.{js,vue,ts}",
@@ -38,7 +39,28 @@ export default {
     },
     boxShadow: {
       '3xl': '0 3px 25px -10px rgba(0, 0, 0, 0.3)',
-    }
+    },
+    
+    fontSize: {
+      'title-heading': '3rem',
+      'sub-title-heading': '2.5rem',
+      'normal-title-heading': '2rem',
+      'small-title-heading': '1.5rem',
+      'regular-title-heading': '1rem',
+      'tiny-title-heading': '0.9rem',
+    },
+    
+    lineHeight: {
+      'title-heading-height': '1',  
+      
+    },
+    letterSpacing: {
+      'tight': '-0.05em',
+      'normal': '0',
+      'wide': '0.1em',
+    },
+   
+
   },
   plugins: [],
 }

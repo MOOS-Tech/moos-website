@@ -4,7 +4,7 @@
       <div class="grid md:grid-cols-2 md:gap-12 lg:gap-48 ">
         <section class="mt-6 mb-4 place-content-center ">
           <div class="mb-6 text-center">
-            <h1 class="text-3xl font-bold text-black-200 ">Ready to dive in?</h1>
+            <h1 class="text-normal-title-heading font-bold text-black-200 ">Ready to dive in?</h1>
           </div>
           <div class="flex flex-col items-center justify-center ">
             <FormInput type="text" name="name" id="name" placeholder="Name "></FormInput>

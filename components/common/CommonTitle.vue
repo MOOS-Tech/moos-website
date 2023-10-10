@@ -1,8 +1,8 @@
 <template>
-  <div class="pb-10">
-    <div class=" text-black-200 leading-tight text-4xl sm:text-4xl md:text-4xl xl:text-5xl ">
-      <span class="font-bold">{{ BoldText }}</span> <span v-html="CardTitle"></span>
-    </div>
+  
+    <div class=" text-black-200 leading-title-heading-height ">
+      <span class="font-bold text-title-heading">{{ BoldText }}</span> <span class="text-title-heading " v-html="CardTitle"></span>
+   
   </div>
 </template>
 
