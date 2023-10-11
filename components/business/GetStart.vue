@@ -15,18 +15,18 @@
         >
           <a href="#!">
             <div
-              class="h-8 w-8 mr-2 inline-flex items-center justify-center bg-green-200 text-black-200 rounded-full border border-black-300 text-white mx-2"
+              class="h-10 w-10 mr-2 mb-2 inline-flex items-center justify-center bg-green-200 rounded-full border text-white mx-2"
             >
               {{ index + 1 }}
             </div>
           </a>
           <div class="">
             <h5
-              class="mb-2 text-xl font-medium leading-tight text-neutral-800 mt-2 mx-2"
+              class="mb-2 text-small-title-heading font-medium leading-tight text-neutral-800 mt-2 mx-2"
             >
               {{ card.title }}
             </h5>
-            <p class="mb-4 text-base text-neutral-600 mx-2">
+            <p class="mb-4 text-regular-title-heading text-neutral-600 mx-2">
               {{ card.description }}
             </p>
           </div>
