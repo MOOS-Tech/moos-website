@@ -2,7 +2,7 @@
   <section class="relative py-10 lg:py-20 bg-white px-5 lg:px-20">
 
     <div class="overflow-hidden ">
-      <div class="mx-auto max-w-7xl lg:flex sm:px-10 md:px-12  w-full flex flex-col lg:flex-row  ">
+      <div class="mx-auto max-w-7xl lg:flex   w-full flex flex-col lg:flex-row  ">
        
           <div class="mx-auto w-full lg:w-1/2 lg:max-w-lg ">
             <div class="mx-auto lg:max-w-7xl w-full  flex flex-col lg:flex-row gap-12 lg:gap-40 pb-5">

@@ -9,7 +9,7 @@
     <!-- ====== Partner Section-->
     <section class="pt-20 lg:max-w-7xl w-full sm:px-10 md:px-12 px-5 lg:px-10 flex mx-auto flex-col justify-center">
       <div class="mx-auto max-w-2xl lg:mx-0">
-        <h3 class="text-small-title-heading font-semibold text-black-100">OUR PARTNERS</h3>
+        <h3 class="font-bold text-small-title-heading text-black-100">OUR PARTNERS</h3>
       </div>
       <div class=" py-5 pb-10 ">
         <div class="mx-auto max-w-5xl px-6 lg:px-8 lg-flex-row">
@@ -25,13 +25,13 @@
 
     <!-- ====== Quote Section-->
     <section class="pt-20 lg:max-w-10xl w-full sm:px-10 md:px-12 px-5 lg:px-10 flex flex-col lg:flex-row">
-      <div class="container py-10 mx-auto sm:flex sm:justify-center w-full sm:px-10 md:px-12 lg:px-32">
-        <div class="flex flex-col text-center w-full items-center">
+      <div class="container py-10 mx-auto sm:flex sm:justify-center w-full sm:px-10 md:px-12 lg:px-48">
+        <div class="flex flex-col text-center w-full items-center ">
           <div class="justify-start items-start self-start">
             <img src="@/assets/images/quoteVector.png" class="h-8 w-8">
                 
             </div>
-          <h1 class="italic text-normal-title-heading   mb-4 text-black-200">
+          <h1 class="italic text-normal-title-heading  mb-4 text-black-200">
             {{ Quote }}
           </h1>
           <p class="lg:w-2/3 mx-auto leading-relaxed text-base">

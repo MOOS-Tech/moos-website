@@ -4,7 +4,7 @@
       <div>
         <h3>
           <a href="javascript:void(0)"
-            class=" text-black-200  mb-4 inline-block text-small-title-heading font-semibold sm:text-2xl lg:text-xl xl:text-2xl">
+            class=" text-black-200  mb-4 inline-block text-small-title-heading font-semibold ">
             {{ item.title }}
           </a>
         </h3>

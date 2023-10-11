@@ -43,9 +43,9 @@
         <h2 class="text-5xl pb-6 text-black-200">
           {{ CardTitle }}
         </h2>
-        <P class="text-black-100 text-xl mt-8">{{ Para }}</P>
+        <P class="text-black-100 text-regular-title-heading mt-8">{{ Para }}</P>
         
-        <ul class="text-black-100 list-none  text-xl">
+        <ul class="text-black-100 list-none  text-small-title-heading">
           <li v-for="(point, index) in CardBody" :key="index" class="pb-4">
             <i class="fas fa-check text-green-500 mr-2"></i>{{ point }}
           </li>

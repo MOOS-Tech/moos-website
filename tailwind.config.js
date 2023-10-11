@@ -42,12 +42,12 @@ export default {
     },
     
     fontSize: {
-      'title-heading': '3rem',
-      'sub-title-heading': '2.5rem',
-      'normal-title-heading': '2rem',
-      'small-title-heading': '1.5rem',
-      'regular-title-heading': '1rem',
-      'tiny-title-heading': '0.9rem',
+      'title-heading': '2.3rem', //75
+      'sub-title-heading': '2.1rem',//55
+      'normal-title-heading': '1.9rem',//45
+      'small-title-heading': '1.4rem',//30
+      'regular-title-heading': '1.1rem',//25
+      'tiny-title-heading': '0.9rem',//20
     },
     
     lineHeight: {
