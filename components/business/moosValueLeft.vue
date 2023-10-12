@@ -2,34 +2,42 @@
     <div>
         <div class="flex flex-col lg:flex-row">
             <div class="flex flex-col sm:flex-row lg:max-w-7xl w-full sm:px-10 md:px-12 px-5 lg:px-20 mx-auto lg:flex-row">
-                <div class="flex flex-col items-start  lg:px-10">
+                <div class="flex flex-col items-center  lg:px-10 py-20">
                     <div>
-                        <h2 class="text-normal-title-heading font-semibold text-center lg:w-3/5 self-center text-green-200 mb-4">Pill
+                        <h2
+                            class="text-normal-title-heading font-semibold text-center lg:w-3/4 self-center text-green-200 mb-4">
+                            Pill
                             Structure</h2>
-                        <div
-                            class="relative lg:rounded-full md:rounded-full  flex items-center justify-center border-2 border-green-200 h-auto lg:w-3/5 py-1 round-pill">
-                            <div class="flex flex-col items-start lg:w-2/4 pl-10">
-                                <!-- Left content -->
-                                <h3 class="text-small-title-heading  mb-2 text-left">Old Way</h3>
-                                <ul class="text-sm  list-disc text-left">
-                                    <li>Count manually</li>
-                                    <li>Estimated with 60-70%
-                                        accurate ERP+POS data</li>
-                                </ul>
+                        <div class="flex items-center justify-center lg:w-4/5  transition-transform" id="pill-container">
+                            <div class="pill left relative lg:rounded-l-full md:rounded-l-full border-2 border-r-0  border-black-100 h-auto py-1 round-pill expand-horizontal1"
+                                id="leftPill">
+                                <div class="flex flex-col items-start lg:w-full pl-10">
+                                    <h3 class="text-small-title-heading mb-2 text-left">Old Way</h3>
+                                    <ul class="text-sm list-disc text-left">
+                                        <li>Count manually</li>
+                                        <li>Estimated with 60-70% accurate ERP+POS data</li>
+                                    </ul>
+                                </div>
                             </div>
-                            <!-- Middle column (Image) -->
-                            <div class="flex items-center justify-center lg:w-2/5 ">
-                                <img src="@/assets/images/pillimage.png" alt="Image" class="w-2/3 h-auto" />
+
+                            <div class="flex items-center justify-center w-1/6 expand-horizontal-image " id="image"
+                                @mouseover="movePills" @mouseleave="resetPills" style="margin-left: -20px; margin-right: -20px;">
+                                <img src="@/assets/images/pillimage.png" alt="Image" class="h-auto" />
                             </div>
-                            <div class="flex flex-col text-green-200 items-start justify-end lg:w-3/5 pl-5 pr-5">
-                                <!-- Right content -->
-                                <h3 class="text-small-title-heading mb-2 text-left">MOOS Way</h3>
-                                <ul class=" text-sm list-disc text-left">
-                                    <li>Automatic, real-time, remote & accurate stock insight</li>
-                                    <li>Right Point 2</li>
-                                </ul>
+
+                            <div class="pill right relative lg:rounded-r-full md:rounded-r-full border-2 border-l-0 border-green-200 h-auto py-1 round-pill expand-horizontal"
+                                id="rightPill">
+                                <div class="flex flex-col items-start lg:w-full pl-10  text-green-200"> 
+                                    <h3 class="text-small-title-heading mb-2 text-left">MOOS Way</h3>
+                                    <ul class="text-sm list-disc text-left">
+                                        <li>Automatic, real-time, remote & accurate stock insight</li>
+                                        <li>Right Point 2</li>
+                                    
+                                    </ul>
+                                </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
                 <div class="w-full sm:w-1/5 md:w-1/5 lg:w-1/6 ml-auto justify-end items-end self-end">
@@ -42,7 +50,34 @@
         </div>
     </div>
 </template>
+<script>
+
+export default {
+    name: "valueleft",
+
+
+    methods: {
+        movePills() {
+            const leftPill = document.getElementById("leftPill");
+            const rightPill = document.getElementById("rightPill");
+
+            leftPill.style.transform = "translateX(-10%)";
+            rightPill.style.transform = "translateX(10%)";
+        },
+        resetPills() {
+            const leftPill = document.getElementById("leftPill");
+            const rightPill = document.getElementById("rightPill");
+
+            leftPill.style.transform = "translateX(0)";
+            rightPill.style.transform = "translateX(0)";
+        },
+    },
+}
+</script>
 
 <style scoped>
+.pill {
 
+    transition: transform 0.3s;
+}
 </style>

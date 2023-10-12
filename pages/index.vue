@@ -1,5 +1,6 @@
 <template>
   <div>
+    
     <!-- hero section -->
    <HeroSection/>
 
@@ -79,6 +80,7 @@ import Blogs from "~/components/HomePage/blogs.vue";
 import MapAndContact from "~/components/HomePage/mapAndContact.vue";
 import HeroSection from "~/components/HomePage/heroSection.vue";
 
+
 export default {
   name: "index",
   components: {
@@ -86,10 +88,12 @@ export default {
     FormButton,
     Blogs,
     MapAndContact,
-    HeroSection
+    HeroSection,
+   
   },
   data() {
     return {
+    
       ComTitle: "for effortless inventory operations",
       partners: [
         {

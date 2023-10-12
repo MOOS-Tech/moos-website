@@ -12,7 +12,7 @@
       </div>
       <MoosValueLeft />
       <MoosValueRight />
-      <MoosValueLeft />
+      <MoosValueLeft/>
       <MoosValueRight />
       <MoosValueLeft />
       <MoosValueRight />
