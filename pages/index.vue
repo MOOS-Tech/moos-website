@@ -8,21 +8,7 @@
     <Blogs />
 
     <!-- ====== Partner Section-->
-    <section class="pt-20 lg:max-w-7xl w-full sm:px-10 md:px-12 px-5 lg:px-10 flex mx-auto flex-col justify-center">
-      <div class="mx-auto max-w-2xl lg:mx-0">
-        <h3 class="font-bold text-small-title-heading text-black-100">OUR PARTNERS</h3>
-      </div>
-      <div class=" py-5 pb-10 ">
-        <div class="mx-auto max-w-5xl px-6 lg:px-8 lg-flex-row">
-          <div
-            class="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
-            <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1 " v-for="(item, index) in partners"
-              :key="index" src="@/assets/images/VueJS.png" alt="Transistor" width="158" height="48" />
-          </div>
-        </div>
-      </div>
-
-    </section>
+   <PartnerCarousel/>
 
     <!-- ====== Quote Section-->
     <section class="pt-20 lg:max-w-10xl w-full sm:px-10 md:px-12 px-5 lg:px-10 flex flex-col lg:flex-row">
@@ -79,7 +65,7 @@ import FormButton from "@/components/common/Form/FormButton";
 import Blogs from "~/components/HomePage/blogs.vue";
 import MapAndContact from "~/components/HomePage/mapAndContact.vue";
 import HeroSection from "~/components/HomePage/heroSection.vue";
-
+import PartnerCarousel from "~/components/HomePage/partnerCarousel.vue";
 
 export default {
   name: "index",
@@ -89,29 +75,14 @@ export default {
     Blogs,
     MapAndContact,
     HeroSection,
+    PartnerCarousel
    
   },
   data() {
     return {
     
       ComTitle: "for effortless inventory operations",
-      partners: [
-        {
-          avatar: "https://randomuser.me/api/portraits/men/20.jpg",
-        },
-        {
-          avatar: "https://randomuser.me/api/portraits/men/20.jpg",
-        },
-        {
-          avatar: "https://randomuser.me/api/portraits/men/20.jpg",
-        },
-        {
-          avatar: "https://randomuser.me/api/portraits/men/20.jpg",
-        },
-        {
-          avatar: "https://randomuser.me/api/portraits/men/20.jpg",
-        },
-      ],
+     
       cards: [
         {
           imageUrl: "https://tecdn.b-cdn.net/img/new/standard/city/041.webp",
