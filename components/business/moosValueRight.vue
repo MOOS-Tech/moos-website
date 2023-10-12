@@ -6,17 +6,16 @@
 
                     <div>
                         <h2
-                            class="text-normal-title-heading font-semibold text-center lg:w-3/5 self-center text-green-200 mb-4">
-                            Pill
-                            Structure</h2>
-                        <div class="flex items-center justify-center lg:w-4/5  transition-transform" id="pill-container" dir="ltr">
+                            class="text-normal-title-heading font-semibold text-center lg:w-3/4 self-center text-green-200 mb-4">
+                            {{ pillTitle }}</h2>
+                        <div class="flex items-center justify-center lg:w-4/5  transition-transform" id="pill-container"
+                            dir="ltr">
                             <div class="pill left relative lg:rounded-l-full md:rounded-l-full border-2 border-r-0  border-black-100 h-auto py-1 round-pill expand-horizontal1"
-                                id="left_Pill">
+                                :id="left_Pill" @mouseover="movePills" @mouseleave="resetPills">
                                 <div class="flex flex-col items-start lg:w-full pl-10">
                                     <h3 class="text-small-title-heading mb-2 text-left">Old Way</h3>
                                     <ul class="text-sm list-disc text-left">
-                                        <li>Count manually</li>
-                                        <li>Estimated with 60-70% accurate ERP+POS data</li>
+                                        <li v-for="(item, index) in oldWays" :key="index">{{ item.oldWayValueText }}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -28,12 +27,11 @@
                             </div>
 
                             <div class="pill right relative lg:rounded-r-full md:rounded-r-full border-2 border-l-0 border-green-200 h-auto py-1 round-pill expand-horizontal"
-                                id="right_Pill">
+                                :id="right_Pill" @mouseover="movePills" @mouseleave="resetPills">
                                 <div class="flex flex-col items-start lg:w-full pl-10  text-green-200">
                                     <h3 class="text-small-title-heading mb-2 text-left">MOOS Way</h3>
                                     <ul class="text-sm list-disc text-left">
-                                        <li>Automatic, real-time, remote & accurate stock insight</li>
-                                        <li>Right Point 2</li>
+                                        <li v-for="(item, index) in mooseWays" :key="index">{{ item.moosWayValueText }}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -55,19 +53,45 @@
 
 export default {
     name: "valueleft",
+    props: ["left_Pill", "right_Pill"],
+    data() {
+        return {
+            pillTitle: "Pill Title",
+            oldWays: [
+                {
+                    oldWayValueText: "Count manually"
+                },
+                {
+                    oldWayValueText: "Estimated with 60-70% accurate ERP+POS data"
+                }
+            ],
+            mooseWays: [
+                {
+                    moosWayValueText: "Count manually"
+                },
+                {
+                    moosWayValueText: "Estimated with 60-70% accurate ERP+POS data"
+                }
+            ],
+        }
+    },
+
+
+
 
 
     methods: {
         movePills() {
-            const leftPill = document.getElementById("left_Pill");
-            const rightPill = document.getElementById("right_Pill");
+
+            const leftPill = document.getElementById(this.left_Pill);
+            const rightPill = document.getElementById(this.right_Pill);
 
             leftPill.style.transform = "translateX(-10%)";
             rightPill.style.transform = "translateX(10%)";
         },
         resetPills() {
-            const leftPill = document.getElementById("left_Pill");
-            const rightPill = document.getElementById("right_Pill");
+            const leftPill = document.getElementById(this.left_Pill);
+            const rightPill = document.getElementById(this.right_Pill);
 
             leftPill.style.transform = "translateX(0)";
             rightPill.style.transform = "translateX(0)";
@@ -80,5 +104,11 @@ export default {
 .pill {
 
     transition: transform 0.3s;
+    flex: 1;
+}
+
+#pill-container {
+    display: flex;
+    align-items: stretch;
 }
 </style>

@@ -10,12 +10,12 @@
           <h2 class="text-sub-title-heading font-semibold text-black-200 ">Values of the MOOS Way</h2>
         </section>
       </div>
-      <MoosValueLeft />
-      <MoosValueRight />
-      <MoosValueLeft/>
-      <MoosValueRight />
-      <MoosValueLeft />
-      <MoosValueRight />
+      <MoosValueLeft :rightPill="'oneleft'" :leftPill="'oneright'" />
+      <MoosValueRight :right_Pill="'one_left'" :left_Pill="'one_right'"/>
+      <MoosValueLeft :rightPill="'twoleft'" :leftPill="'tworight'"/>
+      <MoosValueRight  :right_Pill="'two_left'" :left_Pill="'two_right'"/>
+      <MoosValueLeft :rightPill="'threeleft'" :leftPill="'threeright'"/>
+      <MoosValueRight  :right_Pill="'three_left'" :left_Pill="'three_right'"/>
     </div>
     <div>
       <GetStart />
@@ -31,6 +31,7 @@ import GetStart from "~/components/business/GetStart.vue";
 import MoosValueLeft from "~/components/business/moosValueLeft.vue";
 import MoosValueRight from "~/components/business/moosValueRight.vue";
 import MapAndContact from '~/components/HomePage/mapAndContact.vue';
+
 
 const dummyData = [
   {
