@@ -39,8 +39,8 @@
 
 
                     </div>
-                    <div class="justify-end px-10  self-end">
-                        <DottedLine :line-width="540" :right-line-up-length="0" :right-line-down-length="100"
+                    <div class="justify-end px-10  self-end" v-if="isVisible">
+                        <DottedLine :line-width="500" :right-line-up-length="0" :right-line-down-length="100"
                             :left-line-down-length="0" :left-line-up-length="100" :show-left-line-up="true"
                             :show-right-line-down="true" />
                     </div>
@@ -61,7 +61,7 @@ import DottedLine from "../components/common/DottedLine";
 export default {
     name: "valueleft",
     components: { DottedLine },
-    props: ["leftPill", "rightPill"],
+    props: ["leftPill", "rightPill","isVisible"],
     
     data() {
         return {

@@ -38,6 +38,11 @@
                         </div>
 
                     </div>
+                    <div class="justify-end px-10  self-end" v-if="isVisible">
+                        <DottedLine :line-width="500" :right-line-up-length="100" :right-line-down-length="0"
+                            :left-line-down-length="100" :left-line-up-length="0" :show-left-line-down="true"
+                            :show-right-line-up="true" />
+                    </div>
                 </div>
                 <div class="w-full sm:w-1/5 md:w-1/5 lg:w-1/6 ml-auto justify-end items-end self-end">
                     <!-- <img src="@/assets/images/VueJS.png" alt="Additional Image" class="w-full h-auto" /> -->
@@ -50,10 +55,11 @@
     </div>
 </template>
 <script>
-
+import DottedLine from "../components/common/DottedLine";
 export default {
     name: "valueleft",
-    props: ["left_Pill", "right_Pill"],
+    props: ["left_Pill", "right_Pill","isVisible"],
+    components: { DottedLine },
     data() {
         return {
             pillTitle: "Pill Title",

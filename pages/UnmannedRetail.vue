@@ -1,7 +1,7 @@
 <template>
   <div>
     <Card :CardTitle="data[0].CardTitle" :CardBody="data[0].CardBody" :imageUrl="data[0].imageUrl"
-      :ComTitle="data[0].ComTitle" :Para="data[0].Para" :boldText="data[0].boldtext" />
+      :ComTitle="data[0].ComTitle" :Para="data[0].Para" :boldText="data[0].boldtext"  data-aos="fade-up"  data-aos-duration="1000"/>
     <div>
       <div class="pt-10 lg:max-w-10xl w-full sm:px-10 md:px-12 px-5 lg:px-10 flex flex-col lg:flex-row ">
         <section class=" lg:max-w-10xl w-full sm:px-10 md:px-12 px-5 lg:px-10 py-10  mx-auto lg:max-w-7xl  bg-white">
@@ -10,15 +10,15 @@
           <h2 class="text-sub-title-heading font-semibold text-black-200 ">Values of the MOOS Way</h2>
         </section>
       </div>
-      <MoosValueLeft :rightPill="'oneleft'" :leftPill="'oneright'" />
-      <MoosValueRight :right_Pill="'one_left'" :left_Pill="'one_right'"/>
-      <MoosValueLeft :rightPill="'twoleft'" :leftPill="'tworight'"/>
-      <MoosValueRight  :right_Pill="'two_left'" :left_Pill="'two_right'"/>
-      <MoosValueLeft :rightPill="'threeleft'" :leftPill="'threeright'"/>
-      <MoosValueRight  :right_Pill="'three_left'" :left_Pill="'three_right'"/>
+      <MoosValueLeft :rightPill="'oneleft'" :leftPill="'oneright'"  data-aos="fade-up"  data-aos-duration="1000" :isVisible="true"/>
+      <MoosValueRight :right_Pill="'one_left'" :left_Pill="'one_right'"  data-aos="fade-up"  data-aos-duration="1000" :isVisible="true"/>
+      <MoosValueLeft :rightPill="'twoleft'" :leftPill="'tworight'"  data-aos="fade-up"  data-aos-duration="1000" :isVisible="true"/>
+      <MoosValueRight  :right_Pill="'two_left'" :left_Pill="'two_right'"  data-aos="fade-up"  data-aos-duration="1000" :isVisible="true"/>
+      <MoosValueLeft :rightPill="'threeleft'" :leftPill="'threeright'" data-aos="fade-up"  data-aos-duration="1000" :isVisible="true"/>
+      <MoosValueRight  :right_Pill="'three_left'" :left_Pill="'three_right'" data-aos="fade-up"  data-aos-duration="1000" :isVisible="false"/>
     </div>
     <div>
-      <GetStart />
+      <GetStart  data-aos="fade-up"  data-aos-duration="1000"/>
     </div>
     <!-- ====== Map and the Contact Section-->
     <MapAndContact />

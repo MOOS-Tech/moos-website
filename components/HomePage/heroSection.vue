@@ -21,10 +21,13 @@
 
         </div>
         <div class="mx-auto lg:w-1/2 justify-center ">
-          <!-- <div class="absolute inset-0 flex items-center justify-end ">
-                <div class="absolute w-2/5 h-2/4  bg-transparent animated-rectangle "></div>
-              </div> -->
-          <div class="mx-auto w-full flex flex-wrap items-center gap-6 sm:gap-8 lg:contents ">
+          <div class="absolute inset-0 flex items-center justify-end lg:w-5/6">
+                <div class="absolute w-2/6 h-2/4  bg-transparent animated-rectangle ">
+                  <div class="small-rectangle-up "></div>
+                </div>
+               
+              </div>
+          <div class="mx-auto w-full flex flex-wrap items-center gap-6 sm:gap-8 lg:contents  ">
 
             <div
               class=" order-first mb-10 flex flex-auto lg:justify-end md:justify-center lg:w-auto lg:flex-none relative ">
@@ -40,6 +43,8 @@
               class=" contents lg:col-span-2 lg:col-end-2 lg:ml-auto lg:flex lg:items-start lg:justify-end md:justify-center lg:gap-x-8 ">
               <div class="absolute inset-0 flex items-end justify-center">
                 <div class="absolute w-1/5 h-2/4 bg-transparent animated-rectangle">
+                  <div class="small-rectangle "></div>
+                  <div class="small-rectangle-down "></div>
                 </div>
               </div>
               <div class=" flex flex-none justify-end  self-end lg:w-auto relative">
@@ -99,20 +104,81 @@ export default {
     linear-gradient(0deg, #109888 50%, transparent 0) repeat-y,
     linear-gradient(0deg, #109888 50%, transparent 0) repeat-y;
   /* background-size: 4px 1px, 4px 1px, 1px 4px, 1px 4px; */
-  background-size: 10px 3px, 10px 3px, 3px 10px, 3px 10px;
+  background-size: 12px 3px, 12px 3px, 3px 12px, 3px 12px;
   background-position: 0 0, 0 100%, 0 0, 100% 0;
-  animation: border-dance .4s infinite linear;
+  animation: border-dance .3s infinite linear;
+  border-radius: 5px;
 }
-
+.small-rectangle {
+  width: 50px; 
+  height: 50px;
+  position: absolute;
+  background:
+    linear-gradient(90deg, #109888 50%, transparent 0) repeat-x,
+    linear-gradient(90deg, #109888 50%, transparent 0) repeat-x,
+    linear-gradient(0deg, #109888 50%, transparent 0) repeat-y,
+    linear-gradient(0deg, #109888 50%, transparent 0) repeat-y;
+  /* background-size: 4px 1px, 4px 1px, 1px 4px, 1px 4px; */
+  background-size: 12px 3px, 12px 3px, 3px 12px, 3px 12px;
+  background-position: 0 0, 0 100%, 0 0, 100% 0;
+  animation: border-dance .3s infinite linear;
+  top: -20px; 
+  left: -20px;
+  border-radius: 5px;
+}
+.small-rectangle-down{
+  width: 50px; 
+  height: 50px;
+  position: absolute;
+  background:
+    linear-gradient(90deg, #109888 50%, transparent 0) repeat-x,
+    linear-gradient(90deg, #109888 50%, transparent 0) repeat-x,
+    linear-gradient(0deg, #109888 50%, transparent 0) repeat-y,
+    linear-gradient(0deg, #109888 50%, transparent 0) repeat-y;
+  /* background-size: 4px 1px, 4px 1px, 1px 4px, 1px 4px; */
+  background-size: 12px 3px, 12px 3px, 3px 12px, 3px 12px;
+  background-position: 0 0, 0 100%, 0 0, 100% 0;
+  animation: border-dance .3s infinite linear;
+  bottom: -20px; 
+  right: -20px;
+  border-radius: 10px;
+}
+.small-rectangle-up {
+  width: 40px; 
+  height: 30px;
+  position: absolute;
+  background:
+    linear-gradient(90deg, #109888 50%, transparent 0) repeat-x,
+    linear-gradient(90deg, #109888 50%, transparent 0) repeat-x,
+    linear-gradient(0deg, #109888 50%, transparent 0) repeat-y,
+    linear-gradient(0deg, #109888 50%, transparent 0) repeat-y;
+  /* background-size: 4px 1px, 4px 1px, 1px 4px, 1px 4px; */
+  background-size: 12px 3px, 12px 3px, 3px 12px, 3px 12px;
+  background-position: 0 0, 0 100%, 0 0, 100% 0;
+  animation: border-dance .3s infinite linear;
+  top: 40px; 
+  left: -20px;
+  border-radius:10px;
+}
 @keyframes border-dance {
 
   100% {
-    background-position: 10px 0, -10px 100%, 0 -10px, 100% 10px;
+    background-position: 12px 0, -12px 100%, 0 -12px, 100% 12px;
   }
 }
 
 @media (max-width: 640px) {
   .animated-rectangle {
+    background: none;
+  }
+  .small-rectangle
+  {
+    background: none;
+  }
+  .small-rectangle-down{
+    background: none;
+  }
+  .small-rectangle-up{
     background: none;
   }
 }

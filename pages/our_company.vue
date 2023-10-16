@@ -7,6 +7,7 @@
       :ComTitle="data[0].ComTitle"
       :Para="data[0].Para"
       :boldText = "data[0].boldtext"
+      data-aos="fade-up"  data-aos-duration="1000"
     />
    
 
@@ -14,12 +15,14 @@
       :CardTitle="data[1].CardTitle"
       :CardBody="data[1].CardBody"
       :imageUrl="data[1].imageUrl"
+      data-aos="fade-up"  data-aos-duration="1000"
     />
 
     <CardImgRight
       :CardTitle="data[2].CardTitle"
       :CardBody="data[2].CardBody"
       :imageUrl="data[2].imageUrl"
+      data-aos="fade-up"  data-aos-duration="1000"
     />
 
    

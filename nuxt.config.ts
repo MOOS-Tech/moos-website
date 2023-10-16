@@ -12,5 +12,6 @@ export default defineNuxtConfig({
     },
     buildModules: [
         '@nuxtjs/router',
-    ]
+    ],
+    plugins: [{ src: "@/plugins/aos", ssr: false, mode: "client" }],
 })

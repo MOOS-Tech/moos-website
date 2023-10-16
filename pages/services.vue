@@ -7,18 +7,21 @@
         :ComTitle="data[0].ComTitle"
         :boldText="data[0].boldtext"
         :Para="data[0].Para"
+        data-aos="fade-up"  data-aos-duration="1000"
     />
 
     <card
         :CardTitle="data[1].CardTitle"
         :CardBody="data[1].CardBody"
         :imageUrl="data[1].imageUrl"
+        data-aos="fade-up"  data-aos-duration="1000"
     />
 
     <CardImgRight
         :CardTitle="data[2].CardTitle"
         :CardBody="data[2].CardBody"
         :imageUrl="data[2].imageUrl"
+        data-aos="fade-up"  data-aos-duration="1000"
     />
 
     <card
@@ -26,9 +29,10 @@
         :CardBody="data[3].CardBody"
         :imageUrl="data[3].imageUrl"
         :Para="data[3].Para"
+        data-aos="fade-up"  data-aos-duration="1000"
     />
   </div>
-  <div style="height: 1000px">
+  <!-- <div style="height: 1000px">
     <span>Example 01</span>
     <DottedLine
         :line-width="300"
@@ -91,7 +95,7 @@
           :show-right-line-up="true"
       />
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
