@@ -106,7 +106,7 @@ export default {
   /* background-size: 4px 1px, 4px 1px, 1px 4px, 1px 4px; */
   background-size: 12px 3px, 12px 3px, 3px 12px, 3px 12px;
   background-position: 0 0, 0 100%, 0 0, 100% 0;
-  animation: border-dance .3s infinite linear;
+  animation: border-dance 0.8s infinite linear;
   border-radius: 5px;
 }
 .small-rectangle {
@@ -121,7 +121,7 @@ export default {
   /* background-size: 4px 1px, 4px 1px, 1px 4px, 1px 4px; */
   background-size: 12px 3px, 12px 3px, 3px 12px, 3px 12px;
   background-position: 0 0, 0 100%, 0 0, 100% 0;
-  animation: border-dance .3s infinite linear;
+  animation: border-dance 0.8s infinite linear;
   top: -20px; 
   left: -20px;
   border-radius: 5px;
@@ -138,7 +138,7 @@ export default {
   /* background-size: 4px 1px, 4px 1px, 1px 4px, 1px 4px; */
   background-size: 12px 3px, 12px 3px, 3px 12px, 3px 12px;
   background-position: 0 0, 0 100%, 0 0, 100% 0;
-  animation: border-dance .3s infinite linear;
+  animation: border-dance 0.8s infinite linear;
   bottom: -20px; 
   right: -20px;
   border-radius: 10px;
@@ -155,7 +155,7 @@ export default {
   /* background-size: 4px 1px, 4px 1px, 1px 4px, 1px 4px; */
   background-size: 12px 3px, 12px 3px, 3px 12px, 3px 12px;
   background-position: 0 0, 0 100%, 0 0, 100% 0;
-  animation: border-dance .3s infinite linear;
+  animation: border-dance 0.8s infinite linear;
   top: 40px; 
   left: -20px;
   border-radius:10px;
