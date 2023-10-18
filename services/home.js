@@ -14,3 +14,11 @@ export const smallWhiteCardGetAll = async () => {
       return error;
     }
   };
+
+  export const getQuotes = async () => {
+    try {
+      return await axios.get(`http://localhost:1337/api/quotes`);
+    } catch (error) {
+      return error;
+    }
+  };
