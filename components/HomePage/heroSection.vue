@@ -73,6 +73,7 @@
 <script>
 
 import FormButton from "@/components/common/Form/FormButton";
+import { getTitle } from "@/services/home.js";
 
 export default {
   name: "index",
@@ -83,15 +84,21 @@ export default {
   },
   data() {
     return {
-      ComTitle: " for effortless inventory operations",
-      boldText: "MOOS",
-      para: "Digitize your shelves & racks for full visibility where it happens: the MOOS effortless inventory operating system​."
-
-
+      ComTitle: "",
+      boldText: "",
+      para: ""
     }
-  }
-
-
+  },
+  async created() {
+    try {
+      const response = await getTitle();
+      this.ComTitle= response.data.data.attributes.CommonTitle
+      this.boldText= response.data.data.attributes.boldText
+      this.para = response.data.data.attributes.Paragraph
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  },
 }
 
 </script>
