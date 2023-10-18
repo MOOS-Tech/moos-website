@@ -5,7 +5,7 @@
       <div class="mx-auto max-w-7xl lg:flex   w-full flex flex-col lg:flex-row  ">
 
         <div class="mx-auto w-full lg:w-1/2 lg:max-w-lg ">
-          <div class="mx-auto lg:max-w-7xl w-full  flex flex-col lg:flex-row gap-12 lg:gap-40 pb-5">
+          <div class="mx-auto lg:max-w-7xl w-full  flex flex-col lg:flex-row gap-12 lg:gap-40 pb-5 ">
             <div
               class="relative flex flex-col items-center text-center lg:text-left lg:items-start  lg:py-7 lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1">
 
@@ -18,19 +18,26 @@
               </div>
             </div>
           </div>
-
+          <div class="absolute w-2/4 h-3/4 flex items-start justify-end">
+                <div class="absolute w-2/4 h-3/5 bg-transparent animated-rectangle">
+                  <div class="small-rectangle "></div>
+                  <div class="small-rectangle-down "></div>
+                </div>
+              </div>
         </div>
-        <div class="mx-auto lg:w-1/2 justify-center ">
-          <div class="absolute inset-0 flex items-center justify-end lg:w-5/6">
-                <div class="absolute w-2/6 h-2/4  bg-transparent animated-rectangle ">
+        <div class="mx-auto lg:w-1/2 justify-center relative">
+          
+          <div class="absolute  w-4/5 h-3/4 flex items-center justify-end lg:w-5/6">
+                <div class="absolute w-4/5 h-2/4  bg-transparent animated-rectangle ">
                   <div class="small-rectangle-up "></div>
                 </div>
                
               </div>
+              
           <div class="mx-auto w-full flex flex-wrap items-center gap-6 sm:gap-8 lg:contents  ">
-
+            
             <div
-              class=" order-first mb-10 flex flex-auto lg:justify-end md:justify-center lg:w-auto lg:flex-none relative ">
+              class=" order-first mb-10 flex flex-auto lg:justify-end md:justify-center lg:w-auto lg:flex-none  ">
 
               <img
                 src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=768&h=604&q=80"
@@ -38,15 +45,10 @@
 
 
             </div>
-
+            
             <div
               class=" contents lg:col-span-2 lg:col-end-2 lg:ml-auto lg:flex lg:items-start lg:justify-end md:justify-center lg:gap-x-8 ">
-              <div class="absolute inset-0 flex items-end justify-center">
-                <div class="absolute w-1/5 h-2/4 bg-transparent animated-rectangle">
-                  <div class="small-rectangle "></div>
-                  <div class="small-rectangle-down "></div>
-                </div>
-              </div>
+             
               <div class=" flex flex-none justify-end  self-end lg:w-auto relative">
                 <img
                   src="https://images.unsplash.com/photo-1605656816944-971cd5c1407f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=768&h=604&q=80"

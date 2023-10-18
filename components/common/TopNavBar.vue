@@ -1,5 +1,5 @@
 <template>
-  <nav class="flex items-center bg-green-200 p-2 flex-wrap">
+  <nav class="flex items-center bg-green-200 p-2 flex-wrap flex-no-wrap sticky top-0 z-10 w-full  ">
     <NuxtLink to="/" class="mr-6 ml-3 inline-flex items-center">
       <img src="@/assets/images/navbarLogo.png" alt="Image Alt Text" class="h-12 w-15 mr-2" />
     </NuxtLink>
@@ -62,10 +62,14 @@
         </a>
         <a class="lg:inline-flex lg:w-auto w-full px-5 py-2 rounded text-white items-center justify-center" href="#">
 
-          <FormButton
-            class=" bg-white bg-opacity-25  border-white text-white rounded-md h-9 hover:bg-white hover:border hover:border-white hover:bg-opacity-25 hover:text-white">
+          <!-- <FormButton
+            class=" bg-white bg-opacity-25  border-white text-white rounded-md  hover:bg-white hover:border hover:border-white hover:bg-opacity-25 hover:text-white">
             Book a Meeting
-          </FormButton>
+          </FormButton> -->
+          <NuxtLink to=""
+          class="lg:inline-flex lg:w-auto w-full px-5 py-2 mr-5  rounded text-white items-center justify-center bg-white bg-opacity-25 border border-white hover:bg-white hover:border hover:border-white hover:bg-opacity-25 hover:text-white">
+          <span> Book a Meeting</span>
+        </NuxtLink>
 
         </a>
       </div>
