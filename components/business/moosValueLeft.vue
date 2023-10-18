@@ -6,7 +6,7 @@
                     <div>
                         <h2
                             class="text-normal-title-heading font-semibold text-center lg:w-3/4 self-center text-green-200 mb-4">
-                            {{pillTitle}}</h2>
+                            {{ pillTitle }}</h2>
                         <div class="flex items-center justify-center  lg:w-4/5  transition-transform" id="pill-container">
                             <div class="pill left relative lg:rounded-l-full md:rounded-l-full border-2 border-r-0  border-black-100 h-auto py-1 round-pill expand-horizontal1"
                                 :id="leftPill" @mouseover="movePills" @mouseleave="resetPills">
@@ -31,7 +31,7 @@
                                     <h3 class="text-small-title-heading mb-2 text-left">MOOS Way</h3>
                                     <ul class="text-sm list-disc text-left">
                                         <li v-for="(item, index) in mooseWays" :key="index">{{ item.moosWayValueText }}</li>
-                                        
+
                                     </ul>
                                 </div>
                             </div>
@@ -39,7 +39,7 @@
 
 
                     </div>
-                    <div class="justify-end px-10  self-end" v-if="isVisible">
+                    <div class="justify-end px-10  self-end" v-if="isVisible" :class="{ 'dotted-animation': isVisible }">
                         <DottedLine :line-width="500" :right-line-up-length="0" :right-line-down-length="100"
                             :left-line-down-length="0" :left-line-up-length="100" :show-left-line-up="true"
                             :show-right-line-down="true" />
@@ -61,11 +61,11 @@ import DottedLine from "../components/common/DottedLine";
 export default {
     name: "valueleft",
     components: { DottedLine },
-    props: ["leftPill", "rightPill","isVisible"],
-    
+    props: ["leftPill", "rightPill", "isVisible"],
+
     data() {
         return {
-            pillTitle : "Pill Title",
+            pillTitle: "Pill Title",
             oldWays: [
                 {
                     oldWayValueText: "Count manually"
@@ -82,6 +82,7 @@ export default {
                     moosWayValueText: "Estimated with 60-70% accurate ERP+POS data"
                 }
             ],
+          
         }
     },
 
@@ -101,7 +102,9 @@ export default {
             leftPill.style.transform = "translateX(0)";
             rightPill.style.transform = "translateX(0)";
         },
+       
     },
+
 }
 </script>
 
@@ -115,5 +118,11 @@ export default {
 #pill-container {
     display: flex;
     align-items: stretch;
+}
+
+@media (max-width: 640px) {
+    .dotted-animation {
+        display: none;
+    }
 }
 </style>

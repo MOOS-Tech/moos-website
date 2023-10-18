@@ -6,14 +6,14 @@
           :d="`M${lineXStart} ${lineY} L${lineXEnd} ${lineY}`"
           stroke="#109888"
           fill="transparent"
-          stroke-dasharray="10"
+          stroke-dasharray="8"
           stroke-dashoffset="0"
       >
         <animate
             attributeName="stroke-dashoffset"
             from="0"
             to="60"
-            dur="1s"
+            dur="2s"
             repeatCount="indefinite"
         />
       </path>
@@ -23,7 +23,7 @@
           :d="`M${lineXEnd} ${lineY} L${lineXEnd} ${lineY - rightLineUpLength}`"
           stroke="#109888"
           fill="transparent"
-          stroke-dasharray="10"
+          stroke-dasharray="8"
           stroke-dashoffset="0"
           v-if="showRightLineUp"
       >
@@ -31,7 +31,7 @@
             attributeName="stroke-dashoffset"
             from="0"
             to="60"
-            dur="1s"
+            dur="2s"
             repeatCount="indefinite"
         />
       </path>
@@ -40,7 +40,7 @@
           :d="`M${lineXEnd} ${lineY} L${lineXEnd} ${lineY + rightLineDownLength}`"
           stroke="#109888"
           fill="transparent"
-          stroke-dasharray="10"
+          stroke-dasharray="8"
           stroke-dashoffset="0"
           v-if="showRightLineDown"
       >
@@ -48,7 +48,7 @@
             attributeName="stroke-dashoffset"
             from="0"
             to="60"
-            dur="1s"
+            dur="2s"
             repeatCount="indefinite"
         />
       </path>
@@ -58,7 +58,7 @@
           :d="`M${lineXStart} ${lineY} L${lineXStart} ${lineY - leftLineUpLength}`"
           stroke="#109888"
           fill="transparent"
-          stroke-dasharray="10"
+          stroke-dasharray="8"
           stroke-dashoffset="0"
           v-if="showLeftLineUp"
       >
@@ -66,7 +66,7 @@
             attributeName="stroke-dashoffset"
             from="0"
             to="60"
-            dur="1s"
+            dur="2s"
             repeatCount="indefinite"
         />
       </path>
@@ -75,7 +75,7 @@
           :d="`M${lineXStart} ${lineY} L${lineXStart} ${lineY + leftLineDownLength}`"
           stroke="#109888"
           fill="transparent"
-          stroke-dasharray="10"
+          stroke-dasharray="8"
           stroke-dashoffset="0"
           v-if="showLeftLineDown"
       >
@@ -83,7 +83,7 @@
             attributeName="stroke-dashoffset"
             from="0"
             to="60"
-            dur="1s"
+            dur="2s"
             repeatCount="indefinite"
         />
       </path>

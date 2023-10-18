@@ -38,7 +38,7 @@
                         </div>
 
                     </div>
-                    <div class="justify-end px-10  self-end" v-if="isVisible">
+                    <div class="justify-end px-10  self-end" v-if="isVisible" :class="{ 'dotted-animation': isVisible }">
                         <DottedLine :line-width="500" :right-line-up-length="100" :right-line-down-length="0"
                             :left-line-down-length="100" :left-line-up-length="0" :show-left-line-down="true"
                             :show-right-line-up="true" />
@@ -116,5 +116,10 @@ export default {
 #pill-container {
     display: flex;
     align-items: stretch;
+}
+@media (max-width: 640px) {
+    .dotted-animation {
+        display: none;
+    }
 }
 </style>
