@@ -6,7 +6,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <div v-for="(card, index) in cards" :key="index" class="bg-white rounded-lg border-r">
             <a href="#!">
-              <img :src="'http://localhost:1337' + card.attributes.ImageUrl.data.attributes.url" alt="Image Alt Text" class="h-12 w-15 mx-auto mt-4" />
+              <img :src="baseUrl + card.attributes.ImageUrl.data.attributes.url" alt="Image Alt Text" class="h-12 w-15 mx-auto mt-4" />
             </a>
             <div class="p-6">
               <h5 class="mb-2  text-small-title-heading text-black-200 text-center">
@@ -29,7 +29,8 @@ export default {
  
   data() {
     return {
-      
+      // baseUrl: process.env.BACKEND__URL,
+      baseUrl: 'http://localhost:1337',
       cards: [
         // {
         //   imageUrl: "https://tecdn.b-cdn.net/img/new/standard/city/041.webp",
@@ -57,6 +58,7 @@ export default {
   async created() {
     try {
       const response = await getCardViews();
+      console.log(response.data.data)
       this.cards = response.data.data
     } catch (error) {
       console.error("Error fetching data:", error);

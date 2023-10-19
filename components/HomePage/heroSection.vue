@@ -40,7 +40,7 @@
               class=" order-first mb-10 flex flex-auto lg:justify-end md:justify-center lg:w-auto lg:flex-none  ">
 
               <img
-                src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=768&h=604&q=80"
+                :src="imageSrc1"
                 alt="" class="aspect-[5/3] w-[24rem] max-w-none rounded-2xl bg-gray-50 object-cover relative" />
 
 
@@ -51,13 +51,13 @@
              
               <div class=" flex flex-none justify-end  self-end lg:w-auto relative">
                 <img
-                  src="https://images.unsplash.com/photo-1605656816944-971cd5c1407f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=768&h=604&q=80"
+                :src="imageSrc2"
                   alt="" class="aspect-[5/3] w-[24rem] max-w-none flex-none rounded-2xl bg-gray-50 object-cover" />
               </div>
 
               <div class="flex flex-auto justify-center lg:w-auto lg:flex-none relative">
                 <img
-                  src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1152&h=842&q=80"
+                  :src="imageSrc3"
                   alt="" class="aspect-[8/5] w-[37rem] max-w-none flex-none rounded-2xl bg-gray-50 object-cover" />
               </div>
 
@@ -86,6 +86,9 @@ export default {
   },
   data() {
     return {
+      imageSrc2: "http://localhost:1337/uploads/photo_1605656816944_971cd5c1407f_f60dcc9bf6.png",
+      imageSrc3:"http://localhost:1337/uploads/photo_1568992687947_868a62a9f521_52c97debf0.png",
+      imageSrc1:"http://localhost:1337/uploads/photo_1612872087720_bb876e2e67d1_60d7c40c5a.png",
       ComTitle: "",
       boldText: "",
       para: ""
