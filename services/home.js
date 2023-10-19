@@ -22,3 +22,11 @@ export const smallWhiteCardGetAll = async () => {
       return error;
     }
   };
+
+  export const getCardViews = async () => {
+    try {
+      return await axios.get(`http://localhost:1337/api/card-views?populate=*`);
+    } catch (error) {
+      return error;
+    }
+  };
