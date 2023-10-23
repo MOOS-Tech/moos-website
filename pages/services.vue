@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div>
     <CardImgRight
         :CardTitle="data[0].CardTitle"
@@ -32,123 +32,89 @@
         data-aos="fade-up"  data-aos-duration="1000"
     />
   </div>
-  <!-- <div style="height: 1000px">
-    <span>Example 01</span>
-    <DottedLine
-        :line-width="300"
-        :right-line-up-length="50"
-        :right-line-down-length="0"
-        :left-line-down-length="50"
-        :left-line-up-length="0"
-        :show-right-line-up="true"
-        :show-left-line-down="true"/>
-
-    <span>Example 02</span>
-    <DottedLine
-        :line-width="200"
-        :right-line-up-length="0"
-        :right-line-down-length="100"
-        :left-line-down-length="0"
-        :left-line-up-length="150"
-        :show-left-line-up="true"
-        :show-right-line-down="true"/>
-
-    <span>Example 03</span>
-    <DottedLine
-        :line-width="500"
-        :right-line-up-length="150"
-        :right-line-down-length="100"
-        :left-line-down-length="0"
-        :left-line-up-length="0"
-        :show-right-line-up="true"
-        :show-right-line-down="true"/>
-
-    <div style="padding-top: 100px">
-      <span>Example 04</span>
-      <DottedLine
-          :line-width="300"
-          :right-line-up-length="50"
-          :right-line-down-length="0"
-          :left-line-down-length="0"
-          :left-line-up-length="50"
-          :show-left-line-up="true"
-          :show-right-line-up="true"/>
+</template> -->
+<template>
+  <div>
+    <div v-for="(item, index) in cards" :key="index">
+  
+      <template v-if="index % 2 === 0">
+        <CardImgRight
+          :CardTitle="item.attributes.CardTitle"
+          :CardBody="item.attributes.service_card_bodies.data "
+          :imageUrl="'http://localhost:1337'+item.attributes.imageUrl.data.attributes.formats.small.url"
+          :ComTitle="item.attributes.ComTitle"
+          :boldText="item.attributes.boldtext"
+          :Para="item.attributes.Paragraph"
+          :data-aos="fade-up"
+          :data-aos-duration="1000"
+        />
+      </template>
+      <template v-else>
+        <card
+          :CardTitle="item.attributes.CardTitle"
+          :CardBody="item.attributes.service_card_bodies.data"
+          :imageUrl="'http://localhost:1337'+item.attributes.imageUrl.data.attributes.formats.small.url"
+          :Para="item.attributes.Paragraph"
+          :data-aos="fade-up"
+          :data-aos-duration="1000"
+        />
+      </template>
     </div>
-    <div style="padding-top: 10px">
-      <span>Example 05</span>
-      <DottedLine
-          :line-width="300"
-          :right-line-up-length="0"
-          :right-line-down-length="0"
-          :left-line-down-length="0"
-          :left-line-up-length="0"
-      />
-    </div>
-    <div style="padding-top: 10px">
-      <span>Example 06</span>
-      <DottedLine
-          :line-width="900"
-          :right-line-up-length="100"
-          :right-line-down-length="0"
-          :left-line-down-length="0"
-          :left-line-up-length="0"
-          :show-right-line-up="true"
-      />
-    </div>
-  </div> -->
+  </div>
 </template>
 
 <script>
 import card from "~/components/services/cardImgLeft.vue";
 import CardImgRight from "~/components/services/cardImgRight.vue";
 import DottedLine from "../components/common/DottedLine";
+import {getAllServices} from "@/services/service"
 
-const dummyData = [
-  {
-    boldtext: "MOOS",
-    ComTitle: "E2E operating system",
-    CardTitle: "",
-    Para: "​Platform offering multiple services. From inaccurate data and manual effort to real time, accurate, remote, automated insights​.",
-    CardBody: [
-      "Inventory management made worry free",
-      "Transactions​",
-      "Basis for new innovation roadmap",
-    ],
-    imageUrl:
-        "https://e1.pxfuel.com/desktop-wallpaper/739/267/desktop-wallpaper-science-for-android-mobile-science-beautiful-landscape-android.jpg",
-  },
-  {
-    // ComTitle: 'E2E operating system 2',
-    CardTitle: "Inventory management​",
-    CardBody: [
-      "Low stock triggers​",
-      "​Auto reordering and replenishment",
-      "Optimized replenishment schedule​",
-    ],
-    imageUrl:
-        "https://images.pexels.com/photos/2067569/pexels-photo-2067569.jpeg",
-  },
-  {
-    // ComTitle: 'E2E operating system 2',
-    CardTitle: "Transaction​",
-    CardBody: [
-      "Real time insights in what happens in store/warehouse​",
-      "Basis for payments, order-checks, theft detection​",
-      "(Re)supply detection & optimization ",
-    ],
-    imageUrl:
-        "https://e1.pxfuel.com/desktop-wallpaper/739/267/desktop-wallpaper-science-for-android-mobile-science-beautiful-landscape-android.jpg",
-  },
-  {
-    // ComTitle: 'E2E operating system 2',
-    Para: " As we work we get smarter by the day",
-    CardTitle: "Joint value creation​​",
-    CardBody: [],
-    imageUrl:
-        "https://e1.pxfuel.com/desktop-wallpaper/739/267/desktop-wallpaper-science-for-android-mobile-science-beautiful-landscape-android.jpg",
-  },
-  // Add more objects as needed
-];
+// const dummyData = [
+//   {
+//     boldtext: "MOOS",
+//     ComTitle: "E2E operating system",
+//     CardTitle: "",
+//     Para: "​Platform offering multiple services. From inaccurate data and manual effort to real time, accurate, remote, automated insights​.",
+//     CardBody: [
+//       "Inventory management made worry free",
+//       "Transactions​",
+//       "Basis for new innovation roadmap",
+//     ],
+//     imageUrl:
+//         "https://e1.pxfuel.com/desktop-wallpaper/739/267/desktop-wallpaper-science-for-android-mobile-science-beautiful-landscape-android.jpg",
+//   },
+//   {
+//     // ComTitle: 'E2E operating system 2',
+//     CardTitle: "Inventory management​",
+//     CardBody: [
+//       "Low stock triggers​",
+//       "​Auto reordering and replenishment",
+//       "Optimized replenishment schedule​",
+//     ],
+//     imageUrl:
+//         "https://images.pexels.com/photos/2067569/pexels-photo-2067569.jpeg",
+//   },
+//   {
+//     // ComTitle: 'E2E operating system 2',
+//     CardTitle: "Transaction​",
+//     CardBody: [
+//       "Real time insights in what happens in store/warehouse​",
+//       "Basis for payments, order-checks, theft detection​",
+//       "(Re)supply detection & optimization ",
+//     ],
+//     imageUrl:
+//         "https://e1.pxfuel.com/desktop-wallpaper/739/267/desktop-wallpaper-science-for-android-mobile-science-beautiful-landscape-android.jpg",
+//   },
+//   {
+//     // ComTitle: 'E2E operating system 2',
+//     Para: " As we work we get smarter by the day",
+//     CardTitle: "Joint value creation​​",
+//     CardBody: [],
+//     imageUrl:
+//         "https://e1.pxfuel.com/desktop-wallpaper/739/267/desktop-wallpaper-science-for-android-mobile-science-beautiful-landscape-android.jpg",
+//   },
+//   // Add more objects as needed
+// ];
 
 export default {
   components: {DottedLine, card, CardImgRight},
@@ -156,8 +122,19 @@ export default {
 
   data() {
     return {
-      data: dummyData,
+      // data: dummyData,
+      cards:[]
     };
+  },
+
+  async created() {
+    try {
+      const response = await getAllServices();
+      console.log(response.data.data)
+      this.cards = response.data.data
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   },
 };
 </script>

@@ -75,7 +75,7 @@
 <script>
 
 import FormButton from "@/components/common/Form/FormButton";
-import { getTitle } from "@/services/home.js";
+import { getTitle , getImages } from "@/services/home.js";
 
 export default {
   name: "index",
@@ -86,7 +86,7 @@ export default {
   },
   data() {
     return {
-      imageSrc2: "http://localhost:1337/uploads/photo_1605656816944_971cd5c1407f_f60dcc9bf6.png",
+      imageSrc2: "http://localhost:1337/uploads/Home_Image123123_fdb260225f.png",
       imageSrc3:"http://localhost:1337/uploads/photo_1568992687947_868a62a9f521_52c97debf0.png",
       imageSrc1:"http://localhost:1337/uploads/photo_1612872087720_bb876e2e67d1_60d7c40c5a.png",
       ComTitle: "",
@@ -100,6 +100,11 @@ export default {
       this.ComTitle= response.data.data.attributes.CommonTitle
       this.boldText= response.data.data.attributes.boldText
       this.para = response.data.data.attributes.Paragraph
+
+
+      const response1 = await getImages('homeImage1');
+      this.imageSrc1= response1.data.data;
+      console.log(response1.data.data)
     } catch (error) {
       console.error("Error fetching data:", error);
     }

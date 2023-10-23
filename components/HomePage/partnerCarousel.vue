@@ -20,14 +20,14 @@
         <ul
             class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
             <li v-for="(item, index) in partners" :key="index">
-                <img src="@/assets/images/VueJS.png" alt="Transistor" width="158" height="48" />
+                <img :src="item.avatar" alt="Transistor" width="158" height="48" />
             </li>
 
         </ul>
         <ul class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll"
             aria-hidden="true">
             <li v-for="(item, index) in partners" :key="index">
-                <img src="@/assets/images/VueJS.png" alt="Transistor" width="158" height="48" />
+                <img :src="item.avatar" alt="Transistor" width="158" height="48" />
             </li>
 
         </ul>
@@ -39,10 +39,10 @@ export default {
     name: "partner carousel",
     data() {
         return {
-
+            imageSrc: "http://localhost:1337/uploads/photo_1605656816944_971cd5c1407f_f60dcc9bf6.png",
             partners: [
                 {
-                    avatar: "https://randomuser.me/api/portraits/men/20.jpg",
+                    avatar: "http://localhost:1337/uploads/photo_1605656816944_971cd5c1407f_f60dcc9bf6.png",
                 },
                 {
                     avatar: "https://randomuser.me/api/portraits/men/20.jpg",

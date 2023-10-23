@@ -30,3 +30,11 @@ export const smallWhiteCardGetAll = async () => {
       return error;
     }
   };
+
+  export const getImages = async (params) => {
+    try {
+      return await axios.get(`http://localhost:1337/api/images/${params}?populate=*`);
+    } catch (error) {
+      return error;
+    }
+  };

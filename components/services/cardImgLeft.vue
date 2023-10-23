@@ -47,7 +47,7 @@
         
         <ul class="text-black-100 list-none  text-small-title-heading">
           <li v-for="(point, index) in CardBody" :key="index" class="pb-4">
-            <i class="fas fa-check text-green-500 mr-2"></i>{{ point }}
+            <i class="fas fa-check text-green-500 mr-2"></i>{{ point.attributes.ListItems }}
           </li>
         </ul>
       </div>

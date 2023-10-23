@@ -11,7 +11,7 @@
     />
    
 
-    <card
+    <!-- <card
       :CardTitle="data[1].CardTitle"
       :CardBody="data[1].CardBody"
       :imageUrl="data[1].imageUrl"
@@ -23,7 +23,7 @@
       :CardBody="data[2].CardBody"
       :imageUrl="data[2].imageUrl"
       data-aos="fade-up"  data-aos-duration="1000"
-    />
+    /> -->
 
    
       <!-- ====== Map and the Contact Section-->
