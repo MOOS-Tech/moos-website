@@ -30,7 +30,7 @@
                                 <div class="flex flex-col items-start lg:w-full pl-10  text-green-200">
                                     <h3 class="text-small-title-heading mb-2 text-left">MOOS Way</h3>
                                     <ul class="text-sm list-disc text-left">
-                                        <li v-for="(item, index) in mooseWays" :key="index">{{ item.moosWayValueText }}</li>
+                                        <li v-for="(item, index) in moosWays" :key="index">{{ item.moosWayValueText }}</li>
 
                                     </ul>
                                 </div>
@@ -74,7 +74,7 @@ export default {
                     oldWayValueText: "Estimated with 60-70% accurate ERP+POS data"
                 }
             ],
-            mooseWays: [
+            moosWays: [
                 {
                     moosWayValueText: "Count manually"
                 },
