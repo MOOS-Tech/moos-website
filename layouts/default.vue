@@ -1,7 +1,7 @@
 <template>
   <div>
     <TopNavBar/>
-    <slot/>
+<!--    <slot/>-->
     <Footer/>
   </div>
 </template>
