@@ -45,22 +45,22 @@ export default {
                     avatar: "http://localhost:1337/uploads/photo_1605656816944_971cd5c1407f_f60dcc9bf6.png",
                 },
                 {
-                    avatar: "https://randomuser.me/api/portraits/men/20.jpg",
+                    avatar: "http://localhost:1337/uploads/photo_1605656816944_971cd5c1407f_f60dcc9bf6.png",
                 },
                 {
-                    avatar: "https://randomuser.me/api/portraits/men/20.jpg",
+                    avatar: "http://localhost:1337/uploads/photo_1605656816944_971cd5c1407f_f60dcc9bf6.png",
                 },
                 {
-                    avatar: "https://randomuser.me/api/portraits/men/20.jpg",
+                    avatar: "http://localhost:1337/uploads/photo_1605656816944_971cd5c1407f_f60dcc9bf6.png",
                 },
                 {
-                    avatar: "https://randomuser.me/api/portraits/men/20.jpg",
+                    avatar: "http://localhost:1337/uploads/photo_1605656816944_971cd5c1407f_f60dcc9bf6.png",
                 },
                 {
-                    avatar: "https://randomuser.me/api/portraits/men/20.jpg",
+                    avatar: "http://localhost:1337/uploads/photo_1605656816944_971cd5c1407f_f60dcc9bf6.png",
                 },
                 {
-                    avatar: "https://randomuser.me/api/portraits/men/20.jpg",
+                    avatar: "http://localhost:1337/uploads/photo_1605656816944_971cd5c1407f_f60dcc9bf6.png",
                 },
 
             ],

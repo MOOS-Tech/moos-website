@@ -35,7 +35,7 @@
     :key="index"
     class="relative isolate flex flex-col justify-end shadow-3xl"
   >
-    <div class="p-10 bg-white rounded-md">
+    <div class="p-10 bg-white rounded-md justify-between h-full">
       <div>
         <h3>
           <a
@@ -114,12 +114,15 @@ export default {
     };
   },
   async created() {
+    console.log(process.env.API_URL);
     try {
       const response = await smallWhiteCardGetAll();
       this.items = response.data.data.reverse();
     } catch (error) {
       console.error("Error fetching data:", error);
     }
+
+
   },
 };
 </script>

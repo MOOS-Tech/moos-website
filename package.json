@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --env-file .env.development",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -21,6 +21,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.4.2",
     "aos": "^3.0.0-beta.6",
-    "axios": "^1.5.1"
+    "axios": "^1.5.1",
+    "dotenv": "^16.3.1"
   }
 }

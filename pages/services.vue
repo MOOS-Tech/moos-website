@@ -45,8 +45,7 @@
           :ComTitle="item.attributes.ComTitle"
           :boldText="item.attributes.boldtext"
           :Para="item.attributes.Paragraph"
-          :data-aos="fade-up"
-          :data-aos-duration="1000"
+          data-aos="fade-up"  data-aos-duration="1000"
         />
       </template>
       <template v-else>
@@ -55,8 +54,7 @@
           :CardBody="item.attributes.service_card_bodies.data"
           :imageUrl="'http://localhost:1337'+item.attributes.imageUrl.data.attributes.formats.small.url"
           :Para="item.attributes.Paragraph"
-          :data-aos="fade-up"
-          :data-aos-duration="1000"
+          data-aos="fade-up"  data-aos-duration="1000"
         />
       </template>
     </div>
@@ -123,7 +121,30 @@ export default {
   data() {
     return {
       // data: dummyData,
-      cards:[]
+      cards: [
+        {
+          attributes: {
+            CardTitle: "",
+            service_card_bodies: {
+              data: [] 
+            },
+            imageUrl: {
+              data: {
+                attributes: {
+                  formats: {
+                    small: {
+                      url: ""
+                    }
+                  }
+                }
+              }
+            },
+            ComTitle: "",
+            boldtext: "",
+            Paragraph: ""
+          }
+        }
+      ]
     };
   },
 

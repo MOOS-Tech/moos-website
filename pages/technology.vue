@@ -3,6 +3,9 @@
     <Card :imageUrl="data[0].imageUrl" :ComTitle="data[0].ComTitle" :Para="data[0].Para" :boldText="data[0].boldtext"  data-aos="fade-up"  data-aos-duration="1000"/>
     <div class="bg-green-400 " >
      <TechnologyCard  data-aos="fade-up"  data-aos-duration="1000"/>
+     <!-- <div class="w-full h-auto">
+      <img src="https://e1.pxfuel.com/desktop-wallpaper/739/267/desktop-wallpaper-science-for-android-mobile-science-beautiful-landscape-android.jpg" style="width: 100%; height: 100%;" />
+    </div> -->
     </div>
     
 
