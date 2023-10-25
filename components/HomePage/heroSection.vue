@@ -58,44 +58,20 @@
 <script>
 
 import FormButton from "@/components/common/Form/FormButton";
-import { getTitle, getImages } from "@/services/home.js";
 
 export default {
   name: "index",
+  props: {
+    imageSrc1: String,
+    imageSrc2: String,
+    imageSrc3: String,
+    ComTitle: String,
+    boldText: String,
+    para: String
+  },
   components: {
     FormButton,
-
-
-  },
-  data() {
-    return {
-      imageSrc2: "http://localhost:1337/uploads/Home_Image123123_fdb260225f.png",
-      imageSrc3: "http://localhost:1337/uploads/photo_1568992687947_868a62a9f521_52c97debf0.png",
-      imageSrc1: "http://localhost:1337/uploads/photo_1612872087720_bb876e2e67d1_60d7c40c5a.png",
-      ComTitle: "",
-      boldText: "",
-      para: ""
-    }
-  },
-  async created() {
-    try {
-      const response = await getTitle();
-      this.ComTitle = response.data.data.attributes.CommonTitle
-      this.boldText = response.data.data.attributes.boldText
-      this.para = response.data.data.attributes.Paragraph
-
-
-      const response1 = await getImages('1');
-      this.imageSrc1 = response1.data.data;
-      const response2 = await getImages('2');
-      this.imageSrc2 = response2.data.data;
-      const response3 = await getImages('3');
-      this.imageSrc3 = response3.data.data;
-      console.log(response1.data.data)
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  },
+  }
 }
 
 </script>
