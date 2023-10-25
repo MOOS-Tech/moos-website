@@ -15,65 +15,51 @@
 
     </section>
 
-    <div
-        class="w-full inline-flex flex-nowrap  overflow-hidden mask-container">
+    <div class="w-full inline-flex flex-nowrap  overflow-hidden mask-container">
         <ul
             class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
-            <li v-for="(item, index) in partners" :key="index">
-                <img :src="item.avatar" alt="Transistor" width="158" height="48" />
+            <li v-for="(item, index) in partnerImages" :key="index">
+                <img :src="baseUrl + item.avatar" alt="Transistor" width="158" height="48" />
             </li>
 
         </ul>
         <ul class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll"
             aria-hidden="true">
-            <li v-for="(item, index) in partners" :key="index">
-                <img :src="item.avatar" alt="Transistor" width="158" height="48" />
+            <li v-for="(item, index) in partnerImages" :key="index">
+                <img :src="baseUrl + item.avatar" alt="Transistor" width="158" height="48" />
             </li>
 
         </ul>
     </div>
 </template>
 <script>
+import { getPatners } from "@/services/home.js";
 export default {
 
     name: "partner carousel",
     data() {
         return {
-            imageSrc: "http://localhost:1337/uploads/photo_1605656816944_971cd5c1407f_f60dcc9bf6.png",
-            partners: [
-                {
-                    avatar: "http://localhost:1337/uploads/photo_1605656816944_971cd5c1407f_f60dcc9bf6.png",
-                },
-                {
-                    avatar: "http://localhost:1337/uploads/photo_1605656816944_971cd5c1407f_f60dcc9bf6.png",
-                },
-                {
-                    avatar: "http://localhost:1337/uploads/photo_1605656816944_971cd5c1407f_f60dcc9bf6.png",
-                },
-                {
-                    avatar: "http://localhost:1337/uploads/photo_1605656816944_971cd5c1407f_f60dcc9bf6.png",
-                },
-                {
-                    avatar: "http://localhost:1337/uploads/photo_1605656816944_971cd5c1407f_f60dcc9bf6.png",
-                },
-                {
-                    avatar: "http://localhost:1337/uploads/photo_1605656816944_971cd5c1407f_f60dcc9bf6.png",
-                },
-                {
-                    avatar: "http://localhost:1337/uploads/photo_1605656816944_971cd5c1407f_f60dcc9bf6.png",
-                },
-
-            ],
+            baseUrl: 'http://localhost:1337',
+            partners: [],
+            partnerImages:[]
         }
-    }
+    },
+    async created() {
+        try {
+            const response = await getPatners();
+            this.partners = response.data.data;
+
+            this.partnerImages = this.partners.map(item => ({
+                avatar: item.attributes.imageUrl.data.attributes.url,
+            }));
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    },
 }
 </script>
 <style scoped>
-
-
-
 .mask-container {
     mask-image: linear-gradient(to right, transparent 0, black 128px, black calc(100% - 200px), transparent 100%);
 }
-
 </style>

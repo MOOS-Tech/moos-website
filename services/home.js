@@ -38,3 +38,18 @@ export const smallWhiteCardGetAll = async () => {
       return error;
     }
   };
+  export const getPatners = async () => {
+    try {
+      return await axios.get(`http://localhost:1337/api/partners?populate=*`);
+    } catch (error) {
+      return error;
+    }
+  };
+ 
+  export const bookMeeting = async (payload) => {
+    try {
+      return await axios.post(`http://localhost:1337/api/book-meetings`, payload);
+    } catch (error) {
+      return error;
+    }
+  };

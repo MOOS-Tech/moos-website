@@ -85,8 +85,12 @@ export default {
       this.para = response.data.data.attributes.Paragraph
 
 
-      const response1 = await getImages('homeImage1');
+      const response1 = await getImages('1');
       this.imageSrc1 = response1.data.data;
+      const response2 = await getImages('2');
+      this.imageSrc2 = response2.data.data;
+      const response3 = await getImages('3');
+      this.imageSrc3 = response3.data.data;
       console.log(response1.data.data)
     } catch (error) {
       console.error("Error fetching data:", error);
