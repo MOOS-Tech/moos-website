@@ -1,11 +1,10 @@
 <template>
   <div v-if="loading" class="loading">
-    <TopNavBar/>
     <img src="@/assets/images/navbarLogo.png" alt="Loading"/>
   </div>
   <div v-else>
     <TopNavBar/>
-    <!--    <slot/>-->
+    <slot/>
     <Footer/>
   </div>
 </template>
@@ -13,7 +12,7 @@
 import TopNavBar from "../components/common/TopNavBar";
 import Footer from "../components/common/Footer";
 
-import {loading, toggleLoading} from '../store/store';
+import {loading} from '../store/store';
 
 export default {
   components: {Footer, TopNavBar},
@@ -21,10 +20,7 @@ export default {
     loading() {
       return loading.value;
     },
-  },
-  methods: {
-    toggleLoading,
-  },
+  }
 }
 </script>
 <style scoped>
