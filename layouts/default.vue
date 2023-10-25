@@ -1,8 +1,5 @@
 <template>
-  <div v-if="loading" class="loading">
-    <img src="@/assets/images/navbarLogo.png" alt="Loading"/>
-  </div>
-  <div v-else>
+  <div>
     <TopNavBar/>
     <slot/>
     <Footer/>
@@ -12,23 +9,8 @@
 import TopNavBar from "../components/common/TopNavBar";
 import Footer from "../components/common/Footer";
 
-import {loading} from '../store/store';
-
 export default {
   components: {Footer, TopNavBar},
-  computed: {
-    loading() {
-      return loading.value;
-    },
-  }
 }
 </script>
-<style scoped>
-.loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #109888;
-}
-</style>
+

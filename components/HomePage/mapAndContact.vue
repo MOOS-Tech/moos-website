@@ -8,7 +8,7 @@
           </div>
           <div class="flex flex-col items-center justify-center ">
             <FormInput type="text" name="name" id="name" placeholder="Name" v-model="customerName"/>
-            
+
             <FormInput type="email" name="email" id="email" placeholder="Email" v-model="customerEmail"/>
             <FormSelectField placeholder="Request demonstration" v-model="requestOption"/>
             <FormLargeTextBox placeholder="Your message" v-model="customerMessage"/>
@@ -48,7 +48,7 @@ export default {
     customerEmail: "t@t.com",
     requestOption: "gerey",
     customerMessage: "dgdhth"
-  
+
     }
   },
   watch: {
@@ -75,7 +75,7 @@ export default {
         request_demonstration: this.requestOption,
         message: this.customerMessage
         }
-      
+
       }
       try {
         const response =  bookMeeting(payload);

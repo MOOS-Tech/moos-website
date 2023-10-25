@@ -1,5 +1,8 @@
 <template>
-  <nav class="flex items-center bg-green-200 p-2 flex-wrap flex-no-wrap sticky top-0 z-10 w-full  ">
+  <div v-if="loading" class="loading">
+    <img src="@/assets/images/navbarLogo.png" alt="Loading"/>
+  </div>
+  <nav v-else class="flex items-center bg-green-200 p-2 flex-wrap flex-no-wrap sticky top-0 z-10 w-full  ">
     <NuxtLink to="/" class="mr-6 ml-3 inline-flex items-center">
       <img src="@/assets/images/navbarLogo.png" alt="Image Alt Text" class="h-12 w-15 mr-2"/>
     </NuxtLink>
@@ -86,13 +89,16 @@
 <script>
 
 import FormButton from "@/components/common/Form/FormButton";
-
+import {loading} from '@/store/store';
 export default {
   name: "TopNavBar",
   components: {
-
     FormButton,
-
+  },
+  computed: {
+    loading() {
+      return loading.value;
+    },
   },
   data() {
     return {
@@ -134,5 +140,12 @@ body {
   .top-navbar {
     display: inline-flex !important;
   }
+}
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #109888;
 }
 </style>

@@ -1,6 +1,5 @@
 <template>
-  <div>
-
+  <div v-if="!loading">
     <!-- hero section -->
     <HeroSection data-aos="fade-up" data-aos-duration="1000"
                  :imageSrc1="imageSrc1"
@@ -8,24 +7,31 @@
                  :imageSrc3="imageSrc3"
                  :ComTitle="ComTitle"
                  :boldText="boldText"
-                 :para="para"/>
+                 :para="para"
+    />
 
     <!-- ====== Blog Section Start -->
     <Blogs data-aos="fade-up" data-aos-duration="1000"/>
 
     <!-- ====== Partner Section-->
-    <PartnerCarousel/>
+    <PartnerCarousel
+        :baseUrl="baseUrl"
+        :partners="partners"
+        :partnerImages="partnerImages"
+    />
 
     <!-- ====== Quote Section-->
-    <Quote/>
+    <Quote
+        :Quote="Quote"
+        :Speaker="Speaker"/>
 
     <!-- ====== Card Sections-->
-    <CardView/>
+    <CardView
+        :cards="cards"
+        :cardData="cardData"/>
 
     <!-- ====== Map and the Contact Section-->
-
     <MapAndContact/>
-
   </div>
 </template>
 
@@ -38,10 +44,13 @@ import PartnerCarousel from "~/components/HomePage/partnerCarousel.vue";
 import Quote from "~/components/HomePage/quote.vue";
 import CardView from '~/components/HomePage/cardView.vue';
 
-import {toggleLoading} from '../store/store';
-import {getTitle, getImages} from "@/services/home.js";
+import {loading, toggleLoading} from '../store/store';
 
-let successCount = 0;
+import {getTitle, getImages} from "@/services/home.js";
+import {getPatners} from "@/services/home.js";
+import {getQuotes} from "@/services/home.js";
+import {getCardViews} from "@/services/home.js";
+
 export default {
   name: "index",
   components: {
@@ -52,22 +61,41 @@ export default {
     Quote,
     CardView
   },
+  computed: {
+    loading() {
+      return loading.value;
+    },
+  },
   data() {
     return {
+      //hero
       ComTitle: "",
       imageSrc2: "",
       imageSrc3: "",
       imageSrc1: "",
       boldText: "",
-      para: ""
+      para: "",
+
+      //partner
+      baseUrl: 'http://localhost:1337',
+      partners: [],
+      partnerImages: [],
+
+      //quote
+      Quote: '',
+      Speaker: '',
+
+      //cards
+      cards: [],
+      cardData: []
     };
   },
   async created() {
     toggleLoading(true);
     await this.fetchHeroSection();
-    if (successCount > 0) {
-      toggleLoading(false);
-    }
+    await this.fetchPartnerSection();
+    await this.fetchQuotesSection();
+    toggleLoading(false);
   },
   methods: {
     async fetchHeroSection() {
@@ -83,11 +111,46 @@ export default {
         this.imageSrc2 = response2.data.data;
         const response3 = await getImages('3');
         this.imageSrc3 = response3.data.data;
-        successCount++;
       } catch (error) {
-        console.error("Error fetching hero data:", error);
+        console.error("Error fetching hero data:");
+      }
+    },
+    async fetchPartnerSection() {
+      try {
+        const response = await getPatners();
+        this.partners = response.data.data;
+        this.partnerImages = this.partners.map(item => ({
+          avatar: item.attributes.imageUrl.data.attributes.url,
+        }));
+      } catch (error) {
+        console.error("Error fetching data:");
+      }
+    },
+    async fetchQuotesSection() {
+      try {
+        const response = await getQuotes();
+        this.Quote = response.data.data[0].attributes.Quote;
+        this.Speaker = response.data.data[0].attributes.Speaker;
+      } catch (error) {
+        console.error("Error fetching data:");
+      }
+    },
+    async fetchCardViewsSection() {
+      try {
+        const response = await getCardViews();
+        this.cards = response.data.data
+        this.cardData = this.cards.map(card => ({
+          title: card.attributes.title,
+          description: card.attributes.description,
+          url: card.attributes.ImageUrl.data.attributes.url,
+        }));
+      } catch (error) {
+        console.error("Error fetching data:");
       }
     }
   }
 };
 </script>
+<style scoped>
+
+</style>
