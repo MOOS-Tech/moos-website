@@ -44,10 +44,11 @@ export default {
   },
   data() {
     return {
-      customerName: "Test",
-      customerEmail: "t@t.com",
-      requestOption: "request demonstration",
-      customerMessage: "test"
+    customerName: "hdht",
+    customerEmail: "t@t.com",
+    requestOption: "gerey",
+    customerMessage: "dgdhth"
+  
     }
   },
   watch: {
@@ -68,10 +69,13 @@ export default {
      Submitfn() {
       console.log("Form Data", this.customerName);
       let payload = {
+        data:{
         name: this.customerName,
         email: this.customerEmail,
         request_demonstration: this.requestOption,
         message: this.customerMessage
+        }
+      
       }
       try {
         const response =  bookMeeting(payload);
