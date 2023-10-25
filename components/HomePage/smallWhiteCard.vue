@@ -1,6 +1,7 @@
 <template>
-  <article v-for="(item, index) in itemCards" :key="index" class="relative isolate flex flex-col justify-end shadow-3xl">
-    <div class="p-10 bg-white rounded-md justify-between h-full">
+  <article v-for="(item, index) in itemCards" :key="index"
+    class="relative isolate flex flex-col justify-end shadow-3xl bg-white rounded-md p-10 ">
+    <div class=" justify-between h-full">
       <div>
         <h3>
           <a :href="item.url" class="text-black-200 mb-4 inline-block text-small-title-heading font-semibold">
@@ -11,7 +12,7 @@
           {{ item.description }}
         </p>
       </div>
-      <div class="flex justify-left mt-3">
+      <div class="flex justify-left mt-3 ">
         <ul>
           <li class="flex items-center" v-for="(blog, index) in item.blogs" :key="index">
             <i class="fas fa-check-circle text-green-200"></i>
@@ -21,11 +22,12 @@
           </li>
         </ul>
       </div>
-      <div class="mt-10 flex flex-col items-center gap-4 lg:flex-row">
-        <FormButton class="bg-white border-2 border-green-200 text-green-200 !important">
-          Learn More
-        </FormButton>
-      </div>
+
+    </div>
+    <div class="mt-10 flex flex-col items-center gap-4 lg:flex-row ">
+      <FormButton class="bg-white border-2 border-green-200 text-green-200 !important">
+        Learn More
+      </FormButton>
     </div>
   </article>
 </template>

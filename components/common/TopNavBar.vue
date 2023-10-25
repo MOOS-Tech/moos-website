@@ -78,7 +78,7 @@
 </template>
 
 <script>
-const config = useRuntimeConfig();
+
 import FormButton from "@/components/common/Form/FormButton";
 export default {
   name: "TopNavBar",
@@ -109,8 +109,7 @@ export default {
     },
   },
   mounted() {
-    console.log('here')
-    console.log(config.public.API_URL);
+
   }
 };
 </script>
