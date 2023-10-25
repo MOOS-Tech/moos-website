@@ -1,26 +1,12 @@
 <template>
-  <div v-if="loading" class="loading">
-    <img src="@/assets/images/navbarLogo.png" alt="Loading"/>
-  </div>
-  <div v-else>
-    <TopNavBar/>
-    <slot/>
-    <Footer/>
-  </div>
+  <slot/>
 </template>
 <script>
 import TopNavBar from "../components/common/TopNavBar";
 import Footer from "../components/common/Footer";
 
-import {loading} from '../store/store';
-
 export default {
   components: {Footer, TopNavBar},
-  computed: {
-    loading() {
-      return loading.value;
-    },
-  }
 }
 </script>
 <style scoped>

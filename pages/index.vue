@@ -1,6 +1,9 @@
 <template>
-  <div>
-
+  <div v-if="loading" class="loading">
+    <img src="@/assets/images/navbarLogo.png" alt="Loading"/>
+  </div>
+  <div v-else>
+    <TopNavBar/>
     <!-- hero section -->
     <HeroSection data-aos="fade-up" data-aos-duration="1000"
                  :imageSrc1="imageSrc1"
@@ -25,7 +28,7 @@
     <!-- ====== Map and the Contact Section-->
 
     <MapAndContact/>
-
+    <Footer/>
   </div>
 </template>
 
@@ -37,8 +40,10 @@ import HeroSection from "~/components/HomePage/heroSection.vue";
 import PartnerCarousel from "~/components/HomePage/partnerCarousel.vue";
 import Quote from "~/components/HomePage/quote.vue";
 import CardView from '~/components/HomePage/cardView.vue';
+import TopNavBar from "~/components/common/TopNavBar";
+import Footer from "~/components/common/Footer";
 
-import {toggleLoading} from '../store/store';
+import {loading,toggleLoading} from '../store/store';
 import {getTitle, getImages} from "@/services/home.js";
 
 let successCount = 0;
@@ -50,7 +55,14 @@ export default {
     HeroSection,
     PartnerCarousel,
     Quote,
-    CardView
+    CardView,
+    TopNavBar,
+    Footer
+  },
+  computed: {
+    loading() {
+      return loading.value;
+    },
   },
   data() {
     return {
