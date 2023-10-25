@@ -84,6 +84,7 @@
 </template>
 
 <script>
+
 import FormButton from "@/components/common/Form/FormButton";
 
 export default {
@@ -115,8 +116,7 @@ export default {
     },
   },
   mounted() {
-    console.log('here')
-    console.log(useRuntimeConfig().public.API_URL);
+
   }
 };
 </script>

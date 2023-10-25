@@ -24,8 +24,7 @@
 </template>
 
 <script>
-import FormInput from "@/components/common/Form/FormInputField";
-import FormButton from "@/components/common/Form/FormButton";
+
 import Blogs from "~/components/HomePage/blogs.vue";
 import MapAndContact from "~/components/HomePage/mapAndContact.vue";
 import HeroSection from "~/components/HomePage/heroSection.vue";
@@ -36,8 +35,7 @@ import CardView from '~/components/HomePage/cardView.vue';
 export default {
   name: "index",
   components: {
-    FormInput,
-    FormButton,
+  
     Blogs,
     MapAndContact,
     HeroSection,
