@@ -6,7 +6,7 @@ frontend:
         - npm install
     build:
       commands:
-        - nuxt build --dotenv .env.staging
+        - npm run staging
   artifacts:
     baseDirectory: '.output/public'
     files:
