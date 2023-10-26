@@ -8,7 +8,6 @@
           </div>
           <div class="flex flex-col items-center justify-center ">
             <FormInput type="text" name="name" id="name" placeholder="Name" v-model="customerName"/>
-
             <FormInput type="email" name="email" id="email" placeholder="Email" v-model="customerEmail"/>
             <FormSelectField placeholder="Request demonstration" v-model="requestOption"/>
             <FormLargeTextBox placeholder="Your message" v-model="customerMessage"/>

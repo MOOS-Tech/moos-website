@@ -95,6 +95,7 @@ export default {
     await this.fetchHeroSection();
     await this.fetchPartnerSection();
     await this.fetchQuotesSection();
+    await this.fetchCardViewsSection();
     toggleLoading(false);
   },
   methods: {
