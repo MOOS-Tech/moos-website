@@ -50,7 +50,6 @@ import {getTitle, getImages} from "@/services/home.js";
 import {getPatners} from "@/services/home.js";
 import {getQuotes} from "@/services/home.js";
 import {getCardViews} from "@/services/home.js";
-
 export default {
   name: "index",
   components: {
@@ -92,6 +91,8 @@ export default {
   },
   async created() {
     toggleLoading(true);
+    const config = useRuntimeConfig();
+    this.baseUrl = config.public.API_URL?config.public.API_URL:'http://localhost:1337';
     await this.fetchHeroSection();
     await this.fetchPartnerSection();
     await this.fetchQuotesSection();
@@ -107,11 +108,11 @@ export default {
         this.para = response.data.data.attributes.Paragraph
 
         const response1 = await getImages('1');
-        this.imageSrc1 = response1.data.data;
+        this.imageSrc1 = this.baseUrl+response1.data.data;
         const response2 = await getImages('2');
-        this.imageSrc2 = response2.data.data;
+        this.imageSrc2 = this.baseUrl+response2.data.data;
         const response3 = await getImages('3');
-        this.imageSrc3 = response3.data.data;
+        this.imageSrc3 = this.baseUrl+response3.data.data;
       } catch (error) {
         console.error("Error fetching hero data:");
       }
