@@ -32,7 +32,7 @@
     <div class="mx-auto lg:max-w-7xl w-full sm:px-10 md:px-12 flex flex-col lg:flex-row gap-12 lg:gap-40">
 
       <div class="flex flex-1 lg:w-1/2 lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto max-w-3xl ">
-        <img :src="imageUrl" alt="Hero image" width="720" height="720"
+        <img :src="baseUrl+imageUrl" alt="Hero image" width="720" height="720"
           class="lg:absolute lg:w-full lg:h-full rounded-xl object-cover lg:max-h-none max-h-[550px] max-w-[250px]">
       </div>
 
@@ -44,7 +44,7 @@
           {{ CardTitle }}
         </h2>
         <P class="text-black-100 text-regular-title-heading mt-8">{{ Para }}</P>
-        
+
         <ul class="text-black-100 list-none  text-small-title-heading">
           <li v-for="(point, index) in CardBody" :key="index" class="pb-4">
             <i class="fas fa-check text-green-500 mr-2"></i>{{ point.attributes.ListItems }}
@@ -60,12 +60,12 @@
 <script>
 export default {
   name: "card",
-  props: ["CardTitle", "CardBody", "imageUrl", "Para","boldText"],
+  props: ["CardTitle", "CardBody", "imageUrl", "Para","boldText","baseUrl"],
 };
 </script>
 
 <style scoped>
-</style> 
- 
+</style>
+
 
 

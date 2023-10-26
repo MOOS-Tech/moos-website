@@ -27,6 +27,7 @@
 
     <!-- ====== Card Sections-->
     <CardView
+        :baseUrl="baseUrl"
         :cards="cards"
         :cardData="cardData"/>
 
