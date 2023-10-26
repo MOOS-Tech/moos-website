@@ -15,7 +15,7 @@
             class="lg:absolute lg:w-full lg:h-full  object-cover lg:max-h-none max-h-[550px] max-w-[250px]" />
         </div>
       </div>
-      
+
     </section>
     <div
           class="flex flex-1  lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto items-center justify-center ">
@@ -25,7 +25,7 @@
 
   </div>
 </template>
-  
+
 <script>
 
 export default {
