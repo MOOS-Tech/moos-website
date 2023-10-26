@@ -1,0 +1,1 @@
+{"version":3,"file":"store-c28a26c2.js","sources":["../../../../store/store.js"],"sourcesContent":["// store.js\r\nimport { ref } from 'vue';\r\n\r\nexport const loading = ref(false);\r\n\r\nexport const toggleLoading = (val) => {\r\n    loading.value = val;\r\n};\r\n"],"names":[],"mappings":";AAGY,MAAC,UAAU,IAAI,KAAK;AAEpB,MAAC,gBAAgB,CAAC,QAAQ;AAClC,UAAQ,QAAQ;AACpB;"}
