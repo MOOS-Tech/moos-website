@@ -1,11 +1,8 @@
 <template>
   <input
-    :type="type"
     class="mb-3 rounded-[4px] border p-3 hover:outline-none focus:outline-none hover:border-green-200 h-10 w-72 sm:text-sm"
-    :placeholder="placeholder"
-    :value="value"
-    @input="$emit('input', $event)"
-  />
+    :type="type" :placeholder="placeholder"  :value="modelValue"
+    @change="$emit('update:modelValue', $event.target.value)" />
 </template>
 
 <script>
@@ -34,9 +31,13 @@ export default {
       default: false,
       type: Boolean,
     },
-    value: {
-      type: [String, Number],
-    },
+    value: { type: String, required: false, default: '' },
+    modelValue: String,
   },
+  model: {
+    prop: "value",
+    event: "update"
+  }
 };
 </script>
+

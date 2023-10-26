@@ -6,11 +6,11 @@
           <div class="mb-6 text-center">
             <h1 class="text-normal-title-heading font-bold text-black-200 ">Ready to dive in?</h1>
           </div>
-          <div class="flex flex-col items-center justify-center ">
-            <FormInput type="text" name="name" id="name" placeholder="Name" v-model="customerName"/>
-            <FormInput type="email" name="email" id="email" placeholder="Email" v-model="customerEmail"/>
-            <FormSelectField placeholder="Request demonstration" v-model="requestOption"/>
-            <FormLargeTextBox placeholder="Your message" v-model="customerMessage"/>
+          <div class="flex flex-col items-center justify-center">
+            <FormInput v-model="customerName" type="text" name="name" id="name" placeholder="Name" />
+            <FormInput v-model="customerEmail" type="email" name="email" id="email" placeholder="Email" />
+            <FormSelectField v-model="requestOption" placeholder="Request demonstration" />
+            <FormLargeTextBox v-model="customerMessage" placeholder="Your message" />
             <FormButton class="text-white" @click="Submitfn">Book a Meeting</FormButton>
           </div>
         </section>
@@ -43,10 +43,10 @@ export default {
   },
   data() {
     return {
-    customerName: "hdht",
-    customerEmail: "t@t.com",
-    requestOption: "gerey",
-    customerMessage: "dgdhth"
+      customerName: "",
+      customerEmail: "",
+      requestOption: "Test",
+      customerMessage: ""
 
     }
   },
@@ -65,19 +65,19 @@ export default {
     }
   },
   methods: {
-     Submitfn() {
+    Submitfn() {
       console.log("Form Data", this.customerName);
       let payload = {
-        data:{
-        name: this.customerName,
-        email: this.customerEmail,
-        request_demonstration: this.requestOption,
-        message: this.customerMessage
+        data: {
+          name: this.customerName,
+          email: this.customerEmail,
+          request_demonstration: this.requestOption,
+          message: this.customerMessage
         }
 
       }
       try {
-        const response =  bookMeeting(payload);
+        const response = bookMeeting(payload);
         console.log("Form Data", response);
 
       } catch (error) {
