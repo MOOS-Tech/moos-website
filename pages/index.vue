@@ -109,11 +109,11 @@ export default {
         this.para = response.data.data.attributes.Paragraph
 
         const response1 = await getImages('1');
-        this.imageSrc1 = this.baseUrl+response1.data.data;
+        this.imageSrc1 = this.baseUrl+response1.data.data.attributes.ImageUrl.data.attributes.formats.small.url;
         const response2 = await getImages('2');
-        this.imageSrc2 = this.baseUrl+response2.data.data;
+        this.imageSrc2 = this.baseUrl+response2.data.data.attributes.ImageUrl.data.attributes.formats.small.url;
         const response3 = await getImages('3');
-        this.imageSrc3 = this.baseUrl+response3.data.data;
+        this.imageSrc3 = this.baseUrl+response3.data.data.attributes.ImageUrl.data.attributes.formats.small.url;
       } catch (error) {
         console.error("Error fetching hero data:");
       }
