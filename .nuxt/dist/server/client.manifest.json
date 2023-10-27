@@ -7,12 +7,12 @@
     "module": true,
     "resourceType": "script"
   },
-  "C:/Users/Dhanushka/Documents/projects/bvt/MOOS-Website/node_modules/nuxt/dist/app/entry.js": {
+  "C:/Users/ASUS/OneDrive/Desktop/MOOS-Website/node_modules/nuxt/dist/app/entry.js": {
     "resourceType": "script",
     "module": true,
     "prefetch": true,
     "preload": true,
     "isEntry": true,
-    "file": "C:/Users/Dhanushka/Documents/projects/bvt/MOOS-Website/node_modules/nuxt/dist/app/entry.js"
+    "file": "C:/Users/ASUS/OneDrive/Desktop/MOOS-Website/node_modules/nuxt/dist/app/entry.js"
   }
 }
