@@ -37,7 +37,7 @@
                 class=" w-[24rem] rounded-xl bg-gray-50 object-cover relative" />
             </div>
             <div
-              class=" contents lg:col-span-2 lg:col-end-2 lg:ml-auto lg:flex lg:items-start lg:justify-end md:justify-center lg:gap-x-10 ">
+              class=" contents lg:col-span-2 lg:col-end-2 lg:ml-auto lg:flex lg:items-start lg:justify-end md:justify-center lg:gap-x-10 pt-10">
               <div class=" flex flex-auto justify-end  self-end lg:w-auto lg:flex-none relative">
                 <img :src="imageSrc2" alt=""
                   class=" w-[24rem]  flex-none rounded-xl bg-gray-50 object-cover" />
