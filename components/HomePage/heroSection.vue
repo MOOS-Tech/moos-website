@@ -34,17 +34,17 @@
           <div class="mx-auto w-full flex flex-wrap items-center gap-6 sm:gap-8 lg:contents  ">
             <div class=" order-first mb-10 flex flex-auto lg:justify-end md:justify-center lg:w-auto lg:flex-none  ">
               <img :src="imageSrc1" alt=""
-                class="aspect-[5/3] w-[24rem] max-w-none rounded-2xl bg-gray-50 object-cover relative" />
+                class=" w-[24rem] rounded-xl bg-gray-50 object-cover relative" />
             </div>
             <div
-              class=" contents lg:col-span-2 lg:col-end-2 lg:ml-auto lg:flex lg:items-start lg:justify-end md:justify-center lg:gap-x-8 ">
-              <div class=" flex flex-none justify-end  self-end lg:w-auto relative">
+              class=" contents lg:col-span-2 lg:col-end-2 lg:ml-auto lg:flex lg:items-start lg:justify-end md:justify-center lg:gap-x-10 ">
+              <div class=" flex flex-auto justify-end  self-end lg:w-auto lg:flex-none relative">
                 <img :src="imageSrc2" alt=""
-                  class="aspect-[5/3] w-[24rem] max-w-none flex-none rounded-2xl bg-gray-50 object-cover" />
+                  class=" w-[24rem]  flex-none rounded-xl bg-gray-50 object-cover" />
               </div>
               <div class="flex flex-auto justify-center lg:w-auto lg:flex-none relative">
                 <img :src="imageSrc3" alt=""
-                  class="aspect-[8/5] w-[37rem] max-w-none flex-none rounded-2xl bg-gray-50 object-cover" />
+                  class=" w-[37rem]  flex-none rounded-xl bg-gray-50 object-cover" />
               </div>
             </div>
           </div>
