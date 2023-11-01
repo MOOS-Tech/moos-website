@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!loading">
     <div v-for="(item, index) in cardDetails" :key="index">
 
       <div v-if="index % 2 === 0">
@@ -58,15 +58,16 @@ export default {
     },
   },
   async created() {
+    toggleLoading(true);
     const config = useRuntimeConfig();
     this.baseUrl = config.public.API_URL?config.public.API_URL:'http://localhost:1337';
     await this.fetchAllServices();
-    // toggleLoading(false);
+    toggleLoading(false);
   },
 
   methods: {
     async fetchAllServices() {
-      toggleLoading(true);
+  
       try {
         const response = await getAllServices();
         this.cards = response.data.data
@@ -82,7 +83,7 @@ export default {
       } catch (error) {
         console.error("Error fetching data:", error);
       }
-      toggleLoading(false);
+      
     }
   }
 };

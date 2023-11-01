@@ -28,7 +28,7 @@
 export default {
   name: "card View",
   props: {
-    baseUrl: '',
+    baseUrl: String,
     cards: [],
     cardData: []
   }

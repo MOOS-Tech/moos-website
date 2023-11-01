@@ -1,6 +1,6 @@
 <template>
   <div class="py-20">
-    <section class="relative  px-5 lg:px-20 " v-for="(card, index) in cards" :key="index">
+    <section class="relative  px-5 lg:px-20 " v-for="(card, index) in cardData" :key="index">
       <div class="mx-auto lg:max-w-7xl w-full sm:px-10 md:px-12 flex flex-col lg:flex-row  ">
         <div
           class="relative flex flex-col items-center text-center lg:text-left lg:py-7 xl:py-8 lg:items-start lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1 lg:w-2/3">
@@ -11,7 +11,7 @@
         </div>
         <div
           class="flex flex-1 lg:w-1/3 lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto max-w-3xl justify-end items-center technology-image">
-          <img :src="card.imageUrl" alt="Hero image" width="720" height="720"
+          <img :src="baseUrl + card.imageUrl" alt="Hero image" width="720" height="720"
             class="lg:absolute lg:w-full lg:h-full  object-cover lg:max-h-none max-h-[550px] max-w-[250px]" />
         </div>
       </div>
@@ -32,35 +32,42 @@ export default {
   name: "technologyCard",
 
   components: {},
+  props: {
+    baseUrl: String,
+    cardData: [],
+    cards: [],
+   
+  },
   data() {
-    return {
-      cards: [
-        {
-          imageUrl: "https://tecdn.b-cdn.net/img/new/standard/city/041.webp",
-          title: "MOOS sensors",
-          description:
-            "Cloud-connected sensors emitting signal in real-time",
-        },
-        {
-          imageUrl: "https://tecdn.b-cdn.net/img/new/standard/city/042.webp",
-          title: "MOOS sensors",
-          description:
-            "Cloud-connected sensors emitting signal in real-time",
-        },
-        {
-          imageUrl: "https://tecdn.b-cdn.net/img/new/standard/city/042.webp",
-          title: "MOOS sensors",
-          description:
-            "Cloud-connected sensors emitting signal in real-time",
-        },
-        {
-          imageUrl: "https://tecdn.b-cdn.net/img/new/standard/city/042.webp",
-          title: "MOOS sensors",
-          description:
-            "Cloud-connected sensors emitting signal in real-time,Cloud-connected sensors emitting signal in real-time",
-        },
-      ]
-    };
+    // return {
+    
+    //   cardData: [
+    //     {
+    //       imageUrl: "https://tecdn.b-cdn.net/img/new/standard/city/041.webp",
+    //       title: "MOOS sensors",
+    //       description:
+    //         "Cloud-connected sensors emitting signal in real-time",
+    //     },
+    //     {
+    //       imageUrl: "https://tecdn.b-cdn.net/img/new/standard/city/042.webp",
+    //       title: "MOOS sensors",
+    //       description:
+    //         "Cloud-connected sensors emitting signal in real-time",
+    //     },
+    //     {
+    //       imageUrl: "https://tecdn.b-cdn.net/img/new/standard/city/042.webp",
+    //       title: "MOOS sensors",
+    //       description:
+    //         "Cloud-connected sensors emitting signal in real-time",
+    //     },
+    //     {
+    //       imageUrl: "https://tecdn.b-cdn.net/img/new/standard/city/042.webp",
+    //       title: "MOOS sensors",
+    //       description:
+    //         "Cloud-connected sensors emitting signal in real-time,Cloud-connected sensors emitting signal in real-time",
+    //     },
+    //   ]
+    // };
   },
 
 
