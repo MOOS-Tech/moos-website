@@ -1,5 +1,5 @@
 <template>
-  <section class="flex mb-16 mt-20 justify-center bg-green-and-black" data-aos="fade-up" data-aos-duration="1000">
+  <section class="flex  mt-20 justify-center bg-green-and-black" data-aos="fade-up" data-aos-duration="1000">
     <div class=" mx-auto w-full lg:max-w-7xl ">
       <div class="grid md:grid-cols-2 md:gap-12 lg:gap-48 ">
         <section class="mt-6 mb-4 place-content-center ">
@@ -50,23 +50,9 @@ export default {
 
     }
   },
-  watch: {
-    customerName(newVal) {
-      console.log('customerName changed to:', newVal);
-    },
-    customerEmail(newVal) {
-      console.log('customerEmail changed to:', newVal);
-    },
-    requestOption(newVal) {
-      console.log('requestOption changed to:', newVal);
-    },
-    customerMessage(newVal) {
-      console.log('customerMessage changed to:', newVal);
-    }
-  },
+ 
   methods: {
     Submitfn() {
-      console.log("Form Data", this.customerName);
       let payload = {
         data: {
           name: this.customerName,
@@ -78,8 +64,7 @@ export default {
       }
       try {
         const response = bookMeeting(payload);
-        console.log("Form Data", response);
-
+      
       } catch (error) {
         console.error("Error fetching data:", error);
       }
