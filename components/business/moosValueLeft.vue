@@ -5,10 +5,10 @@
                 <div class="flex flex-col items-center  ">
                     <div>
                         <h2
-                            class="text-normal-title-heading font-semibold text-center lg:w-3/4 self-center text-green-200 mb-4">
+                            class="text-normal-title-heading font-semibold text-center lg:w-4/6 self-center text-green-200 mb-4">
                             {{ pillTitle }}</h2>
-                        <div class="grid grid-cols-12 ">
-                            <div class="flex items-center justify-center   transition-transform  col-start-2 col-span-10 md:col-span-8"
+                        <div class="grid   gap-y-10 sm:gap-y-10 grid-cols-12 ">
+                            <div class="flex items-center justify-center transition-transform col-span-12 md:col-span-8 px-4"
                                 id="pill-container">
                                 <div class="pill left relative lg:rounded-l-full md:rounded-l-full border-2 border-r-0  border-black-100 h-auto py-1 round-pill expand-horizontal1"
                                     :id="leftPill" @mouseover="movePills" @mouseleave="resetPills">
@@ -21,8 +21,7 @@
                                         </ul>
                                     </div>
                                 </div>
-
-                                <div class="flex items-center justify-center w-1/6 expand-horizontal-image " id="image"
+                                <div class="flex items-center justify-center w-1/6  expand-horizontal-image " id="image"
                                     @mouseover="movePills" @mouseleave="resetPills"
                                     style="margin-left: -20px; margin-right: -20px;">
                                     <img src="@/assets/images/pillimage.png" alt="Image" class="h-auto" />
@@ -35,25 +34,25 @@
                                         <ul class="text-sm list-disc text-left">
                                             <li v-for="(item, index) in moosWays" :key="index">{{ item.moosWayValueText }}
                                             </li>
-
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-
                             <div
-                                class="w-full sm:w-1/6 md:w-1/6 lg:w-2/6 ml-auto justify-center items-center self-center col-span-12 md:col-span-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 271 271" fill="none">
-                                    <path
-                                        d="M266.236 124.815L146.028 4.6066C140.17 -1.25126 130.673 -1.25127 124.815 4.6066L4.60665 124.815C-1.25122 130.673 -1.25122 140.17 4.60664 146.028L124.815 266.236C130.673 272.094 140.17 272.094 146.028 266.236L266.236 146.028C272.094 140.17 272.094 130.673 266.236 124.815Z"
-                                        fill="#444444" />
-                                    <text x="50%" y="50%" text-anchor="middle" dy="0.5em" fill="white">- 80%</text>
-                                    <text x="50%" y="60%" text-anchor="middle" dy="0.5em" fill="white">Your second & line</text>
-                                </svg>
+                                class="flex items-center justify-center col-span-12 md:col-span-4 value">
+                                <div class="diamond ">
+                                    <div class="text-top ">+ 25-40%​
+                                        ​</div>
+                                    <div class="text-bottom text-xs pl-5">Manual counting
+                                        &
+                                        ordering time</div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
-                    <div class="justify-end px-10  self-end" v-if="isVisible" :class="{ 'dotted-animation': isVisible }">
+                    <div class="justify-center px-10  self-center" v-if="isVisible"
+                        :class="{ 'dotted-animation': isVisible }">
                         <DottedLine :line-width="500" :right-line-up-length="0" :right-line-down-length="100"
                             :left-line-down-length="0" :left-line-up-length="100" :show-left-line-up="true"
                             :show-right-line-down="true" />
@@ -62,12 +61,11 @@
 
 
             </div>
-            <!-- <div class="justify-end items-end self-end">
-                <img src="@/assets/images/VueJS.png" alt="Additional Image" class="h-20 w-50" />
-            </div> -->
+           
         </div>
     </div>
 </template>
+
 <script>
 import DottedLine from "../components/common/DottedLine";
 export default {
@@ -134,8 +132,49 @@ export default {
     align-items: stretch;
 }
 
+.diamond {
+    width: 120px;
+    height: 120px;
+    transform: rotate(45deg);
+    background-color: #444444;
+    /* position: relative; */
+   
+    border-radius: 10px;
+}
+
+.text-top,
+.text-bottom {
+    position: absolute;
+    left: 0;
+
+    transform: rotate(-45deg);
+    text-align: center;
+}
+
+.text-top {
+    top: 20px;
+    color: white;
+}
+
+.text-bottom {
+    bottom: 20px;
+    color: white;
+}
+
+
+
+
+
+
+
+
 @media (max-width: 640px) {
     .dotted-animation {
         display: none;
     }
-}</style>
+
+ .value{
+    padding-bottom: 20px;
+ }
+}
+</style>

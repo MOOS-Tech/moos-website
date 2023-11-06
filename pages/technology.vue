@@ -9,7 +9,7 @@
     :boldText="boldText" 
     :baseUrl="baseUrl" 
     />
-    <div class="bg-green-400 " >
+    <div class="gradient " >
      <TechnologyCard :cardData="cardData" data-aos="fade-up"  data-aos-duration="1000"/>
      <!-- <div class="w-full h-auto">
       <img src="https://e1.pxfuel.com/desktop-wallpaper/739/267/desktop-wallpaper-science-for-android-mobile-science-beautiful-landscape-android.jpg" style="width: 100%; height: 100%;" />
@@ -93,4 +93,8 @@ export default {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+.gradient{
+  background: linear-gradient(31deg, #109888 0%, rgba(0, 0, 0, 0.00) 66.65%), linear-gradient(113deg, #109888 13.43%, rgba(0, 0, 0, 0.00) 60.88%), linear-gradient(159deg, #109888 0.86%, rgba(0, 0, 0, 0.00) 46.58%), linear-gradient(180deg, #109888 0%, rgba(16, 152, 136, 0.00) 100%), linear-gradient(233deg, #109888 32.46%, rgba(0, 0, 0, 0.00) 82.24%), #FFF;
+}
+</style>

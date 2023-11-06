@@ -4,10 +4,10 @@
       <div class="mx-auto lg:max-w-7xl w-full sm:px-10 md:px-12 flex flex-col lg:flex-row  ">
         <div
           class="relative flex flex-col items-center text-center lg:text-left lg:py-7 xl:py-8 lg:items-start lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1 lg:w-2/3">
-          <h1 class="text-normal-title-heading pb-6 text-green-200 font-semibold py-2">
+          <h1 class="text-normal-title-heading pb-6 text-white font-semibold py-2">
             {{ card.title }}
           </h1>
-          <h2 class="text-black-200 font-semibold text-sub-title-heading pb-6">{{ card.description }}</h2>
+          <h2 class="text-gray-400 font-semibold text-sub-title-heading pb-6">{{ card.description }}</h2>
         </div>
         <div
           class="flex flex-1 lg:w-1/3 lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto max-w-3xl justify-end items-center technology-image">
