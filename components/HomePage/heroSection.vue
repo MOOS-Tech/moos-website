@@ -1,7 +1,7 @@
 <template>
-  <section class="relative py-10 lg:py-20 px-5 lg:px-20">
-
-    <div class="overflow-hidden ">
+  <section class="relative py-10 lg:py-20 px-5 lg:px-20 ">
+    
+    <div class="overflow-hidden pb-10 ">
       <div class="mx-auto max-w-7xl lg:flex   w-full flex flex-col lg:flex-row  ">
 
         <div class="mx-auto w-full lg:w-1/2 lg:max-w-lg ">
@@ -51,13 +51,16 @@
         </div>
       </div>
     </div>
+    
   </section>
+ <Banner :title="Textitle" :boldSub_title="boldTitle" :isButtonVisible="true"/>
 </template>
 
 
 <script>
 
 import FormButton from "@/components/common/Form/FormButton";
+import Banner from '../common/Banner.vue';
 
 
 export default {
@@ -70,9 +73,17 @@ export default {
     boldText: String,
     para: String
   },
+  data() {
+    return {
+     Textitle:"By continuing to use this site you agree to the use of cookies.",
+     boldTitle:"More Information"
+    };
+  },
   components: {
     FormButton,
-  }
+    Banner,
+  },
+ 
 }
 
 </script>
