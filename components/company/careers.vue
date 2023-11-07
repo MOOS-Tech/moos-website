@@ -18,7 +18,7 @@
                 </ul>
                 <div class="flex gap-2">
                   <div>
-                    <button class="bg-green-200 text-white px-4 py-1 rounded-md mt-4">View Job</button>
+                    <button class="bg-green-200 text-white px-4 py-1 rounded-md mt-4" @click="openLink(card.link)">View Job</button>
                   </div>
                   <div>
                     <button class="bg-green-200 text-white px-4 py-1 rounded-md mt-4"
@@ -87,6 +87,9 @@ export default {
     await this.fetchCareerPositions();
   },
   methods: {
+    openLink(val){
+      window.open(val, '_blank');
+    },
     setSelectedPosition(val) {
       this.selectedPosition = val;
     },
@@ -116,6 +119,7 @@ export default {
         this.cardData = this.cards.map(card => ({
           title: card.attributes.job_title,
           qualifications: card.attributes.qualifications.data.map(description => description.attributes.qualification),
+          link:card.attributes.link
         }));
         this.options = [];
         for (let i = 0; i < this.cardData.length; i++) {
