@@ -91,12 +91,12 @@ export default {
 
       try {
         const response = await getBusinessTitle();
-        this.ComTitle = response.data.data.attributes.main_title.data.attributes.CommonTitle
-        this.boldText = response.data.data.attributes.main_title.data.attributes.boldText
-        this.Para = response.data.data.attributes.main_title.data.attributes.Paragraph
-        this.cardTitle = response.data.data.attributes.sub_title
-        this.imageUrl = response.data.data.attributes.ImageUrl.data.attributes.url
-        this.cardBbody = response.data.data.attributes.points.data
+        this.ComTitle = response.data.data[0].attributes.main_title.data.attributes.CommonTitle
+        this.boldText = response.data.data[0].attributes.main_title.data.attributes.boldText
+        this.Para = response.data.data[0].attributes.main_title.data.attributes.Paragraph
+        this.cardTitle = response.data.data[0].attributes.sub_topic
+        this.imageUrl = response.data.data[0].attributes.image_url.data.attributes.url
+        this.cardBbody = response.data.data[0].attributes.points.data.map(data => (data.attributes.point));
       } catch (error) {
         console.error("Error fetching  data:");
       }
