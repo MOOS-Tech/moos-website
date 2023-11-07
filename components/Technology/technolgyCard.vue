@@ -1,21 +1,20 @@
 <template>
   <div class="py-20">
     <section class="relative  px-5 lg:px-20 " v-for="(card, index) in cardData" :key="index">
-      <div class="mx-auto lg:max-w-7xl w-full sm:px-10 md:px-12 flex flex-col lg:flex-row  ">
+      <div class="mx-auto lg:max-w-7xl w-full sm:px-10 md:px-12 flex flex-col lg:flex-row">
         <div
           class="relative flex flex-col items-center text-center lg:text-left lg:py-7 xl:py-8 lg:items-start lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1 lg:w-2/3">
           <h1 class="text-normal-title-heading pb-6 text-white font-semibold py-2">
             {{ card.title }}
           </h1>
-          <h2 class="text-gray-400 font-semibold text-sub-title-heading pb-6">{{ card.description }}</h2>
+          <h2 class="font-semibold text-sub-title-heading pb-6" style="color: rgba(240, 249, 248, 0.60);">{{ card.description }}</h2>
         </div>
         <div
-          class="flex flex-1  lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto  justify-end items-center technology-image">
-          <img :src="card.imageUrl" alt="Hero image" 
-            class="lg:absolute lg:w-full lg:h-full  object-cover lg:max-h-none  max-w-[250px]" />
+          class="px-10 flex flex-1  lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto  justify-end items-center technology-image">
+          <img :src="card.imageUrl" alt="Hero image"
+            class="lg:w-full lg:h-full  object-cover lg:max-h-none  max-w-full" />
         </div>
       </div>
-
     </section>
     <!-- <div
           class="flex flex-1  lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto items-center justify-center ">
@@ -36,10 +35,10 @@ export default {
     baseUrl: String,
     cardData: [],
     cards: [],
-   
+
   },
   data() {
-  
+
   },
 
 

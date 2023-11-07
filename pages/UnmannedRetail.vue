@@ -2,11 +2,9 @@
   <div v-if="!loading">
     <Card :CardTitle="cardTitle" :CardBody="cardBbody" :imageUrl="imageUrl" :ComTitle="ComTitle" :Para="Para"
       :boldText="boldText" :baseUrl="baseUrl" data-aos="fade-up" data-aos-duration="1000" />
-    <div>
+    <div style="background-color: #F0F9F8;padding-bottom: 20px">
       <div class="pt-10 lg:max-w-10xl w-full sm:px-10 md:px-12 px-5 lg:px-10 flex flex-col lg:flex-row ">
-        <section class=" lg:max-w-10xl w-full sm:px-10 md:px-12 px-5 lg:px-10 py-10  mx-auto lg:max-w-7xl  bg-white">
-          <!-- Title in a new row -->
-
+        <section class=" lg:max-w-10xl w-full sm:px-10 md:px-12 px-5 lg:px-10 py-10  mx-auto lg:max-w-7xl">
           <h2 class="text-sub-title-heading font-semibold text-black-200 ">Values of the MOOS Way</h2>
         </section>
       </div>
@@ -38,7 +36,7 @@
     <MapAndContact />
   </div>
 </template>
-  
+
 <script>
 import Card from "~/components/business/card.vue";
 import GetStart from "~/components/business/GetStart.vue";
@@ -135,6 +133,5 @@ export default {
 };
 
 </script>
-  
+
 <style ></style>
-  

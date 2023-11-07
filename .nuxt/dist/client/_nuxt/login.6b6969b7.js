@@ -1,1 +1,0 @@
-import{_ as o,c as e,o as t}from"./entry.44078957.js";const n={name:"login",mounted(){alert("mounted")}},c={style:{"font-size":"100px",color:"white","background-color":"red"}};function r(s,a,i,l,_,d){return t(),e("div",c,"login page")}const f=o(n,[["render",r]]);export{f as default};

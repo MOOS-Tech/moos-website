@@ -50,9 +50,9 @@ export default {
 
     }
   },
- 
+
   methods: {
-    Submitfn() {
+    async Submitfn() {
       let payload = {
         data: {
           name: this.customerName,
@@ -60,11 +60,16 @@ export default {
           request_demonstration: this.requestOption,
           message: this.customerMessage
         }
-
       }
       try {
-        const response = bookMeeting(payload);
-      
+        const response = await bookMeeting(payload);
+        console.log(response)
+        if(response.status === 200){
+          this.customerEmail = '';
+          this.customerName = '';
+          this.requestOption = 'Request demonstration';
+          this.customerMessage = '';
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
