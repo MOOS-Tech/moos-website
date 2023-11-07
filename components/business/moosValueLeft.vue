@@ -102,6 +102,8 @@ export default {
 
 
             ],
+            valuePercentage: "24%-80%",
+            valueDes: "Manual counting & ordering time​"
 
         }
     },
