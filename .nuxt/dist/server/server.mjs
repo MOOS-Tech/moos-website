@@ -1,0 +1,1 @@
+export { default } from "file:///C:/Users/ASUS/OneDrive/Desktop/MOOS-Website/node_modules/@nuxt/vite-builder/dist/runtime/vite-node.mjs"

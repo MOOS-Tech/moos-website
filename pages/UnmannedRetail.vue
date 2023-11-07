@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <Card :CardTitle="data[0].CardTitle" :CardBody="data[0].CardBody" :imageUrl="data[0].imageUrl"
-      :ComTitle="data[0].ComTitle" :Para="data[0].Para" :boldText="data[0].boldtext"  data-aos="fade-up"  data-aos-duration="1000"/>
+  <div v-if="!loading">
+    <Card :CardTitle="cardTitle" :CardBody="cardBbody" :imageUrl="imageUrl" :ComTitle="ComTitle" :Para="Para"
+      :boldText="boldText" :baseUrl="baseUrl" data-aos="fade-up" data-aos-duration="1000" />
     <div>
       <div class="pt-10 lg:max-w-10xl w-full sm:px-10 md:px-12 px-5 lg:px-10 flex flex-col lg:flex-row ">
         <section class=" lg:max-w-10xl w-full sm:px-10 md:px-12 px-5 lg:px-10 py-10  mx-auto lg:max-w-7xl  bg-white">
@@ -10,15 +10,29 @@
           <h2 class="text-sub-title-heading font-semibold text-black-200 ">Values of the MOOS Way</h2>
         </section>
       </div>
-      <MoosValueLeft :rightPill="'oneleft'" :leftPill="'oneright'"  data-aos="fade-up"  data-aos-duration="1000" :isVisible="true"/>
+
+      <!-- <MoosValueLeft :rightPill="'oneleft'" :leftPill="'oneright'"  data-aos="fade-up"  data-aos-duration="1000" :isVisible="true"/>
       <MoosValueRight :right_Pill="'one_left'" :left_Pill="'one_right'"  data-aos="fade-up"  data-aos-duration="1000" :isVisible="true"/>
       <MoosValueLeft :rightPill="'twoleft'" :leftPill="'tworight'"  data-aos="fade-up"  data-aos-duration="1000" :isVisible="true"/>
       <MoosValueRight  :right_Pill="'two_left'" :left_Pill="'two_right'"  data-aos="fade-up"  data-aos-duration="1000" :isVisible="true"/>
       <MoosValueLeft :rightPill="'threeleft'" :leftPill="'threeright'" data-aos="fade-up"  data-aos-duration="1000" :isVisible="true"/>
-      <MoosValueRight  :right_Pill="'three_left'" :left_Pill="'three_right'" data-aos="fade-up"  data-aos-duration="1000" :isVisible="false"/>
+      <MoosValueRight  :right_Pill="'three_left'" :left_Pill="'three_right'" data-aos="fade-up"  data-aos-duration="1000" :isVisible="false"/> -->
+      <div v-for="(item, index) in ValueDetails" :key="index">
+
+        <div v-if="index % 2 === 0">
+          <MoosValueLeft :rightPill="index + 'left'" :leftPill="index + 'right'" :oldWays="oldWays" :moosWays="moosWays"
+            :pillTitle="pillTitel" :valuePercentage="valuePercentage" :valueDes="valueDes" :isVisible="true" />
+
+        </div>
+        <div v-else>
+          <MoosValueRight :right_Pill="index + '_left'" :left_Pill="index  + '_right'" :oldWays="oldWays"
+            :moosWays="moosWays" :pillTitle="pillTitel" :isVisible="true" />
+        </div>
+      </div>
+
     </div>
     <div>
-      <GetStart  data-aos="fade-up"  data-aos-duration="1000"/>
+      <GetStart :cards="cardData" data-aos="fade-up" data-aos-duration="1000" />
     </div>
     <!-- ====== Map and the Contact Section-->
     <MapAndContact />
@@ -31,23 +45,9 @@ import GetStart from "~/components/business/GetStart.vue";
 import MoosValueLeft from "~/components/business/moosValueLeft.vue";
 import MoosValueRight from "~/components/business/moosValueRight.vue";
 import MapAndContact from '~/components/HomePage/mapAndContact.vue';
+import { loading, toggleLoading } from '../store/store';
+import { getBusinessTitle, BusinessGetStart, getUnmannedRetailMoosValues } from "@/services/business.js";
 
-
-const dummyData = [
-  {
-    ComTitle: "<br/>for unmanned retail​",
-    boldtext: "MOOS",
-    CardTitle: "Typical challenges for unmanned retail companies​",
-    Para: "​Donec sit amet leo quis lectus malesuada viverra eu in libero. Donec purus ligula, ultrices at metus sed, porta semper libero. Cras consequat felis vel.",
-    CardBody: [
-      "In lorem mi, hendrerit a malesuada in, eleifend.",
-      "Maecenas volutpat tristique nibh.",
-      "Nam sit amet diam in orci consequat placerat.",
-    ],
-    imageUrl:
-      "https://e1.pxfuel.com/desktop-wallpaper/739/267/desktop-wallpaper-science-for-android-mobile-science-beautiful-landscape-android.jpg",
-  },
-];
 
 export default {
   components: { Card, GetStart, MapAndContact, MoosValueLeft, MoosValueRight },
@@ -55,10 +55,85 @@ export default {
 
   data() {
     return {
-      data: dummyData,
+      baseUrl: 'http://localhost:1337',
+      ComTitle: "",
+      boldText: "",
+      Para: "",
+      imageUrl: "",
+      cardTitle: "",
+      cardBbody: [],
+      cards: [],
+      cardData: [],
+      ValueDetails: [
+      ],
+      moosWays: [],
+      oldWays: [],
+      pillTitel: "",
+      valuePercentage: "",
+      valueDes: ""
     };
   },
+  computed: {
+    loading() {
+      return loading.value;
+    },
+  },
+  async created() {
+    toggleLoading(true);
+    const config = useRuntimeConfig();
+    this.baseUrl = config.public.API_URL ? config.public.API_URL : 'http://localhost:1337';
+    await this.fetchTitleSection();
+    await this.fetchBusinessGetStart();
+    // await  this.fetchMoosValues();
+    toggleLoading(false);
+
+  },
+  methods: {
+    async fetchTitleSection() {
+
+      try {
+        const response = await getBusinessTitle();
+        this.ComTitle = response.data.data.attributes.main_title.data.attributes.CommonTitle
+        this.boldText = response.data.data.attributes.main_title.data.attributes.boldText
+        this.Para = response.data.data.attributes.main_title.data.attributes.Paragraph
+        this.cardTitle = response.data.data.attributes.sub_title
+        this.imageUrl = response.data.data.attributes.ImageUrl.data.attributes.url
+        this.cardBbody = response.data.data.attributes.points.data
+      } catch (error) {
+        console.error("Error fetching  data:");
+      }
+
+    },
+    async fetchBusinessGetStart() {
+      try {
+        const response = await BusinessGetStart();
+        this.cards = response.data.data
+        this.cardData = this.cards.map(card => ({
+          title: card.attributes.title,
+          description: card.attributes.Paragraph,
+
+        }));
+      } catch (error) {
+        console.error("Error fetching data:");
+      }
+    },
+    async fetchMoosValues() {
+      try {
+        const response = await getUnmannedRetailMoosValues();
+        this.cards = response.data.data
+        this.ValueDetails = this.cards.map(card => ({
+          moosWays: card.attributes.title,
+          oldWays: card.attributes.Paragraph,
+          pillTitel: card.attributes.title,
+
+        }));
+      } catch (error) {
+        console.error("Error fetching data:");
+      }
+    }
+  }
 };
+
 </script>
   
 <style ></style>

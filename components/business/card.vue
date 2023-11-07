@@ -1,5 +1,5 @@
 <template>
-  <div>
+  
     <section class="relative py-10 lg:py-20 bg-white px-5 lg:px-20">
       <div
           class="mx-auto lg:max-w-7xl w-full sm:px-10 md:px-12 flex flex-col lg:flex-row  "
@@ -32,7 +32,7 @@
         </div>
       </div>
     </section>
-  </div>
+  
 </template>
 
 

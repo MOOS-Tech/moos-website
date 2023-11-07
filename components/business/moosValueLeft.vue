@@ -1,67 +1,85 @@
 <template>
-    <div>
+    <div  data-aos="fade-up" data-aos-duration="1000">
         <div class="flex flex-col lg:flex-row">
-            <div class="flex flex-col sm:flex-row lg:max-w-7xl w-full sm:px-10 md:px-12 px-5 lg:px-20 mx-auto lg:flex-row">
-                <div class="flex flex-col items-center  lg:px-10 ">
+            <div class="flex flex-col sm:flex-row lg:max-w-7xl w-full sm:px-10  mx-auto lg:flex-row">
+                <div class="flex flex-col items-center  ">
                     <div>
                         <h2
-                            class="text-normal-title-heading font-semibold text-center lg:w-3/4 self-center text-green-200 mb-4">
+                            class="text-normal-title-heading font-semibold text-center lg:w-4/6 self-center text-green-200 mb-4">
                             {{ pillTitle }}</h2>
-                        <div class="flex items-center justify-center  lg:w-4/5  transition-transform" id="pill-container">
-                            <div class="pill left relative lg:rounded-l-full md:rounded-l-full border-2 border-r-0  border-black-100 h-auto py-1 round-pill expand-horizontal1"
-                                :id="leftPill" @mouseover="movePills" @mouseleave="resetPills">
-                                <div class="flex flex-col items-start lg:w-full pl-10">
-                                    <h3 class="text-small-title-heading mb-2 text-left">Old Way</h3>
-                                    <ul class="text-sm list-disc text-left">
-                                        <li v-for="(item, index) in oldWays" :key="index">{{ item.oldWayValueText }}</li>
+                        <div class="grid   gap-y-10 sm:gap-y-10 grid-cols-12 ">
+                            <div class="flex items-center justify-center transition-transform col-span-12 md:col-span-8 px-4"
+                                id="pill-container">
+                                <div class="pill left relative lg:rounded-l-full md:rounded-l-full border-2 border-r-0  border-black-100 h-auto py-1 round-pill expand-horizontal1"
+                                    :id="leftPill" @mouseover="movePills" @mouseleave="resetPills">
+                                    <div class="flex flex-col items-start lg:w-full pl-10">
+                                        <h3 class="text-small-title-heading mb-2 text-left">Old Way</h3>
+                                        <ul class="text-sm list-disc text-left">
+                                            <li v-for="(item, index) in oldWays" :key="index">{{ item.oldWayValueText }}
+                                            </li>
 
-                                    </ul>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-center w-1/6  expand-horizontal-image " id="image"
+                                    @mouseover="movePills" @mouseleave="resetPills"
+                                    style="margin-left: -20px; margin-right: -20px;">
+                                    <img src="@/assets/images/pillimage.png" alt="Image" class="h-auto" />
+                                </div>
+
+                                <div class="pill right relative lg:rounded-r-full md:rounded-r-full border-2 border-l-0 border-green-200 h-auto py-1 round-pill expand-horizontal"
+                                    :id="rightPill" @mouseover="movePills" @mouseleave="resetPills">
+                                    <div class="flex flex-col items-start lg:w-full pl-10  text-green-200">
+                                        <h3 class="text-small-title-heading mb-2 text-left">MOOS Way</h3>
+                                        <ul class="text-sm list-disc text-left">
+                                            <li v-for="(item, index) in moosWays" :key="index">{{ item.moosWayValueText }}
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="flex items-center justify-center w-1/6 expand-horizontal-image " id="image"
-                                @mouseover="movePills" @mouseleave="resetPills"
-                                style="margin-left: -20px; margin-right: -20px;">
-                                <img src="@/assets/images/pillimage.png" alt="Image" class="h-auto" />
-                            </div>
-
-                            <div class="pill right relative lg:rounded-r-full md:rounded-r-full border-2 border-l-0 border-green-200 h-auto py-1 round-pill expand-horizontal"
-                                :id="rightPill" @mouseover="movePills" @mouseleave="resetPills">
-                                <div class="flex flex-col items-start lg:w-full pl-10  text-green-200">
-                                    <h3 class="text-small-title-heading mb-2 text-left">MOOS Way</h3>
-                                    <ul class="text-sm list-disc text-left">
-                                        <li v-for="(item, index) in moosWays" :key="index">{{ item.moosWayValueText }}</li>
-
-                                    </ul>
+                            <div
+                                class="flex items-center justify-center col-span-12 md:col-span-4 value">
+                                <div class="diamond ">
+                                    <div class="text-top ">{{valuePercentage}}
+                                        ​</div>
+                                    <div class="text-bottom text-xs pl-5">{{valueDes}}</div>
                                 </div>
+
                             </div>
                         </div>
-
-
                     </div>
-                    <div class="justify-end px-10  self-end" v-if="isVisible" :class="{ 'dotted-animation': isVisible }">
-                        <DottedLine :line-width="500" :right-line-up-length="0" :right-line-down-length="100"
+                    <div class="justify-center px-10  self-center" v-if="isVisible"
+                        :class="{ 'dotted-animation': isVisible }">
+                        <DottedLine :line-width="420" :right-line-up-length="0" :right-line-down-length="100"
                             :left-line-down-length="0" :left-line-up-length="100" :show-left-line-up="true"
                             :show-right-line-down="true" />
                     </div>
                 </div>
 
-                <div class="w-full sm:w-1/5 md:w-1/5 lg:w-1/6 ml-auto justify-end items-end self-end">
-                    <!-- <img src="@/assets/images/VueJS.png" alt="Additional Image" class="w-full h-auto" /> -->
-                </div>
+
             </div>
-            <div class="justify-end items-end self-end">
-                <img src="@/assets/images/VueJS.png" alt="Additional Image" class="h-20 w-50" />
-            </div>
+           
         </div>
     </div>
 </template>
+
 <script>
 import DottedLine from "../components/common/DottedLine";
 export default {
     name: "valueleft",
     components: { DottedLine },
-    props: ["leftPill", "rightPill", "isVisible"],
+    props:{
+        leftPill : "",
+         rightPill: "", 
+         isVisible: true,  
+         oldWays:[],
+         moosWays:[],
+         pillTitle: "",
+         valuePercentage: "",
+         valueDes:""
+    },
+   
 
     data() {
         return {
@@ -80,9 +98,11 @@ export default {
                 },
                 {
                     moosWayValueText: "Estimated with 60-70% accurate ERP+POS data"
-                }
+                },
+
+
             ],
-          
+
         }
     },
 
@@ -102,7 +122,7 @@ export default {
             leftPill.style.transform = "translateX(0)";
             rightPill.style.transform = "translateX(0)";
         },
-       
+
     },
 
 }
@@ -120,9 +140,49 @@ export default {
     align-items: stretch;
 }
 
+.diamond {
+    width: 120px;
+    height: 120px;
+    transform: rotate(45deg);
+    background-color: #444444;
+    /* position: relative; */
+   
+    border-radius: 10px;
+}
+
+.text-top,
+.text-bottom {
+    position: absolute;
+    left: 0;
+
+    transform: rotate(-45deg);
+    text-align: center;
+}
+
+.text-top {
+    top: 20px;
+    color: white;
+}
+
+.text-bottom {
+    bottom: 20px;
+    color: white;
+}
+
+
+
+
+
+
+
+
 @media (max-width: 640px) {
     .dotted-animation {
         display: none;
     }
+
+ .value{
+    padding-bottom: 20px;
+ }
 }
 </style>
