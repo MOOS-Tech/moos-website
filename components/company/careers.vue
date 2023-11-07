@@ -16,7 +16,18 @@
                                         {{ description }}
                                     </li>
                                 </ul>
-                                <button class="bg-green-200 text-white px-4 py-1 rounded-lg mt-4">Apply</button>
+                                <div class="flex gap-2">
+                                    <div>
+                                        <button class="bg-green-200 text-white px-4 py-1 rounded-md mt-4">View Job</button>
+                                    </div>
+                                    <div>
+                                        <button class="bg-green-200 text-white px-4 py-1 rounded-md mt-4">Apply</button>
+                                    </div>
+                                   
+                                </div>
+                               
+                               
+                               
                             </div>
                         </div>
                     </div>
