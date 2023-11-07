@@ -52,7 +52,7 @@ export default {
     props: {
         cards: [],
         cardData: [],
-       
+
 
     },
     components: {
