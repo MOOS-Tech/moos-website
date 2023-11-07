@@ -1,5 +1,5 @@
 <template>
-    <div style="direction: rtl;" >
+    <div style="direction: rtl;"  data-aos="fade-up" data-aos-duration="1000">
         <div class="flex flex-col lg:flex-row ">
             <div class="flex flex-col sm:flex-row lg:max-w-7xl w-full sm:px-10  mx-auto lg:flex-row">
                 <div class="flex flex-col items-center   ">
@@ -52,13 +52,14 @@
                                 </svg> -->
                             </div>
                         </div>
-                        <div class="justify-end px-10  self-end"  dir="ltr" v-if="isVisible"
+                       
+                    </div>
+                    <div class="justify-center px-10  self-center"  v-if="isVisible"
                             :class="{ 'dotted-animation': isVisible }">
-                            <DottedLine :line-width="500" :right-line-up-length="100" :right-line-down-length="0"
+                            <DottedLine :line-width="420" :right-line-up-length="100" :right-line-down-length="0"
                                 :left-line-down-length="100" :left-line-up-length="0" :show-left-line-down="true"
                                 :show-right-line-up="true" />
                         </div>
-                    </div>
                 </div>
 
             </div>
@@ -71,7 +72,14 @@
 import DottedLine from "../components/common/DottedLine";
 export default {
     name: "valueleft",
-    props: ["left_Pill", "right_Pill", "isVisible"],
+    props:{
+        left_Pill : "",
+        right_Pill: "", 
+         isVisible: true,  
+         oldWays:[],
+         moosWays:[],
+         pillTitle: ""
+    },
     components: { DottedLine },
     data() {
         return {

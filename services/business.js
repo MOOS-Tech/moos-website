@@ -24,3 +24,11 @@ export const BusinessGetStart = async () => {
         return error;
     }
 };
+export const getUnmannedRetailMoosValues = async () => {
+    await initEndpoint();
+    try {
+        return await axios.get(API_URL + `/api/business-page-umnamage-retail-get-starteds`);
+    } catch (error) {
+        return error;
+    }
+};

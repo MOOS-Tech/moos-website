@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div  data-aos="fade-up" data-aos-duration="1000">
         <div class="flex flex-col lg:flex-row">
             <div class="flex flex-col sm:flex-row lg:max-w-7xl w-full sm:px-10  mx-auto lg:flex-row">
                 <div class="flex flex-col items-center  ">
@@ -41,11 +41,9 @@
                             <div
                                 class="flex items-center justify-center col-span-12 md:col-span-4 value">
                                 <div class="diamond ">
-                                    <div class="text-top ">+ 25-40%​
+                                    <div class="text-top ">{{valuePercentage}}
                                         ​</div>
-                                    <div class="text-bottom text-xs pl-5">Manual counting
-                                        &
-                                        ordering time</div>
+                                    <div class="text-bottom text-xs pl-5">{{valueDes}}</div>
                                 </div>
 
                             </div>
@@ -53,7 +51,7 @@
                     </div>
                     <div class="justify-center px-10  self-center" v-if="isVisible"
                         :class="{ 'dotted-animation': isVisible }">
-                        <DottedLine :line-width="500" :right-line-up-length="0" :right-line-down-length="100"
+                        <DottedLine :line-width="420" :right-line-up-length="0" :right-line-down-length="100"
                             :left-line-down-length="0" :left-line-up-length="100" :show-left-line-up="true"
                             :show-right-line-down="true" />
                     </div>
@@ -71,7 +69,17 @@ import DottedLine from "../components/common/DottedLine";
 export default {
     name: "valueleft",
     components: { DottedLine },
-    props: ["leftPill", "rightPill", "isVisible"],
+    props:{
+        leftPill : "",
+         rightPill: "", 
+         isVisible: true,  
+         oldWays:[],
+         moosWays:[],
+         pillTitle: "",
+         valuePercentage: "",
+         valueDes:""
+    },
+   
 
     data() {
         return {
