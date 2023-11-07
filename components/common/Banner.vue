@@ -1,7 +1,9 @@
 <template>
      <section class="" v-if="isSectionVisible">
   <div class="flex items-center justify-between gap-x-6  px-6 py-3.5 sm:pr-2.5 lg:pl-8 " style="background-color: #5DB8AD;">
-    <p class="text-sm leading-6 text-white">
+    
+    <p class="flex text-sm leading-6 text-white" >
+        <img src="~assets/images/cookie.png" alt="Image Description" class="mx-2 h-6 w-6" v-if="isimageVisible" />
       <a href="#">
         <svg viewBox="0 0 2 2" class="mx-2 inline h-0.5 w-0.5 fill-current" aria-hidden="true"></svg>{{title}}&nbsp;&nbsp;<strong class="font-semibold">{{ boldSub_title }}</strong>&nbsp;<span aria-hidden="true">&rarr;</span>
       </a>
@@ -30,19 +32,23 @@ export default {
   props:{
     title:"",
     boldSub_title:"",
-    isButtonVisible: true
+    isButtonVisible: {
+      type: Boolean,
+      default: true,
+    },
+    isimageVisible:{
+        type: Boolean,
+      default: true,   
+    }
   },
  
   data() {
     return {
       isSectionVisible: true, 
-      isButtonVisible: false
+    
     };
   },
-  created() {
-   
-    this.isButtonVisible = true;
-  },
+  
   methods: {
     hideSection() {
       this.isSectionVisible = false; 

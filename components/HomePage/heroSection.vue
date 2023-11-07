@@ -53,7 +53,7 @@
     </div>
     
   </section>
- <Banner :title="Textitle" :boldSub_title="boldTitle" :isButtonVisible="true"/>
+ <Banner :title="Textitle" :boldSub_title="boldTitle" :isButtonVisible="true" :isimageVisible="true"/>
 </template>
 
 

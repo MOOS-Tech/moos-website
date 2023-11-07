@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Banner :title="Textitle" :boldSub_title="boldTitle" :isButtonVisible="false"/>
+    <Banner :title="Textitle" :boldSub_title="boldTitle" :isButtonVisible="false" :isimageVisible="false"/>
     <TopNavBar/>
     <slot/>
     <Footer/>
@@ -18,6 +18,12 @@ export default {
      Textitle:"MOOS raises $100 million in funding!",
      boldTitle:"Learn More"
     };
+  },
+  computed: {
+    isBannerVisible() {
+     
+      return this.$route.name === 'index'; 
+    },
   },
 }
 </script>
