@@ -11,13 +11,13 @@
         </section>
       </div>
 
-      <!-- <MoosValueLeft :rightPill="'oneleft'" :leftPill="'oneright'"  data-aos="fade-up"  data-aos-duration="1000" :isVisible="true"/>
+      <MoosValueLeft :rightPill="'oneleft'" :leftPill="'oneright'"  data-aos="fade-up"  data-aos-duration="1000" :isVisible="true"/>
       <MoosValueRight :right_Pill="'one_left'" :left_Pill="'one_right'"  data-aos="fade-up"  data-aos-duration="1000" :isVisible="true"/>
       <MoosValueLeft :rightPill="'twoleft'" :leftPill="'tworight'"  data-aos="fade-up"  data-aos-duration="1000" :isVisible="true"/>
       <MoosValueRight  :right_Pill="'two_left'" :left_Pill="'two_right'"  data-aos="fade-up"  data-aos-duration="1000" :isVisible="true"/>
       <MoosValueLeft :rightPill="'threeleft'" :leftPill="'threeright'" data-aos="fade-up"  data-aos-duration="1000" :isVisible="true"/>
-      <MoosValueRight  :right_Pill="'three_left'" :left_Pill="'three_right'" data-aos="fade-up"  data-aos-duration="1000" :isVisible="false"/> -->
-      <div v-for="(item, index) in ValueDetails" :key="index">
+      <MoosValueRight  :right_Pill="'three_left'" :left_Pill="'three_right'" data-aos="fade-up"  data-aos-duration="1000" :isVisible="false"/>
+      <!-- <div v-for="(item, index) in ValueDetails" :key="index">
 
         <div v-if="index % 2 === 0">
           <MoosValueLeft :rightPill="index + 'left'" :leftPill="index + 'right'" :oldWays="oldWays" :moosWays="moosWays"
@@ -28,7 +28,7 @@
           <MoosValueRight :right_Pill="index + '_left'" :left_Pill="index  + '_right'" :oldWays="oldWays"
             :moosWays="moosWays" :pillTitle="pillTitel" :isVisible="true" />
         </div>
-      </div>
+      </div> -->
 
     </div>
     <div>
