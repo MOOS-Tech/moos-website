@@ -11,11 +11,10 @@
         </div>
         <div
           class="flex flex-1  lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto  justify-end items-center technology-image">
-          <img :src="card.imageUrl" alt="Hero image" 
+          <img :src="card.imageUrl" alt="Hero image"
             class="lg:absolute lg:w-full lg:h-full  object-cover lg:max-h-none  max-w-[250px]" />
         </div>
       </div>
-
     </section>
     <!-- <div
           class="flex flex-1  lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto items-center justify-center ">
@@ -36,10 +35,10 @@ export default {
     baseUrl: String,
     cardData: [],
     cards: [],
-   
+
   },
   data() {
-  
+
   },
 
 

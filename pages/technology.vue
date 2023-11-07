@@ -1,13 +1,13 @@
 <template>
   <div v-if="!loading">
-    <Card 
-    data-aos="fade-up"  
+    <Card
+    data-aos="fade-up"
     data-aos-duration="1000"
-    :imageUrl="imageUrl" 
+    :imageUrl="imageUrl"
     :ComTitle="ComTitle"
     :Para="Para"
-    :boldText="boldText" 
-    :baseUrl="baseUrl" 
+    :boldText="boldText"
+    :baseUrl="baseUrl"
     />
     <div class="gradient " >
      <TechnologyCard :cardData="cardData" data-aos="fade-up"  data-aos-duration="1000"/>
@@ -15,7 +15,7 @@
       <img src="https://e1.pxfuel.com/desktop-wallpaper/739/267/desktop-wallpaper-science-for-android-mobile-science-beautiful-landscape-android.jpg" style="width: 100%; height: 100%;" />
     </div> -->
     </div>
-    
+
 
 
   </div>
@@ -29,12 +29,12 @@ import {getTechnologyTitle,getTechProcess} from "@/services/technology.js";
 export default {
   name: "technology",
 
-  components: { Card,TechnologyCard, TechnologyCard },
+  components: { Card,TechnologyCard },
   data() {
     return {
       baseUrl: 'http://localhost:1337',
-      ComTitle: "",    
-      boldText: "",   
+      ComTitle: "",
+      boldText: "",
       Para: "",
       imageUrl:"" ,
       cards: [],
@@ -53,24 +53,24 @@ export default {
     await this.fetchTitleSection();
     await this.fetchProcessSection();
     toggleLoading(false);
-   
+
   },
   methods: {
     async fetchTitleSection() {
-     
+
       try {
         const response = await getTechnologyTitle();
         this.ComTitle = response.data.data.attributes.title.data.attributes.CommonTitle
         this.boldText = response.data.data.attributes.title.data.attributes.boldText
         this.Para = response.data.data.attributes.title.data.attributes.Paragraph
-        this.imageUrl = response.data.data.attributes.ImageUrl.data.attributes.formats.small.url 
+        this.imageUrl = response.data.data.attributes.ImageUrl.data.attributes.formats.small.url
       } catch (error) {
         console.error("Error fetching  data:");
       }
-     
+
     },
     async fetchProcessSection() {
-     
+
      try {
        const response = await getTechProcess();
        this.cards = response.data.data
@@ -80,12 +80,12 @@ export default {
           description: card.attributes.sub_title,
           imageUrl: card.attributes.imageUrl.data.attributes.formats.small.url,
         }));
-      
-     
+
+
      } catch (error) {
        console.error("Error fetching  data:");
      }
-    
+
    },
   }
 
