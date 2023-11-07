@@ -42,6 +42,9 @@
 export default {
   name: "GetStart",
   components: {},
+  props:{
+    cards:[]
+  },
   data() {
     return {
       cards: [

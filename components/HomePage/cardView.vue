@@ -1,6 +1,6 @@
 <template>
   <section
-      class="pt-20 pb-10 lg:max-w-7xl w-full sm:px-10 md:px-12 px-5 lg:px-10 flex mx-auto flex-col lg:flex-row py-10"
+      class="pt-20 pb-10 lg:max-w-7xl w-full   px-5  flex mx-auto flex-col lg:flex-row py-10"
       data-aos="fade-up" data-aos-duration="1000">
     <div
         class="sm:flex sm:justify-center py-10 mx-auto lg:max-w-7xl w-full sm:px-10 md:px-12 rounded-lg bg-white shadow-3xl"
@@ -28,7 +28,7 @@
 export default {
   name: "card View",
   props: {
-    baseUrl: '',
+    baseUrl: String,
     cards: [],
     cardData: []
   }
