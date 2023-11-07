@@ -10,9 +10,9 @@
           <h2 class="text-gray-400 font-semibold text-sub-title-heading pb-6">{{ card.description }}</h2>
         </div>
         <div
-          class="flex flex-1 lg:w-1/3 lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto max-w-3xl justify-end items-center technology-image">
+          class="flex flex-1  lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto  justify-end items-center technology-image">
           <img :src="card.imageUrl" alt="Hero image" 
-            class="lg:absolute lg:w-full lg:h-full  object-cover lg:max-h-none max-h-[550px] max-w-[400px]" />
+            class="lg:absolute lg:w-full lg:h-full  object-cover lg:max-h-none  max-w-[250px]" />
         </div>
       </div>
 
