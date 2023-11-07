@@ -7,7 +7,7 @@
           <h1 class="text-normal-title-heading pb-6 text-white font-semibold py-2">
             {{ card.title }}
           </h1>
-          <h2 class="text-gray-400 font-semibold text-sub-title-heading pb-6">{{ card.description }}</h2>
+          <h2 class="font-semibold text-sub-title-heading pb-6" style="color: rgba(240, 249, 248, 0.60);">{{ card.description }}</h2>
         </div>
         <div
           class="px-10 flex flex-1  lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto  justify-end items-center technology-image">

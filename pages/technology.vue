@@ -9,7 +9,7 @@
     :boldText="boldText"
     :baseUrl="baseUrl"
     />
-    <div class="gradient " >
+    <div class="bg-gradient-to-l from-teal-500 via-teal-700 to-teal-500" >
      <TechnologyCard :cardData="cardData" data-aos="fade-up"  data-aos-duration="1000"/>
      <!-- <div class="w-full h-auto">
       <img src="https://e1.pxfuel.com/desktop-wallpaper/739/267/desktop-wallpaper-science-for-android-mobile-science-beautiful-landscape-android.jpg" style="width: 100%; height: 100%;" />
