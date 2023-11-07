@@ -11,17 +11,17 @@
         </div>
         <div
           class="flex flex-1 lg:w-1/3 lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto max-w-3xl justify-end items-center technology-image">
-          <img :src="baseUrl + card.imageUrl" alt="Hero image" width="720" height="720"
-            class="lg:absolute lg:w-full lg:h-full  object-cover lg:max-h-none max-h-[550px] max-w-[250px]" />
+          <img :src="card.imageUrl" alt="Hero image" 
+            class="lg:absolute lg:w-full lg:h-full  object-cover lg:max-h-none max-h-[550px] max-w-[400px]" />
         </div>
       </div>
 
     </section>
-    <div
+    <!-- <div
           class="flex flex-1  lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto items-center justify-center ">
           <img src="https://tecdn.b-cdn.net/img/new/standard/city/042.webp" alt="Hero image" width="720" height="720"
             class="lg:absolute lg:w-full lg:h-full  object-cover lg:max-h-none max-h-[550px] max-w-[250px]" />
-        </div>
+        </div> -->
 
   </div>
 </template>
@@ -39,35 +39,7 @@ export default {
    
   },
   data() {
-    // return {
-    
-    //   cardData: [
-    //     {
-    //       imageUrl: "https://tecdn.b-cdn.net/img/new/standard/city/041.webp",
-    //       title: "MOOS sensors",
-    //       description:
-    //         "Cloud-connected sensors emitting signal in real-time",
-    //     },
-    //     {
-    //       imageUrl: "https://tecdn.b-cdn.net/img/new/standard/city/042.webp",
-    //       title: "MOOS sensors",
-    //       description:
-    //         "Cloud-connected sensors emitting signal in real-time",
-    //     },
-    //     {
-    //       imageUrl: "https://tecdn.b-cdn.net/img/new/standard/city/042.webp",
-    //       title: "MOOS sensors",
-    //       description:
-    //         "Cloud-connected sensors emitting signal in real-time",
-    //     },
-    //     {
-    //       imageUrl: "https://tecdn.b-cdn.net/img/new/standard/city/042.webp",
-    //       title: "MOOS sensors",
-    //       description:
-    //         "Cloud-connected sensors emitting signal in real-time,Cloud-connected sensors emitting signal in real-time",
-    //     },
-    //   ]
-    // };
+  
   },
 
 
@@ -77,9 +49,9 @@ export default {
 </script>
 <style>
 @media (max-width: 640px) {
-  .technology-image {
+  /* .technology-image {
     display: none;
-  }
+  } */
 
 }
 </style>

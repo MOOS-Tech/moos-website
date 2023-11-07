@@ -74,10 +74,11 @@ export default {
      try {
        const response = await getTechProcess();
        this.cards = response.data.data
+       console.log( "this cards",this.cards)
         this.cardData = this.cards.map(card => ({
           title: card.attributes.title,
           description: card.attributes.sub_title,
-          imageUrl: card.attributes.ImageUrl.data.attributes.url,
+          imageUrl: card.attributes.imageUrl.data.attributes.formats.small.url,
         }));
       
      

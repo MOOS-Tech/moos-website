@@ -13,7 +13,7 @@
                                         <span class="text-green-500 mr-2">
                                             <i class="fas fa-check"></i>
                                         </span>
-                                        {{ description.text }}
+                                        {{ description }}
                                     </li>
                                 </ul>
                                 <button class="bg-green-200 text-white px-4 py-1 rounded-lg mt-4">Apply</button>
@@ -45,7 +45,7 @@ import FormInput from "@/components/common/Form/FormInputField";
 import FormButton from "@/components/common/Form/FormButton";
 import FormSelectField from "@/components/common/Form/FormSelectField";
 import FormLargeTextBox from "@/components/common/Form/FormLargeTextBox";
-import { joinWithUs } from "@/services/about.js";
+import { joinWithUs,getCareerPositions } from "@/services/about.js";
 
 export default {
     name: "careers",
@@ -71,49 +71,14 @@ export default {
             customerLinkedin: "",
             customerResume: "",
             cardData: [
-                {
-                    id: 1,
-                    title: 'Card 1',
-                    qualifications: [
-                        { id: 1, text: 'Ability to liaise with stakeholders such as project personnel.' },
-                        { id: 2, text: 'Description 2' },
-                        { id: 3, text: 'Description 3' },
-                    ],
-                },
-                {
-                    id: 1,
-                    title: 'Card 1',
-                    qualifications: [
-                        { id: 1, text: 'Description 1' },
-                        { id: 2, text: 'Description 2' },
-                        { id: 3, text: 'Description 3' },
-                    ],
-                },
-                {
-                    id: 1,
-                    title: 'Card 1',
-                    qualifications: [
-                        { id: 1, text: 'Description 1' },
-                        { id: 2, text: 'Description 2' },
-                        { id: 3, text: 'Description 3' },
-                    ],
-                },
-                {
-                    id: 1,
-                    title: 'Card 1',
-                    qualifications: [
-                        { id: 1, text: 'Description 1' },
-                        { id: 2, text: 'Description 2' },
-                        { id: 3, text: 'Description 3' },
-                    ],
-                },
-
-
 
             ],
+            cards:[]
         }
     },
-
+async created(){
+    await this.fetchCareerPositions();
+},
     methods: {
         Submitfn() {
             let payload = {
@@ -132,7 +97,23 @@ export default {
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
-        }
+        },
+        async fetchCareerPositions() {
+
+try {
+  const response = await getCareerPositions();
+  this.cards = response.data.data
+
+  this.cardData = this.cards.map(card => ({
+    title: card.attributes.job_title,
+    qualifications: card.attributes.qualifications.data.map(description => description.attributes.qualification),
+  }));
+
+} catch (error) {
+  console.error("Error fetching  data:");
+}
+
+},
     }
 }
 </script>

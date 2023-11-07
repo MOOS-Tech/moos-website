@@ -36,7 +36,8 @@ export default {
       cards: [],
       cardData: [],
       people: [],
-      peopleData:[]
+      peopleData:[],
+      title:[]
 
     };
   },
@@ -50,8 +51,8 @@ export default {
     const config = useRuntimeConfig();
     this.baseUrl = config.public.API_URL ? config.public.API_URL : 'http://localhost:1337';
     await this.fetchTitleSection();
-    await this.fetchCareerPositions();
-    await this.fetchOurTeam();
+    // await this.fetchCareerPositions();
+    // await this.fetchOurTeam();
     toggleLoading(false);
 
   },
@@ -60,12 +61,14 @@ export default {
 
       try {
         const response = await getAboutTitle();
+       
         this.ComTitle = response.data.data.attributes.common_title.data.attributes.CommonTitle
         this.boldText = response.data.data.attributes.common_title.data.attributes.boldText
         this.Para = response.data.data.attributes.common_title.data.attributes.Paragraph
         this.cardTitle = response.data.data.attributes.sub_title
-        this.imageUrl = response.data.data.attributes.ImageUrl.data.attributes.url
+        this.imageUrl = response.data.data.attributes.image_url.data.attributes.formats.xsmall.url
         this.cardBbody = response.data.data.attributes.points.data
+       
       } catch (error) {
         console.error("Error fetching  data:");
       }
@@ -78,7 +81,7 @@ export default {
         this.cards = response.data.data
         this.cardData = this.cards.map(card => ({
           title: card.attributes.job_title,
-          qualifications: card.attributes.qualifications.data,
+          qualifications: card.attributes.qualifications.data.map(description => description.attributes.qualification),
         }));
 
       } catch (error) {
