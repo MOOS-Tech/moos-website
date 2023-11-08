@@ -11,7 +11,7 @@
     />
 
     <!-- ====== Blog Section Start -->
-    <Blogs data-aos="fade-up" data-aos-duration="1000"/>
+    <Blogs />
 
     <!-- ====== Partner Section-->
     <PartnerCarousel
