@@ -1,8 +1,22 @@
 <template>
-  <input
-    class="mb-3 rounded-[4px] border p-3 hover:outline-none focus:outline-none hover:border-green-200 h-10 w-72 sm:text-sm"
+  <!-- <input
+    class="mb-3 rounded-[4px] border p-3 hover:outline-none focus:outline-none  hover:border-green-200 h-10 w-72 sm:text-sm"
     :type="type" :placeholder="placeholder"  :value="modelValue"
-    @change="$emit('update:modelValue', $event.target.value)" />
+    @change="$emit('update:modelValue', $event.target.value)" /> -->
+    <div class="mb-3">
+    
+    <input
+      :class="{
+        'rounded-[4px] border p-3 hover:outline-none focus:outline-none hover:border-green-200 h-10 w-72 sm:text-sm': true,
+        
+      }"
+      :type="type"
+      :placeholder="placeholder"
+      :value="modelValue"
+      @change="$emit('update:modelValue', $event.target.value)"
+    />
+    <p class="text-red-500" v-if="!modelValue && isRequired">{{ StatusErrorMessage }}</p>
+  </div>
 </template>
 
 <script>
@@ -33,6 +47,7 @@ export default {
     },
     value: { type: String, required: false, default: '' },
     modelValue: String,
+    StatusErrorMessage:String
   },
   model: {
     prop: "value",

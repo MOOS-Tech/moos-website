@@ -37,17 +37,20 @@
             <h1 class="text-normal-title-heading font-bold text-black-200 ">Join with us</h1>
           </div>
           <div class="flex flex-col items-center justify-center">
-            <FormSelectField :name="selectedPosition" placeholder="Position" :options="options" />
-            <FormInput v-model="customerName" type="text" name="name" id="name" placeholder="Name" />
-            <FormInput v-model="customerEmail" type="email" name="email" id="email" placeholder="Email" />
-            <FormInput v-model="customerLinkedin" type="text" name="linkedin" id="linkedin"
+            <FormSelectField :name="selectedPosition" placeholder="Position" :options="options"
+              v-model="selectedPosition" />
+            <FormInput v-model="customerName" type="text" name="name" id="name" placeholder="Name" :isRequired="true"
+              :StatusErrorMessage="StatusErrorMessage" />
+            <FormInput v-model="customerEmail" type="email" name="email" id="email" placeholder="Email" :isRequired="true"
+              :StatusErrorMessage="StatusErrorMessage" />
+            <FormInput v-model="customerLinkedin" type="text" name="linkedin" id="linkedin" :isRequired="true"
+              :StatusErrorMessage="StatusErrorMessage"
               placeholder="LinkedIn Profile" />
             <!-- <FormInput v-model="customerResume" name="Resume" id="Resume" placeholder="Upload Resume" /> -->
             <div class="mb-3 relative">
               <input
                 class="rounded-[4px] border p-3 pr-10 hover:outline-none focus:outline-none hover:border-green-200 h-10 w-72 sm:text-sm"
-                placeholder="Upload Resume"
-                :value="selectedFileName" />
+                placeholder="Upload Resume" :value="selectedFileName" />
               <label class="absolute right-2 top-2 cursor-pointer">
                 <i class="fas fa-paperclip text-gray-300"></i>
                 <input id="file" type="file" class="hidden" accept=".pdf" @change="uploadFile" ref="fileInput" />
@@ -58,14 +61,19 @@
         </section>
       </div>
     </div>
+    <Notification v-if="isBannerVisible" :message="notificationMessage" :type="notificationType"
+      @hideSection="hideBanner" />
   </section>
 </template>
+
 <script>
 import FormInput from "@/components/common/Form/FormInputField";
 import FormButton from "@/components/common/Form/FormButton";
 import FormSelectField from "@/components/common/Form/FormSelectField";
 import FormLargeTextBox from "@/components/common/Form/FormLargeTextBox";
 import { joinWithUs, getCareerPositions } from "@/services/about.js";
+import Notification from '../common/Notification.vue';
+import CheckEmail from "@/util/CheckEmail";
 
 export default {
   name: "careers",
@@ -77,13 +85,13 @@ export default {
     FormInput,
     FormButton,
     FormSelectField,
-    FormLargeTextBox
+    FormLargeTextBox,
+    Notification
   },
   data() {
     return {
       customerName: "",
       customerEmail: "",
-      PositionOptions: "Test",
       customerLinkedin: "",
       customerResume: "",
       cardData: [],
@@ -91,8 +99,27 @@ export default {
       options: [],
       selectedPosition: '',
       selectedFile: null,
-      selectedFileName :""
+      selectedFileName: "",
+      SelectedValue: "",
+      notificationMessage: "",
+      isBannerVisible: false,
+      StatusErrorMessage: ""
     }
+  },
+  watch: {
+    customerEmail(value) {
+      if (value) {
+        if (CheckEmail(value) == true)
+          this.StatusErrorMessage = "Please enter a valid email address";
+        else {
+
+          this.StatusErrorMessage =
+            "";
+        }
+      } else {
+
+      }
+    },
   },
   async created() {
     await this.fetchCareerPositions();
@@ -108,42 +135,48 @@ export default {
       this.$refs.fileInput.click();
     },
     uploadFile() {
-    const fileInput = this.$refs.fileInput;
-    if (fileInput.files.length > 0) {
-      this.selectedFile = fileInput.files[0];
-      this.selectedFileName = fileInput.files[0].name;
-    console.log(this.selectedFile)
-    }
-  },
+      const fileInput = this.$refs.fileInput;
+      if (fileInput.files.length > 0) {
+        this.selectedFile = fileInput.files[0];
+        this.selectedFileName = fileInput.files[0].name;
+        console.log(this.selectedFile)
+      }
+    },
     Submitfn() {
       if (this.selectedFile) {
-       
 
-       const formData = new FormData();
-       formData.append('file', this.selectedFile);
 
-       let payload = {
-        data: {
-          name: this.customerName,
-          email: this.customerEmail,
-          position: this.PositionOptions,
-          linkedIn_profile: this.customerLinkedin,
-          upload_resume: formData
+        const formData = new FormData();
+        formData.append('file', this.selectedFile);
+
+        let payload = {
+          data: {
+            name: this.customerName,
+            email: this.customerEmail,
+            position: this.selectedPosition,
+            linkedIn_profile: this.customerLinkedin,
+            upload_resume: formData
+          }
+
         }
+        try {
+          const response = joinWithUs(payload);
+          this.resetfn();
+          this.isBannerVisible = true;
+          this.notificationMessage = "Form submission successfull !";
+          setTimeout(() => {
+            this.isBannerVisible = false;
+          }, 3000);
+
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      } else {
 
       }
-      try {
-        const response = joinWithUs(payload);
 
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-     } else {
-       // Handle the case where no file is selected or an error occurred.
-     }
-    
     },
-    
+
     async fetchCareerPositions() {
 
       try {
@@ -163,30 +196,32 @@ export default {
       }
 
     },
+    resetfn() {
+      this.customerName = "",
+        this.customerEmail = "",
+        this.customerLinkedin = "",
+        this.selectedFile = null,
+        this.selectedFileName = "",
+        this.selectedPosition = ""
+    }
 
   }
 }
 </script>
 <style scoped>
-/* .bg-green-and-black {
-  background: linear-gradient(105deg, rgb(56, 150, 162) 50%, #CCEAE6 50%);
-  position: relative;
-  background-size: cover, cover;
-  z-index: 1;
-} */
-
 .bg-image {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('/assets/images/carreerBg.png'); 
+  background-image: url('/assets/images/carreerBg.png');
   background-size: cover;
   background-repeat: no-repeat;
-  z-index: 0; 
-  
+  z-index: 0;
+
 }
+
 .bg-image::after {
   content: '';
   position: absolute;
@@ -194,9 +229,12 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(105deg, rgb(56, 150, 162,0.5) 50%, rgba(204, 234, 230) 50%);/* Set your desired color and opacity */
-  z-index: 2; /* Ensure the overlay is above the image */
+  background: linear-gradient(105deg, rgb(56, 150, 162, 0.5) 50%, rgba(204, 234, 230) 50%);
+  /* Set your desired color and opacity */
+  z-index: 2;
+  /* Ensure the overlay is above the image */
 }
+
 @media (max-width: 640px) {
   .bg-green-and-black {
     background: #CCEAE6;
