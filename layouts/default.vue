@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Banner :title="Textitle" :boldSub_title="boldTitle" :isButtonVisible="false" :isimageVisible="false"/>
+    <Banner :title="Textitle" :boldSub_title="boldTitle" :isButtonVisible="false" :isimageVisible="false" :isboldText="true" :title_bold="Title_bold"/>
     <TopNavBar/>
     <slot/>
     <Footer/>
@@ -15,8 +15,9 @@ export default {
   components: {Footer, TopNavBar,Banner},
   data() {
     return {
-     Textitle:"MOOS raises $100 million in funding!",
-     boldTitle:"Learn More"
+     Textitle:"raises $100 million in funding!",
+     boldTitle:"Learn More",
+     Title_bold:"MOOS"
     };
   },
   computed: {
