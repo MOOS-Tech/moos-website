@@ -1,6 +1,6 @@
 <template>
    
-        <button :id="id" class=" flex items-center  text-sm font-bold  px-5 bg-green-200  border-2 border-green-200 transition duration-300 rounded-md h-12 w-45 hover:bg-green-300 hover:border hover:border-green-300  hover:text-white">
+        <button :id="id" class=" flex items-center  text-sm font-bold  px-5 bg-green-200  border border-green-200 transition duration-300 rounded-md h-12 w-45 hover:bg-green-300   hover:text-white">
         <template v-if="isLoading">
            
             <span class="text-small text-white">Loading...</span>

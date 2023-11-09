@@ -16,12 +16,14 @@
 
       <div class="lg:inline-flex lg:flex-row lg:w-auto w-full lg:items-center items-start flex flex-col lg:h-auto">
         <NuxtLink to="/services"
-                  class="lg:inline-flex lg:w-auto w-full px-5 py-2 mr-5 rounded text-white items-center justify-center hover:bg-white hover:border hover:border-white hover:bg-opacity-25 hover:text-white">
+                  class="lg:inline-flex lg:w-auto w-full px-5 py-2 mr-5 rounded text-white items-center justify-center hover:bg-white  hover:bg-opacity-25 hover:text-white"
+                  style="border: 1px solid transparent; transition: border-color 0.3s;" @mouseover="setBorderColor('white')"
+          @mouseleave="setBorderColor('transparent')">
           <span>Services</span>
         </NuxtLink>
 
         <div class="relative lg:w-auto w-full ">
-          <button
+          <!-- <button
               class="lg:inline-flex lg:w-auto w-full flex-grow px-5 py-2 rounded text-white items-center justify-between hover:bg-white hover:border hover:border-white hover:bg-opacity-25 hover:text-white text-left"
               @click="toggleDropdown">
             <div class="flex items-center group">
@@ -49,16 +51,65 @@
               <i class="fa fa-home mr-2" aria-hidden="true"></i>
               Multiple Stock-keeping Locations
             </NuxtLink>
+          </div> -->
+          <div class=" relative inline-block text-left dropdown">
+            <span class="rounded-md shadow-sm"><button
+                class="lg:inline-flex lg:w-auto w-full flex-grow px-5 py-2 mr-5  rounded text-white items-center justify-between hover:bg-white hover:bg-opacity-25 hover:text-white text-left"
+                
+                type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117"
+                style="border: 1px solid transparent; transition: border-color 0.3s;" @mouseover="setBorderColor('white')"
+                @mouseleave="setBorderColor('transparent')">
+                <div class="flex items-center group">
+                  <span class="flex-grow">Business Solution</span>
+                  <i class="fa fa-angle-down ml-2" aria-hidden="true"></i>
+                </div>
+              </button></span>
+            <div
+              class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
+              <div
+                class="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
+                aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
+                <div class=" ">
+                  <NuxtLink to="/UnmannedRetail"
+                    class="block  px-4 py-2   hover:bg-green-200 hover:border hover:border-green-200  hover:text-white !important"
+                    @click="closeDropdown">
+                    <i class="fa fa-archive mr-2" aria-hidden="true"></i>
+                    Unmanned Retail
+                  </NuxtLink>
+
+                </div>
+                <div class="">
+                  <NuxtLink to="/WareHouse"
+                    class="block px-4 py-2  hover:bg-green-200 hover:border hover:border-green-200  hover:text-white !important"
+                    @click="closeDropdown">
+                    <i class="fa fa-university mr-2" aria-hidden="true"></i>
+                    Warehousing Ops
+                  </NuxtLink>
+                </div>
+                <div class="">
+                  <NuxtLink to="/StockKeeping"
+                    class="block px-4 py-2  hover:bg-green-200 hover:border hover:border-green-200  hover:text-white !important"
+                    @click="closeDropdown">
+                    <i class="fa fa-home mr-2" aria-hidden="true"></i>
+                    Multiple Stock-keeping Locations
+                  </NuxtLink>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         <NuxtLink to="/technology"
-                  class="lg:inline-flex lg:w-auto w-full px-5 py-2 mr-5  rounded text-white items-center justify-center hover:bg-white hover:border hover:border-white hover:bg-opacity-25 hover:text-white">
+                  class="lg:inline-flex lg:w-auto w-full px-5 py-2 mr-5  rounded text-white items-center justify-center hover:bg-white  hover:bg-opacity-25 hover:text-white"
+                  style="border: 1px solid transparent; transition: border-color 0.3s;" @mouseover="setBorderColor('white')"
+          @mouseleave="setBorderColor('transparent')">
           <span>Technology</span>
         </NuxtLink>
 
         <NuxtLink to="/our_company"
-                  class="lg:inline-flex lg:w-auto w-full px-5 py-2 mr-5  rounded text-white items-center justify-center hover:bg-white hover:border hover:border-white hover:bg-opacity-25 hover:text-white">
+                  class="lg:inline-flex lg:w-auto w-full px-5 py-2 mr-5  rounded text-white items-center justify-center hover:bg-white hover:bg-opacity-25 hover:text-white"
+                  style="border: 1px solid transparent; transition: border-color 0.3s;" @mouseover="setBorderColor('white')"
+          @mouseleave="setBorderColor('transparent')">
           <span>Our Company</span>
         </NuxtLink>
       </div>
@@ -76,7 +127,7 @@
             Book a Meeting
           </FormButton> -->
           <NuxtLink to=""
-                    class="lg:inline-flex lg:w-auto w-full px-5 py-2 mr-5  rounded text-white items-center justify-center bg-white bg-opacity-25 border border-white hover:bg-white hover:border hover:border-white hover:bg-opacity-25 hover:text-white">
+                    class="lg:inline-flex lg:w-auto w-full px-5 py-2 mr-5  rounded text-white items-center justify-center bg-white bg-opacity-25 border border-white hover:bg-white  hover:bg-opacity-25 hover:text-white">
             <span> Book a Meeting</span>
           </NuxtLink>
 
@@ -120,6 +171,9 @@ export default {
     closeDropdown() {
       this.isDropdownOpen = false;
     },
+    setBorderColor(color) {
+      event.target.style.borderColor = color;
+    }
   },
   mounted() {
 
@@ -132,9 +186,11 @@ body {
   font-family: "Rubik", sans-serif;
 }
 
-/* navigation
- - show navigation always on the large screen devices with (min-width:1024)
-*/
+.dropdown:focus-within .dropdown-menu {
+  opacity: 1;
+  transform: translate(0) scale(1);
+  visibility: visible;
+}
 
 @media (min-width: 1024px) {
   .top-navbar {
