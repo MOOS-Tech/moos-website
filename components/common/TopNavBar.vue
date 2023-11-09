@@ -37,13 +37,13 @@
               <i class="fa fa-archive mr-2" aria-hidden="true"></i>
               Unmanned Retail
             </NuxtLink>
-            <NuxtLink to="/UnmannedRetail"
+            <NuxtLink to="/WareHouse"
                       class="block px-4 py-2  hover:bg-green-200 hover:border hover:border-green-200  hover:text-white !important"
                       @click="closeDropdown">
               <i class="fa fa-university mr-2" aria-hidden="true"></i>
               Warehousing Ops
             </NuxtLink>
-            <NuxtLink to="/UnmannedRetail"
+            <NuxtLink to="/StockKeeping"
                       class="block px-4 py-2  hover:bg-green-200 hover:border hover:border-green-200  hover:text-white !important"
                       @click="closeDropdown">
               <i class="fa fa-home mr-2" aria-hidden="true"></i>

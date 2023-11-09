@@ -9,24 +9,25 @@
         </section>
       </div>
 
-      <MoosValueLeft :rightPill="'oneleft'" :leftPill="'oneright'"  data-aos="fade-up"  data-aos-duration="1000" :isVisible="true"/>
+      <!-- <MoosValueLeft :rightPill="'oneleft'" :leftPill="'oneright'"  data-aos="fade-up"  data-aos-duration="1000" :isVisible="true"/>
       <MoosValueRight :right_Pill="'one_left'" :left_Pill="'one_right'"  data-aos="fade-up"  data-aos-duration="1000" :isVisible="true"/>
       <MoosValueLeft :rightPill="'twoleft'" :leftPill="'tworight'"  data-aos="fade-up"  data-aos-duration="1000" :isVisible="true"/>
       <MoosValueRight  :right_Pill="'two_left'" :left_Pill="'two_right'"  data-aos="fade-up"  data-aos-duration="1000" :isVisible="true"/>
       <MoosValueLeft :rightPill="'threeleft'" :leftPill="'threeright'" data-aos="fade-up"  data-aos-duration="1000" :isVisible="true"/>
-      <MoosValueRight  :right_Pill="'three_left'" :left_Pill="'three_right'" data-aos="fade-up"  data-aos-duration="1000" :isVisible="false"/>
-      <!-- <div v-for="(item, index) in ValueDetails" :key="index">
+      <MoosValueRight  :right_Pill="'three_left'" :left_Pill="'three_right'" data-aos="fade-up"  data-aos-duration="1000" :isVisible="false"/> -->
+      
+      <div v-for="(item, index) in ValueDetails" :key="index">
 
         <div v-if="index % 2 === 0">
-          <MoosValueLeft :rightPill="index + 'left'" :leftPill="index + 'right'" :oldWays="oldWays" :moosWays="moosWays"
-            :pillTitle="pillTitel" :valuePercentage="valuePercentage" :valueDes="valueDes" :isVisible="true" />
+          <MoosValueLeft :rightPill="index + 'left'" :leftPill="index + 'right'" :oldWays="item.oldWays" :moosWays="item.moosWays"
+            :pillTitle="item.pillTitle" :valuePercentage="item.valuePercentage" :valueDes="item.valueDes" :isVisible="isLastValue(index)" />
 
         </div>
         <div v-else>
-          <MoosValueRight :right_Pill="index + '_left'" :left_Pill="index  + '_right'" :oldWays="oldWays"
-            :moosWays="moosWays" :pillTitle="pillTitel" :isVisible="true" />
+          <MoosValueRight :right_Pill="index + '_left'" :left_Pill="index  + '_right'" :oldWays="item.oldWays"
+            :moosWays="item.moosWays" :pillTitle="item.pillTitle" :isVisible="isLastValue(index)" />
         </div>
-      </div> -->
+      </div>
 
     </div>
     <div>
@@ -49,7 +50,7 @@ import { getBusinessTitle, BusinessGetStart, getUnmannedRetailMoosValues } from 
 
 export default {
   components: { Card, GetStart, MapAndContact, MoosValueLeft, MoosValueRight },
-  name: "business_solutions",
+  name: "business_solutions1",
 
   data() {
     return {
@@ -66,7 +67,7 @@ export default {
       ],
       moosWays: [],
       oldWays: [],
-      pillTitel: "",
+      pillTitle: "",
       valuePercentage: "",
       valueDes: ""
     };
@@ -82,7 +83,7 @@ export default {
     this.baseUrl = config.public.API_URL ? config.public.API_URL : 'http://localhost:1337';
     await this.fetchTitleSection();
     await this.fetchBusinessGetStart();
-    // await  this.fetchMoosValues();
+    await  this.fetchMoosValues();
     toggleLoading(false);
 
   },
@@ -120,15 +121,22 @@ export default {
         const response = await getUnmannedRetailMoosValues();
         this.cards = response.data.data
         this.ValueDetails = this.cards.map(card => ({
-          moosWays: card.attributes.title,
-          oldWays: card.attributes.Paragraph,
-          pillTitel: card.attributes.title,
+          moosWays: card.attributes.moosways.data.map(moosways => moosways.attributes.moosway_point),
+          oldWays: card.attributes.oldways.data.map(oldWays => oldWays.attributes.old_way_point),
+          pillTitle: card.attributes.main_title,
+          valuePercentage: card.attributes.percentage,
+          valueDes: card.attributes.percentage_description
+
 
         }));
+        console.log("pill Title",this.pillTitle)
       } catch (error) {
         console.error("Error fetching data:");
       }
-    }
+    },
+    isLastValue(index) {
+    return index === this.ValueDetails.length - 1 ? false : true;
+  }
   }
 };
 

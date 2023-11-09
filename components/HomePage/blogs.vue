@@ -8,7 +8,7 @@
       </div> -->
       <div class="bg-image"></div>
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <div class="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-12 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 py-10">
+      <div class="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-12 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
         <WhiteCard/>
       </div>
       </div>
