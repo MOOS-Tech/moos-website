@@ -38,8 +38,6 @@ export default {
     FormButton,
     FormSelectField,
     FormLargeTextBox
-
-
   },
   data() {
     return {

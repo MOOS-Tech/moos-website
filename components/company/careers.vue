@@ -49,8 +49,8 @@
             <!-- <FormInput v-model="customerResume" name="Resume" id="Resume" placeholder="Upload Resume" /> -->
             <div class="mb-3 relative">
               <input
-                class="rounded-[4px] border p-3 pr-10 hover:outline-none focus:outline-none hover:border-green-200 h-10 w-72 sm:text-sm"
-                placeholder="Upload Resume" :value="selectedFileName" />
+                class="rounded-[4px] border p-3 pr-10 hover:outline-none focus:outline-none hover:border-green-200 h-10 w-72 sm:text-sm cursor-pointer"
+                placeholder="Upload Resume" :value="selectedFileName"/>
               <label class="absolute right-0 top-0 cursor-pointer h-full w-8 text-center self-center items-center bg-gray-300">
                 <i class="fas fa-paperclip text-gray-400 pt-3" ></i>
                 <input id="file" type="file" class="hidden" accept=".pdf" @change="uploadFile" ref="fileInput" />
