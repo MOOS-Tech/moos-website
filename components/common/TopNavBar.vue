@@ -29,7 +29,6 @@
             <div class=" relative inline-block text-left dropdown">
             <span class="rounded-md shadow-sm"><button
                 class="lg:inline-flex lg:w-auto w-full flex-grow px-5 py-2 mr-5  rounded text-white items-center justify-between hover:bg-white hover:bg-opacity-25 hover:text-white text-left"
-
                 type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117"
                 style="border: 1px solid transparent; transition: border-color 0.3s;"
                 @mouseover="setBorderColor('white')"
@@ -43,7 +42,7 @@
                   class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
                 <div
                     class="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
-                    aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
+                    aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu"  style="width: 350px">
                   <div class=" " v-for="(sub, i) in item.attributes.navbar_sub_topics.data" :key="i">
                     <NuxtLink :to="sub.attributes.url"
                               class="block  px-4 py-2   hover:bg-green-200 hover:border hover:border-green-200  hover:text-white !important"
