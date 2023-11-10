@@ -4,16 +4,10 @@
            data-aos-duration="1000">
     <div class="container py-10 mx-auto sm:flex sm:justify-center w-full sm:px-10 md:px-12 lg:px-48">
       <div class="flex flex-col text-center w-full items-center">
-<!--        <div class="justify-start items-start self-start">-->
-<!--          <img src="@/assets/images/quoteVector.png" class="h-8 w-8" />-->
-<!--        </div>-->
         <div class="relative flex items-center">
           <h1 class="italic text-normal-title-heading mb-4 text-black-200">
             “ {{ Quote }} ”
           </h1>
-<!--          <div class="justify-end items-end self-end">-->
-<!--            <img src="@/assets/images/quoteVector.png" class="h-8 w-8 ml-2 transform rotate-180" />-->
-<!--          </div>-->
         </div>
         <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
           {{ Speaker }}
@@ -27,7 +21,7 @@
 
 export default {
   name: "quote",
-  props:{
+  props: {
     Quote: "",
     Speaker: "",
   }
