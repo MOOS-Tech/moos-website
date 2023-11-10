@@ -13,8 +13,8 @@
         </a>
       </p>
       <div class="flex items-center justify-center">
-        <NuxtLink to="" v-if="isButtonVisible"
-                  class="lg:inline-flex lg:w-auto w-full px-5 py-1 mr-5  rounded text-white items-center justify-center bg-white bg-opacity-25 border border-white hover:bg-white hover:border hover:border-white hover:bg-opacity-25 hover:text-white">
+        <NuxtLink v-if="isButtonVisible" @click="allow()"
+                  class="cursor-pointer lg:inline-flex lg:w-auto w-full px-5 py-1 mr-5  rounded text-white items-center justify-center bg-white bg-opacity-25 border border-white hover:bg-white hover:border hover:border-white hover:bg-opacity-25 hover:text-white">
           <span> Allow All</span>
         </NuxtLink>
         <a class="text-white cursor-pointer" data-te-alert-dismiss aria-label="Close" @click="hideSection">
@@ -68,6 +68,10 @@ export default {
   },
 
   methods: {
+    allow(){
+      localStorage.setItem('cookies_allowed','YES');
+      this.isSectionVisible = false;
+    },
     hideSection() {
       this.isSectionVisible = false;
     },
