@@ -1,7 +1,7 @@
 <template>
   <div class="py-20">
     <section class="relative  px-5 lg:px-20 " v-for="(card, index) in cardData" :key="index">
-      <div class="mx-auto lg:max-w-7xl w-full sm:px-10 md:px-12 flex flex-col lg:flex-row">
+      <div class="mx-auto lg:max-w-7xl w-full sm:px-10  flex flex-col lg:flex-row lg:gap-20">
         <div
           class="relative flex flex-col items-center text-center lg:text-left lg:py-7 xl:py-8 lg:items-start lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1 lg:w-2/3">
           <h1 class="text-normal-title-heading pb-6 text-white font-semibold py-2">

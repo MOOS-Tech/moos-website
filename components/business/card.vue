@@ -3,7 +3,7 @@
     <section class="relative  bg-white">
       <div class="w-full flex flex-col lg:flex-row">
       <div
-          class="mx-auto lg:max-w-4xl w-full pt-10 lg:pt-20 sm:px-10 md:px-12 lg:px-30 flex flex-col lg:flex-row"
+          class="mx-auto lg:max-w-4xl w-full pt-10 lg:pt-20 sm:px-10 md:px-12 lg:px-30 flex flex-col lg:flex-row px-10"
       >
         <div
             class="relative flex flex-col items-center text-left lg:text-left lg:py-7 xl:py-8

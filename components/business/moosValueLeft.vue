@@ -15,7 +15,7 @@
                                     <div class="flex flex-col items-start lg:w-full pl-10">
                                         <h3 class="text-small-title-heading mb-2 text-left">Old Way</h3>
                                         <ul class="text-sm list-disc text-left">
-                                            <li v-for="(item, index) in oldWays" :key="index">{{ item.oldWayValueText }}
+                                            <li v-for="(item, index) in oldWays" :key="index">{{ item}}
                                             </li>
 
                                         </ul>
@@ -32,7 +32,7 @@
                                     <div class="flex flex-col items-start lg:w-full pl-10  text-green-200">
                                         <h3 class="text-small-title-heading mb-2 text-left">MOOS Way</h3>
                                         <ul class="text-sm list-disc text-left">
-                                            <li v-for="(item, index) in moosWays" :key="index">{{ item.moosWayValueText }}
+                                            <li v-for="(item, index) in moosWays" :key="index">{{ item}}
                                             </li>
                                         </ul>
                                     </div>
@@ -83,27 +83,27 @@ export default {
 
     data() {
         return {
-            pillTitle: "Pill Title",
-            oldWays: [
-                {
-                    oldWayValueText: "Count manually"
-                },
-                {
-                    oldWayValueText: "Estimated with 60-70% accurate ERP+POS data"
-                }
-            ],
-            moosWays: [
-                {
-                    moosWayValueText: "Count manually"
-                },
-                {
-                    moosWayValueText: "Estimated with 60-70% accurate ERP+POS data"
-                },
+            // pillTitle: "Pill Title",
+            // oldWays: [
+            //     {
+            //         oldWayValueText: "Count manually"
+            //     },
+            //     {
+            //         oldWayValueText: "Estimated with 60-70% accurate ERP+POS data"
+            //     }
+            // ],
+            // moosWays: [
+            //     {
+            //         moosWayValueText: "Count manually"
+            //     },
+            //     {
+            //         moosWayValueText: "Estimated with 60-70% accurate ERP+POS data"
+            //     },
 
 
-            ],
-            valuePercentage: "24%-80%",
-            valueDes: "Manual counting & ordering time​"
+            // ],
+            // valuePercentage: "24%-80%",
+            // valueDes: "Manual counting & ordering time​"
 
         }
     },

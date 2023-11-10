@@ -6,7 +6,7 @@
     <div class="mx-auto lg:max-w-4xl w-full pt-10 lg:pt-20 sm:px-10 md:px-12 lg:px-30 flex flex-col lg:flex-row " >
 
       <!-- Switched the order of these two divs -->
-      <div class="relative flex flex-col items-center text-left lg:text-left lg:py-7 xl:py-8 px-10 
+      <div class="relative flex flex-col items-center text-left lg:text-left lg:py-7 xl:py-8  px-5
         lg:items-start lg:max-w-none max-w-3xl mx-auto lg:mx-0  lg:w-2/3">
 
         <CommonTitle v-if="ComTitle" :CardTitle="ComTitle" :BoldText="boldText" />
