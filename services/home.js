@@ -61,10 +61,21 @@ export const getPatners = async () => {
     }
 };
 
-export const bookMeeting = async (payload) => {
+export const getContactTypes = async () => {
     await initEndpoint();
     try {
-        return await axios.post(API_URL + `/api/book-meetings`, payload);
+        const res = await axios.get(API_URL + `/api/bookmeeting-options`);
+        return res.data.data
+    } catch (error) {
+        return error;
+    }
+};
+
+export const submitForum = async (payload) => {
+    await initEndpoint();
+    try {
+        const res = await axios.post(API_URL + `/api/book-meetings`,payload);
+        return res;
     } catch (error) {
         return error;
     }

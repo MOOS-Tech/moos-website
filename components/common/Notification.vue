@@ -1,35 +1,49 @@
 <template>
-  <!-- <div class="border-l-4 border-yellow-400 bg-green-200 p-4">
-    <div class="flex">
-    
-      <div class="ml-3">
-        <p class="text-sm text-yellow-700">
-          {{ message }}
-        </p>
-      </div>
-    </div>
-  </div> -->
-  <div  class="fixed bottom-5 right-5 bg-green-100 text-white p-3 rounded shadow text-md h-30 w-80 ">
-      {{ message }}
-    </div>
+  <div v-if="show" :class="[getTypeClass(), 'notification']">
+    {{ message }}
+  </div>
 </template>
 <script>
 export default {
-  name: "banner",
-  props: {
-    message: "",
-    type: ''
-  },
-
+  name: "Notification",
   data() {
     return {
-
+      show: false,
+      type: 'success', // 'success' or 'error'
+      message: '',
     };
   },
   methods: {
-    hideSection() {
-      this.isSectionVisible = false;
+    showNotification(type, message) {
+      this.type = type;
+      this.message = message;
+      this.show = true;
+      setTimeout(() => {
+        this.hideNotification();
+      }, 5000);
     },
-  },
+    hideNotification() {
+      this.show = false;
+    },
+    getTypeClass() {
+      return {
+        'bg-white text-black': this.type === 'success',
+        'bg-red-200': this.type === 'error',
+        // 'text-white': true,
+        'p-4': true,
+        'mb-4': true,
+        'rounded-md': true,
+        'shadow-md': true,
+      };
+    },
+  }
 }
 </script>
+<style scoped>
+.notification {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 999;
+}
+</style>
