@@ -4,14 +4,15 @@
       <div class="grid md:grid-cols-2 md:gap-12 lg:gap-48 bg-green-and-black">
         <section class="mt-6 mb-4 place-content-center ">
           <div class="mb-6 text-center">
-            <h1 class="text-normal-title-heading font-bold text-black-200 ">Ready to dive in?</h1>
+            <h1 class="text-normal-title-heading font-bold text-black-200 ">Contact Us</h1>
           </div>
           <div class="flex flex-col items-center justify-center">
             <FormInput v-model="customerName" type="text" name="name" id="name" placeholder="Name" />
             <FormInput v-model="customerEmail" type="email" name="email" id="email" placeholder="Email" />
-            <FormSelectField v-model="requestOption" placeholder="Request demonstration" />
+            <FormSelectField v-model="selectedOption" :options="requestOption" :placeholder="requestOption[0]"/>
             <FormLargeTextBox v-model="customerMessage" placeholder="Your message" />
             <FormButton class="text-white" @click="Submitfn">Book a Meeting</FormButton>
+            <Notification ref="notification" />
           </div>
         </section>
         <div class="flex justify-center md:justify-end  ">
@@ -29,7 +30,8 @@ import FormInput from "@/components/common/Form/FormInputField";
 import FormButton from "@/components/common/Form/FormButton";
 import FormSelectField from "@/components/common/Form/FormSelectField";
 import FormLargeTextBox from "@/components/common/Form/FormLargeTextBox";
-import { bookMeeting } from "@/services/home.js";
+import Notification from "@/components/common/Notification";
+import {getContactTypes,submitForum } from "../../services/home.js";
 
 export default {
   name: "index",
@@ -37,41 +39,49 @@ export default {
     FormInput,
     FormButton,
     FormSelectField,
-    FormLargeTextBox
-
-
+    FormLargeTextBox,
+    Notification
   },
   data() {
     return {
       customerName: "",
       customerEmail: "",
-      requestOption: "Test",
-      customerMessage: ""
-
+      requestOption: [],
+      customerMessage: "",
+      selectedOption:''
     }
   },
-
+  async mounted() {
+    let res = await getContactTypes();
+    this.requestOption = [];
+    for (let i = 0; i < res.length; i++) {
+      this.requestOption.push(res[i].attributes.options);
+    }
+  },
   methods: {
     async Submitfn() {
       let payload = {
         data: {
           name: this.customerName,
           email: this.customerEmail,
-          request_demonstration: this.requestOption,
+          request_demonstration: this.selectedOption,
           message: this.customerMessage
         }
       }
+      console.log(payload)
       try {
-        const response = await bookMeeting(payload);
+        const response = await submitForum(payload);
         console.log(response)
         if(response.status === 200){
           this.customerEmail = '';
           this.customerName = '';
-          this.requestOption = 'Request demonstration';
+          this.selectedOption = '';
           this.customerMessage = '';
+          this.$refs.notification.showNotification('success', 'Form submitted successfully!');
         }
       } catch (error) {
         console.error("Error fetching data:", error);
+        this.$refs.notification.showNotification('error', 'Error submitting form. Please try again.');
       }
     }
   }

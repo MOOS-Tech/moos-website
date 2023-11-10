@@ -27,7 +27,23 @@ export const BusinessGetStart = async () => {
 export const getUnmannedRetailMoosValues = async () => {
     await initEndpoint();
     try {
-        return await axios.get(API_URL + `/api/business-page-umnamage-retail-get-starteds`);
+        return await axios.get(API_URL + `/api/bp-unmanaged-flowcharts?populate=*`);
+    } catch (error) {
+        return error;
+    }
+};
+export const getWareHousingMoosValues = async () => {
+    await initEndpoint();
+    try {
+        return await axios.get(API_URL + `/api/bp-warehousing-ops-flowcharts?populate=*`);
+    } catch (error) {
+        return error;
+    }
+};
+export const getStockKeepingMoosValues = async () => {
+    await initEndpoint();
+    try {
+        return await axios.get(API_URL + `/api/bp-multiple-stock-keeping-locations?populate=*`);
     } catch (error) {
         return error;
     }

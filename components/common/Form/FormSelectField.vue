@@ -1,9 +1,13 @@
 <template>
   <select id="id" name="name" autocomplete="autocomplete"
-          class=" mb-3 py-2 px-3 h-10 sm:text-sm focus:border-green-200 focus:outline-none block w-72 rounded-md border-0   text-black-100 shadow-sm "
-          :placeholder="placeholder" v-model="selected">
-    <option>Select Position</option>
-    <option v-for="option of options" :value="option">{{ option }}</option>
+          class="mb-3 py-2 px-3 h-10 sm:text-sm focus:border-green-200 focus:outline-none block w-72 rounded-md border-0 text-black-100 shadow-sm"
+          v-model="selected">
+    <option :disabled="true" :value="''">{{ placeholder }}</option>
+    <option
+        v-for="(option, index) in options"
+        :key="index"
+        :value="option">{{ option }}
+    </option>
   </select>
 </template>
 <script>
@@ -21,15 +25,14 @@ export default {
   },
   watch: {
     name(val) {
-      if(!val){
-        this.selected = 'Select Position';
+      if (val) {
+        this.selected = val;
       }
-      this.selected = val;
     }
   },
   data() {
     return {
-      selected: 'Select Position'
+      selected: this.options[0]
     };
   }
 };

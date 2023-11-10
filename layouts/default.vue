@@ -1,6 +1,7 @@
 <template>
   <div>
-    <Banner :title="Textitle" :boldSub_title="boldTitle" :isButtonVisible="false" :isimageVisible="false"/>
+    <Banner :title="paragraph" :boldSub_title="boldText" :isButtonVisible="false" :isimageVisible="false"
+            :isboldText="true" :title_bold="title" :redirectUrl="redirectUrl" :isVisible="isBanner"/>
     <TopNavBar/>
     <slot/>
     <Footer/>
@@ -10,21 +11,31 @@
 import TopNavBar from "../components/common/TopNavBar";
 import Footer from "../components/common/Footer";
 import Banner from '../components/common/Banner.vue';
+import {getBanner} from "../services/navigation";
 
 export default {
-  components: {Footer, TopNavBar,Banner},
+  components: {Footer, TopNavBar, Banner},
   data() {
     return {
-     Textitle:"MOOS raises $100 million in funding!",
-     boldTitle:"Learn More"
+      paragraph: "raises $100 million in funding!",
+      boldText: "Learn More",
+      title: "MOOS",
+      redirectUrl: '',
+      isBanner: false
     };
   },
-  computed: {
-    isBannerVisible() {
-     
-      return this.$route.name === 'index'; 
-    },
-  },
+  async mounted() {
+    try {
+      let res = await getBanner(1);
+      this.title = res.boldText;
+      this.boldText = res.underline_word;
+      this.paragraph = res.Paragraph;
+      this.redirectUrl = res.url;
+      this.isBanner = true;
+    } catch (e) {
+      this.isBanner = false;
+    }
+  }
 }
 </script>
 

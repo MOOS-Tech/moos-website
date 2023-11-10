@@ -1,20 +1,19 @@
 <template>
-  <section class="relative py-10 lg:py-20 px-5 lg:px-20 ">
-    
+  <section class="relative py-10 lg:py-20 px-5 lg:px-20">
     <div class="overflow-hidden pb-10 ">
       <div class="mx-auto max-w-7xl lg:flex   w-full flex flex-col lg:flex-row  ">
 
         <div class="mx-auto w-full lg:w-1/2 lg:max-w-lg ">
           <div class="mx-auto lg:max-w-7xl w-full  flex flex-col lg:flex-row gap-12 lg:gap-40 pb-5 ">
             <div
-              class="relative flex flex-col items-center text-center lg:text-left lg:items-start  lg:py-7 lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1">
+                class="relative flex flex-col items-center text-center lg:text-left lg:items-start  lg:py-7 lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1">
 
-              <CommonTitle v-if="ComTitle" :CardTitle="ComTitle" :BoldText="boldText" />
+              <CommonTitle v-if="ComTitle" :CardTitle="ComTitle" :BoldText="boldText"/>
               <p class="mt-8 text-black-200 text-regular-title-heading ">
                 {{ para }}
               </p>
               <div class="mt-10 flex flex-col items-center gap-4 lg:flex-row">
-                <FormButton class="text-white"> Book a Meeting </FormButton>
+                <FormButton class="text-white"> Book a Meeting</FormButton>
               </div>
             </div>
           </div>
@@ -34,34 +33,32 @@
           <div class="mx-auto w-full flex flex-wrap items-center gap-6 sm:gap-8 lg:contents  ">
             <div class=" order-first mb-10 flex flex-auto lg:justify-end md:justify-center lg:w-auto lg:flex-none  ">
               <img :src="imageSrc1" alt=""
-                class=" w-[24rem] rounded-xl bg-gray-50 object-cover relative" />
+                   class=" w-[24rem] rounded-xl bg-gray-50 object-cover relative"/>
             </div>
             <div
-              class=" contents lg:col-span-2 lg:col-end-2 lg:ml-auto lg:flex lg:items-start lg:justify-end md:justify-center lg:gap-x-10 pt-10">
+                class=" contents lg:col-span-2 lg:col-end-2 lg:ml-auto lg:flex lg:items-start lg:justify-end md:justify-center lg:gap-x-10 pt-10">
               <div class=" flex flex-auto justify-end  self-end lg:w-auto lg:flex-none relative">
                 <img :src="imageSrc2" alt=""
-                  class=" w-[24rem]  flex-none rounded-xl bg-gray-50 object-cover" />
+                     class=" w-[24rem]  flex-none rounded-xl bg-gray-50 object-cover"/>
               </div>
               <div class="flex flex-auto justify-center lg:w-auto lg:flex-none relative">
                 <img :src="imageSrc3" alt=""
-                  class=" w-[37rem]  flex-none rounded-xl bg-gray-50 object-cover" />
+                     class=" w-[37rem]  flex-none rounded-xl bg-gray-50 object-cover"/>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
   </section>
- <Banner :title="Textitle" :boldSub_title="boldTitle" :isButtonVisible="true" :isimageVisible="true"/>
+  <Banner :title="paragraph" :boldSub_title="boldText" :isButtonVisible="true" :isimageVisible="true"
+          :isboldText="true" :title_bold="title" :redirectUrl="redirectUrl" :isVisible="isBanner" style="margin-top: 50px"/>
 </template>
-
-
 <script>
 
 import FormButton from "@/components/common/Form/FormButton";
 import Banner from '../common/Banner.vue';
-
+import {getBanner} from "../../services/navigation";
 
 export default {
   name: "index",
@@ -75,26 +72,39 @@ export default {
   },
   data() {
     return {
-     Textitle:"By continuing to use this site you agree to the use of cookies.",
-     boldTitle:"More Information"
+      paragraph: "raises $100 million in funding!",
+      boldText: "Learn More",
+      title: "MOOS",
+      redirectUrl: '',
+      isBanner: false
     };
   },
   components: {
     FormButton,
     Banner,
   },
- 
+  async mounted() {
+    try {
+      let res = await getBanner(2);
+      this.title = res.boldText;
+      this.boldText = res.underline_word;
+      this.paragraph = res.Paragraph;
+      this.redirectUrl = res.url;
+      this.isBanner = localStorage.getItem('cookies_allowed') !== 'YES';
+    } catch (e) {
+      this.isBanner = false;
+    }
+  }
 }
 
 </script>
 <style scoped>
 .animated-rectangle {
 
-  background:
-    linear-gradient(90deg, #109888 50%, transparent 0) repeat-x,
-    linear-gradient(90deg, #109888 50%, transparent 0) repeat-x,
-    linear-gradient(0deg, #109888 50%, transparent 0) repeat-y,
-    linear-gradient(0deg, #109888 50%, transparent 0) repeat-y;
+  background: linear-gradient(90deg, #109888 50%, transparent 0) repeat-x,
+  linear-gradient(90deg, #109888 50%, transparent 0) repeat-x,
+  linear-gradient(0deg, #109888 50%, transparent 0) repeat-y,
+  linear-gradient(0deg, #109888 50%, transparent 0) repeat-y;
   /* background-size: 4px 1px, 4px 1px, 1px 4px, 1px 4px; */
   background-size: 12px 3px, 12px 3px, 3px 12px, 3px 12px;
   background-position: 0 0, 0 100%, 0 0, 100% 0;
@@ -106,11 +116,10 @@ export default {
   width: 50px;
   height: 50px;
   position: absolute;
-  background:
-    linear-gradient(90deg, #109888 50%, transparent 0) repeat-x,
-    linear-gradient(90deg, #109888 50%, transparent 0) repeat-x,
-    linear-gradient(0deg, #109888 50%, transparent 0) repeat-y,
-    linear-gradient(0deg, #109888 50%, transparent 0) repeat-y;
+  background: linear-gradient(90deg, #109888 50%, transparent 0) repeat-x,
+  linear-gradient(90deg, #109888 50%, transparent 0) repeat-x,
+  linear-gradient(0deg, #109888 50%, transparent 0) repeat-y,
+  linear-gradient(0deg, #109888 50%, transparent 0) repeat-y;
   /* background-size: 4px 1px, 4px 1px, 1px 4px, 1px 4px; */
   background-size: 12px 3px, 12px 3px, 3px 12px, 3px 12px;
   background-position: 0 0, 0 100%, 0 0, 100% 0;
@@ -124,11 +133,10 @@ export default {
   width: 50px;
   height: 50px;
   position: absolute;
-  background:
-    linear-gradient(90deg, #109888 50%, transparent 0) repeat-x,
-    linear-gradient(90deg, #109888 50%, transparent 0) repeat-x,
-    linear-gradient(0deg, #109888 50%, transparent 0) repeat-y,
-    linear-gradient(0deg, #109888 50%, transparent 0) repeat-y;
+  background: linear-gradient(90deg, #109888 50%, transparent 0) repeat-x,
+  linear-gradient(90deg, #109888 50%, transparent 0) repeat-x,
+  linear-gradient(0deg, #109888 50%, transparent 0) repeat-y,
+  linear-gradient(0deg, #109888 50%, transparent 0) repeat-y;
   /* background-size: 4px 1px, 4px 1px, 1px 4px, 1px 4px; */
   background-size: 12px 3px, 12px 3px, 3px 12px, 3px 12px;
   background-position: 0 0, 0 100%, 0 0, 100% 0;
@@ -142,11 +150,10 @@ export default {
   width: 40px;
   height: 30px;
   position: absolute;
-  background:
-    linear-gradient(90deg, #109888 50%, transparent 0) repeat-x,
-    linear-gradient(90deg, #109888 50%, transparent 0) repeat-x,
-    linear-gradient(0deg, #109888 50%, transparent 0) repeat-y,
-    linear-gradient(0deg, #109888 50%, transparent 0) repeat-y;
+  background: linear-gradient(90deg, #109888 50%, transparent 0) repeat-x,
+  linear-gradient(90deg, #109888 50%, transparent 0) repeat-x,
+  linear-gradient(0deg, #109888 50%, transparent 0) repeat-y,
+  linear-gradient(0deg, #109888 50%, transparent 0) repeat-y;
   /* background-size: 4px 1px, 4px 1px, 1px 4px, 1px 4px; */
   background-size: 12px 3px, 12px 3px, 3px 12px, 3px 12px;
   background-position: 0 0, 0 100%, 0 0, 100% 0;
