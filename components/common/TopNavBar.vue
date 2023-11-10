@@ -15,123 +15,66 @@
          :class="{ block: isNavOpen, hidden: !isNavOpen }">
 
       <div class="lg:inline-flex lg:flex-row lg:w-auto w-full lg:items-center items-start flex flex-col lg:h-auto">
-        <NuxtLink to="/services"
-                  class="lg:inline-flex lg:w-auto w-full px-5 py-2 mr-5 rounded text-white items-center justify-center hover:bg-white  hover:bg-opacity-25 hover:text-white"
-                  style="border: 1px solid transparent; transition: border-color 0.3s;" @mouseover="setBorderColor('white')"
-          @mouseleave="setBorderColor('transparent')">
-          <span>Services</span>
-        </NuxtLink>
-
-        <div class="relative lg:w-auto w-full ">
-          <!-- <button
-              class="lg:inline-flex lg:w-auto w-full flex-grow px-5 py-2 rounded text-white items-center justify-between hover:bg-white hover:border hover:border-white hover:bg-opacity-25 hover:text-white text-left"
-              @click="toggleDropdown">
-            <div class="flex items-center group">
-              <span class="flex-grow">Business Solution</span>
-              <i class="fa fa-angle-down ml-2" aria-hidden="true"></i>
-            </div>
-          </button>
-          <div v-if="isDropdownOpen"
-               class="absolute top-12 w-full lg:w-80  bg-white border border-gray-300 rounded shadow-md z-10">
-            <NuxtLink to="/UnmannedRetail"
-                      class="block px-4 py-2  hover:bg-green-200 hover:border hover:border-green-200  hover:text-white !important"
-                      @click="closeDropdown">
-              <i class="fa fa-archive mr-2" aria-hidden="true"></i>
-              Unmanned Retail
-            </NuxtLink>
-            <NuxtLink to="/WareHouse"
-                      class="block px-4 py-2  hover:bg-green-200 hover:border hover:border-green-200  hover:text-white !important"
-                      @click="closeDropdown">
-              <i class="fa fa-university mr-2" aria-hidden="true"></i>
-              Warehousing Ops
-            </NuxtLink>
-            <NuxtLink to="/StockKeeping"
-                      class="block px-4 py-2  hover:bg-green-200 hover:border hover:border-green-200  hover:text-white !important"
-                      @click="closeDropdown">
-              <i class="fa fa-home mr-2" aria-hidden="true"></i>
-              Multiple Stock-keeping Locations
-            </NuxtLink>
-          </div> -->
-          <div class=" relative inline-block text-left dropdown">
+        <div v-for="(item, index) in navItems" :key="index">
+          <NuxtLink
+              v-if="item.attributes.navbar_sub_topics.data.length===0"
+              :to="item.attributes.url"
+              class="lg:inline-flex lg:w-auto w-full px-5 py-2 mr-5 rounded text-white items-center justify-center hover:bg-white  hover:bg-opacity-25 hover:text-white"
+              style="border: 1px solid transparent; transition: border-color 0.3s;"
+              @mouseover="setBorderColor('white')"
+              @mouseleave="setBorderColor('transparent')">
+            <span>{{ item.attributes.nav_title }}</span>
+          </NuxtLink>
+          <div v-else class="relative lg:w-auto w-full ">
+            <div class=" relative inline-block text-left dropdown">
             <span class="rounded-md shadow-sm"><button
                 class="lg:inline-flex lg:w-auto w-full flex-grow px-5 py-2 mr-5  rounded text-white items-center justify-between hover:bg-white hover:bg-opacity-25 hover:text-white text-left"
-                
+
                 type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117"
-                style="border: 1px solid transparent; transition: border-color 0.3s;" @mouseover="setBorderColor('white')"
+                style="border: 1px solid transparent; transition: border-color 0.3s;"
+                @mouseover="setBorderColor('white')"
                 @mouseleave="setBorderColor('transparent')">
                 <div class="flex items-center group">
-                  <span class="flex-grow">Business Solution</span>
+                  <span class="flex-grow">{{ item.attributes.nav_title }}</span>
                   <i class="fa fa-angle-down ml-2" aria-hidden="true"></i>
                 </div>
               </button></span>
-            <div
-              class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
               <div
-                class="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
-                aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
-                <div class=" ">
-                  <NuxtLink to="/UnmannedRetail"
-                    class="block  px-4 py-2   hover:bg-green-200 hover:border hover:border-green-200  hover:text-white !important"
-                    @click="closeDropdown">
-                    <i class="fa fa-archive mr-2" aria-hidden="true"></i>
-                    Unmanned Retail
-                  </NuxtLink>
+                  class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
+                <div
+                    class="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
+                    aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
+                  <div class=" " v-for="(sub, i) in item.attributes.navbar_sub_topics.data" :key="i">
+                    <NuxtLink :to="sub.attributes.url"
+                              class="block  px-4 py-2   hover:bg-green-200 hover:border hover:border-green-200  hover:text-white !important"
+                              @click="closeDropdown">
+                      <i :class="`fa fa-${sub.attributes.font_awsome_Icon_name} mr-2`" aria-hidden="true"></i>
+                      {{ sub.attributes.name }}
+                    </NuxtLink>
 
-                </div>
-                <div class="">
-                  <NuxtLink to="/WareHouse"
-                    class="block px-4 py-2  hover:bg-green-200 hover:border hover:border-green-200  hover:text-white !important"
-                    @click="closeDropdown">
-                    <i class="fa fa-university mr-2" aria-hidden="true"></i>
-                    Warehousing Ops
-                  </NuxtLink>
-                </div>
-                <div class="">
-                  <NuxtLink to="/StockKeeping"
-                    class="block px-4 py-2  hover:bg-green-200 hover:border hover:border-green-200  hover:text-white !important"
-                    @click="closeDropdown">
-                    <i class="fa fa-home mr-2" aria-hidden="true"></i>
-                    Multiple Stock-keeping Locations
-                  </NuxtLink>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        <NuxtLink to="/technology"
-                  class="lg:inline-flex lg:w-auto w-full px-5 py-2 mr-5  rounded text-white items-center justify-center hover:bg-white  hover:bg-opacity-25 hover:text-white"
-                  style="border: 1px solid transparent; transition: border-color 0.3s;" @mouseover="setBorderColor('white')"
-          @mouseleave="setBorderColor('transparent')">
-          <span>Technology</span>
-        </NuxtLink>
-
-        <NuxtLink to="/our_company"
-                  class="lg:inline-flex lg:w-auto w-full px-5 py-2 mr-5  rounded text-white items-center justify-center hover:bg-white hover:bg-opacity-25 hover:text-white"
-                  style="border: 1px solid transparent; transition: border-color 0.3s;" @mouseover="setBorderColor('white')"
-          @mouseleave="setBorderColor('transparent')">
-          <span>Our Company</span>
-        </NuxtLink>
       </div>
 
       <div
           class="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start flex flex-col lg:h-auto">
-        <a class="lg:inline-flex lg:w-auto w-full px-5 py-2 rounded text-white items-center justify-center underline"
-           href="#">
-          <span>Login</span>
-        </a>
-        <a class="lg:inline-flex lg:w-auto w-full px-5 py-2 rounded text-white items-center justify-center" href="#">
-
-          <!-- <FormButton
-            class=" bg-white bg-opacity-25  border-white text-white rounded-md  hover:bg-white hover:border hover:border-white hover:bg-opacity-25 hover:text-white">
-            Book a Meeting
-          </FormButton> -->
-          <NuxtLink to=""
-                    class="lg:inline-flex lg:w-auto w-full px-5 py-2 mr-5  rounded text-white items-center justify-center bg-white bg-opacity-25 border border-white hover:bg-white  hover:bg-opacity-25 hover:text-white">
-            <span> Book a Meeting</span>
-          </NuxtLink>
-
-        </a>
+        <div v-for="(action, index) in navActions" :key="index">
+          <a v-if="action.attributes.type === 'link'"
+             class="lg:inline-flex lg:w-auto w-full px-5 py-2 rounded text-white items-center justify-center underline"
+             :href="action.attributes.url" target="_blank" rel="noopener noreferrer">
+            <span>{{ action.attributes.name }}</span>
+          </a>
+          <a v-if="action.attributes.type === 'button'" class="lg:inline-flex lg:w-auto w-full px-5 py-2 rounded text-white items-center justify-center" href="#">
+            <NuxtLink :to="action.attributes.url"
+                      class="lg:inline-flex lg:w-auto w-full px-5 py-2 mr-5  rounded text-white items-center justify-center bg-white bg-opacity-25 border border-white hover:bg-white  hover:bg-opacity-25 hover:text-white">
+              <span> {{ action.attributes.name }}</span>
+            </NuxtLink>
+          </a>
+        </div>
       </div>
     </div>
   </nav>
@@ -141,6 +84,8 @@
 
 import FormButton from "@/components/common/Form/FormButton";
 import {loading} from '@/store/store';
+import {getNavbarActions, getNavbar} from "../../services/navigation";
+
 export default {
   name: "TopNavBar",
   components: {
@@ -153,11 +98,12 @@ export default {
   },
   data() {
     return {
-      isNavOpen: false, // Add a data property to track the navigation state
-      isDropdownOpen: false, // added to track the dropdown state
+      isNavOpen: false,
+      isDropdownOpen: false,
+      navItems: [],
+      navActions: []
     };
   },
-
   methods: {
     toggleNav() {
       // Toggle the navigation state when the button is clicked
@@ -175,8 +121,13 @@ export default {
       event.target.style.borderColor = color;
     }
   },
-  mounted() {
-
+  async mounted() {
+    let res = await getNavbar();
+    console.log(res)
+    this.navItems = res;
+    let actions = await getNavbarActions();
+    console.log(actions)
+    this.navActions = actions;
   }
 };
 </script>
@@ -197,6 +148,7 @@ body {
     display: inline-flex !important;
   }
 }
+
 .loading {
   display: flex;
   justify-content: center;

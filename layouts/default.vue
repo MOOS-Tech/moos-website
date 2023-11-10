@@ -27,7 +27,6 @@ export default {
   async mounted() {
     try {
       let res = await getBanner(1);
-      console.log(res)
       this.title = res.boldText;
       this.boldText = res.underline_word;
       this.paragraph = res.Paragraph;

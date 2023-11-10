@@ -16,3 +16,23 @@ export const getBanner = async (payload) => {
         return error;
     }
 };
+
+export const getNavbar = async () => {
+    await initEndpoint();
+    try {
+        const res = await axios.get(API_URL + `/api/navbars?populate=*`);
+        return res.data.data;
+    } catch (error) {
+        return error;
+    }
+};
+
+export const getNavbarActions = async () => {
+    await initEndpoint();
+    try {
+        const res = await axios.get(API_URL + `/api/navbar-right-sides`);
+        return res.data.data;
+    } catch (error) {
+        return error;
+    }
+};
