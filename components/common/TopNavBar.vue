@@ -121,12 +121,8 @@ export default {
     }
   },
   async mounted() {
-    let res = await getNavbar();
-    console.log(res)
-    this.navItems = res;
-    let actions = await getNavbarActions();
-    console.log(actions)
-    this.navActions = actions;
+    this.navItems = await getNavbar();
+    this.navActions = await getNavbarActions();
   }
 };
 </script>
