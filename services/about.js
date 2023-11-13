@@ -24,6 +24,14 @@ export const joinWithUs = async (payload) => {
         return error;
     }
 };
+export const uploadFile = async (payload) => {
+    await initEndpoint();
+    try {
+        return await axios.post(API_URL + `/api/upload`, payload);
+    } catch (error) {
+        return error;
+    }
+};
 export const getCareerPositions = async () => {
     await initEndpoint();
     try {

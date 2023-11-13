@@ -20,11 +20,12 @@
                 <div class="flex gap-2">
                   <div>
                     <button class="bg-green-200 text-white px-4 py-1 rounded-md mt-4" @click="openLink(card.link)">View
-                      Job</button>
+                      Job
+                    </button>
                   </div>
                   <div>
                     <button class="bg-green-200 text-white px-4 py-1 rounded-md mt-4"
-                      @click="setSelectedPosition(card.title)">Apply
+                            @click="setSelectedPosition(card.title)">Apply
                     </button>
                   </div>
                 </div>
@@ -38,22 +39,22 @@
           </div>
           <div class="flex flex-col items-center justify-center">
             <FormSelectField :name="selectedPosition" placeholder="Position" :options="options"
-              v-model="selectedPosition" />
-            <FormInput v-model="customerName" type="text" name="name" id="name" placeholder="Name" :isRequired="true"
-              :StatusErrorMessage="StatusErrorMessage" />
-            <FormInput v-model="customerEmail" type="email" name="email" id="email" placeholder="Email" :isRequired="true"
-              :StatusErrorMessage="StatusErrorMessage" />
+                             v-model="selectedPosition"/>
+            <FormInput v-model="customerName" type="text" name="name" id="name" placeholder="Name" :isRequired="true"/>
+            <FormInput v-model="customerEmail" type="email" name="email" id="email" placeholder="Email"
+                       :isRequired="true"
+                       :StatusErrorMessage="StatusErrorMessage"/>
             <FormInput v-model="customerLinkedin" type="text" name="linkedin" id="linkedin" :isRequired="true"
-              :StatusErrorMessage="StatusErrorMessage"
-              placeholder="LinkedIn Profile" />
+                       placeholder="LinkedIn Profile"/>
             <!-- <FormInput v-model="customerResume" name="Resume" id="Resume" placeholder="Upload Resume" /> -->
             <div class="mb-3 relative">
               <input
-                class="rounded-[4px] border p-3 pr-10 hover:outline-none focus:outline-none hover:border-green-200 h-10 w-72 sm:text-sm cursor-pointer"
-                placeholder="Upload Resume" :value="selectedFileName"/>
-              <label class="absolute right-0 top-0 cursor-pointer h-full w-8 text-center self-center items-center bg-gray-300">
-                <i class="fas fa-paperclip text-gray-400 pt-3" ></i>
-                <input id="file" type="file" class="hidden" accept=".pdf" @change="uploadFile" ref="fileInput" />
+                  class="rounded-[4px] border p-3 pr-10 hover:outline-none focus:outline-none hover:border-green-200 h-10 w-72 sm:text-sm cursor-pointer"
+                  placeholder="Upload Resume" :value="selectedFileName"/>
+              <label
+                  class="absolute right-0 top-0 cursor-pointer h-full w-8 text-center self-center items-center bg-gray-300">
+                <i class="fas fa-paperclip text-gray-400 pt-3"></i>
+                <input id="file" type="file" class="hidden" accept=".pdf" @change="uploadFile" ref="fileInput"/>
               </label>
             </div>
             <FormButton class="text-white" @click="Submitfn">Submit</FormButton>
@@ -62,7 +63,7 @@
       </div>
     </div>
     <Notification v-if="isBannerVisible" :message="notificationMessage" :type="notificationType"
-      @hideSection="hideBanner" />
+                  @hideSection="hideBanner"/>
   </section>
 </template>
 
@@ -71,7 +72,7 @@ import FormInput from "@/components/common/Form/FormInputField";
 import FormButton from "@/components/common/Form/FormButton";
 import FormSelectField from "@/components/common/Form/FormSelectField";
 import FormLargeTextBox from "@/components/common/Form/FormLargeTextBox";
-import { joinWithUs, getCareerPositions } from "@/services/about.js";
+import {joinWithUs, getCareerPositions, uploadFile} from "@/services/about.js";
 import Notification from '../common/Notification.vue';
 import CheckEmail from "@/util/CheckEmail";
 
@@ -90,15 +91,15 @@ export default {
   },
   data() {
     return {
-      customerName: "",
-      customerEmail: "",
-      customerLinkedin: "",
+      customerName: "Dhanushka",
+      customerEmail: "dhanushka.a@blackvt.com",
+      customerLinkedin: "test",
       customerResume: "",
       cardData: [],
       cards: [],
       options: [],
       selectedPosition: '',
-      selectedFile: null,
+      selectedFile: new FormData(),
       selectedFileName: "",
       SelectedValue: "",
       notificationMessage: "",
@@ -108,17 +109,7 @@ export default {
   },
   watch: {
     customerEmail(value) {
-      if (value) {
-        if (CheckEmail(value) == true)
-          this.StatusErrorMessage = "Please enter a valid email address";
-        else {
-
-          this.StatusErrorMessage =
-            "";
-        }
-      } else {
-
-      }
+      CheckEmail(value) ? this.StatusErrorMessage = "" : this.StatusErrorMessage = "Please enter a valid email address";
     },
   },
   async created() {
@@ -139,35 +130,30 @@ export default {
       if (fileInput.files.length > 0) {
         this.selectedFile = fileInput.files[0];
         this.selectedFileName = fileInput.files[0].name;
-        console.log(this.selectedFile)
       }
     },
-    Submitfn() {
+    async Submitfn() {
       if (this.selectedFile) {
-
-
         const formData = new FormData();
-        formData.append('file', this.selectedFile);
-
+        formData.append('files', this.selectedFile);
+        const resume = await uploadFile(formData);
         let payload = {
           data: {
             name: this.customerName,
             email: this.customerEmail,
             position: this.selectedPosition,
             linkedIn_profile: this.customerLinkedin,
-            upload_resume: formData
+            resume_link: resume.data[0].url,
           }
-
         }
         try {
           const response = joinWithUs(payload);
           this.resetfn();
           this.isBannerVisible = true;
-          this.notificationMessage = "Form submission successfull !";
+          this.notificationMessage = "Form submission successful!";
           setTimeout(() => {
             this.isBannerVisible = false;
           }, 3000);
-
         } catch (error) {
           console.error("Error fetching data:", error);
         }
@@ -198,11 +184,11 @@ export default {
     },
     resetfn() {
       this.customerName = "",
-        this.customerEmail = "",
-        this.customerLinkedin = "",
-        this.selectedFile = null,
-        this.selectedFileName = "",
-        this.selectedPosition = ""
+          this.customerEmail = "",
+          this.customerLinkedin = "",
+          this.selectedFile = null,
+          this.selectedFileName = "",
+          this.selectedPosition = ""
     }
 
   }
