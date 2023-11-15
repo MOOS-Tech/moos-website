@@ -3,22 +3,16 @@
     class="mb-3 rounded-[4px] border p-3 hover:outline-none focus:outline-none  hover:border-green-200 h-10 w-72 sm:text-sm"
     :type="type" :placeholder="placeholder"  :value="modelValue"
     @change="$emit('update:modelValue', $event.target.value)" /> -->
-    <div class="mb-3">
-    
-    <input
-      :class="{
-        'rounded-[4px] border p-3 hover:outline-none focus:outline-none hover:border-green-200 h-10 w-72 sm:text-sm': true,
-        
-      }"
-      :type="type"
-      :placeholder="placeholder"
-      :value="modelValue"
-      @input="emitInputEvent"
-      @change="$emit('update:modelValue', $event.target.value)"
-    />
-    <!-- <p class="text-red-500" v-if="!modelValue && isRequired">{{ StatusErrorMessage }}</p> -->
-    <!-- <p class="text-red-500" v-if="!isInputValid || modelValue || isRequired">{{ validationErrorMessage }}</p> -->
-    <p class="text-red-500">{{ validationErrorMessage }}</p>
+  <div class="mb-3">
+
+    <input :class="{
+      'rounded-[4px] border p-3 hover:outline-none focus:outline-none hover:border-green-200 h-10 w-72 sm:text-sm': true,
+      'border-red-500': hasFormBeenSubmitted && !isInputValid,
+
+    }" :type="type" :placeholder="placeholder" :value="modelValue" @input="onInput"
+      @change="$emit('update:modelValue', $event.target.value)" />
+
+    <p class="text-red-500 text-sm">{{ validationErrorMessage }}</p>
   </div>
 </template>
 
@@ -50,8 +44,8 @@ export default {
     },
     value: { type: String, required: false, default: '' },
     modelValue: String,
-    StatusErrorMessage:String,
-    validationErrorMessage:String
+    validationErrorMessage: String,
+    isFormSubmitted: Boolean,
   },
   model: {
     prop: "value",
@@ -59,15 +53,25 @@ export default {
   },
   data() {
     return {
-      isInputValid: true
+      isInputValid: true,
+      hasFormBeenSubmitted: false,
     };
   },
+  watch: {
+    isFormSubmitted(value) {
+      this.hasFormBeenSubmitted = value;
+
+      if (value) {
+        this.isInputValid = true;
+      }
+    },
+  },
   methods: {
-    emitInputEvent(event) {
-      // Emit the input event with the updated value
-      this.$emit("input", event.target.value);
-    
-    }
+    onInput(event) {
+
+      this.isInputValid = true;
+      this.$emit('update:modelValue', event.target.value);
+    },
   },
 
 };

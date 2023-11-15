@@ -38,15 +38,15 @@
             <h1 class="text-normal-title-heading font-bold text-black-200 ">Join with us</h1>
           </div>
           <div class="flex flex-col items-center justify-center">
-            <FormSelectField :name="selectedPosition" placeholder="Position" :options="options"
-                             v-model="selectedPosition"/>
+            <FormSelectField ref="selectField" :name="selectedPosition" placeholder="Position" :options="options"
+              v-model="selectedPosition" :validationErrorMessage="positionValidationErrorMessage" />
             <FormInput v-model="customerName" type="text" name="name" id="name" placeholder="Name" :isRequired="true"
-              :validationErrorMessage="nameValidationErrorMessage" @input="handlenameInput" />
+              :validationErrorMessage="nameValidationErrorMessage" />
             <FormInput v-model="customerEmail" type="email" name="email" id="email" placeholder="Email" :isRequired="true"
-              :validationErrorMessage="emailValidationErrorMessage" @input="handleEmailInput"/>
+              :validationErrorMessage="emailValidationErrorMessage" @input="validateEmail" />
             <FormInput v-model="customerLinkedin" type="text" name="linkedin" id="linkedin" :isRequired="true"
-              placeholder="LinkedIn Profile" :validationErrorMessage="linkedinValidationErrorMessage" @input="handlelinkedinInput" />
-            <!-- <FormInput v-model="customerResume" name="Resume" id="Resume" placeholder="Upload Resume" /> -->
+              placeholder="LinkedIn Profile" :validationErrorMessage="linkedinValidationErrorMessage" />
+
             <div class="mb-3 relative">
               <input
                 class="rounded-[4px] border p-3 pr-10 hover:outline-none focus:outline-none hover:border-green-200 h-10 w-72 sm:text-sm cursor-pointer"
@@ -59,14 +59,13 @@
               </label>
 
             </div>
-            <p class="text-red-500">{{ FileValidationErrorMessage }}</p>
+            <p class="text-red-500 text-sm">{{ FileValidationErrorMessage }}</p>
             <FormButton class="text-white" @click="Submitfn">Submit</FormButton>
           </div>
         </section>
       </div>
     </div>
-    <Notification v-if="isBannerVisible" :message="notificationMessage" :type="notificationType"
-      @hideSection="hideBanner" />
+    <Notification ref="notificationRef"></Notification>
   </section>
 </template>
 
@@ -107,36 +106,55 @@ export default {
       selectedFileName: "",
       SelectedValue: "",
       notificationMessage: "",
-      isBannerVisible: false,
+      show: false,
       emailValidationErrorMessage: "",
       nameValidationErrorMessage: "",
       linkedinValidationErrorMessage: "",
       FileValidationErrorMessage: "",
-      positionValidationErrorMessage:""
+      positionValidationErrorMessage: "",
+      isFormSubmitted: false,
     }
   },
-  watch: {
-    customerEmail(val) {
-      CheckEmail(val) ? this.emailValidationErrorMessage = "" : this.emailValidationErrorMessage = "Please enter a valid email address";
-    },
-    customerName(val) {
-    this.nameValidationErrorMessage = val.trim().length > 0 ? "" : "Please fill the name";
-  },
-    customerLinkedin(val) {
 
-      this.linkedinValidationErrorMessage = val.trim().length > 0 ? "" : "LinkedIn Profile is required";
-    },
-    selectedFileName(val) {
-      this.FileValidationErrorMessage = val.trim().length > 0 ? "" : "Please Upload a file";
-    },
-    // selectedPosition(val) {
-    //   this.positionValidationErrorMessage = val.trim().length > 0 ? "" : "Please select an Option";
-    
-    // }
-
-  },
   async created() {
     await this.fetchCareerPositions();
+  },
+  computed: {
+    emailValidationErrorMessage() {
+    
+      if (!this.customerEmail && this.isFormSubmitted) {
+        return 'Email is required.';
+      } else {
+        if (this.customerEmail && !CheckEmail(this.customerEmail)) {
+          return 'Invalid email format.';
+        }
+      }
+      return '';
+    },
+    nameValidationErrorMessage() {
+      if (this.isFormSubmitted && !this.customerName) {
+        return 'Name is required.';
+      }
+      return '';
+    },
+    linkedinValidationErrorMessage() {
+      if (this.isFormSubmitted && !this.customerLinkedin) {
+        return 'Linkedin is required.';
+      }
+      return '';
+    },
+    positionValidationErrorMessage() {
+      if (this.isFormSubmitted && !this.selectedPosition) {
+        return 'position is required.';
+      }
+      return '';
+    },
+    FileValidationErrorMessage() {
+      if (this.isFormSubmitted && !this.selectedFileName) {
+        return 'Please upload a file';
+      }
+      return '';
+    },
   },
   methods: {
     openLink(val) {
@@ -156,7 +174,9 @@ export default {
       }
     },
     async Submitfn() {
-      if (this.selectedFile && this.customerName !== "" && this.customerEmail !== "" && this.customerLinkedin !== "" && this.selectedPosition !== "") {
+      this.isFormSubmitted = true;
+      if (this.validateForm() && this.selectedFile) {
+
         const formData = new FormData();
         formData.append('files', this.selectedFile);
         const resume = await uploadFile(formData);
@@ -171,37 +191,17 @@ export default {
         }
         try {
 
-          const response = await  joinWithUs(payload);
-          this.resetfn()
-          this.isBannerVisible = true;
-          this.notificationMessage = "Form submission successful!";
-          console.log(this.notificationMessage)
-         
-          setTimeout(() => {
-            this.isBannerVisible = false;
-          }, 3000);
+          const response = await joinWithUs(payload);
 
+          this.resetfn()
+          this.$refs.notificationRef.showNotification('success', 'Form submit succesfull!');
 
         } catch (error) {
           console.error("Error fetching data:", error);
+          this.$refs.notificationRef.showNotification('error', 'Error submiting form!');
         }
       } else {
 
-        if (!this.selectedPosition) {
-        this.positionValidationErrorMessage = "Please select a position";
-      }
-      if (!this.customerEmail) {
-        this.emailValidationErrorMessage = "Please fill the email";
-      }
-      if (!this.customerName) {
-        this.nameValidationErrorMessage = "Please fill the name";
-      }
-      if (!this.customerLinkedin) {
-        this.linkedinValidationErrorMessage = "Please fill the linkedin";
-      }
-      if (!this.selectedFile) {
-        this.FileValidationErrorMessage = "Please select a file";
-      }
 
       }
 
@@ -227,30 +227,29 @@ export default {
 
     },
     resetfn() {
-      this.customerName = null
-        this.customerEmail = null
-        this.customerLinkedin = null,
-        this.selectedFile = null,
-        this.selectedFileName = null,
-        this.selectedPosition = "",
-        this.emailValidationErrorMessage = "",
-        this.nameValidationErrorMessage = "",
-        this.linkedinValidationErrorMessage = "",
-        this.FileValidationErrorMessage = ""
+      this.$refs.selectField.reset();
+      this.customerName = '',
+        this.customerEmail = ''
+      this.customerLinkedin = '',
+        this.selectedFile = '',
+        this.selectedFileName = '',
+        this.selectedPosition = ''
+
+      this.isFormSubmitted = false;
+
+
     },
-    handleEmailInput(value) {
-    this.customerEmail = value;
-  },
-  handlenameInput(value) {
-    this.customerName = value;
-  },
-  handlelinkedinInput(value) {
-    this.customerLinkedin = value;
-  },
-  // handlepositionInput(value) {
-  //   this.selectedPosition = value;
-  // },
-  
+    validateEmail() {
+      this.isFormSubmitted = false;
+    },
+    validateForm() {
+
+      return (
+        this.customerName && this.customerEmail && this.customerLinkedin && this.selectedPosition && this.selectedFileName
+
+      );
+    }
+
 
   }
 }
