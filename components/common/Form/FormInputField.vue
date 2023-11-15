@@ -13,9 +13,12 @@
       :type="type"
       :placeholder="placeholder"
       :value="modelValue"
+      @input="emitInputEvent"
       @change="$emit('update:modelValue', $event.target.value)"
     />
-    <p class="text-red-500" v-if="!modelValue && isRequired">{{ StatusErrorMessage }}</p>
+    <!-- <p class="text-red-500" v-if="!modelValue && isRequired">{{ StatusErrorMessage }}</p> -->
+    <!-- <p class="text-red-500" v-if="!isInputValid || modelValue || isRequired">{{ validationErrorMessage }}</p> -->
+    <p class="text-red-500">{{ validationErrorMessage }}</p>
   </div>
 </template>
 
@@ -47,12 +50,26 @@ export default {
     },
     value: { type: String, required: false, default: '' },
     modelValue: String,
-    StatusErrorMessage:String
+    StatusErrorMessage:String,
+    validationErrorMessage:String
   },
   model: {
     prop: "value",
     event: "update"
-  }
+  },
+  data() {
+    return {
+      isInputValid: true
+    };
+  },
+  methods: {
+    emitInputEvent(event) {
+      // Emit the input event with the updated value
+      this.$emit("input", event.target.value);
+    
+    }
+  },
+
 };
 </script>
 

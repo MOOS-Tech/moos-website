@@ -20,12 +20,12 @@
   
           <div v-if="index % 2 === 0">
             <MoosValueLeft :rightPill="index + 'left'" :leftPill="index + 'right'" :oldWays="item.oldWays" :moosWays="item.moosWays"
-              :pillTitle="item.pillTitle" :valuePercentage="item.valuePercentage" :valueDes="item.valueDes" :isVisible="isLastValue(index)" />
+              :pillTitle="item.pillTitle" :valuePercentage="item.valuePercentage" :valueDes="item.valueDes" :isVisible="isLastValue(index)" :imageURL="item.imageURL" />
   
           </div>
           <div v-else>
             <MoosValueRight :right_Pill="index + '_left'" :left_Pill="index  + '_right'" :oldWays="item.oldWays"
-              :moosWays="item.moosWays" :pillTitle="item.pillTitle" :isVisible="isLastValue(index)" />
+              :moosWays="item.moosWays" :pillTitle="item.pillTitle" :isVisible="isLastValue(index)" :imageURL="item.imageURL"/>
           </div>
         </div>
   
@@ -69,7 +69,8 @@
         oldWays: [],
         pillTitle: "",
         valuePercentage: "",
-        valueDes: ""
+        valueDes: "",
+        imageURL:""
       };
     },
     computed: {
@@ -125,8 +126,8 @@
             oldWays: card.attributes.oldways.data.map(oldWays => oldWays.attributes.old_way),
             pillTitle: card.attributes.main_title,
             valuePercentage: card.attributes.percentage,
-            valueDes: card.attributes.percentage_description
-  
+            valueDes: card.attributes.percentage_description,
+            imageURL: card.attributes.pill_image.data.attributes.url
   
           }));
           console.log("pill Title",this.pillTitle)

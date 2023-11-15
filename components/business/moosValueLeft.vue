@@ -2,15 +2,15 @@
     <div data-aos="fade-up" data-aos-duration="1000">
         <div class="flex flex-col lg:flex-row">
             <div class="flex flex-col sm:flex-row lg:max-w-7xl w-full sm:px-10  mx-auto lg:flex-row">
-                <div class="flex flex-col items-center  ">
+                <div class="flex flex-col items-center w-full ">
                     <div>
                         <h2
                             class="text-normal-title-heading font-semibold text-center lg:w-4/6 self-center text-green-200 mb-4">
                             {{ pillTitle }}</h2>
-                        <div class="grid   gap-y-10 sm:gap-y-10 grid-cols-12 ">
-                            <div class="flex items-center justify-center transition-transform col-span-12 md:col-span-8 px-4"
-                                id="pill-container">
-                                <div class="pill left relative lg:rounded-l-full md:rounded-l-full border-2 border-r-0  border-black-100 h-auto py-1 round-pill expand-horizontal1"
+                        <div class="grid   gap-y-10 gap-4 sm:gap-y-10 grid-cols-12 ">
+                            <div class="flex items-center justify-center transition-transform col-span-12 md:col-span-8 px-4 "
+                                id="pill-container" >
+                                <div class="pill left relative lg:rounded-l-full md:rounded-l-full border-2 border-r-0 h-35 border-black-100  py-1 round-pill expand-horizontal1"
                                     :id="leftPill" @mouseover="movePills" @mouseleave="resetPills">
                                     <div class="flex flex-col items-start lg:w-full pl-10">
                                         <h3 class="text-small-title-heading mb-2 text-left">Old Way</h3>
@@ -24,10 +24,10 @@
                                 <div class="flex items-center justify-center w-1/6  expand-horizontal-image " id="image"
                                     @mouseover="movePills" @mouseleave="resetPills"
                                     style="margin-left: -20px; margin-right: -20px;">
-                                    <img src="@/assets/images/pillimage.png" alt="Image" class="h-auto" />
+                                    <img :src="imageURL" alt="Image" class="h-auto" />
                                 </div>
 
-                                <div class="pill right relative lg:rounded-r-full md:rounded-r-full border-2 border-l-0 border-green-200 h-auto py-1 round-pill expand-horizontal"
+                                <div class="pill right relative lg:rounded-r-full md:rounded-r-full border-2 border-l-0 border-green-200  h-35 py-1 round-pill expand-horizontal"
                                     :id="rightPill" @mouseover="movePills" @mouseleave="resetPills">
                                     <div class="flex flex-col items-start lg:w-full pl-10  text-green-200">
                                         <h3 class="text-small-title-heading mb-2 text-left">MOOS Way</h3>
@@ -78,7 +78,8 @@ export default {
         moosWays: [],
         pillTitle: "",
         valuePercentage: "",
-        valueDes: ""
+        valueDes: "",
+        imageURL:String
     },
 
 
@@ -136,11 +137,14 @@ export default {
 
     transition: transform 0.3s;
     flex: 1;
+    
 }
 
 #pill-container {
     display: flex;
     align-items: stretch;
+    width: 800px;
+    height: 120px;
 }
 
 .diamond {
@@ -183,7 +187,12 @@ export default {
     .dotted-animation {
         display: none;
     }
-
+    #pill-container {
+    display: flex;
+    align-items: stretch;
+    width: auto;
+    height: auto;
+}
     .value {
         padding-bottom: 20px;
     }

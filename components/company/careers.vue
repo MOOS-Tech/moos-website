@@ -25,7 +25,7 @@
                   </div>
                   <div>
                     <button class="bg-green-200 text-white px-4 py-1 rounded-md mt-4"
-                            @click="setSelectedPosition(card.title)">Apply
+                      @click="setSelectedPosition(card.title)">Apply
                     </button>
                   </div>
                 </div>
@@ -40,30 +40,33 @@
           <div class="flex flex-col items-center justify-center">
             <FormSelectField :name="selectedPosition" placeholder="Position" :options="options"
                              v-model="selectedPosition"/>
-            <FormInput v-model="customerName" type="text" name="name" id="name" placeholder="Name" :isRequired="true"/>
-            <FormInput v-model="customerEmail" type="email" name="email" id="email" placeholder="Email"
-                       :isRequired="true"
-                       :StatusErrorMessage="StatusErrorMessage"/>
+            <FormInput v-model="customerName" type="text" name="name" id="name" placeholder="Name" :isRequired="true"
+              :validationErrorMessage="nameValidationErrorMessage" @input="handlenameInput" />
+            <FormInput v-model="customerEmail" type="email" name="email" id="email" placeholder="Email" :isRequired="true"
+              :validationErrorMessage="emailValidationErrorMessage" @input="handleEmailInput"/>
             <FormInput v-model="customerLinkedin" type="text" name="linkedin" id="linkedin" :isRequired="true"
-                       placeholder="LinkedIn Profile"/>
+              placeholder="LinkedIn Profile" :validationErrorMessage="linkedinValidationErrorMessage" @input="handlelinkedinInput" />
             <!-- <FormInput v-model="customerResume" name="Resume" id="Resume" placeholder="Upload Resume" /> -->
             <div class="mb-3 relative">
               <input
-                  class="rounded-[4px] border p-3 pr-10 hover:outline-none focus:outline-none hover:border-green-200 h-10 w-72 sm:text-sm cursor-pointer"
-                  placeholder="Upload Resume" :value="selectedFileName"/>
+                class="rounded-[4px] border p-3 pr-10 hover:outline-none focus:outline-none hover:border-green-200 h-10 w-72 sm:text-sm cursor-pointer"
+                placeholder="Upload Resume" :value="selectedFileName" />
+
               <label
-                  class="absolute right-0 top-0 cursor-pointer h-full w-8 text-center self-center items-center bg-gray-300">
+                class="absolute right-0 top-0 cursor-pointer h-full w-8 text-center self-center items-center bg-gray-300">
                 <i class="fas fa-paperclip text-gray-400 pt-3"></i>
-                <input id="file" type="file" class="hidden" accept=".pdf" @change="uploadFile" ref="fileInput"/>
+                <input id="file" type="file" class="hidden" accept=".pdf" @change="uploadFile" ref="fileInput" />
               </label>
+
             </div>
+            <p class="text-red-500">{{ FileValidationErrorMessage }}</p>
             <FormButton class="text-white" @click="Submitfn">Submit</FormButton>
           </div>
         </section>
       </div>
     </div>
     <Notification v-if="isBannerVisible" :message="notificationMessage" :type="notificationType"
-                  @hideSection="hideBanner"/>
+      @hideSection="hideBanner" />
   </section>
 </template>
 
@@ -72,9 +75,9 @@ import FormInput from "@/components/common/Form/FormInputField";
 import FormButton from "@/components/common/Form/FormButton";
 import FormSelectField from "@/components/common/Form/FormSelectField";
 import FormLargeTextBox from "@/components/common/Form/FormLargeTextBox";
-import {joinWithUs, getCareerPositions, uploadFile} from "@/services/about.js";
+import { joinWithUs, getCareerPositions, uploadFile } from "@/services/about.js";
 import Notification from '../common/Notification.vue';
-import CheckEmail from "@/util/CheckEmail";
+import CheckEmail from "@/util/CheckEmail.js";
 
 export default {
   name: "careers",
@@ -91,26 +94,46 @@ export default {
   },
   data() {
     return {
-      customerName: "Dhanushka",
-      customerEmail: "dhanushka.a@blackvt.com",
-      customerLinkedin: "test",
+      customerName: "",
+      customerEmail: "",
+      customerLinkedin: "",
       customerResume: "",
       cardData: [],
       cards: [],
       options: [],
+      Position: "Positions",
       selectedPosition: '',
       selectedFile: new FormData(),
       selectedFileName: "",
       SelectedValue: "",
       notificationMessage: "",
       isBannerVisible: false,
-      StatusErrorMessage: ""
+      emailValidationErrorMessage: "",
+      nameValidationErrorMessage: "",
+      linkedinValidationErrorMessage: "",
+      FileValidationErrorMessage: "",
+      positionValidationErrorMessage:""
     }
   },
   watch: {
-    customerEmail(value) {
-      CheckEmail(value) ? this.StatusErrorMessage = "" : this.StatusErrorMessage = "Please enter a valid email address";
+    customerEmail(val) {
+      CheckEmail(val) ? this.emailValidationErrorMessage = "" : this.emailValidationErrorMessage = "Please enter a valid email address";
     },
+    customerName(val) {
+    this.nameValidationErrorMessage = val.trim().length > 0 ? "" : "Please fill the name";
+  },
+    customerLinkedin(val) {
+
+      this.linkedinValidationErrorMessage = val.trim().length > 0 ? "" : "LinkedIn Profile is required";
+    },
+    selectedFileName(val) {
+      this.FileValidationErrorMessage = val.trim().length > 0 ? "" : "Please Upload a file";
+    },
+    // selectedPosition(val) {
+    //   this.positionValidationErrorMessage = val.trim().length > 0 ? "" : "Please select an Option";
+    
+    // }
+
   },
   async created() {
     await this.fetchCareerPositions();
@@ -133,7 +156,7 @@ export default {
       }
     },
     async Submitfn() {
-      if (this.selectedFile) {
+      if (this.selectedFile && this.customerName !== "" && this.customerEmail !== "" && this.customerLinkedin !== "" && this.selectedPosition !== "") {
         const formData = new FormData();
         formData.append('files', this.selectedFile);
         const resume = await uploadFile(formData);
@@ -147,17 +170,38 @@ export default {
           }
         }
         try {
-          const response = joinWithUs(payload);
-          this.resetfn();
+
+          const response = await  joinWithUs(payload);
+          this.resetfn()
           this.isBannerVisible = true;
           this.notificationMessage = "Form submission successful!";
+          console.log(this.notificationMessage)
+         
           setTimeout(() => {
             this.isBannerVisible = false;
           }, 3000);
+
+
         } catch (error) {
           console.error("Error fetching data:", error);
         }
       } else {
+
+        if (!this.selectedPosition) {
+        this.positionValidationErrorMessage = "Please select a position";
+      }
+      if (!this.customerEmail) {
+        this.emailValidationErrorMessage = "Please fill the email";
+      }
+      if (!this.customerName) {
+        this.nameValidationErrorMessage = "Please fill the name";
+      }
+      if (!this.customerLinkedin) {
+        this.linkedinValidationErrorMessage = "Please fill the linkedin";
+      }
+      if (!this.selectedFile) {
+        this.FileValidationErrorMessage = "Please select a file";
+      }
 
       }
 
@@ -183,13 +227,30 @@ export default {
 
     },
     resetfn() {
-      this.customerName = "",
-          this.customerEmail = "",
-          this.customerLinkedin = "",
-          this.selectedFile = null,
-          this.selectedFileName = "",
-          this.selectedPosition = ""
-    }
+      this.customerName = null
+        this.customerEmail = null
+        this.customerLinkedin = null,
+        this.selectedFile = null,
+        this.selectedFileName = null,
+        this.selectedPosition = "",
+        this.emailValidationErrorMessage = "",
+        this.nameValidationErrorMessage = "",
+        this.linkedinValidationErrorMessage = "",
+        this.FileValidationErrorMessage = ""
+    },
+    handleEmailInput(value) {
+    this.customerEmail = value;
+  },
+  handlenameInput(value) {
+    this.customerName = value;
+  },
+  handlelinkedinInput(value) {
+    this.customerLinkedin = value;
+  },
+  // handlepositionInput(value) {
+  //   this.selectedPosition = value;
+  // },
+  
 
   }
 }

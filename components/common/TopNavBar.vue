@@ -1,78 +1,87 @@
 <template>
   <div v-if="loading" class="loading">
-    <img src="@/assets/images/navbarLogo.png" alt="Loading"/>
+    <img src="@/assets/images/navbarLogo.png" alt="Loading" />
   </div>
   <nav v-else class="flex items-center bg-green-200 p-2 flex-wrap flex-no-wrap sticky top-0 z-10 w-full  ">
     <NuxtLink to="/" class="mr-6 ml-3 inline-flex items-center">
-      <img src="@/assets/images/navbarLogo.png" alt="Image Alt Text" class="h-12 w-15 mr-2"/>
+      <img src="@/assets/images/navbarLogo.png" alt="Image Alt Text" class="h-12 w-15 mr-2" />
     </NuxtLink>
     <button
-        class="text-white inline-flex p-3 bg-opacity-25 rounded lg:hidden ml-auto hover:text-white outline-none nav-toggler"
-        data-target="#navigation" @click="toggleNav">
+      class="text-white inline-flex p-3 bg-opacity-25 rounded lg:hidden ml-auto hover:text-white outline-none nav-toggler"
+      data-target="#navigation" @click="toggleNav">
       <i class="fa-solid fa-bars text-white"></i>
     </button>
     <div class="top-navbar w-full lg:inline-flex lg:flex-grow lg:w-auto" id="navigation"
-         :class="{ block: isNavOpen, hidden: !isNavOpen }">
+      :class="{ block: isNavOpen, hidden: !isNavOpen }">
 
       <div class="lg:inline-flex lg:flex-row lg:w-auto w-full lg:items-center items-start flex flex-col lg:h-auto">
         <div v-for="(item, index) in navItems" :key="index">
-          <NuxtLink
-              v-if="item.attributes.navbar_sub_topics.data.length===0"
-              :to="item.attributes.url"
-              class="lg:inline-flex lg:w-auto w-full px-5 py-2 mr-5 rounded text-white items-center justify-center hover:bg-white  hover:bg-opacity-25 hover:text-white"
-              style="border: 1px solid transparent; transition: border-color 0.3s;"
-              @mouseover="setBorderColor('white')"
+          <div v-if="item.attributes.navbar_sub_topics.data.length === 0"
+            class="lg:inline-flex lg:flex-row lg:w-auto w-full lg:items-center items-start flex flex-col lg:h-auto">
+            <NuxtLink :to="item.attributes.url"
+              class="lg:inline-flex lg:w-auto w-full flex-grow px-5 py-2 mr-5  rounded text-white items-center  hover:bg-white hover:bg-opacity-25 hover:text-white text-left"
+              style="border: 1px solid transparent; transition: border-color 0.3s;" @mouseover="setBorderColor('white')"
               @mouseleave="setBorderColor('transparent')">
-            <span>{{ item.attributes.nav_title }}</span>
-          </NuxtLink>
-          <div v-else class="relative lg:w-auto w-full ">
-            <div class=" relative inline-block text-left dropdown">
-            <span class="rounded-md shadow-sm"><button
-                class="lg:inline-flex lg:w-auto w-full flex-grow px-5 py-2 mr-5  rounded text-white items-center justify-between hover:bg-white hover:bg-opacity-25 hover:text-white text-left"
+              <span>{{ item.attributes.nav_title }}</span>
+            </NuxtLink>
+          </div>
+
+          <div v-else class="relative inline-block text-left dropdown">
+            <span class="rounded-md shadow-sm">
+              <button
+                class="lg:inline-flex lg:w-auto w-full flex-grow px-5 py-2 mr-5 rounded text-white items-center justify-between hover:bg-white hover:bg-opacity-25 hover:text-white text-left"
                 type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117"
-                style="border: 1px solid transparent; transition: border-color 0.3s;"
-                @mouseover="setBorderColor('white')"
-                @mouseleave="setBorderColor('transparent')">
+                style="border: 1px solid transparent; transition: border-color 0.3s;" @mouseover="setBorderColor('white')"
+                @mouseleave="setBorderColor('transparent')"  @click="toggleDropdown">
                 <div class="flex items-center group">
                   <span class="flex-grow">{{ item.attributes.nav_title }}</span>
                   <i class="fa fa-angle-down ml-2" aria-hidden="true"></i>
                 </div>
-              </button></span>
+              </button>
+            </span>
+            <div v-if="isDropdownOpen"
+              class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-left -translate-y-2 scale-95">
               <div
-                  class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
-                <div
-                    class="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
-                    aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu"  style="width: 350px">
-                  <div class=" " v-for="(sub, i) in item.attributes.navbar_sub_topics.data" :key="i">
-                    <NuxtLink :to="sub.attributes.url"
-                              class="block  px-4 py-2   hover:bg-green-200 hover:border hover:border-green-200  hover:text-white !important"
-                              @click="closeDropdown">
-                      <i :class="`fa fa-${sub.attributes.font_awsome_Icon_name} mr-2`" aria-hidden="true"></i>
-                      {{ sub.attributes.name }}
-                    </NuxtLink>
-
-                  </div>
+                class="absolute left-0 w-60 mt-2 origin-top-left bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
+                aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu"
+                style="width: 350px;">
+                <div class="" v-for="(sub, i) in item.attributes.navbar_sub_topics.data" :key="i">
+                  <NuxtLink :to="sub.attributes.url"
+                    class="block px-4 py-2 hover:bg-green-200 hover:border hover:border-green-200 hover:text-white !important"
+                    @click="closeDropdown">
+                    <i :class="`fa fa-${sub.attributes.font_awsome_Icon_name} mr-2`" aria-hidden="true"></i>
+                    {{ sub.attributes.name }}
+                  </NuxtLink>
                 </div>
               </div>
             </div>
           </div>
+
+
         </div>
       </div>
 
       <div
-          class="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start flex flex-col lg:h-auto">
+        class="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start flex flex-col lg:h-auto">
         <div v-for="(action, index) in navActions" :key="index">
-          <a v-if="action.attributes.type === 'link'"
-             class="lg:inline-flex lg:w-auto w-full px-5 py-2 rounded text-white items-center justify-center underline"
-             :href="action.attributes.url" target="_blank" rel="noopener noreferrer">
-            <span>{{ action.attributes.name }}</span>
-          </a>
-          <a v-if="action.attributes.type === 'button'" class="lg:inline-flex lg:w-auto w-full px-5 py-2 rounded text-white items-center justify-center" href="#">
-            <NuxtLink :to="action.attributes.url"
-                      class="lg:inline-flex lg:w-auto w-full px-5 py-2 mr-5  rounded text-white items-center justify-center bg-white bg-opacity-25 border border-white hover:bg-white  hover:bg-opacity-25 hover:text-white">
-              <span> {{ action.attributes.name }}</span>
-            </NuxtLink>
-          </a>
+          <div
+            class="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start flex flex-col lg:h-auto">
+            <a v-if="action.attributes.type === 'link'"
+              class="lg:inline-flex lg:w-auto w-full px-5 py-2 rounded text-white items-center justify-center underline"
+              :href="action.attributes.url" target="_blank" rel="noopener noreferrer">
+              <span>{{ action.attributes.name }}</span>
+            </a>
+          </div>
+          <div
+            class="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start flex flex-col lg:h-auto">
+            <a v-if="action.attributes.type === 'button'"
+              class="lg:inline-flex lg:w-auto w-full px-5 py-2 rounded text-white items-center justify-center" href="#">
+              <NuxtLink :to="action.attributes.url"
+                class="lg:inline-flex lg:w-auto w-full px-5 py-2 mr-5  rounded text-white items-center justify-center bg-white bg-opacity-25 border border-white hover:bg-white  hover:bg-opacity-25 hover:text-white">
+                <span> {{ action.attributes.name }}</span>
+              </NuxtLink>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -82,8 +91,8 @@
 <script>
 
 import FormButton from "@/components/common/Form/FormButton";
-import {loading} from '@/store/store';
-import {getNavbarActions, getNavbar} from "../../services/navigation";
+import { loading } from '@/store/store';
+import { getNavbarActions, getNavbar } from "../../services/navigation";
 
 export default {
   name: "TopNavBar",
@@ -128,10 +137,6 @@ export default {
 </script>
 
 <style scoped>
-body {
-  font-family: "Rubik", sans-serif;
-}
-
 .dropdown:focus-within .dropdown-menu {
   opacity: 1;
   transform: translate(0) scale(1);
@@ -150,5 +155,4 @@ body {
   align-items: center;
   height: 100vh;
   background-color: #109888;
-}
-</style>
+}</style>

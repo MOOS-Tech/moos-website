@@ -17,7 +17,7 @@
               </div>
             </div>
           </div>
-          <div class="absolute w-2/4 h-3/4 flex items-start justify-end">
+          <div class="absolute w-2/4 h-3/5 flex items-start justify-end">
             <div class="absolute w-2/4 h-3/5 bg-transparent animated-rectangle">
               <div class="small-rectangle "></div>
               <div class="small-rectangle-down "></div>

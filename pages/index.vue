@@ -168,7 +168,7 @@ export default {
         this.Speaker = this.quoteList[randomIndex].attributes.Speaker;
         setTimeout(() => {
 
-        }, 500);
+        }, 3000);
       }
     }
   }

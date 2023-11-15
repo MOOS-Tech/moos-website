@@ -2,7 +2,7 @@
     <div style="direction: rtl;"  data-aos="fade-up" data-aos-duration="1000">
         <div class="flex flex-col lg:flex-row ">
             <div class="flex flex-col sm:flex-row lg:max-w-7xl w-full sm:px-10  mx-auto lg:flex-row">
-                <div class="flex flex-col items-center   ">
+                <div class="flex flex-col items-center  w-full ">
 
                     <div>
                         <h2
@@ -26,7 +26,7 @@
                                 <div class="flex items-center justify-center w-1/6 expand-horizontal-image " id="image"
                                     @mouseover="movePills" @mouseleave="resetPills"
                                     style="margin-left: -20px; margin-right: -20px;">
-                                    <img src="@/assets/images/pillimage.png" alt="Image" class="h-auto" />
+                                    <img :src="imageURL" alt="Image" class="h-auto" />
                                 </div>
 
                                 <div class="pill right relative lg:rounded-r-full md:rounded-r-full border-2 border-l-0 border-green-200 h-auto py-1 round-pill expand-horizontal"
@@ -80,7 +80,8 @@ export default {
          isVisible: true,  
          oldWays:[],
          moosWays:[],
-         pillTitle: ""
+         pillTitle: "",
+         imageURL:String
     },
     components: { DottedLine },
     data() {
@@ -139,11 +140,19 @@ export default {
 #pill-container {
     display: flex;
     align-items: stretch;
+    width: 800px;
+    height: 120px;
 }
 
 @media (max-width: 640px) {
     .dotted-animation {
         display: none;
     }
+    #pill-container {
+    display: flex;
+    align-items: stretch;
+    width: auto;
+    height: auto;
+}
 }
 </style>

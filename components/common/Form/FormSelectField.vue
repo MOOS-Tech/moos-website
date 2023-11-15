@@ -32,7 +32,8 @@ export default {
   },
   data() {
     return {
-      selected: this.options[0]
+      // selected: this.options[0]
+      selected:''
     };
   }
 };
