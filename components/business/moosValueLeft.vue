@@ -1,5 +1,5 @@
 <template>
-    <div  data-aos="fade-up" data-aos-duration="1000">
+    <div data-aos="fade-up" data-aos-duration="1000">
         <div class="flex flex-col lg:flex-row">
             <div class="flex flex-col sm:flex-row lg:max-w-7xl w-full sm:px-10  mx-auto lg:flex-row">
                 <div class="flex flex-col items-center  ">
@@ -15,7 +15,7 @@
                                     <div class="flex flex-col items-start lg:w-full pl-10">
                                         <h3 class="text-small-title-heading mb-2 text-left">Old Way</h3>
                                         <ul class="text-sm list-disc text-left">
-                                            <li v-for="(item, index) in oldWays" :key="index">{{ item}}
+                                            <li v-for="(item, index) in oldWays" :key="index">{{ item }}
                                             </li>
 
                                         </ul>
@@ -32,18 +32,17 @@
                                     <div class="flex flex-col items-start lg:w-full pl-10  text-green-200">
                                         <h3 class="text-small-title-heading mb-2 text-left">MOOS Way</h3>
                                         <ul class="text-sm list-disc text-left">
-                                            <li v-for="(item, index) in moosWays" :key="index">{{ item}}
+                                            <li v-for="(item, index) in moosWays" :key="index">{{ item }}
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div
-                                class="flex items-center justify-center col-span-12 md:col-span-4 value">
+                            <div class="flex items-center justify-center col-span-12 md:col-span-4 value">
                                 <div class="diamond ">
-                                    <div class="text-top ">{{valuePercentage}}
+                                    <div class="text-top ">{{ valuePercentage }}
                                         ​</div>
-                                    <div class="text-bottom text-xs pl-5">{{valueDes}}</div>
+                                    <div class="text-bottom text-xs pl-5">{{ valueDes }}</div>
                                 </div>
 
                             </div>
@@ -53,13 +52,15 @@
                         :class="{ 'dotted-animation': isVisible }">
                         <DottedLine :line-width="420" :right-line-up-length="0" :right-line-down-length="100"
                             :left-line-down-length="0" :left-line-up-length="100" :show-left-line-up="true"
-                            :show-right-line-down="true" />
+                            :show-right-line-down="true" :fromHorizontalLine="60" :toHorizontalLine="0" :fromRightLineUp="0"
+                            :toRightLineUp="60" :fromRightLineDown="60" :toRightLineDown="0" :fromLeftLineUp="0"
+                            :toLeftLineUp="60" :fromLeftLineDown="0" :toLeftLineDown="60" />
                     </div>
                 </div>
 
 
             </div>
-           
+
         </div>
     </div>
 </template>
@@ -69,17 +70,17 @@ import DottedLine from "../components/common/DottedLine";
 export default {
     name: "valueleft",
     components: { DottedLine },
-    props:{
-        leftPill : "",
-         rightPill: "", 
-         isVisible: true,  
-         oldWays:[],
-         moosWays:[],
-         pillTitle: "",
-         valuePercentage: "",
-         valueDes:""
+    props: {
+        leftPill: "",
+        rightPill: "",
+        isVisible: true,
+        oldWays: [],
+        moosWays: [],
+        pillTitle: "",
+        valuePercentage: "",
+        valueDes: ""
     },
-   
+
 
     data() {
         return {
@@ -148,7 +149,7 @@ export default {
     transform: rotate(45deg);
     background-color: #444444;
     /* position: relative; */
-   
+
     border-radius: 10px;
 }
 
@@ -183,8 +184,8 @@ export default {
         display: none;
     }
 
- .value{
-    padding-bottom: 20px;
- }
+    .value {
+        padding-bottom: 20px;
+    }
 }
 </style>

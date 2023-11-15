@@ -58,7 +58,9 @@
                             :class="{ 'dotted-animation': isVisible }">
                             <DottedLine :line-width="420" :right-line-up-length="100" :right-line-down-length="0"
                                 :left-line-down-length="100" :left-line-up-length="0" :show-left-line-down="true"
-                                :show-right-line-up="true" />
+                                :show-right-line-up="true"  :fromHorizontalLine="0" :toHorizontalLine="60" :fromRightLineUp="0"
+                            :toRightLineUp="60" :fromRightLineDown="60" :toRightLineDown="0" :fromLeftLineUp="0"
+                            :toLeftLineUp="60" :fromLeftLineDown="60" :toLeftLineDown="0" />
                         </div>
                 </div>
 
