@@ -194,7 +194,7 @@ export default {
           const response = await joinWithUs(payload);
 
           this.resetfn()
-          this.$refs.notificationRef.showNotification('success', 'Form submit succesfull!');
+          this.$refs.notificationRef.showNotification('success', 'Form submit sucessful!');
 
         } catch (error) {
           console.error("Error fetching data:", error);

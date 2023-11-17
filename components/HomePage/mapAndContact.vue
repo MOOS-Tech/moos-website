@@ -13,7 +13,7 @@
             <FormInput v-model="customerEmail" type="email" name="email" id="email" placeholder="Email"
               :validationErrorMessage="emailValidationErrorMessage" @input="validateEmail" />
 
-            <FormSelectField ref="selectField" :name="selectedOptionContact" v-model="selectedOptionContact" placeholder="Position" :options="options" :validationErrorMessage="SelectValidationErrorMessage" />
+            <FormSelectField ref="selectField" :name="selectedOptionContact" v-model="selectedOptionContact" placeholder="Request for Demonstration" :options="options" :validationErrorMessage="SelectValidationErrorMessage" />
 
             <FormLargeTextBox v-model="customerMessage" placeholder="Your message" :validationErrorMessage="MessageValidateErrorMessage" />
 
@@ -54,7 +54,7 @@ export default {
       customerName: "",
       customerEmail: "",
       options: [],
-      Position: "Positions",
+      Position: "Request for Demonstration",
       customerMessage: "",
       selectedOptionContact: '',
       nameValidationErrorMessage: "",
@@ -117,7 +117,7 @@ export default {
       try {
         const response = await submitForum(payload);
         this.resetfn(); 
-        this.$refs.notification.showNotification('success', 'Form submit succesfull!');
+        this.$refs.notification.showNotification('success', 'Form submit sucessful!');
       
       } catch (error) {
         console.error("Error fetching data:", error);
