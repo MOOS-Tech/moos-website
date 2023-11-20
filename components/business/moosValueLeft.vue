@@ -8,9 +8,9 @@
                             class="text-normal-title-heading font-semibold text-center lg:w-4/6 self-center text-green-200 mb-4">
                             {{ pillTitle }}</h2>
                         <div class="grid   gap-y-10 gap-4 sm:gap-y-10 grid-cols-12 ">
-                            <div class="flex items-center justify-center transition-transform col-span-12 md:col-span-8 px-4 "
-                                id="pill-container" >
-                                <div class="pill left relative lg:rounded-l-full md:rounded-l-full border-2 border-r-0 h-35 border-black-100  py-1 round-pill expand-horizontal1"
+                            <div class="flex items-center justify-center transition-transform col-span-12 md:col-span-8 px-4  "
+                                id="pill-container">
+                                <div class="pill left relative lg:rounded-l-full md:rounded-l-full border-2 border-r-0 h-35 bg-white border-black-100  py-1 round-pill expand-horizontal1"
                                     :id="leftPill" @mouseover="movePills" @mouseleave="resetPills">
                                     <div class="flex flex-col items-start lg:w-full pl-10">
                                         <h3 class="text-small-title-heading mb-2 text-left">Old Way</h3>
@@ -27,7 +27,7 @@
                                     <img :src="imageURL" alt="Image" class="h-auto" />
                                 </div>
 
-                                <div class="pill right relative lg:rounded-r-full md:rounded-r-full border-2 border-l-0 border-green-200  h-35 py-1 round-pill expand-horizontal"
+                                <div class="pill right relative lg:rounded-r-full md:rounded-r-full border-2 border-l-0 border-green-200 bg-white h-35 py-1 round-pill expand-horizontal"
                                     :id="rightPill" @mouseover="movePills" @mouseleave="resetPills">
                                     <div class="flex flex-col items-start lg:w-full pl-10  text-green-200">
                                         <h3 class="text-small-title-heading mb-2 text-left">MOOS Way</h3>
@@ -39,10 +39,10 @@
                                 </div>
                             </div>
                             <div class="flex items-center justify-center col-span-12 md:col-span-4 value">
-                                <div class="diamond ">
-                                    <div class="text-top ">{{ valuePercentage }}
+                                <div class="diamond items-center justify-center flex">
+                                    <div class="text-top pb-16">{{ valuePercentage }}
                                         ​</div>
-                                    <div class="text-bottom text-xs pl-5">{{ valueDes }}</div>
+                                    <div class="text-bottom pt-5 text-xs ">{{ valueDes }}</div>
                                 </div>
 
                             </div>
@@ -79,7 +79,7 @@ export default {
         pillTitle: "",
         valuePercentage: "",
         valueDes: "",
-        imageURL:String
+        imageURL: String
     },
 
 
@@ -137,7 +137,7 @@ export default {
 
     transition: transform 0.3s;
     flex: 1;
-    
+
 }
 
 #pill-container {
@@ -157,29 +157,22 @@ export default {
     border-radius: 10px;
 }
 
-.text-top,
+
 .text-bottom {
     position: absolute;
-    left: 0;
-
+    /* left: 0; */
     transform: rotate(-45deg);
     text-align: center;
+    color: white;
 }
-
 .text-top {
-    top: 20px;
+    position: absolute;
+    /* left: 0; */
+  
+    transform: rotate(-45deg);
+    text-align: center;
     color: white;
 }
-
-.text-bottom {
-    bottom: 20px;
-    color: white;
-}
-
-
-
-
-
 
 
 
@@ -187,12 +180,14 @@ export default {
     .dotted-animation {
         display: none;
     }
+
     #pill-container {
-    display: flex;
-    align-items: stretch;
-    width: auto;
-    height: auto;
-}
+        display: flex;
+        align-items: stretch;
+        width: auto;
+        height: auto;
+    }
+
     .value {
         padding-bottom: 20px;
     }

@@ -12,7 +12,7 @@
                            
                             <div class="flex items-center justify-center   transition-transform  col-span-12 md:col-span-8 px-4"
                                 id="pill-container" dir="ltr">
-                                <div class="pill left relative lg:rounded-l-full md:rounded-l-full border-2 border-r-0  border-black-100 h-auto py-1 round-pill expand-horizontal1"
+                                <div class="pill left relative lg:rounded-l-full md:rounded-l-full border-2 bg-white border-r-0  border-black-100 h-auto py-1 round-pill expand-horizontal1"
                                     :id="left_Pill" @mouseover="movePills" @mouseleave="resetPills">
                                     <div class="flex flex-col items-start lg:w-full pl-10">
                                         <h3 class="text-small-title-heading mb-2 text-left">Old Way</h3>
@@ -29,7 +29,7 @@
                                     <img :src="imageURL" alt="Image" class="h-auto" />
                                 </div>
 
-                                <div class="pill right relative lg:rounded-r-full md:rounded-r-full border-2 border-l-0 border-green-200 h-auto py-1 round-pill expand-horizontal"
+                                <div class="pill right relative lg:rounded-r-full md:rounded-r-full border-2  bg-white border-l-0 border-green-200 h-auto py-1 round-pill expand-horizontal"
                                     :id="right_Pill" @mouseover="movePills" @mouseleave="resetPills">
                                     <div class="flex flex-col items-start lg:w-full pl-10  text-green-200">
                                         <h3 class="text-small-title-heading mb-2 text-left">MOOS Way</h3>
