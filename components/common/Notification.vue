@@ -27,7 +27,7 @@ export default {
     },
     getTypeClass() {
       return {
-        'bg-white text-black': this.type === 'success',
+        'bg-green-100 text-white': this.type === 'success',
         'bg-red-200': this.type === 'error',
         // 'text-white': true,
         'p-4': true,
@@ -42,7 +42,7 @@ export default {
 <style scoped>
 .notification {
   position: fixed;
-  top: 1rem;
+  bottom: 1rem;
   right: 1rem;
   z-index: 999;
 }

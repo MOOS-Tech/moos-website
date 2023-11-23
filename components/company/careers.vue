@@ -20,7 +20,8 @@
                 <div class="flex gap-2">
                   <div>
                     <button class="bg-green-200 text-white px-4 py-1 rounded-md mt-4" @click="openLink(card.link)">View
-                      Job</button>
+                      Job
+                    </button>
                   </div>
                   <div>
                     <button class="bg-green-200 text-white px-4 py-1 rounded-md mt-4"
@@ -37,32 +38,34 @@
             <h1 class="text-normal-title-heading font-bold text-black-200 ">Join with us</h1>
           </div>
           <div class="flex flex-col items-center justify-center">
-            <FormSelectField :name="selectedPosition" placeholder="Position" :options="options"
-              v-model="selectedPosition" />
+            <FormSelectField ref="selectField" :name="selectedPosition" placeholder="Position" :options="options"
+              v-model="selectedPosition" :validationErrorMessage="positionValidationErrorMessage" />
             <FormInput v-model="customerName" type="text" name="name" id="name" placeholder="Name" :isRequired="true"
-              :StatusErrorMessage="StatusErrorMessage" />
+              :validationErrorMessage="nameValidationErrorMessage" />
             <FormInput v-model="customerEmail" type="email" name="email" id="email" placeholder="Email" :isRequired="true"
-              :StatusErrorMessage="StatusErrorMessage" />
+              :validationErrorMessage="emailValidationErrorMessage" @input="validateEmail" />
             <FormInput v-model="customerLinkedin" type="text" name="linkedin" id="linkedin" :isRequired="true"
-              :StatusErrorMessage="StatusErrorMessage"
-              placeholder="LinkedIn Profile" />
-            <!-- <FormInput v-model="customerResume" name="Resume" id="Resume" placeholder="Upload Resume" /> -->
+              placeholder="LinkedIn Profile" :validationErrorMessage="linkedinValidationErrorMessage" />
+
             <div class="mb-3 relative">
               <input
                 class="rounded-[4px] border p-3 pr-10 hover:outline-none focus:outline-none hover:border-green-200 h-10 w-72 sm:text-sm cursor-pointer"
-                placeholder="Upload Resume" :value="selectedFileName"/>
-              <label class="absolute right-0 top-0 cursor-pointer h-full w-8 text-center self-center items-center bg-gray-300">
-                <i class="fas fa-paperclip text-gray-400 pt-3" ></i>
+                placeholder="Upload Resume" :value="selectedFileName" />
+
+              <label
+                class="absolute right-0 top-0 cursor-pointer h-full w-8 text-center self-center items-center bg-gray-300">
+                <i class="fas fa-paperclip text-gray-400 pt-3"></i>
                 <input id="file" type="file" class="hidden" accept=".pdf" @change="uploadFile" ref="fileInput" />
               </label>
+
             </div>
+            <p class="text-red-500 text-sm">{{ FileValidationErrorMessage }}</p>
             <FormButton class="text-white" @click="Submitfn">Submit</FormButton>
           </div>
         </section>
       </div>
     </div>
-    <Notification v-if="isBannerVisible" :message="notificationMessage" :type="notificationType"
-      @hideSection="hideBanner" />
+    <Notification ref="notificationRef"></Notification>
   </section>
 </template>
 
@@ -71,9 +74,9 @@ import FormInput from "@/components/common/Form/FormInputField";
 import FormButton from "@/components/common/Form/FormButton";
 import FormSelectField from "@/components/common/Form/FormSelectField";
 import FormLargeTextBox from "@/components/common/Form/FormLargeTextBox";
-import { joinWithUs, getCareerPositions } from "@/services/about.js";
+import { joinWithUs, getCareerPositions, uploadFile } from "@/services/about.js";
 import Notification from '../common/Notification.vue';
-import CheckEmail from "@/util/CheckEmail";
+import CheckEmail from "@/util/CheckEmail.js";
 
 export default {
   name: "careers",
@@ -97,32 +100,61 @@ export default {
       cardData: [],
       cards: [],
       options: [],
+      Position: "Positions",
       selectedPosition: '',
-      selectedFile: null,
+      selectedFile: new FormData(),
       selectedFileName: "",
       SelectedValue: "",
       notificationMessage: "",
-      isBannerVisible: false,
-      StatusErrorMessage: ""
+      show: false,
+      emailValidationErrorMessage: "",
+      nameValidationErrorMessage: "",
+      linkedinValidationErrorMessage: "",
+      FileValidationErrorMessage: "",
+      positionValidationErrorMessage: "",
+      isFormSubmitted: false,
     }
   },
-  watch: {
-    customerEmail(value) {
-      if (value) {
-        if (CheckEmail(value) == true)
-          this.StatusErrorMessage = "Please enter a valid email address";
-        else {
 
-          this.StatusErrorMessage =
-            "";
-        }
-      } else {
-
-      }
-    },
-  },
   async created() {
     await this.fetchCareerPositions();
+  },
+  computed: {
+    emailValidationErrorMessage() {
+    
+      if (!this.customerEmail && this.isFormSubmitted) {
+        return 'Email is required.';
+      } else {
+        if (this.customerEmail && !CheckEmail(this.customerEmail)) {
+          return 'Invalid email format.';
+        }
+      }
+      return '';
+    },
+    nameValidationErrorMessage() {
+      if (this.isFormSubmitted && !this.customerName) {
+        return 'Name is required.';
+      }
+      return '';
+    },
+    linkedinValidationErrorMessage() {
+      if (this.isFormSubmitted && !this.customerLinkedin) {
+        return 'Linkedin is required.';
+      }
+      return '';
+    },
+    positionValidationErrorMessage() {
+      if (this.isFormSubmitted && !this.selectedPosition) {
+        return 'position is required.';
+      }
+      return '';
+    },
+    FileValidationErrorMessage() {
+      if (this.isFormSubmitted && !this.selectedFileName) {
+        return 'Please upload a file';
+      }
+      return '';
+    },
   },
   methods: {
     openLink(val) {
@@ -139,39 +171,37 @@ export default {
       if (fileInput.files.length > 0) {
         this.selectedFile = fileInput.files[0];
         this.selectedFileName = fileInput.files[0].name;
-        console.log(this.selectedFile)
       }
     },
-    Submitfn() {
-      if (this.selectedFile) {
-
+    async Submitfn() {
+      this.isFormSubmitted = true;
+      if (this.validateForm() && this.selectedFile) {
 
         const formData = new FormData();
-        formData.append('file', this.selectedFile);
-
+        formData.append('files', this.selectedFile);
+        const resume = await uploadFile(formData);
         let payload = {
           data: {
             name: this.customerName,
             email: this.customerEmail,
             position: this.selectedPosition,
             linkedIn_profile: this.customerLinkedin,
-            upload_resume: formData
+            resume_link: resume.data[0].url,
           }
-
         }
         try {
-          const response = joinWithUs(payload);
-          this.resetfn();
-          this.isBannerVisible = true;
-          this.notificationMessage = "Form submission successfull !";
-          setTimeout(() => {
-            this.isBannerVisible = false;
-          }, 3000);
+
+          const response = await joinWithUs(payload);
+
+          this.resetfn()
+          this.$refs.notificationRef.showNotification('success', 'Form submit sucessful!');
 
         } catch (error) {
           console.error("Error fetching data:", error);
+          this.$refs.notificationRef.showNotification('error', 'Error submiting form!');
         }
       } else {
+
 
       }
 
@@ -197,13 +227,29 @@ export default {
 
     },
     resetfn() {
-      this.customerName = "",
-        this.customerEmail = "",
-        this.customerLinkedin = "",
-        this.selectedFile = null,
-        this.selectedFileName = "",
-        this.selectedPosition = ""
+      this.$refs.selectField.reset();
+      this.customerName = '',
+        this.customerEmail = ''
+      this.customerLinkedin = '',
+        this.selectedFile = '',
+        this.selectedFileName = '',
+        this.selectedPosition = ''
+
+      this.isFormSubmitted = false;
+
+
+    },
+    validateEmail() {
+      this.isFormSubmitted = false;
+    },
+    validateForm() {
+
+      return (
+        this.customerName && this.customerEmail && this.customerLinkedin && this.selectedPosition && this.selectedFileName
+
+      );
     }
+
 
   }
 }

@@ -23,7 +23,8 @@
     <!-- ====== Quote Section-->
     <Quote
         :Quote="Quote"
-        :Speaker="Speaker"/>
+        :Speaker="Speaker"
+        :class="animate"/>
 
     <!-- ====== Card Sections-->
     <CardView
@@ -51,6 +52,7 @@ import {getTitle, getImages} from "@/services/home.js";
 import {getPatners} from "@/services/home.js";
 import {getQuotes} from "@/services/home.js";
 import {getCardViews} from "@/services/home.js";
+
 export default {
   name: "index",
   components: {
@@ -87,18 +89,25 @@ export default {
 
       //cards
       cards: [],
-      cardData: []
+      cardData: [],
+      quoteList: [],
+      interval: null,
+      animate: 'transition-opacity',
     };
   },
   async created() {
     toggleLoading(true);
     const config = useRuntimeConfig();
-    this.baseUrl = config.public.API_URL?config.public.API_URL:'http://localhost:1337';
+    this.baseUrl = config.public.API_URL ? config.public.API_URL : 'http://localhost:1337';
     await this.fetchHeroSection();
     await this.fetchPartnerSection();
     await this.fetchQuotesSection();
     await this.fetchCardViewsSection();
     toggleLoading(false);
+    this.interval = setInterval(this.changeQuote, 3000);
+  },
+  beforeUnmount() {
+    clearInterval(this.interval);
   },
   methods: {
     async fetchHeroSection() {
@@ -109,11 +118,11 @@ export default {
         this.para = response.data.data.attributes.Paragraph
 
         const response1 = await getImages('1');
-        this.imageSrc1 = this.baseUrl+response1.data.data.attributes.ImageUrl.data.attributes.formats.small.url;
+        this.imageSrc1 = this.baseUrl + response1.data.data.attributes.ImageUrl.data.attributes.formats.small.url;
         const response2 = await getImages('2');
-        this.imageSrc2 = this.baseUrl+response2.data.data.attributes.ImageUrl.data.attributes.formats.small.url;
+        this.imageSrc2 = this.baseUrl + response2.data.data.attributes.ImageUrl.data.attributes.formats.small.url;
         const response3 = await getImages('3');
-        this.imageSrc3 = this.baseUrl+response3.data.data.attributes.ImageUrl.data.attributes.formats.small.url;
+        this.imageSrc3 = this.baseUrl + response3.data.data.attributes.ImageUrl.data.attributes.formats.small.url;
       } catch (error) {
         console.error("Error fetching hero data:");
       }
@@ -134,6 +143,7 @@ export default {
         const response = await getQuotes();
         this.Quote = response.data.data[0].attributes.Quote;
         this.Speaker = response.data.data[0].attributes.Speaker;
+        this.quoteList = response.data.data;
       } catch (error) {
         console.error("Error fetching data:");
       }
@@ -149,6 +159,16 @@ export default {
         }));
       } catch (error) {
         console.error("Error fetching data:");
+      }
+    },
+    changeQuote() {
+      if (this.quoteList.length !== 0) {
+        const randomIndex = Math.floor(Math.random() * this.quoteList.length);
+        this.Quote = this.quoteList[randomIndex].attributes.Quote;
+        this.Speaker = this.quoteList[randomIndex].attributes.Speaker;
+        setTimeout(() => {
+
+        }, 3000);
       }
     }
   }

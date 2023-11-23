@@ -1,5 +1,5 @@
 <template>
-  <section class="flex  mt-20 justify-center " >
+  <section class="flex  mt-20 justify-center ">
     <div class=" mx-auto w-full lg:max-w-7xl ">
       <div class="grid md:grid-cols-2 md:gap-12 lg:gap-48 bg-green-and-black">
         <section class="mt-6 mb-4 place-content-center ">
@@ -7,10 +7,16 @@
             <h1 class="text-normal-title-heading font-bold text-black-200 ">Contact Us</h1>
           </div>
           <div class="flex flex-col items-center justify-center">
-            <FormInput v-model="customerName" type="text" name="name" id="name" placeholder="Name" />
-            <FormInput v-model="customerEmail" type="email" name="email" id="email" placeholder="Email" />
-            <FormSelectField v-model="selectedOption" :options="requestOption" :placeholder="requestOption[0]"/>
-            <FormLargeTextBox v-model="customerMessage" placeholder="Your message" />
+            <FormInput v-model="customerName" type="text" name="name" id="name" placeholder="Name"
+              :validationErrorMessage="nameValidationErrorMessage"  />
+
+            <FormInput v-model="customerEmail" type="email" name="email" id="email" placeholder="Email"
+              :validationErrorMessage="emailValidationErrorMessage" @input="validateEmail" />
+
+            <FormSelectField ref="selectField" :name="selectedOptionContact" v-model="selectedOptionContact" placeholder="Request for Demonstration" :options="options" :validationErrorMessage="SelectValidationErrorMessage" />
+
+            <FormLargeTextBox v-model="customerMessage" placeholder="Your message" :validationErrorMessage="MessageValidateErrorMessage" />
+
             <FormButton class="text-white" @click="Submitfn">Book a Meeting</FormButton>
             <Notification ref="notification" />
           </div>
@@ -31,7 +37,8 @@ import FormButton from "@/components/common/Form/FormButton";
 import FormSelectField from "@/components/common/Form/FormSelectField";
 import FormLargeTextBox from "@/components/common/Form/FormLargeTextBox";
 import Notification from "@/components/common/Notification";
-import {getContactTypes,submitForum } from "../../services/home.js";
+import { getContactTypes, submitForum } from "../../services/home.js";
+import CheckEmail from "@/util/CheckEmail.js";
 
 export default {
   name: "index",
@@ -46,43 +53,99 @@ export default {
     return {
       customerName: "",
       customerEmail: "",
-      requestOption: [],
+      options: [],
+      Position: "Request for Demonstration",
       customerMessage: "",
-      selectedOption:''
+      selectedOptionContact: '',
+      nameValidationErrorMessage: "",
+      emailValidationErrorMessage: "",
+      SelectValidationErrorMessage: "",
+      MessageValidateErrorMessage: "",
+      isFormSubmitted: false,
     }
+  },
+  computed: {
+    emailValidationErrorMessage() {
+    
+      if (!this.customerEmail && this.isFormSubmitted) {
+        return 'Email is required.';
+      } else {
+        if (this.customerEmail && !CheckEmail(this.customerEmail)) {
+          return 'Invalid email format.';
+        }
+      }
+      return '';
+    },
+    nameValidationErrorMessage() {
+      if (this.isFormSubmitted && !this.customerName) {
+        return 'Name is required.';
+      }
+      return '';
+    },
+    SelectValidationErrorMessage() {
+      if (this.isFormSubmitted && !this.selectedOptionContact) {
+        return ' Please select an option';
+      }
+      return '';
+    },
+    MessageValidateErrorMessage() {
+      if (this.isFormSubmitted && !this.customerMessage) {
+        return ' Message is required.';
+      }
+      return '';
+    },
   },
   async mounted() {
     let res = await getContactTypes();
-    this.requestOption = [];
+    this.options = [];
     for (let i = 0; i < res.length; i++) {
-      this.requestOption.push(res[i].attributes.options);
+      this.options.push(res[i].attributes.options);
     }
   },
   methods: {
     async Submitfn() {
-      let payload = {
+      this.isFormSubmitted = true;
+      if (this.validateForm()){
+        let payload = {
         data: {
           name: this.customerName,
           email: this.customerEmail,
-          request_demonstration: this.selectedOption,
+          request_demonstration: this.selectedOptionContact,
           message: this.customerMessage
         }
       }
-      console.log(payload)
       try {
         const response = await submitForum(payload);
-        console.log(response)
-        if(response.status === 200){
-          this.customerEmail = '';
-          this.customerName = '';
-          this.selectedOption = '';
-          this.customerMessage = '';
-          this.$refs.notification.showNotification('success', 'Form submitted successfully!');
-        }
+        this.resetfn(); 
+        this.$refs.notification.showNotification('success', 'Form submit sucessful!');
+      
       } catch (error) {
         console.error("Error fetching data:", error);
-        this.$refs.notification.showNotification('error', 'Error submitting form. Please try again.');
+        this.$refs.notification.showNotification('error', 'Error submiting form!');
       }
+      }else{
+
+      }
+      
+    },
+  
+    async resetfn() {
+    this.$refs.selectField.reset();
+    this.customerName = '';
+    this.customerEmail = '';
+    this.selectedOptionContact = '';
+    this.customerMessage = '';
+    this.isFormSubmitted = false;
+  },
+  validateEmail() {
+      this.isFormSubmitted = false; 
+    },
+    validateForm() {
+
+      return (
+        this.customerName && this.customerEmail && this.selectedOptionContact && this.customerMessage
+
+      );
     }
   }
 }

@@ -11,16 +11,14 @@
                         <h3 class="mt-6 text-base font-semibold leading-7 tracking-tight text-gray-900">{{ person.name }}
                         </h3>
                         <p class="text-sm leading-6 text-gray-600">{{ person.role }}</p>
-                        <ul role="list" class="mt-6 flex justify-center gap-x-6">
-                            <li>
+                        <div class="mt-2 flex justify-center gap-x-6">
+                           
                                 <a :href="person.linkedinUrl" class="text-gray-400 hover:text-gray-500">
                                     <span class="sr-only">LinkedIn</span>
-                                    <svg class="h-5 w-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-
-                                    </svg>
+                                    <i class="fab fa-linkedin"></i>
                                 </a>
-                            </li>
-                        </ul>
+                            
+                            </div>
                     </div>
                 </li>
             </ul>
