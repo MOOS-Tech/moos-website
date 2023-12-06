@@ -34,6 +34,7 @@
 
     <!-- ====== Map and the Contact Section-->
     <MapAndContact/>
+    <FloatingButton/>
   </div>
 </template>
 
@@ -52,6 +53,7 @@ import {getTitle, getImages} from "@/services/home.js";
 import {getPatners} from "@/services/home.js";
 import {getQuotes} from "@/services/home.js";
 import {getCardViews} from "@/services/home.js";
+import FloatingButton from '~/components/common/FloatingButton.vue';
 
 export default {
   name: "index",
@@ -61,7 +63,8 @@ export default {
     HeroSection,
     PartnerCarousel,
     Quote,
-    CardView
+    CardView,
+    FloatingButton
   },
   computed: {
     loading() {

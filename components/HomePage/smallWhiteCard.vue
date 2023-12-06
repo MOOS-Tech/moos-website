@@ -14,9 +14,9 @@
       </div>
       <div class="flex justify-left mt-3 ">
         <ul>
-          <li class="flex items-center" v-for="(blog, index) in item.blogs" :key="index">
-            <i class="fas fa-check-circle text-green-200"></i>
-            <span class="text-gray-700 text-lg ml-3">{{
+          <li class="flex items-start" v-for="(blog, index) in item.blogs" :key="index">
+            <i class="fas fa-check-circle text-green-200 mt-2"></i>
+            <span class="text-gray-700 text-lg ml-3 ">{{
               blog
             }}</span>
           </li>

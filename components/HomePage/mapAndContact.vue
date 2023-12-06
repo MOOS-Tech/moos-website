@@ -17,7 +17,7 @@
 
             <FormLargeTextBox v-model="customerMessage" placeholder="Your message" :validationErrorMessage="MessageValidateErrorMessage" />
 
-            <FormButton class="text-white" @click="Submitfn">Book a Meeting</FormButton>
+            <FormButton class="text-white" @click="Submitfn">Contact Us</FormButton>
             <Notification ref="notification" />
           </div>
         </section>
