@@ -29,7 +29,7 @@
                         </div>
                     </div>
                 </div>
-                <p class="mt-20 text-lg leading-8 text-gray-600 font-semibold"> It is with great pride and enthusiasm that
+                <p class="mt-20 sm:px-20 text-lg leading-8 text-gray-600 font-semibold"> It is with great pride and enthusiasm that
                     we announce
                     that MOOS has been selected to be part of the Dutch mission to CES Las Vegas 2024, the largest
                     technology fair in the world!

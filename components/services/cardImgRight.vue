@@ -7,18 +7,21 @@
 
       <!-- Switched the order of these two divs -->
       <div class="relative flex flex-col items-center text-left lg:text-left lg:py-7 xl:py-8  px-5
-        lg:items-start lg:max-w-none max-w-3xl mx-auto lg:mx-0  lg:w-2/3">
+        lg:items-start lg:max-w-none  mx-auto lg:mx-0  ">
 
         <CommonTitle v-if="ComTitle" :CardTitle="ComTitle" :BoldText="boldText" />
         <P class="text-black-100 text-regular-title-heading mt-8">{{ Para }}</P>
         <h2 class="text-3xl pb-6 text-black-200 font-semibold py-2">
           {{ CardTitle }}
         </h2>
-        <ul class="text-black-100 list-none  text-regular-title-heading">
-          <li v-for="(point, index) in CardBody" :key="index" class="pb-4">
-            <i class="fas fa-check text-green-500 mr-2"></i>{{ point.attributes.ListItems }}
-          </li>
-        </ul>
+        
+        <div class="flex justify-left mt-3 ">
+              <ul class="text-black-100 list-none   text-md">
+              <li class="flex item-start pb-4" v-for="(point, index) in CardBody" :key="index" >
+                <i class="fas fa-check text-green-500 mr-2 mt-1 "></i>{{ point.attributes.ListItems }}
+              </li>
+            </ul>
+            </div>
       </div>
 
      

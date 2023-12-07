@@ -8,15 +8,15 @@
             {{ item.title }}
           </a>
         </h3>
-        <p class="text-black-200 text-tiny-title-heading">
+        <p class="text-black-200 text-md">
           {{ item.description }}
         </p>
       </div>
       <div class="flex justify-left mt-3 ">
         <ul>
           <li class="flex items-start" v-for="(blog, index) in item.blogs" :key="index">
-            <i class="fas fa-check-circle text-green-200 mt-2"></i>
-            <span class="text-gray-700 text-lg ml-3 ">{{
+            <i class="fas fa-check-circle text-green-200 mt-1.5"></i>
+            <span class="text-gray-700 text-md ml-3 ">{{
               blog
             }}</span>
           </li>

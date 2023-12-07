@@ -35,9 +35,10 @@ export default {
   width: 100%;
   height: 50vh;
   max-height: 45vh;
-  background-image: url('/assets/images/Rectangle.png');
+  background-image: url('/assets/images/Rectangle2.png');
   background-size: 100% 100%; /* Use 100% for both width and height */
   background-repeat: no-repeat;
+  
   z-index: 0;
 }
 
@@ -55,7 +56,7 @@ background-position: left bottom, right bottom;
 
 @media (max-width: 640px) {
   .background-triangle {
-    background: rgba(30, 178, 160, 0.5);
+    background: #CCEAE6;
   }
   .bg-image{
     display: none;

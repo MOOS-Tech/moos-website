@@ -15,6 +15,7 @@
 
     <!-- ====== Partner Section-->
     <PartnerCarousel
+    v-if = " this.partners.length !== 0  "
         :baseUrl="baseUrl"
         :partners="partners"
         :partnerImages="partnerImages"

@@ -22,7 +22,7 @@
               class="lg:inline-flex lg:w-auto w-full flex-grow px-5 py-2 mr-5  rounded text-white items-center  hover:bg-white hover:bg-opacity-25 hover:text-white text-left"
               style="border: 1px solid transparent; transition: border-color 0.3s;" @mouseover="setBorderColor('white')"
               @mouseleave="setBorderColor('transparent')">
-              <span>{{ item.attributes.nav_title }}</span>
+              <span class="text-md">{{ item.attributes.nav_title }}</span>
             </NuxtLink>
           </div>
 
@@ -34,7 +34,7 @@
                 style="border: 1px solid transparent; transition: border-color 0.3s;" @mouseover="setBorderColor('white')"
                 @mouseleave="setBorderColor('transparent')"  @click="toggleDropdown">
                 <div class="flex items-center group">
-                  <span class="flex-grow">{{ item.attributes.nav_title }}</span>
+                  <span class="flex-grow text-md">{{ item.attributes.nav_title }}</span>
                   <i class="fa fa-angle-down ml-2" aria-hidden="true"></i>
                 </div>
               </button>
@@ -69,7 +69,7 @@
             <a v-if="action.attributes.type === 'link'"
               class="lg:inline-flex lg:w-auto w-full px-5 py-2 rounded text-white items-center justify-center underline"
               :href="action.attributes.url" target="_blank" rel="noopener noreferrer">
-              <span>{{ action.attributes.name }}</span>
+              <span class="text-md">{{ action.attributes.name }}</span>
             </a>
           </div>
           <div
@@ -78,7 +78,7 @@
               class="lg:inline-flex lg:w-auto w-full px-5 py-2 rounded text-white items-center justify-center" href="#">
               <NuxtLink :to="action.attributes.url"  target="_blank"
                 class="lg:inline-flex lg:w-auto w-full px-5 py-2 mr-5  rounded text-white items-center justify-center bg-white bg-opacity-25 border border-white hover:bg-white  hover:bg-opacity-25 hover:text-white">
-                <span> {{ action.attributes.name }}</span>
+                <span class="text-md"> {{ action.attributes.name }}</span>
               </NuxtLink>
             </a>
           </div>
