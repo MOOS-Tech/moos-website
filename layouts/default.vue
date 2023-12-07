@@ -38,10 +38,10 @@ export default {
   },
   computed: {
     showTopNavBar() {
-      return this.$route.name !== 'bannerPage'; 
+      return this.$route.name !== 'CESLasVegas2024'; 
     },
     showFooter() {
-      return this.$route.name !== 'bannerPage'; 
+      return this.$route.name !== 'CESLasVegas2024'; 
     },
   },
 }

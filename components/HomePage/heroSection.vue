@@ -9,7 +9,7 @@
                 class="relative flex flex-col items-center text-center lg:text-left lg:items-start  lg:py-7 lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1">
 
               <CommonTitle v-if="ComTitle" :CardTitle="ComTitle" :BoldText="boldText"/>
-              <p class="mt-8 text-black-200 text-regular-title-heading ">
+              <p class="mt-8 text-black-200 text-md">
                 {{ para }}
               </p>
               <div class="mt-10 flex flex-col items-center gap-4 lg:flex-row">

@@ -2,7 +2,7 @@
   <div class="mb-3">
   <select id="id" name="name" autocomplete="autocomplete"
   :class="{
-        'rounded-[4px] border p-3 hover:outline-none focus:outline-none hover:border-green-200 h-10 w-72 sm:text-sm': true,
+        'rounded-[4px] border pl-2 hover:outline-none focus:outline-none hover:border-green-200 h-10 w-72 sm:text-sm': true,
         'border-red-500': hasFormBeenSubmitted && !isInputValid,
       }"
           v-model="selected" @input="onInput"   @change="$emit('update:modelValue', $event.target.value)" >

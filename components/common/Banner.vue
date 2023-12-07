@@ -8,7 +8,7 @@
         <a :href="redirectUrl" target="_blank" rel="noopener noreferrer">
           <strong v-if="isboldText" class="font-semibold">{{ title_bold }}&nbsp;</strong>{{ title }}&nbsp;&nbsp;
         </a>
-        <a  href="/bannerPage" ><strong
+        <a  href="/CESLasVegas2024" ><strong
             class="font-semibold">{{
             boldSub_title
           }}</strong>&nbsp; <i class="fas fa-arrow-right"></i></a>
