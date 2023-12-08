@@ -36,7 +36,7 @@
         </div>
         <div class="mx-auto lg:max-w-6xl w-full sm:px-10 md:px-12 flex flex-col lg:flex-row gap-12 lg:gap-40 px-10 py-10 ">
           <div class="relative flex flex-col items-center text-left lg:text-left lg:py-7 xl:py-8
-    lg:items-start lg:max-w-none lg:mx-0 lg:flex-0  w-2/3">
+    lg:items-start lg:max-w-none lg:mx-0 lg:flex-0  lg:w-2/3">
             <CommonTitle v-if="ComTitle" :CardTitle="ComTitle" :BoldText="boldText" />
             <h2 class="text-sub-title-heading pb-6 text-black-200">
               {{ CardTitle }}

@@ -56,7 +56,7 @@
             </div>
             <div class="mx-auto max-w-7xl mt-16 flow-root sm:mt-40 ">
                 <div class=" rounded-xl  p-2  lg:-m-4 lg:rounded-2xl lg:p-4  ">
-                    <img src="@/assets/images/Lasvegas.jpg" alt="App screenshot" width="1100" height="900"
+                    <img src="@/assets/images/carreerBg.png" alt="App screenshot" width="1100" height="900"
                         class="mx-auto rounded-md   " />
                 </div>
             </div>

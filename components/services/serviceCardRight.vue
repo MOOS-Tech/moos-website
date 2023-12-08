@@ -11,7 +11,7 @@
   
           <CommonTitle v-if="ComTitle" :CardTitle="ComTitle" :BoldText="boldText" />
          
-          <h2 class="text-3xl pb-6 text-black-200 font-semibold py-2">
+          <h2 class="text-sub-title-heading pb-6 text-black-200  py-2">
             {{ CardTitle }}
           </h2>
           <P class="text-black-100 text-md pb-6">{{ Para }}</P>
