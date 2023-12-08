@@ -3,11 +3,13 @@
     data-aos-duration="1000">
     <div
       class="sm:flex sm:justify-center py-10 mx-auto lg:max-w-7xl w-full sm:px-10 md:px-12 rounded-lg bg-white shadow-3xl">
-      <div :class="'grid ' + (this.cardData.length > 3 ? 'sm:grid-cols-3' : 'sm:grid-cols-' + this.cardData.length) + ' gap-6'">
+      <div
+        :class="'grid ' + (this.cardData.length > 3 ? 'sm:grid-cols-3' : 'sm:grid-cols-' + this.cardData.length) + ' gap-6'">
 
-        <div v-for="(card, index) in cardData" :key="index" :class="['bg-white', 'rounded-lg', index !== cardData.length - 1 ? 'border-r' : '']">
+        <div v-for="(card, index) in cardData" :key="index"
+          :class="['bg-white', 'rounded-lg', index !== cardData.length - 1 ? 'border-r' : '']">
           <a href="#!">
-            <img :src="baseUrl + card.url" alt="Image Alt Text" class="h-12 w-15 mx-auto mt-4" />
+            <img :src="computeURL(card.url)" alt="Image Alt Text" class="h-80 w-100 mx-auto mt-4 rounded-md" />
           </a>
           <div class="p-6">
             <h5 class="mb-2 text-small-title-heading text-black-200 text-center">
@@ -31,6 +33,22 @@ export default {
     cards: [],
     cardData: []
   },
- 
+  // computed: {
+  //   computeURL(imageURL) {
+  //     if (imageURL.includes("https://")) {
+  //       return imageURL
+  //     }
+  //     return this.baseUrl + imageURL
+  //   }
+  // },
+  methods:{
+    computeURL(imageURL) {
+      if (imageURL.includes("https://")) {
+        return imageURL
+      }
+      return this.baseUrl + imageURL
+    }
+  }
+
 };
 </script>

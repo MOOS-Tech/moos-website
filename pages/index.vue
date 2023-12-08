@@ -23,12 +23,14 @@
 
     <!-- ====== Quote Section-->
     <Quote
+    v-if="Quote.length > 0"
         :Quote="Quote"
         :Speaker="Speaker"
         :class="animate"/>
 
     <!-- ====== Card Sections-->
     <CardView
+    v-if="cardData.length > 0"
         :baseUrl="baseUrl"
         :cards="cards"
         :cardData="cardData"/>
