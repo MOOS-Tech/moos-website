@@ -13,7 +13,7 @@
                         <p class="text-sm leading-6 text-gray-600">{{ person.role }}</p>
                         <div class="mt-2 flex justify-center gap-x-6">
                            
-                                <a :href="person.linkedinUrl" class="text-gray-400 hover:text-gray-500">
+                                <a :href="person.linkedinUrl" target="_blank" class="text-gray-400 hover:text-gray-500">
                                     <span class="sr-only">LinkedIn</span>
                                     <i class="fab fa-linkedin"></i>
                                 </a>

@@ -9,11 +9,11 @@
                 class="relative flex flex-col items-center text-center lg:text-left lg:items-start  lg:py-7 lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1">
 
               <CommonTitle v-if="ComTitle" :CardTitle="ComTitle" :BoldText="boldText"/>
-              <p class="mt-8 text-black-200 text-regular-title-heading ">
+              <p class="mt-8 text-black-200 text-md">
                 {{ para }}
               </p>
               <div class="mt-10 flex flex-col items-center gap-4 lg:flex-row">
-                <FormButton class="text-white"> Book a Meeting</FormButton>
+                <FormButton class="text-white" @click="openNewTab">{{ this.buttonText }} </FormButton>
               </div>
             </div>
           </div>
@@ -51,14 +51,16 @@
       </div>
     </div>
   </section>
-  <Banner :title="paragraph" :boldSub_title="boldText" :isButtonVisible="true" :isimageVisible="true"
-          :isboldText="true" :title_bold="title" :redirectUrl="redirectUrl" :isVisible="isBanner" style="margin-top: 50px"/>
+  <!-- <Banner :title="paragraph" :boldSub_title="boldText" :isButtonVisible="true" :isimageVisible="true"
+          :isboldText="true" :title_bold="title" :redirectUrl="redirectUrl" :isVisible="isBanner" style="margin-top: 50px"/> -->
+         
 </template>
 <script>
 
 import FormButton from "@/components/common/Form/FormButton";
+
 import Banner from '../common/Banner.vue';
-import {getBanner} from "../../services/navigation";
+import {getBanner,getNavbarActions} from "../../services/navigation";
 
 export default {
   name: "index",
@@ -76,12 +78,16 @@ export default {
       boldText: "Learn More",
       title: "MOOS",
       redirectUrl: '',
-      isBanner: false
+      isBanner: false,
+      buttonText:"",
+      newTabLink: "",
+     
     };
   },
   components: {
     FormButton,
     Banner,
+
   },
   async mounted() {
     try {
@@ -91,9 +97,18 @@ export default {
       this.paragraph = res.Paragraph;
       this.redirectUrl = res.url;
       this.isBanner = localStorage.getItem('cookies_allowed') !== 'YES';
+    
+      this.buttonText = localStorage.getItem("ButtonText");
+      this.newTabLink = localStorage.getItem("ButtonLink");
     } catch (e) {
       this.isBanner = false;
     }
+  },
+  methods:{
+    openNewTab() {
+      // Open a new tab with the specified link
+      window.open(this.newTabLink, "_blank");
+    },
   }
 }
 

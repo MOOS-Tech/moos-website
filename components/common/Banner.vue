@@ -6,11 +6,12 @@
       <p class="flex text-sm leading-6 text-white">
         <img src="~assets/images/cookie.png" alt="Image Description" class="mx-2 h-6 w-6" v-if="isimageVisible"/>
         <a :href="redirectUrl" target="_blank" rel="noopener noreferrer">
-          <strong v-if="isboldText" class="font-semibold">{{ title_bold }}&nbsp;</strong>{{ title }}&nbsp;&nbsp;<strong
+          <strong v-if="isboldText" class="font-semibold">{{ title_bold }}&nbsp;</strong>{{ title }}&nbsp;&nbsp;
+        </a>
+        <a  href="/CESLasVegas2024" ><strong
             class="font-semibold">{{
             boldSub_title
-          }}</strong>&nbsp; <i class="fas fa-arrow-right"></i>
-        </a>
+          }}</strong>&nbsp; <i class="fas fa-arrow-right"></i></a>
       </p>
       <div class="flex items-center justify-center">
         <NuxtLink v-if="isButtonVisible" @click="allow()"
@@ -37,7 +38,7 @@ export default {
     title: "",
     boldSub_title: "",
     title_bold: "",
-    redirectUrl: "",
+    redirectUrl: "moos.nu/ceslasvegas",
     isButtonVisible: {
       type: Boolean,
       default: true,

@@ -15,6 +15,7 @@
 
     <!-- ====== Partner Section-->
     <PartnerCarousel
+    v-if = " this.partners.length !== 0  "
         :baseUrl="baseUrl"
         :partners="partners"
         :partnerImages="partnerImages"
@@ -22,18 +23,21 @@
 
     <!-- ====== Quote Section-->
     <Quote
+    v-if="Quote.length > 0"
         :Quote="Quote"
         :Speaker="Speaker"
         :class="animate"/>
 
     <!-- ====== Card Sections-->
     <CardView
+    v-if="cardData.length > 0"
         :baseUrl="baseUrl"
         :cards="cards"
         :cardData="cardData"/>
 
     <!-- ====== Map and the Contact Section-->
     <MapAndContact/>
+    <FloatingButton/>
   </div>
 </template>
 
@@ -52,6 +56,7 @@ import {getTitle, getImages} from "@/services/home.js";
 import {getPatners} from "@/services/home.js";
 import {getQuotes} from "@/services/home.js";
 import {getCardViews} from "@/services/home.js";
+import FloatingButton from '~/components/common/FloatingButton.vue';
 
 export default {
   name: "index",
@@ -61,7 +66,8 @@ export default {
     HeroSection,
     PartnerCarousel,
     Quote,
-    CardView
+    CardView,
+    FloatingButton
   },
   computed: {
     loading() {

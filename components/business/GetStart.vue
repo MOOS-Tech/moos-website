@@ -26,7 +26,7 @@
             >
               {{ card.title }}
             </h5>
-            <p class="mb-4 text-regular-title-heading text-neutral-600 mx-2">
+            <p class="mb-4 text-md text-neutral-600 mx-2">
               {{ card.description }}
             </p>
           </div>

@@ -9,14 +9,16 @@
             <div class="flex flex-col space-y-4 p-4">
               <div v-for="card in cardData" :key="card.id" class="bg-white p-4 rounded-lg shadow-md">
                 <h2 class="text-regular-title-heading font-semibold">{{ card.title }}</h2>
+                <div class="flex justify-left mt-3 ">
                 <ul>
-                  <li v-for="description in card.qualifications" :key="description.id" class="sm:text-sm">
+                  <li v-for="description in card.qualifications" :key="description.id" class="sm:text-md flex item-start">
                     <span class="text-green-500 mr-2">
                       <i class="fas fa-check"></i>
                     </span>
                     {{ description }}
                   </li>
                 </ul>
+                </div>
                 <div class="flex gap-2">
                   <div>
                     <button class="bg-green-200 text-white px-4 py-1 rounded-md mt-4" @click="openLink(card.link)">View

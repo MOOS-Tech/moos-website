@@ -22,7 +22,7 @@
               class="lg:inline-flex lg:w-auto w-full flex-grow px-5 py-2 mr-5  rounded text-white items-center  hover:bg-white hover:bg-opacity-25 hover:text-white text-left"
               style="border: 1px solid transparent; transition: border-color 0.3s;" @mouseover="setBorderColor('white')"
               @mouseleave="setBorderColor('transparent')">
-              <span>{{ item.attributes.nav_title }}</span>
+              <span class="text-md">{{ item.attributes.nav_title }}</span>
             </NuxtLink>
           </div>
 
@@ -34,7 +34,7 @@
                 style="border: 1px solid transparent; transition: border-color 0.3s;" @mouseover="setBorderColor('white')"
                 @mouseleave="setBorderColor('transparent')"  @click="toggleDropdown">
                 <div class="flex items-center group">
-                  <span class="flex-grow">{{ item.attributes.nav_title }}</span>
+                  <span class="flex-grow text-md">{{ item.attributes.nav_title }}</span>
                   <i class="fa fa-angle-down ml-2" aria-hidden="true"></i>
                 </div>
               </button>
@@ -69,16 +69,16 @@
             <a v-if="action.attributes.type === 'link'"
               class="lg:inline-flex lg:w-auto w-full px-5 py-2 rounded text-white items-center justify-center underline"
               :href="action.attributes.url" target="_blank" rel="noopener noreferrer">
-              <span>{{ action.attributes.name }}</span>
+              <span class="text-md">{{ action.attributes.name }}</span>
             </a>
           </div>
           <div
             class="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start flex flex-col lg:h-auto">
             <a v-if="action.attributes.type === 'button'"
               class="lg:inline-flex lg:w-auto w-full px-5 py-2 rounded text-white items-center justify-center" href="#">
-              <NuxtLink :to="action.attributes.url"
+              <NuxtLink :to="action.attributes.url"  target="_blank"
                 class="lg:inline-flex lg:w-auto w-full px-5 py-2 mr-5  rounded text-white items-center justify-center bg-white bg-opacity-25 border border-white hover:bg-white  hover:bg-opacity-25 hover:text-white">
-                <span> {{ action.attributes.name }}</span>
+                <span class="text-md"> {{ action.attributes.name }}</span>
               </NuxtLink>
             </a>
           </div>
@@ -109,7 +109,10 @@ export default {
       isNavOpen: false,
       isDropdownOpen: false,
       navItems: [],
-      navActions: []
+      navActions: [],
+      buttonText:"",
+      newTabLink: "",
+
     };
   },
   methods: {
@@ -132,6 +135,17 @@ export default {
   async mounted() {
     this.navItems = await getNavbar();
     this.navActions = await getNavbarActions();
+    if (this.navActions[0].id == 2){
+        this.buttonText = this.navActions[0].attributes.name
+        this.newTabLink = this.navActions[0].attributes.url
+        localStorage.setItem("ButtonText",  this.buttonText);
+        localStorage.setItem("ButtonLink",this.newTabLink)
+      }else{
+        this.buttonText = this.navActions[1].attributes.name
+        this.newTabLink = this.navActions[1].attributes.url
+        localStorage.setItem("ButtonText",  this.buttonText);
+        localStorage.setItem("ButtonLink",this.newTabLink)
+      }
   }
 };
 </script>

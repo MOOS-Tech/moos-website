@@ -4,7 +4,7 @@
 
       <div v-if="index % 2 === 0">
 
-        <CardImgRight
+        <!-- <CardImgRight
             :CardTitle="item.CardTitle"
             :CardBody="item.CardBody "
             :imageUrl="item.imageUrl"
@@ -13,7 +13,16 @@
             :Para="item.Para"
             :baseUrl="this.baseUrl"
             data-aos="fade-up" data-aos-duration="1000"
-        />
+        /> -->
+       <ServiceCardRight
+       :CardTitle="item.CardTitle"
+            :CardBody="item.CardBody "
+            :imageUrl="item.imageUrl"
+            :ComTitle="item.ComTitle"
+            :boldText="item.boldText"
+            :Para="item.Para"
+            :baseUrl="this.baseUrl"
+            data-aos="fade-up" data-aos-duration="1000"/>
       </div>
       <div v-else>
         <card
@@ -34,9 +43,10 @@ import card from "~/components/services/cardImgLeft.vue";
 import CardImgRight from "~/components/services/cardImgRight.vue";
 import {getAllServices} from "@/services/service"
 import {loading, toggleLoading} from '../store/store';
+import ServiceCardRight from '~/components/services/serviceCardRight.vue';
 
 export default {
-  components: {card, CardImgRight},
+  components: {card, CardImgRight, ServiceCardRight},
   name: "services",
 
   data() {
