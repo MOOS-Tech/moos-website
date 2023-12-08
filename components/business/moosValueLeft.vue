@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                             <div class="flex items-center justify-center col-span-12 md:col-span-4 value">
-                                <div class="diamond items-center justify-center flex">
+                                <div v-if="valueDes !== null " class="diamond items-center justify-center flex">
                                     <div class="text-top pb-16">{{ valuePercentage }}
                                         ​</div>
                                     <div class="text-bottom pt-5 text-xs ">{{ valueDes }}</div>

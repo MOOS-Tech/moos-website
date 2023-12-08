@@ -19,7 +19,7 @@ export const getAboutTitle = async () => {
 export const joinWithUs = async (payload) => {
     await initEndpoint();
     try {
-        return await axios.post(API_URL + `/api/common-join-with-uses`, payload);
+        return await axios.post(API_URL + `/api/job-applications`, payload);
     } catch (error) {
         return error;
     }

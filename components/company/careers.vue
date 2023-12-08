@@ -38,7 +38,7 @@
         </div>
         <section class="mt-6 mb-4 place-content-center ">
           <div class="mb-6 text-center">
-            <h1 class="text-normal-title-heading font-bold text-black-200 ">Join with us</h1>
+            <h1 class="text-normal-title-heading font-bold text-black-200 ">Join us</h1>
           </div>
           <div class="flex flex-col items-center justify-center">
             <FormSelectField ref="selectField" :name="selectedPosition" placeholder="Position" :options="options"
@@ -188,7 +188,7 @@ export default {
             name: this.customerName,
             email: this.customerEmail,
             position: this.selectedPosition,
-            linkedIn_profile: this.customerLinkedin,
+            linkedin_profile: this.customerLinkedin,
             resume_link: resume.data[0].url,
           }
         }
