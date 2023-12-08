@@ -10,14 +10,15 @@
               <div v-for="card in cardData" :key="card.id" class="bg-white p-4 rounded-lg shadow-md">
                 <h2 class="text-regular-title-heading font-semibold">{{ card.title }}</h2>
                 <div class="flex justify-left mt-3 ">
-                <ul>
-                  <li v-for="description in card.qualifications" :key="description.id" class="sm:text-md flex item-start">
-                    <span class="text-green-500 mr-2">
-                      <i class="fas fa-check"></i>
-                    </span>
-                    {{ description }}
-                  </li>
-                </ul>
+                  <ul>
+                    <li v-for="description in card.qualifications" :key="description.id"
+                      class="sm:text-md flex item-start">
+                      <span class="text-green-500 mr-2">
+                        <i class="fas fa-check"></i>
+                      </span>
+                      {{ description }}
+                    </li>
+                  </ul>
                 </div>
                 <div class="flex gap-2">
                   <div>
@@ -123,7 +124,7 @@ export default {
   },
   computed: {
     emailValidationErrorMessage() {
-    
+
       if (!this.customerEmail && this.isFormSubmitted) {
         return 'Email is required.';
       } else {
@@ -217,7 +218,7 @@ export default {
         this.cardData = this.cards.map(card => ({
           title: card.attributes.job_title,
           qualifications: card.attributes.qualifications.data.map(description => description.attributes.qualification),
-          link: card.attributes.link
+          link: card.attributes.pdf_file.data.attributes.url? card.attributes.pdf_file.data.attributes.url: ""
         }));
         this.options = [];
         for (let i = 0; i < this.cardData.length; i++) {

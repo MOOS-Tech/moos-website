@@ -7,7 +7,7 @@
       >
         <div
             class="relative flex flex-col items-center text-left lg:text-left lg:py-7 xl:py-8
-        lg:items-start lg:max-w-none max-w-3xl mx-auto lg:mx-0  lg:w-2/3"
+        lg:items-start lg:max-w-none max-w-3xl mx-auto lg:mx-0  "
         >
           <CommonTitle v-if="ComTitle" :CardTitle="ComTitle" :BoldText="boldText"/>
           <P class="text-black-200 text-md mt-8">{{ Para }}</P>
