@@ -8,13 +8,14 @@
 
         <div v-for="(card, index) in cardData" :key="index"
           :class="['bg-white', 'rounded-lg', index !== cardData.length - 1 ? 'border-r' : '']">
-          <a href="#!">
+          <a href="/CESLasVegas2024">
             <img :src="computeURL(card.url)" alt="Image Alt Text" class="h-80 w-100 mx-auto mt-4 rounded-md" />
           </a>
           <div class="p-6">
-            <h5 class="mb-2 text-small-title-heading text-black-200 text-center">
+            <a href="/CESLasVegas2024"> <h5 class="mb-2 text-small-title-heading text-black-200 text-center">
               {{ card.title }}
             </h5>
+            </a>
             <p class="mb-4 text-md text-black-200">
               {{ card.description }}
             </p>

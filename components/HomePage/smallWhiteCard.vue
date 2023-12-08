@@ -25,9 +25,12 @@
 
     </div>
     <div class="mt-10 flex flex-col items-center gap-4 lg:flex-row ">
-      <FormButton class="bg-white border-2 border-green-200 text-green-200 !important">
+      <a :href="'/services?scrollToTarget=true&index=' + index">
+        <FormButton class="bg-white border-2 border-green-200 text-green-200 !important" >
         Learn More
       </FormButton>
+      </a>
+      
     </div>
   </article>
 </template>
@@ -62,5 +65,6 @@ export default {
       console.error("Error fetching data:", error);
     }
   },
+
 };
 </script>

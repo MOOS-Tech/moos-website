@@ -13,7 +13,7 @@
           <h1 class="text-normal-title-heading pb-6 text-black-200 font-semibold py-2">
             {{ card.title }}
           </h1>
-          <h2 class="font-semibold text-sub-title-heading pb-6" style="color: rgba(68, 68, 68, 0.6);">{{ card.description }}</h2>
+          <h2 class="font-semibold text-sub-title-heading pb-6 text-black-200" >{{ card.description }}</h2>
         </div>
         <div
           class="px-10 flex flex-1  lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto  justify-end items-center technology-image">
