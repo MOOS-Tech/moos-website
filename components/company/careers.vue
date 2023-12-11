@@ -38,7 +38,7 @@
         </div>
         <section class="mt-6 mb-4 place-content-center ">
           <div class="mb-6 text-center">
-            <h1 class="text-normal-title-heading font-bold text-black-200 ">Join us</h1>
+            <h1 class="text-normal-title-heading font-bold text-black-200 ">{{ career_sub_topic }}</h1>
           </div>
           <div class="flex flex-col items-center justify-center">
             <FormSelectField ref="selectField" :name="selectedPosition" placeholder="Position" :options="options"
@@ -79,6 +79,7 @@ import FormSelectField from "@/components/common/Form/FormSelectField";
 import FormLargeTextBox from "@/components/common/Form/FormLargeTextBox";
 import { joinWithUs, getCareerPositions, uploadFile } from "@/services/about.js";
 import Notification from '../common/Notification.vue';
+import { getSubTopics } from "../../services/home.js";
 import CheckEmail from "@/util/CheckEmail.js";
 
 export default {
@@ -116,11 +117,13 @@ export default {
       FileValidationErrorMessage: "",
       positionValidationErrorMessage: "",
       isFormSubmitted: false,
+      career_sub_topic:""
     }
   },
 
   async created() {
     await this.fetchCareerPositions();
+    await this.getSubTopics();
   },
   computed: {
     emailValidationErrorMessage() {
@@ -251,7 +254,19 @@ export default {
         this.customerName && this.customerEmail && this.customerLinkedin && this.selectedPosition && this.selectedFileName
 
       );
-    }
+    },
+    async getSubTopics() {
+      const id = '5';
+     
+      try {
+        const response = await getSubTopics(id);
+        this.career_sub_topic = response.data.data.attributes.topic
+
+      
+      } catch (error) {
+        console.error("Error fetching data:");
+      }
+    },
 
 
   }

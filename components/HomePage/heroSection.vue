@@ -8,7 +8,7 @@
             <div
                 class="relative flex flex-col items-center text-center lg:text-left lg:items-start  lg:py-7 lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1">
 
-              <CommonTitle v-if="ComTitle" :CardTitle="ComTitle" :BoldText="boldText"/>
+              <CommonTitle v-if= "ComTitle" :CardTitle="ComTitle" :BoldText="boldText"/>
               <p class="mt-8 text-black-200 text-md">
                 {{ para }}
               </p>
@@ -74,9 +74,9 @@ export default {
   },
   data() {
     return {
-      paragraph: "raises $100 million in funding!",
-      boldText: "Learn More",
-      title: "MOOS",
+      paragraph: "",
+      banner_boldText: "",
+      title: "",
       redirectUrl: '',
       isBanner: false,
       buttonText:"",
@@ -91,15 +91,17 @@ export default {
   },
   async mounted() {
     try {
-      let res = await getBanner(2);
-      this.title = res.boldText;
-      this.boldText = res.underline_word;
-      this.paragraph = res.Paragraph;
-      this.redirectUrl = res.url;
-      this.isBanner = localStorage.getItem('cookies_allowed') !== 'YES';
+      // let res = await getBanner(2);
+      // this.title = res.boldText;
+      // this.banner_boldText = res.underline_word;
+      // this.paragraph = res.Paragraph;
+      // this.redirectUrl = res.url;
+      // this.isBanner = localStorage.getItem('cookies_allowed') !== 'YES';
     
       this.buttonText = localStorage.getItem("ButtonText");
       this.newTabLink = localStorage.getItem("ButtonLink");
+
+      console.log("Data hero section", this.boldText)
     } catch (e) {
       this.isBanner = false;
     }

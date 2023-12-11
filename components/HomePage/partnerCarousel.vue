@@ -1,7 +1,7 @@
 <template>
   <section class="pt-20 lg:max-w-7xl w-full sm:px-10 md:px-12 px-5 lg:px-10 flex mx-auto flex-col justify-center">
     <div class="mx-auto max-w-2xl lg:mx-0">
-      <h3 class="font-bold text-small-title-heading text-black-100">OUR PARTNERS</h3>
+      <h3 class="font-bold text-small-title-heading text-black-100">{{ partner_sub_topic }}</h3>
     </div>
     <div class=" py-5 pb-10 ">
       <div class="mx-auto max-w-5xl px-6 lg:px-8 lg-flex-row">
@@ -45,7 +45,8 @@ export default {
   props: {
     baseUrl: String,
     partners: [],
-    partnerImages: []
+    partnerImages: [],
+    partner_sub_topic:""
   }
 }
 </script>

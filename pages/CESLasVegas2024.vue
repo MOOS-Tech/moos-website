@@ -56,7 +56,7 @@
             </div>
             <div class="mx-auto max-w-7xl mt-16 flow-root sm:mt-40 ">
                 <div class=" rounded-xl  p-2  lg:-m-4 lg:rounded-2xl lg:p-4  ">
-                    <img src="@/assets/images/carreerBg.png" alt="App screenshot" width="1100" height="900"
+                    <img src="@/assets/images/CESImage.png" alt="App screenshot" width="1000" height="900"
                         class="mx-auto rounded-md   " />
                 </div>
             </div>
@@ -76,12 +76,13 @@ export default {
                 {
                     title: "For Clients",
                     mail: "sales@moos.nu",
-                    description: "Our main goal during CES is to meet potential partners to collaborate with. Specifically, organizations that offer complementary technologies like Learning Management Systems and Performance Tools."
+                    description: "Meet us at CES as we seek to connect with potential partners. Our focus is on elevating inventory operations for forward-thinking organizations. Additionally, we're looking to form alliances with tech innovators in both software and hardware domains."
                 },
                 {
                     title: "For Press",
                     mail: "press@moos.nu",
-                    description: "We can't wait to show our product to the rest of the world! More information can be found in our press kit."
+                    description: "At CES, we're thrilled to show our groundbreaking product to the world. We are eager to engage with the press. Our aim is to revolutionize inventory operations for global pioneer, so let's collaborate and shine the spotlight on this innovation.!"
+
                 }
 
             ]

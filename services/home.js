@@ -80,3 +80,13 @@ export const submitForum = async (payload) => {
         return error;
     }
 };
+export const getSubTopics= async (id) => {
+    await initEndpoint();
+    try {
+        const res = await axios.get(API_URL + `/api/section-subtopics/${id}`);
+        return res;
+    } catch (error) {
+        return error;
+    }
+};
+

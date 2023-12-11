@@ -2,7 +2,7 @@
     <div class=" py-10 sm:py-10" data-aos="fade-up" data-aos-duration="1000">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="mx-auto max-w-2xl lg:mx-0">
-                <h2 class="text-3xl font-bold  text-black-200  sm:text-3xl flex flex-col lg:flex-row">Meet our team</h2>
+                <h2 class="text-3xl font-bold  text-black-200  sm:text-3xl flex flex-col lg:flex-row">{{ team_sub_topic }}</h2>
             </div>
             <ul role="list" class="text-center mx-auto mt-20 max-w-2xl lg:mx-0 lg:max-w-none">
                 <li v-for="(person) in people" :key="person.name" class="mb-10 lg:inline-block lg:w-1/3">
@@ -29,6 +29,7 @@
 <script>
 
 import { getOurteam } from "@/services/about.js";
+import { getSubTopics } from "../../services/home.js";
 export default {
     name: "ourTeam",
     props: {
@@ -40,12 +41,14 @@ export default {
             people: [
 
             ],
-            peopleData: []
+            peopleData: [],
+            team_sub_topic:""
 
         }
     },
     async created() {
         await this.fetchOurTeam();
+        await this.getSubTopics();
 
     },
     methods: {
@@ -66,6 +69,18 @@ export default {
             }
 
         },
+        async getSubTopics() {
+      const id = '6';
+     
+      try {
+        const response = await getSubTopics(id);
+        this.team_sub_topic = response.data.data.attributes.topic
+
+      
+      } catch (error) {
+        console.error("Error fetching data:");
+      }
+    },
     }
 }
 </script>

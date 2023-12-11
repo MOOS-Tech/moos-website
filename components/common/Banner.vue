@@ -5,10 +5,10 @@
 
       <p class="flex text-sm leading-6 text-white">
         <img src="~assets/images/cookie.png" alt="Image Description" class="mx-2 h-6 w-6" v-if="isimageVisible"/>
-        <a :href="redirectUrl" target="_blank" rel="noopener noreferrer">
+        <a :href="redirectUrl2" target="_blank" rel="noopener noreferrer">
           <strong v-if="isboldText" class="font-semibold">{{ title_bold }}&nbsp;</strong>{{ title }}&nbsp;&nbsp;
         </a>
-        <a  href="/CESLasVegas2024" ><strong
+        <a  :href= "redirectUrl"><strong
             class="font-semibold">{{
             boldSub_title
           }}</strong>&nbsp; <i class="fas fa-arrow-right"></i></a>
@@ -38,7 +38,7 @@ export default {
     title: "",
     boldSub_title: "",
     title_bold: "",
-    redirectUrl: "moos.nu/ceslasvegas",
+    redirectUrl: "",
     isButtonVisible: {
       type: Boolean,
       default: true,
@@ -65,6 +65,7 @@ export default {
   data() {
     return {
       isSectionVisible: false,
+      redirectUrl2:"https://www.moos.nu/ceslasvegas#/"
     };
   },
 
