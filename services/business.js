@@ -16,6 +16,22 @@ export const getBusinessTitle = async () => {
         return error;
     }
 };
+export const getWareHouseTitle = async () => {
+    await initEndpoint();
+    try {
+        return await axios.get(API_URL + `/api/warehousing-ops-title-cards?populate=*`);
+    } catch (error) {
+        return error;
+    }
+};
+export const getDistributedStockTitle = async () => {
+    await initEndpoint();
+    try {
+        return await axios.get(API_URL + `/api/distributed-stock-title-cards?populate=*`);
+    } catch (error) {
+        return error;
+    }
+};
 export const BusinessGetStart = async () => {
     await initEndpoint();
     try {

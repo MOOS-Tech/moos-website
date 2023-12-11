@@ -4,7 +4,7 @@
       <div class="grid md:grid-cols-2 md:gap-12 lg:gap-48 bg-green-and-black">
         <section class="mt-6 mb-4 place-content-center ">
           <div class="mb-6 text-center">
-            <h1 class="text-normal-title-heading font-bold text-black-200 ">Contact Us</h1>
+            <h1 class="text-normal-title-heading font-bold text-black-200 ">{{ contact_sub_topic }}</h1>
           </div>
           <div class="flex flex-col items-center justify-center">
             <FormInput v-model="customerName" type="text" name="name" id="name" placeholder="Name"
@@ -37,7 +37,7 @@ import FormButton from "@/components/common/Form/FormButton";
 import FormSelectField from "@/components/common/Form/FormSelectField";
 import FormLargeTextBox from "@/components/common/Form/FormLargeTextBox";
 import Notification from "@/components/common/Notification";
-import { getContactTypes, submitForum } from "../../services/home.js";
+import { getContactTypes, submitForum,getSubTopics } from "../../services/home.js";
 import CheckEmail from "@/util/CheckEmail.js";
 
 export default {
@@ -62,6 +62,7 @@ export default {
       SelectValidationErrorMessage: "",
       MessageValidateErrorMessage: "",
       isFormSubmitted: false,
+      contact_sub_topic:""
     }
   },
   computed: {
@@ -96,6 +97,7 @@ export default {
     },
   },
   async mounted() {
+    await this.getSubTopics();
     let res = await getContactTypes();
     this.options = [];
     for (let i = 0; i < res.length; i++) {
@@ -128,7 +130,16 @@ export default {
       }
       
     },
-  
+    async getSubTopics() {
+      const id = '2';
+      try {
+        const response = await getSubTopics(id);
+        this.contact_sub_topic = response.data.data.attributes.topic
+      
+      } catch (error) {
+        console.error("Error fetching data:");
+      }
+    },
     async resetfn() {
     this.$refs.selectField.reset();
     this.customerName = '';

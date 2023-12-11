@@ -19,6 +19,7 @@
         :baseUrl="baseUrl"
         :partners="partners"
         :partnerImages="partnerImages"
+        :partner_sub_topic="partner_sub_topic"
     />
 
     <!-- ====== Quote Section-->
@@ -52,7 +53,7 @@ import CardView from '~/components/HomePage/cardView.vue';
 
 import {loading, toggleLoading} from '../store/store';
 
-import {getTitle, getImages} from "@/services/home.js";
+import {getTitle, getImages,getSubTopics} from "@/services/home.js";
 import {getPatners} from "@/services/home.js";
 import {getQuotes} from "@/services/home.js";
 import {getCardViews} from "@/services/home.js";
@@ -88,6 +89,7 @@ export default {
       baseUrl: 'http://localhost:1337',
       partners: [],
       partnerImages: [],
+      partner_sub_topic:"",
 
       //quote
       Quote: '',
@@ -109,6 +111,7 @@ export default {
     await this.fetchPartnerSection();
     await this.fetchQuotesSection();
     await this.fetchCardViewsSection();
+    await this.getSubTopics();
     toggleLoading(false);
     this.interval = setInterval(this.changeQuote, 3000);
   },
@@ -129,6 +132,7 @@ export default {
         this.imageSrc2 = this.baseUrl + response2.data.data.attributes.ImageUrl.data.attributes.formats.small.url;
         const response3 = await getImages('3');
         this.imageSrc3 = this.baseUrl + response3.data.data.attributes.ImageUrl.data.attributes.formats.small.url;
+       
       } catch (error) {
         console.error("Error fetching hero data:");
       }
@@ -176,7 +180,17 @@ export default {
 
         }, 3000);
       }
-    }
+    },
+    async getSubTopics() {
+      const id = '1';
+      try {
+        const response = await getSubTopics(id);
+        this.partner_sub_topic = response.data.data.attributes.topic
+      
+      } catch (error) {
+        console.error("Error fetching data:");
+      }
+    },
   }
 };
 </script>

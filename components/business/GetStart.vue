@@ -3,7 +3,7 @@
     <section class="pt-20 lg:max-w-10xl w-full sm:px-10 md:px-12 px-5 lg:px-10 py-10  mx-auto lg:max-w-7xl  bg-white">
       <!-- Title in a new row -->
       <div class="mb-10">
-        <h2 class="text-sub-title-heading font-semibold text-black-200 ">How To Get Started</h2>
+        <h2 class="text-sub-title-heading font-semibold text-black-200 ">{{ getStarted_sub_topic }}</h2>
       </div>
 
       <!-- Cards in one row with separate columns -->
@@ -39,14 +39,17 @@
   
 
 <script>
+import { getSubTopics } from "../../services/home.js";
 export default {
   name: "GetStart",
   components: {},
   props:{
-    cards:[]
+    cards:[],
+   
   },
   data() {
     return {
+      getStarted_sub_topic:""
       // cards: [
       //   {
       //     imageUrl: "https://tecdn.b-cdn.net/img/new/standard/city/041.webp",
@@ -69,6 +72,24 @@ export default {
       // ],
     };
   },
+  async created() {
+await this.getSubTopics();
+  },
+  methods:{
+    async getSubTopics() {
+     
+      const id = '4';
+      try {
+     
+      
+        const response = await getSubTopics(id);
+        this.getStarted_sub_topic = response.data.data.attributes.topic
+      
+      } catch (error) {
+        console.error("Error fetching data:");
+      }
+    },
+  }
 };
 </script>
 
