@@ -16,9 +16,9 @@
           <h2 class="font-semibold text-sub-title-heading pb-6 text-black-200" >{{ card.description }}</h2>
         </div>
         <div
-          class="px-10 flex flex-1  lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto  justify-end items-center technology-image">
+          class="px-10 flex flex-1  lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto  justify-end items-center technology-image ">
           <img :src="card.imageUrl" alt="Hero image"
-            class="lg:w-full lg:h-full  object-cover lg:max-h-none  max-w-full"  />
+            class="lg:w-full lg:h-full   lg:max-h-none  "  />
         </div>
         <!-- Dotted line divider -->
         <div v-if="index !== cardData.length - 1" class="absolute left-0 right-0 bottom-0 h-1 bg-transparent border-dashed border-b-2 border-green-100" style="border-spacing: 0px;"></div>
