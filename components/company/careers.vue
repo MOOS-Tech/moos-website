@@ -256,35 +256,26 @@ export default {
     },
     resetfn() {
       this.$refs.selectField.reset();
-      this.customerName = '',
-          this.customerEmail = ''
-      this.customerLinkedin = '',
-          this.selectedFile = '',
-          this.selectedFileName = '',
-          this.selectedPosition = ''
-
+      this.customerName = '';
+      this.customerEmail = '';
+      this.customerLinkedin = '';
+      this.selectedFile = '';
+      this.selectedFileName = '';
+      this.selectedPosition = '';
       this.isFormSubmitted = false;
-
-
     },
     validateEmail() {
       this.isFormSubmitted = false;
     },
     validateForm() {
-
-      return (
-          this.customerName && this.customerEmail && this.customerLinkedin && this.selectedPosition && this.selectedFileName
-
-      );
+      return (this.customerName && this.customerEmail && this.customerLinkedin && this.selectedPosition
+          && this.selectedFileName);
     },
     async getSubTopics() {
       const id = '5';
-
       try {
         const response = await getSubTopics(id);
-        this.career_sub_topic = response.data.data.attributes.topic
-
-
+        this.career_sub_topic = response.data.data.attributes.topic;
       } catch (error) {
         console.error("Error fetching data:");
       }
