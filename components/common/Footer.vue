@@ -4,7 +4,7 @@
       <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-3">
         <div class="sm:col-span  ">
           <a href="#" class=" mr-6  inline-flex items-center">
-            <img :src="image" alt="Image Alt Text" class="h-25 w-30 mr-2"/>
+            <img :src="computeURL(image)" alt="Image Alt Text" class="h-25 w-30 mr-2"/>
 
           </a>
 
@@ -87,6 +87,15 @@ export default {
     this.columnThree = res.footer_contacts.data[0].attributes;
     this.social = res.footer_contacts.data[0].attributes.WEARE_MOOS.data;
     console.log(this.social)
+  },
+  methods:{
+   
+    computeURL(imageURL) {
+      if (imageURL.includes("https://")) {
+        return imageURL
+      }
+      return this.baseUrl + imageURL
+    }
   }
 }
 </script>

@@ -17,7 +17,7 @@
         </div>
         <div
           class="px-10 flex flex-1  lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto  justify-end items-center technology-image ">
-          <img :src="card.imageUrl" alt="Hero image"
+          <img :src="computeURL(card.imageUrl)" alt="Hero image"
             class="lg:w-full lg:h-full   lg:max-h-none  "  />
         </div>
         <!-- Dotted line divider -->
@@ -51,7 +51,14 @@ export default {
 
   },
 
-
+  methods:{
+    computeURL(imageURL) {
+      if (imageURL.includes("https://")) {
+        return imageURL
+      }
+      return this.baseUrl + imageURL
+    }
+  }
 
 }
 

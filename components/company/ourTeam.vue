@@ -7,7 +7,7 @@
             <ul role="list" class="text-center mx-auto mt-20 max-w-2xl lg:mx-0 lg:max-w-none">
                 <li v-for="(person) in people" :key="person.name" class="mb-10 lg:inline-block lg:w-1/3">
                     <div class="flex flex-col items-center">
-                        <img class="mx-auto h-52 w-52" :src="person.imageUrl" alt="" />
+                        <img class="mx-auto h-52 w-52" :src="computeURL(person.imageUrl)" alt="" />
                         <h3 class="mt-6 text-base font-semibold leading-7 tracking-tight text-gray-900">{{ person.name }}
                         </h3>
                         <p class="text-sm leading-6 text-gray-600">{{ person.role }}</p>
@@ -81,6 +81,12 @@ export default {
         console.error("Error fetching data:");
       }
     },
+    computeURL(imageURL) {
+      if (imageURL.includes("https://")) {
+        return imageURL
+      }
+      return this.baseUrl + imageURL
+    }
     }
 }
 </script>

@@ -24,7 +24,7 @@
                                 <div class="flex items-center justify-center w-1/6  expand-horizontal-image " id="image"
                                     @mouseover="movePills" @mouseleave="resetPills"
                                     style="margin-left: -20px; margin-right: -20px;">
-                                    <img :src="imageURL" alt="Image" class="h-auto" />
+                                    <img :src="computeURL(imageURL)" alt="Image" class="h-auto" />
                                 </div>
 
                                 <div class="pill right relative lg:rounded-r-full md:rounded-r-full border-2 border-l-0 border-green-200 bg-white h-35 py-1 round-pill expand-horizontal"
@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                             <div class="flex items-center justify-center col-span-12 md:col-span-4 value">
-                                <div v-if="valueDes !== null " class="diamond items-center justify-center flex">
+                                <div v-if="valueDes !== null" class="diamond items-center justify-center flex">
                                     <div class="text-top pb-16">{{ valuePercentage }}
                                         ​</div>
                                     <div class="text-bottom pt-5 text-xs ">{{ valueDes }}</div>
@@ -126,6 +126,12 @@ export default {
             leftPill.style.transform = "translateX(0)";
             rightPill.style.transform = "translateX(0)";
         },
+        computeURL(imageURL) {
+            if (imageURL.includes("https://")) {
+                return imageURL
+            }
+            return this.baseUrl + imageURL
+        }
 
     },
 
@@ -165,10 +171,11 @@ export default {
     text-align: center;
     color: white;
 }
+
 .text-top {
     position: absolute;
     /* left: 0; */
-  
+
     transform: rotate(-45deg);
     text-align: center;
     color: white;

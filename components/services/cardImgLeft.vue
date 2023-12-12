@@ -31,7 +31,7 @@
     <section class="relative  gradient min-h-[300px]">
       <div class="w-full flex flex-col lg:flex-row">
         <div class="flex flex-1 lg:w-1/2 lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto max-w-3xl ">
-          <img :src="baseUrl + imageUrl" alt="Hero image"
+          <img :src="computeURL( imageUrl)" alt="Hero image"
             class="lg:absolute lg:w-full lg:h-full object-cover  lg:max-w-[400px] min-h-[300px]">
         </div>
         <div class="mx-auto lg:max-w-6xl w-full sm:px-10 md:px-12 flex flex-col lg:flex-row gap-12 lg:gap-40 px-10 py-10 ">
@@ -64,6 +64,14 @@
 export default {
   name: "card",
   props: ["CardTitle", "CardBody", "imageUrl", "Para", "boldText", "baseUrl"],
+  methods:{
+    computeURL(imageURL) {
+      if (imageURL.includes("https://")) {
+        return imageURL
+      }
+      return this.baseUrl + imageURL
+    }
+  }
 };
 </script>
 

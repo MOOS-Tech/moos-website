@@ -19,21 +19,21 @@
     <ul
         class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
       <li v-for="(item, index) in partnerImages" :key="index">
-        <img :src="baseUrl + item.avatar" alt="Transistor" width="158" height="48"/>
+        <img :src="computeURL(item.avatar)" alt="Transistor" width="158" height="48"/>
       </li>
 
     </ul>
     <ul class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll"
         aria-hidden="true">
       <li v-for="(item, index) in partnerImages" :key="index">
-        <img :src="baseUrl + item.avatar" alt="Transistor" width="158" height="48"/>
+        <img :src="computeURL(item.avatar)" alt="Transistor" width="158" height="48"/>
       </li>
 
     </ul>
     <ul class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll"
         aria-hidden="true">
       <li v-for="(item, index) in partnerImages" :key="index">
-        <img :src="baseUrl + item.avatar" alt="Transistor" width="158" height="48"/>
+        <img :src="computeURL(item.avatar)" alt="Transistor" width="158" height="48"/>
       </li>
 
     </ul>
@@ -47,6 +47,14 @@ export default {
     partners: [],
     partnerImages: [],
     partner_sub_topic:""
+  },
+  methods:{
+    computeURL(imageURL) {
+      if (imageURL.includes("https://")) {
+        return imageURL
+      }
+      return this.baseUrl + imageURL
+    }
   }
 }
 </script>
