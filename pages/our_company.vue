@@ -61,48 +61,115 @@ export default {
   },
   methods: {
     async fetchTitleSection() {
-
       try {
         const response = await getAboutTitle();
         console.log(response.data.data[0])
-        this.ComTitle = response.data.data[0].attributes.common_title.data.attributes.CommonTitle
-        this.boldText = response.data.data[0].attributes.common_title.data.attributes.boldText
-        this.Para = response.data.data[0].attributes.common_title.data.attributes.Paragraph
-        this.cardTitle = response.data.data[0].attributes.sub_title
-        this.imageUrl = response.data.data[0].attributes.image_url.data.attributes.url
-        this.cardBbody = response.data.data[0].attributes.points.data.map(data => (data.attributes.bullet_point));
+        try {
+          this.ComTitle = response.data.data[0].attributes.common_title.data.attributes.CommonTitle
+        }catch (e) {
+          this.ComTitle = "";
+        }
+        try {
+          this.boldText = response.data.data[0].attributes.common_title.data.attributes.boldText
+        }catch (e) {
+          this.boldText = "";
+        }
+        try {
+          this.Para = response.data.data[0].attributes.common_title.data.attributes.Paragraph
+        }catch (e) {
+          this.Para = "";
+        }
+        try {
+          this.cardTitle = response.data.data[0].attributes.sub_title
+        }catch (e) {
+          this.cardTitle = "";
+        }
+        try {
+          this.imageUrl = response.data.data[0].attributes.image_url.data.attributes.url
+        }catch (e) {
+          this.imageUrl = "";
+        }
+        try {
+          this.cardBbody = response.data.data[0].attributes.points.data.map(data => (data.attributes.bullet_point));
+        }catch (e) {
+          this.cardBbody = "";
+        }
       } catch (error) {
         console.error("Error fetching  data:");
       }
 
     },
     async fetchCareerPositions() {
-
       try {
         const response = await getCareerPositions();
         this.cards = response.data.data
-        this.cardData = this.cards.map(card => ({
-          title: card.attributes.job_title,
-          qualifications: card.attributes.qualifications.data.map(description => description.attributes.qualification),
-        }));
+        this.cardData = this.cards.map(card => {
+          try {
+            let title;
+            try {
+              title = card.attributes.job_title;
+            } catch (e) {
+              title = '';
+            }
 
+            let qualifications;
+            try {
+              qualifications = card.attributes.qualifications.data.map(description => description.attributes.qualification);
+            } catch (e) {
+              qualifications = [];
+            }
+
+            return { title, qualifications };
+          } catch (e) {
+            console.error('Error in mapping card data:', e);
+            return {};
+          }
+        });
       } catch (error) {
         console.error("Error fetching  data:");
       }
 
     },
     async fetchOurTeam() {
-
       try {
         const response = await getOurteam();
         this.peopleData = response.data.data
-        this.people = this.peopleData.map(person => ({
-          name: person.attributes.name,
-          imageUrl: person.attributes.image.data.attributes.url,
-          role: person.attributes.position,
-          linkedinUrl: person.attributes.LinkedIn
-        }));
+        this.people = this.peopleData.map(person => {
+          try {
+            let name;
+            try {
+              name = person.attributes.name;
+            } catch (e) {
+              name = '';
+            }
 
+            let imageUrl;
+            try {
+              imageUrl = person.attributes.image.data.attributes.url;
+            } catch (e) {
+              imageUrl = '';
+            }
+
+            let role;
+            try {
+              role = person.attributes.position;
+            } catch (e) {
+              role = '';
+            }
+
+            let linkedinUrl;
+            try {
+              linkedinUrl = person.attributes.LinkedIn;
+            } catch (e) {
+              linkedinUrl = '';
+            }
+
+            return { name, imageUrl, role, linkedinUrl };
+          } catch (e) {
+            console.error('Error in mapping people data:', e);
+            return {};
+          }
+        });
       } catch (error) {
         console.error("Error fetching  data:");
       }
