@@ -25,9 +25,9 @@
 
     </div>
     <div class="mt-10 flex flex-col items-center gap-4 lg:flex-row ">
-      <a :href="'/services?scrollToTarget=true&index=' + index">
+      <a :href="'/services?scrollToTarget=true&index=' + item.ID">
         <FormButton class="bg-white border-2 border-green-200 text-green-200 !important" >
-        Learn More
+       {{ item.button_name }}
       </FormButton>
       </a>
       
@@ -47,7 +47,9 @@ export default {
   data() {
     return {
       items: [],
-      itemCards: []
+      itemCards: [],
+      ID:"",
+      button_name:""
     };
   },
   async created() {
@@ -79,7 +81,8 @@ export default {
 
           let blogs;
           try {
-            blogs = item.attributes.learn_more_card_arrays.data.map(blog => blog.attributes.blogs);
+            ID: item.id,
+        button_name: item.attributes.button_name,blogs = item.attributes.learn_more_card_arrays.data.map(blog => blog.attributes.blogs);
           } catch (e) {
             blogs = [];
           }

@@ -48,3 +48,11 @@ export const getOurteam = async () => {
         return error;
     }
 };
+export const getCareerPaeImage = async () => {
+    await initEndpoint();
+    try {
+        return await axios.get(API_URL + `/api/our-company-page-vacancy-images/1?populate=*`);
+    } catch (error) {
+        return error;
+    }
+};

@@ -4,7 +4,7 @@
       <ServiceHeroSection  :CardBody="heroCardbody" :imageUrl="heroimageUrl" :ComTitle="heroTitle"
         :boldText="heroBold" :Para="heroPara" :baseUrl="this.baseUrl" data-aos="fade-up" data-aos-duration="1000" />
     </div>
-    <div v-for="(item, index) in cardDetails" :key="index" :id="'section-' + index" ref="sections">
+    <div v-for="(item, index) in cardDetails" :key="index" :id="'section-' + index " ref="sections">
 
       <div v-if="index % 2 === 0">
         <card :CardTitle="item.CardTitle" :CardBody="item.CardBody" :imageUrl="item.imageUrl" :Para="item.Para"
@@ -51,7 +51,8 @@ export default {
       heroimageUrl: "",
       heroCardbody: [],
       heroBold: "",
-      
+      ID:""
+
 
     };
   },
@@ -75,6 +76,7 @@ export default {
       this.scrollToTargetSection();
       console.log("scroll")
     }
+
   },
   async created() {
     toggleLoading(true);
@@ -173,18 +175,18 @@ export default {
 
     scrollToTargetSection() {
       this.indexFromUrl = parseInt(this.$route.query.index, 10);
-      if (this.indexFromUrl === 0) {
-        const targetSection = this.$refs.sections[1];
-        if (targetSection) {
-          targetSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      } else if (this.indexFromUrl === 1) {
-        const targetSection = this.$refs.sections[2];
+      if (this.indexFromUrl === 1) {
+        const targetSection = this.$refs.sections[0];
         if (targetSection) {
           targetSection.scrollIntoView({ behavior: 'smooth' });
         }
       } else if (this.indexFromUrl === 2) {
-        const targetSection = this.$refs.sections[3];
+        const targetSection = this.$refs.sections[1];
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else if (this.indexFromUrl === 3) {
+        const targetSection = this.$refs.sections[2];
         if (targetSection) {
           targetSection.scrollIntoView({ behavior: 'smooth' });
         }
