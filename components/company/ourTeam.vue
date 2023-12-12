@@ -38,32 +38,50 @@ export default {
     },
     data() {
         return {
-            people: [
-
-            ],
+          people: [],
             peopleData: [],
             team_sub_topic:""
-
         }
     },
     async created() {
         await this.fetchOurTeam();
         await this.getSubTopics();
-
     },
     methods: {
         async fetchOurTeam() {
-
             try {
                 const response = await getOurteam();
-                this.peopleData = response.data.data
-                this.people = this.peopleData.map(person => ({
-                    name: person.attributes.name,
-                    imageUrl: person.attributes.image.data.attributes.url,
-                    role: person.attributes.position,
-                    linkedinUrl: person.attributes.LinkedIn
-                }));
-
+              this.peopleData = response.data.data;
+              // this.people = this.peopleData.map(person => ({
+              //     name: person.attributes.name,
+              //     imageUrl: person.attributes.image.data.attributes.url,
+              //     role: person.attributes.position,
+              //     linkedinUrl: person.attributes.LinkedIn
+              // }));
+              for (let i = 0; i < this.peopleData.length; i++) {
+                let person = {};
+                try {
+                  person.name = this.peopleData[i].attributes.name
+                } catch (e) {
+                  person.name = 'Unknown'
+                }
+                try {
+                  person.imageUrl = this.peopleData[i].attributes.image.data.attributes.url;
+                } catch (e) {
+                  person.imageUrl = ""
+                }
+                try {
+                  person.role = this.peopleData[i].attributes.position;
+                } catch (e) {
+                  person.role = "N/A"
+                }
+                try {
+                  person.linkedinUrl = this.peopleData[i].attributes.LinkedIn;
+                } catch (e) {
+                  person.linkedinUrl = "";
+                }
+                this.people.push(person);
+              }
             } catch (error) {
                 console.error("Error fetching  data:");
             }
