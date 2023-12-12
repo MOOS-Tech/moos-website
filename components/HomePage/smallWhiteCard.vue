@@ -81,13 +81,20 @@ export default {
 
           let blogs;
           try {
-            ID: item.id,
-        button_name: item.attributes.button_name,blogs = item.attributes.learn_more_card_arrays.data.map(blog => blog.attributes.blogs);
+            blogs = item.attributes.learn_more_card_arrays.data.map(blog => blog.attributes.blogs);
           } catch (e) {
             blogs = [];
           }
-
-          return { title, description, url, blogs };
+          let ID;
+          let button_name;
+          try {
+            ID = item.id;
+            button_name = item.attributes.button_name;
+          } catch (e) {
+            ID = '';
+            button_name = '';
+          }
+          return { title, description, url, ID, button_name, blogs };
         } catch (e) {
           console.error('Error in mapping item cards:', e);
           return {};
