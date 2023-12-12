@@ -89,76 +89,107 @@ export default {
     async fetchTitlesection() {
       try {
         const response = await getServiceTitle();
-        this.heroTitle = response.data.data[0].attributes.common_title.data.attributes.CommonTitle
-        this.heroBold = response.data.data[0].attributes.common_title.data.attributes.boldText
-        this.heroPara = response.data.data[0].attributes.common_title.data.attributes.Paragraph
-        this.heroimageUrl = response.data.data[0].attributes.ImageUrl.data.attributes.formats.small.url
-        this.heroCardbody = response.data.data[0].attributes.points.data.map(data => (data.attributes.bullet_point));
+        try {
+          this.heroTitle = response.data.data[0].attributes.common_title.data.attributes.CommonTitle
+        } catch (e) {
+          this.heroTitle = "";
+        }
+        try {
+          this.heroBold = response.data.data[0].attributes.common_title.data.attributes.boldText
+        } catch (e) {
+          this.heroBold = "";
+        }
+        try {
+          this.heroPara = response.data.data[0].attributes.common_title.data.attributes.Paragraph
+        } catch (e) {
+          this.heroPara = "";
+        }
+        try {
+          this.heroimageUrl = response.data.data[0].attributes.ImageUrl.data.attributes.formats.small.url
+        } catch (e) {
+          this.heroimageUrl = "";
+        }
+        try {
+          this.heroCardbody = response.data.data[0].attributes.points.data.map(data => (data.attributes.bullet_point));
+        } catch (e) {
+          this.heroCardbody = "";
+        }
       } catch (error) {
         console.error("Error fetching  data:");
       }
     },
 
     async fetchAllServices() {
-
       try {
         const response = await getAllServices();
         this.cards = response.data.data
         console.log(this.cards);
-        this.cardDetails = this.cards.map(item => ({
-          CardTitle: item.attributes.CardTitle,
-          CardBody: item.attributes.service_card_bodies.data,
-          ComTitle: item.attributes.ComTitle,
-          imageUrl: item.attributes.imageUrl.data.attributes.url,
-          boldText: item.attributes.boldtext,
-          Para: item.attributes.Paragraph,
-        }));
-
-
+        // this.cardDetails = this.cards.map(item => ({
+        //   CardTitle: item.attributes.CardTitle,
+        //   CardBody: item.attributes.service_card_bodies.data,
+        //   ComTitle: item.attributes.ComTitle,
+        //   imageUrl: item.attributes.imageUrl.data.attributes.url,
+        //   boldText: item.attributes.boldtext,
+        //   Para: item.attributes.Paragraph,
+        // }));
+        for (let i = 0; i < this.cards.length; i++) {
+          let card = {};
+          try {
+            card.CardTitle = this.cards[i].attributes.CardTitle
+          } catch (e) {
+            card.CardTitle = "";
+          }
+          try {
+            card.CardBody = this.cards[i].attributes.service_card_bodies.data
+          } catch (e) {
+            card.CardBody = "";
+          }
+          try {
+            card.ComTitle = this.cards[i].attributes.ComTitle
+          } catch (e) {
+            card.ComTitle = "";
+          }
+          try {
+            card.imageUrl = this.cards[i].attributes.imageUrl.data.attributes.url
+          } catch (e) {
+            card.imageUrl = "";
+          }
+          try {
+            card.boldText = this.cards[i].attributes.boldtext
+          } catch (e) {
+            card.boldText = "";
+          }
+          try {
+            card.Para = this.cards[i].attributes.Paragraph
+          } catch (e) {
+            card.Para = "";
+          }
+          this.cardDetails.push(card);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
-
     },
 
     scrollToTargetSection() {
       this.indexFromUrl = parseInt(this.$route.query.index, 10);
-
       if (this.indexFromUrl === 0) {
-
         const targetSection = this.$refs.sections[1];
-        console.log("targetSection:", targetSection);
-
         if (targetSection) {
           targetSection.scrollIntoView({ behavior: 'smooth' });
         }
-
       } else if (this.indexFromUrl === 1) {
-
         const targetSection = this.$refs.sections[2];
-        console.log("targetSection:", targetSection);
-
         if (targetSection) {
           targetSection.scrollIntoView({ behavior: 'smooth' });
         }
-
       } else if (this.indexFromUrl === 2) {
-
         const targetSection = this.$refs.sections[3];
-        console.log("targetSection:", targetSection);
-
         if (targetSection) {
           targetSection.scrollIntoView({ behavior: 'smooth' });
         }
-
       }
-    },
-
-
-
-
-
-
+    }
   }
 };
 </script>
