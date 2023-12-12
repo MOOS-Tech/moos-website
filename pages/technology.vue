@@ -57,13 +57,28 @@ export default {
   },
   methods: {
     async fetchTitleSection() {
-
       try {
         const response = await getTechnologyTitle();
-        this.ComTitle = response.data.data.attributes.title.data.attributes.CommonTitle
-        this.boldText = response.data.data.attributes.title.data.attributes.boldText
-        this.Para = response.data.data.attributes.title.data.attributes.Paragraph
-        this.imageUrl = response.data.data.attributes.ImageUrl.data.attributes.formats.small.url
+        try {
+          this.ComTitle = response.data.data.attributes.title.data.attributes.CommonTitle
+        } catch (e) {
+          this.ComTitle = "";
+        }
+        try {
+          this.boldText = response.data.data.attributes.title.data.attributes.boldText
+        } catch (e) {
+          this.boldText = "";
+        }
+        try {
+          this.Para = response.data.data.attributes.title.data.attributes.Paragraph
+        } catch (e) {
+          this.Para = "";
+        }
+        try {
+          this.imageUrl = response.data.data.attributes.ImageUrl.data.attributes.formats.small.url
+        } catch (e) {
+          this.imageUrl = "";
+        }
       } catch (error) {
         console.error("Error fetching  data:");
       }
@@ -74,15 +89,36 @@ export default {
      try {
        const response = await getTechProcess();
        this.cards = response.data.data
-       console.log( "this cards",this.cards)
-        this.cardData = this.cards.map(card => ({
-          title: card.attributes.title,
-          description: card.attributes.sub_title,
-          techText: card.attributes.tech_flow_text,
-          imageUrl: card.attributes.imageUrl.data.attributes.formats.small.url,
-        }));
-
-
+       // this.cardData = this.cards.map(card => ({
+       //   title: card.attributes.title,
+       //   description: card.attributes.sub_title,
+       //   techText: card.attributes.tech_flow_text,
+       //   imageUrl: card.attributes.imageUrl.data.attributes.formats.small.url,
+       // }));
+       for (let i = 0; i < this.cards.length; i++) {
+         let tech = {};
+         try {
+           tech.title = this.cards[i].attributes.title;
+         } catch (e) {
+           tech.title = "";
+         }
+         try {
+           tech.description = this.cards[i].attributes.sub_title;
+         } catch (e) {
+           tech.description = "";
+         }
+         try {
+           tech.techText = this.cards[i].attributes.tech_flow_text;
+         } catch (e) {
+           tech.techText = "";
+         }
+         try {
+           tech.imageUrl = this.cards[i].attributes.imageUrl.data.attributes.formats.small.url;
+         } catch (e) {
+           tech.imageUrl = "";
+         }
+         this.cardData.push(tech);
+       }
      } catch (error) {
        console.error("Error fetching  data:");
      }
