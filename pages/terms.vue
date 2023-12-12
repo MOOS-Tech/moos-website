@@ -20,9 +20,17 @@ export default {
     };
   },
   mounted() {
-    this.title = localStorage.getItem('block1_title');
-    this.content = localStorage.getItem('block1_content');
-    this.content = this.content.split("\n");
+    try {
+      this.title = localStorage.getItem('block1_title');
+    } catch (e) {
+      this.title = "Title Not Defined!"
+    }
+    try {
+      this.content = localStorage.getItem('block1_content');
+      this.content = this.content.split("\n");
+    } catch (e) {
+      this.content = "Content not defined!"
+    }
   }
 };
 </script>
