@@ -81,17 +81,51 @@ export default {
     },
   },
   async mounted() {
-    const config = useRuntimeConfig();
-    this.baseUrl = config.public.API_URL ? config.public.API_URL : 'http://localhost:1337';
+    try {
+      const config = useRuntimeConfig();
+      try {
+        this.baseUrl = config.public.API_URL ? config.public.API_URL : 'http://localhost:1337';
+      } catch (e) {
+        this.baseUrl = 'http://localhost:1337';
+      }
 
+      try {
+        const res = await getFooter();
+        try {
+          this.image = res.image.data.attributes.url;
+        } catch (e) {
+          this.image = '';
+        }
 
-    const res = await getFooter();
-    this.image = res.image.data.attributes.url;
-    this.columnOne = res.footer_term_and_conditions.data;
-    this.columnTwo = res.footer_pages.data;
-    this.columnThree = res.footer_contacts.data[0].attributes;
-    this.social = res.footer_contacts.data[0].attributes.WEARE_MOOS.data;
-    console.log(this.social)
+        try {
+          this.columnOne = res.footer_term_and_conditions.data;
+        } catch (e) {
+          this.columnOne = '';
+        }
+
+        try {
+          this.columnTwo = res.footer_pages.data;
+        } catch (e) {
+          this.columnTwo = '';
+        }
+
+        try {
+          this.columnThree = res.footer_contacts.data[0].attributes;
+        } catch (e) {
+          this.columnThree = {};
+        }
+
+        try {
+          this.social = res.footer_contacts.data[0].attributes.WEARE_MOOS.data;
+        } catch (e) {
+          this.social = '';
+        }
+      } catch (error) {
+        console.error('Error fetching footer data:', error);
+      }
+    } catch (error) {
+      console.error('Error with runtime config:', error);
+    }
   },
   methods: {
     openNewTab(item) {
@@ -102,15 +136,11 @@ export default {
       // window.open('http://localhost:3000/' + item.attributes.url_link, '_blank')
     },
     computeURL(imageURL) {
-     
      if (imageURL.includes("https://")) {
-     
        return imageURL
      }else{
        return this.baseUrl + imageURL
      }
-   
-     
    }
   }
 }
