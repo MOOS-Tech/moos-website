@@ -97,13 +97,36 @@ export default {
 
       try {
         const response = await getBusinessTitle();
-        this.ComTitle = response.data.data[0].attributes.common_title.data.attributes.CommonTitle 
-        this.boldText = response.data.data[0].attributes.common_title.data.attributes.boldText
-        this.Para = response.data.data[0].attributes.common_title.data.attributes.Paragraph
-        this.cardTitle = response.data.data[0].attributes.sub_topic
-        this.imageUrl = response.data.data[0].attributes.image_url.data.attributes.url
-        this.cardBbody = response.data.data[0].attributes.points.data.map(data => (data.attributes.point));
-     
+        try {
+          this.ComTitle = response.data.data[0].attributes.common_title.data.attributes.CommonTitle;
+        } catch (e) {
+          this.ComTitle = "";
+        }
+        try {
+          this.boldText = response.data.data[0].attributes.common_title.data.attributes.boldText;
+        } catch (e) {
+          this.boldText = "";
+        }
+        try {
+          this.Para = response.data.data[0].attributes.common_title.data.attributes.Paragraph;
+        } catch (e) {
+          this.Para = "";
+        }
+        try {
+          this.cardTitle = response.data.data[0].attributes.sub_topic;
+        } catch (e) {
+          this.cardTitle = "";
+        }
+        try {
+          this.imageUrl = response.data.data[0].attributes.image_url.data.attributes.url;
+        } catch (e) {
+          this.imageUrl = "";
+        }
+        try {
+          this.cardBbody = response.data.data[0].attributes.points.data.map(data => (data.attributes.point));
+        } catch (e) {
+          this.cardBbody = "";
+        }
       } catch (error) {
         console.error("Error fetching  data:");
       }
@@ -113,11 +136,25 @@ export default {
       try {
         const response = await BusinessGetStart();
         this.cards = response.data.data
-        this.cardData = this.cards.map(card => ({
-          title: card.attributes.title,
-          description: card.attributes.Paragraph,
-
-        }));
+        // this.cardData = this.cards.map(card => ({
+        //   title: card.attributes.title,
+        //   description: card.attributes.Paragraph,
+        //
+        // }));
+        for (let i = 0; i < this.cards.length; i++) {
+          let card = {};
+          try {
+            card.title = this.cards[i].attributes.title;
+          } catch (e) {
+            card.title = "";
+          }
+          try {
+            card.description = this.cards[i].attributes.Paragraph;
+          } catch (e) {
+            card.description = "";
+          }
+          this.cardData.push(card);
+        }
       } catch (error) {
         console.error("Error fetching data:");
       }
@@ -126,17 +163,50 @@ export default {
       try {
         const response = await getUnmannedRetailMoosValues();
 
-        this.cards = response.data.data
-        this.ValueDetails = this.cards.map(card => ({
-          moosWays: card.attributes.moosways.data.map(moosways => moosways.attributes.moosway_point),
-          oldWays: card.attributes.oldways.data.map(oldWays => oldWays.attributes.old_way_point),
-          pillTitle: card.attributes.main_title,
-          valuePercentage: card.attributes.percentage,
-          valueDes: card.attributes.percentage_description,
-          imageURL: card.attributes.pill_image.data? card.attributes.pill_image.data.attributes.url : ""
-
-        }));
-        console.log("pill image",this.imageURL)
+        this.cards = response.data.data;
+        // this.ValueDetails = this.cards.map(card => ({
+        //   moosWays: card.attributes.moosways.data.map(moosways => moosways.attributes.moosway_point),
+        //   oldWays: card.attributes.oldways.data.map(oldWays => oldWays.attributes.old_way_point),
+        //   pillTitle: card.attributes.main_title,
+        //   valuePercentage: card.attributes.percentage,
+        //   valueDes: card.attributes.percentage_description,
+        //   imageURL: card.attributes.pill_image.data? card.attributes.pill_image.data.attributes.url : ""
+        //
+        // }));
+        for (let i = 0; i < this.cards.length; i++) {
+          let details = {};
+          try {
+            details.moosWays = this.cards[i].attributes.moosways.data.map(moosways => moosways.attributes.moosway_point);
+          } catch (e) {
+            details.moosWays = "";
+          }
+          try {
+            details.oldWays = this.cards[i].attributes.oldways.data.map(oldWays => oldWays.attributes.old_way_point);
+          } catch (e) {
+            details.oldWays = "";
+          }
+          try {
+            details.pillTitle = this.cards[i].attributes.main_title;
+          } catch (e) {
+            details.pillTitle = "";
+          }
+          try {
+            details.valuePercentage = this.cards[i].attributes.percentage;
+          } catch (e) {
+            details.valuePercentage = "";
+          }
+          try {
+            details.valueDes = this.cards[i].attributes.percentage_description;
+          } catch (e) {
+            details.valueDes = "";
+          }
+          try {
+            details.imageURL = this.cards[i].attributes.pill_image.data.attributes.url;
+          } catch (e) {
+            details.imageURL = "";
+          }
+          this.ValueDetails.push(details);
+        }
       } catch (error) {
         console.error(error);
       }
@@ -146,12 +216,13 @@ export default {
   },
   async getSubTopics() {
       const id = '3';
-     
       try {
         const response = await getSubTopics(id);
-        this.business_sub_topic = response.data.data.attributes.topic
-
-      
+        try {
+          this.business_sub_topic = response.data.data.attributes.topic;
+        } catch (e) {
+          this.business_sub_topic = "";
+        }
       } catch (error) {
         console.error("Error fetching data:");
       }
