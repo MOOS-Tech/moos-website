@@ -24,7 +24,8 @@
                                 <div class="flex items-center justify-center w-1/6  expand-horizontal-image " id="image"
                                     @mouseover="movePills" @mouseleave="resetPills"
                                     style="margin-left: -20px; margin-right: -20px;">
-                                    <img :src="computeURL(imageURL)" alt="Image" class="h-auto" />
+                                    <img v-if="computeURL(imageURL).includes('.')" :src="computeURL(imageURL)" alt="Image" class="h-auto" />
+                                    <img v-else src="@/assets/images/navbarLogo.png" alt="Image" class="h-auto" />
                                 </div>
 
                                 <div class="pill right relative lg:rounded-r-full md:rounded-r-full border-2 border-l-0 border-green-200 bg-white h-35 py-1 round-pill expand-horizontal"
@@ -79,7 +80,8 @@ export default {
         pillTitle: "",
         valuePercentage: "",
         valueDes: "",
-        imageURL: String
+        imageURL: String,
+        baseUrl:String
     },
 
 

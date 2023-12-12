@@ -11,7 +11,7 @@
           <div class="flex flex-col mx-auto mt-6 space-y-3 md:space-y-0 md:flex-row ">
             <div>
               <div class="flex flex-col items-start mt-5 space-y-2 ">
-                <a class="text-white  dark:hover:text-blue-400 hover:underline hover:text-blue-500"
+                <a   style="cursor: pointer;" class="text-white  dark:hover:text-blue-400 hover:underline hover:text-blue-500"
                    v-for="(item, index) in columnOne" :key="index" @click="openNewTab(item)"
                    target="_blank" rel="noopener noreferrer">
                   {{ item.attributes.name }}</a>
@@ -71,7 +71,8 @@ export default {
       columnOne: [],
       columnTwo: [],
       columnThree: [],
-      social: []
+      social: [],
+      baseUrl:""
     }
   },
   computed: {
@@ -80,6 +81,10 @@ export default {
     },
   },
   async mounted() {
+    const config = useRuntimeConfig();
+    this.baseUrl = config.public.API_URL ? config.public.API_URL : 'http://localhost:1337';
+
+
     const res = await getFooter();
     this.image = res.image.data.attributes.url;
     this.columnOne = res.footer_term_and_conditions.data;
@@ -90,10 +95,23 @@ export default {
   },
   methods: {
     openNewTab(item) {
+      console.log("item",item)
       localStorage.setItem('block1_title', item.attributes.name);
       localStorage.setItem('block1_content', item.attributes.content);
-      window.open('dev.moos.nu/' + item.attributes.url_links, '_blank')
-    }
+      window.open('https://dev.moos.nu/' + item.attributes.url_link, '_blank')
+      // window.open('http://localhost:3000/' + item.attributes.url_link, '_blank')
+    },
+    computeURL(imageURL) {
+     
+     if (imageURL.includes("https://")) {
+     
+       return imageURL
+     }else{
+       return this.baseUrl + imageURL
+     }
+   
+     
+   }
   }
 }
 </script>

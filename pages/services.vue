@@ -1,26 +1,21 @@
 <template>
   <div v-if="!loading">
+    <div>
+      <ServiceHeroSection  :CardBody="heroCardbody" :imageUrl="heroimageUrl" :ComTitle="heroTitle"
+        :boldText="heroBold" :Para="heroPara" :baseUrl="this.baseUrl" data-aos="fade-up" data-aos-duration="1000" />
+    </div>
     <div v-for="(item, index) in cardDetails" :key="index" :id="'section-' + index" ref="sections">
 
       <div v-if="index % 2 === 0">
-
-        <!-- <CardImgRight
-            :CardTitle="item.CardTitle"
-            :CardBody="item.CardBody "
-            :imageUrl="item.imageUrl"
-            :ComTitle="item.ComTitle"
-            :boldText="item.boldText"
-            :Para="item.Para"
-            :baseUrl="this.baseUrl"
-            data-aos="fade-up" data-aos-duration="1000"
-        /> -->
-        <ServiceCardRight :CardTitle="item.CardTitle" :CardBody="item.CardBody" :imageUrl="item.imageUrl"
-          :ComTitle="item.ComTitle" :boldText="item.boldText" :Para="item.Para" :baseUrl="this.baseUrl" data-aos="fade-up"
-          data-aos-duration="1000" />
-      </div>
-      <div v-else>
         <card :CardTitle="item.CardTitle" :CardBody="item.CardBody" :imageUrl="item.imageUrl" :Para="item.Para"
           :baseUrl="this.baseUrl" data-aos="fade-up" data-aos-duration="1000" />
+        
+      </div>
+      <div v-else>
+       
+          <ServiceCardRight :CardTitle="item.CardTitle" :CardBody="item.CardBody" :imageUrl="item.imageUrl"
+          :ComTitle="item.ComTitle" :boldText="item.boldText" :Para="item.Para" :baseUrl="this.baseUrl" data-aos="fade-up"
+          data-aos-duration="1000" />
       </div>
     </div>
   </div>
@@ -29,12 +24,13 @@
 <script>
 import card from "~/components/services/cardImgLeft.vue";
 import CardImgRight from "~/components/services/cardImgRight.vue";
-import { getAllServices } from "@/services/service"
+import { getAllServices, getServiceTitle } from "@/services/service"
 import { loading, toggleLoading } from '../store/store';
 import ServiceCardRight from '~/components/services/serviceCardRight.vue';
+import ServiceHeroSection from '~/components/services/serviceHeroSection.vue';
 
 export default {
-  components: { card, CardImgRight, ServiceCardRight },
+  components: { card, CardImgRight, ServiceCardRight, ServiceHeroSection },
   name: "services",
 
   data() {
@@ -50,6 +46,13 @@ export default {
       Para: "",
       indexFromUrl: null,
       sectionRefs: [],
+      heroTitle: "",
+      heroPara: "",
+      heroimageUrl: "",
+      heroCardbody: [],
+      heroBold: "",
+      
+
     };
   },
   computed: {
@@ -78,10 +81,24 @@ export default {
     const config = useRuntimeConfig();
     this.baseUrl = config.public.API_URL ? config.public.API_URL : 'http://localhost:1337';
     await this.fetchAllServices();
+    await this.fetchTitlesection();
     toggleLoading(false);
   },
 
   methods: {
+    async fetchTitlesection() {
+      try {
+        const response = await getServiceTitle();
+        this.heroTitle = response.data.data[0].attributes.common_title.data.attributes.CommonTitle
+        this.heroBold = response.data.data[0].attributes.common_title.data.attributes.boldText
+        this.heroPara = response.data.data[0].attributes.common_title.data.attributes.Paragraph
+        this.heroimageUrl = response.data.data[0].attributes.ImageUrl.data.attributes.formats.small.url
+        this.heroCardbody = response.data.data[0].attributes.points.data.map(data => (data.attributes.bullet_point));
+      } catch (error) {
+        console.error("Error fetching  data:");
+      }
+    },
+
     async fetchAllServices() {
 
       try {
@@ -103,37 +120,38 @@ export default {
       }
 
     },
+
     scrollToTargetSection() {
       this.indexFromUrl = parseInt(this.$route.query.index, 10);
 
       if (this.indexFromUrl === 0) {
-       
-          const targetSection = this.$refs.sections[1];
-          console.log("targetSection:", targetSection);
 
-          if (targetSection) {
-            targetSection.scrollIntoView({ behavior: 'smooth' });
-          }
-       
-      }else if (this.indexFromUrl === 1) {
-      
-          const targetSection = this.$refs.sections[2];
-          console.log("targetSection:", targetSection);
+        const targetSection = this.$refs.sections[1];
+        console.log("targetSection:", targetSection);
 
-          if (targetSection) {
-            targetSection.scrollIntoView({ behavior: 'smooth' });
-          }
-      
-    } else if (this.indexFromUrl === 2) {
-     
-          const targetSection = this.$refs.sections[3];
-          console.log("targetSection:", targetSection);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
 
-          if (targetSection) {
-            targetSection.scrollIntoView({ behavior: 'smooth' });
-          }
-       
-    }
+      } else if (this.indexFromUrl === 1) {
+
+        const targetSection = this.$refs.sections[2];
+        console.log("targetSection:", targetSection);
+
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+      } else if (this.indexFromUrl === 2) {
+
+        const targetSection = this.$refs.sections[3];
+        console.log("targetSection:", targetSection);
+
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+      }
     },
 
 

@@ -130,7 +130,7 @@
             pillTitle: card.attributes.main_title,
             valuePercentage: card.attributes.percentage,
             valueDes: card.attributes.percentage_description,
-            imageURL: card.attributes.pill_image.data.attributes.url
+            imageURL:  card.attributes.pill_image.data.attributes.url? card.attributes.pill_image.data.attributes.url: ""
   
           }));
           console.log("pill Title",this.pillTitle)

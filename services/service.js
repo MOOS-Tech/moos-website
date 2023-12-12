@@ -16,3 +16,11 @@ export const getAllServices = async () => {
         return error;
     }
 };
+export const getServiceTitle = async () => {
+    await initEndpoint();
+    try {
+        return await axios.get(API_URL + `/api/service-titles?populate=*`);
+    } catch (error) {
+        return error;
+    }
+};

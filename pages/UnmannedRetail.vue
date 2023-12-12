@@ -125,6 +125,7 @@ export default {
     async fetchMoosValues() {
       try {
         const response = await getUnmannedRetailMoosValues();
+
         this.cards = response.data.data
         this.ValueDetails = this.cards.map(card => ({
           moosWays: card.attributes.moosways.data.map(moosways => moosways.attributes.moosway_point),
@@ -132,12 +133,12 @@ export default {
           pillTitle: card.attributes.main_title,
           valuePercentage: card.attributes.percentage,
           valueDes: card.attributes.percentage_description,
-          imageURL: card.attributes.pill_image.data.attributes.url
+          imageURL: card.attributes.pill_image.data? card.attributes.pill_image.data.attributes.url : ""
 
         }));
         console.log("pill image",this.imageURL)
       } catch (error) {
-        console.error("Error fetching data:");
+        console.error(error);
       }
     },
     isLastValue(index) {
