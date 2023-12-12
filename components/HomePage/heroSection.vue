@@ -32,17 +32,17 @@
           </div>
           <div class="mx-auto w-full flex flex-wrap items-center gap-6 sm:gap-8 lg:contents  ">
             <div class=" order-first mb-10 flex flex-auto lg:justify-end md:justify-center lg:w-auto lg:flex-none  ">
-              <img :src="imageSrc1" alt=""
+              <img :src="computeURL(imageSrc1)" alt=""
                    class=" w-[24rem] rounded-xl bg-gray-50 object-cover relative"/>
             </div>
             <div
                 class=" contents lg:col-span-2 lg:col-end-2 lg:ml-auto lg:flex lg:items-start lg:justify-end md:justify-center lg:gap-x-10 pt-10">
               <div class=" flex flex-auto justify-end  self-end lg:w-auto lg:flex-none relative">
-                <img :src="imageSrc2" alt=""
+                <img :src="computeURL(imageSrc2)" alt=""
                      class=" w-[24rem]  flex-none rounded-xl bg-gray-50 object-cover"/>
               </div>
               <div class="flex flex-auto justify-center lg:w-auto lg:flex-none relative">
-                <img :src="imageSrc3" alt=""
+                <img :src="computeURL(imageSrc3)" alt=""
                      class=" w-[37rem]  flex-none rounded-xl bg-gray-50 object-cover"/>
               </div>
             </div>
@@ -70,7 +70,8 @@ export default {
     imageSrc3: String,
     ComTitle: String,
     boldText: String,
-    para: String
+    para: String,
+    baseUrl:String
   },
   data() {
     return {
@@ -111,6 +112,17 @@ export default {
       // Open a new tab with the specified link
       window.open(this.newTabLink, "_blank");
     },
+    computeURL(imageURL) {
+     
+      if (imageURL.includes("https://")) {
+      
+        return imageURL
+      }else{
+        return this.baseUrl + imageURL
+      }
+    
+      
+    }
   }
 }
 

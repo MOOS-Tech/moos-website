@@ -25,9 +25,9 @@
 
     </div>
     <div class="mt-10 flex flex-col items-center gap-4 lg:flex-row ">
-      <a :href="'/services?scrollToTarget=true&index=' + index">
+      <a :href="'/services?scrollToTarget=true&index=' + item.ID">
         <FormButton class="bg-white border-2 border-green-200 text-green-200 !important" >
-        Learn More
+       {{ item.button_name }}
       </FormButton>
       </a>
       
@@ -47,24 +47,55 @@ export default {
   data() {
     return {
       items: [],
-      itemCards: []
+      itemCards: [],
+      ID:"",
+      button_name:""
     };
   },
   async created() {
     try {
       const response = await smallWhiteCardGetAll();
       this.items = response.data.data;
+      this.itemCards = this.items.map(item => {
+        try {
+          let title;
+          try {
+            title = item.attributes.title;
+          } catch (e) {
+            title = '';
+          }
 
-      this.itemCards = this.items.map(item => ({
-        title: item.attributes.title,
-        description: item.attributes.description,
-        url: item.url,
-        blogs: item.attributes.learn_more_card_arrays.data.map(blog => blog.attributes.blogs),
-      }));
+          let description;
+          try {
+            description = item.attributes.description;
+          } catch (e) {
+            description = '';
+          }
+
+          let url;
+          try {
+            url = item.url;
+          } catch (e) {
+            url = '';
+          }
+
+          let blogs;
+          try {
+            ID: item.id,
+        button_name: item.attributes.button_name,blogs = item.attributes.learn_more_card_arrays.data.map(blog => blog.attributes.blogs);
+          } catch (e) {
+            blogs = [];
+          }
+
+          return { title, description, url, blogs };
+        } catch (e) {
+          console.error('Error in mapping item cards:', e);
+          return {};
+        }
+      });
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error('Error fetching data:', error);
     }
   },
-
 };
 </script>

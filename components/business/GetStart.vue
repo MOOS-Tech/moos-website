@@ -77,14 +77,10 @@ await this.getSubTopics();
   },
   methods:{
     async getSubTopics() {
-     
       const id = '4';
       try {
-     
-      
         const response = await getSubTopics(id);
-        this.getStarted_sub_topic = response.data.data.attributes.topic
-      
+        this.getStarted_sub_topic = response.data.data.attributes.topic;
       } catch (error) {
         console.error("Error fetching data:");
       }

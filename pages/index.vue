@@ -8,6 +8,7 @@
                  :ComTitle="ComTitle"
                  :boldText="boldText"
                  :para="para"
+                 :baseUrl ="baseUrl"
     />
 
     <!-- ====== Blog Section Start -->
@@ -122,17 +123,49 @@ export default {
     async fetchHeroSection() {
       try {
         const response = await getTitle();
-        this.ComTitle = response.data.data.attributes.CommonTitle
-        this.boldText = response.data.data.attributes.boldText
-        this.para = response.data.data.attributes.Paragraph
+        try {
+          try {
+            this.ComTitle = response.data.data.attributes.CommonTitle;
+          } catch (e) {
+            this.ComTitle = '';
+          }
 
-        const response1 = await getImages('1');
-        this.imageSrc1 = this.baseUrl + response1.data.data.attributes.ImageUrl.data.attributes.formats.small.url;
-        const response2 = await getImages('2');
-        this.imageSrc2 = this.baseUrl + response2.data.data.attributes.ImageUrl.data.attributes.formats.small.url;
-        const response3 = await getImages('3');
-        this.imageSrc3 = this.baseUrl + response3.data.data.attributes.ImageUrl.data.attributes.formats.small.url;
-       
+          try {
+            this.boldText = response.data.data.attributes.boldText;
+          } catch (e) {
+            this.boldText = '';
+          }
+
+          try {
+            this.para = response.data.data.attributes.Paragraph;
+          } catch (e) {
+            this.para = '';
+          }
+
+          try {
+            const response1 = await getImages('1');
+            this.imageSrc1 = response1.data.data.attributes.ImageUrl.data.attributes.formats.small.url;
+          } catch (e) {
+            this.imageSrc1 = '';
+          }
+
+          try {
+            const response2 = await getImages('2');
+            this.imageSrc2 = response2.data.data.attributes.ImageUrl.data.attributes.formats.small.url;
+          } catch (e) {
+            this.imageSrc2 = '';
+          }
+
+          try {
+            const response3 = await getImages('3');
+            this.imageSrc3 = response3.data.data.attributes.ImageUrl.data.attributes.formats.small.url;
+          } catch (e) {
+            this.imageSrc3 = '';
+          }
+        } catch (error) {
+          // Handle or log the error as needed for the outer try block
+          console.error('Error occurred while processing data', error);
+        }
       } catch (error) {
         console.error("Error fetching hero data:");
       }
@@ -141,19 +174,42 @@ export default {
       try {
         const response = await getPatners();
         this.partners = response.data.data;
-        this.partnerImages = this.partners.map(item => ({
-          avatar: item.attributes.imageUrl.data.attributes.url,
-        }));
+        this.partnerImages = this.partners.map(item => {
+          try {
+            let avatar;
+            try {
+              avatar = item.attributes.imageUrl.data.attributes.url;
+            } catch (e) {
+              avatar = '';
+            }
+            return {avatar};
+          } catch (e) {
+            console.error('Error in mapping partners:', e);
+            return {};
+          }
+        });
       } catch (error) {
-        console.error("Error fetching data:");
+        console.error('Error fetching data:', error);
       }
     },
     async fetchQuotesSection() {
       try {
         const response = await getQuotes();
-        this.Quote = response.data.data[0].attributes.Quote;
-        this.Speaker = response.data.data[0].attributes.Speaker;
-        this.quoteList = response.data.data;
+        try {
+          this.Quote = response.data.data[0].attributes.Quote;
+        } catch (e) {
+          this.Quote = "";
+        }
+        try {
+          this.Speaker = response.data.data[0].attributes.Speaker;
+        } catch (e) {
+          this.Speaker = "";
+        }
+        try {
+          this.quoteList = response.data.data;
+        } catch (e) {
+          this.quoteList = "";
+        }
       } catch (error) {
         console.error("Error fetching data:");
       }
@@ -161,23 +217,54 @@ export default {
     async fetchCardViewsSection() {
       try {
         const response = await getCardViews();
-        this.cards = response.data.data
-        this.cardData = this.cards.map(card => ({
-          title: card.attributes.title,
-          description: card.attributes.description,
-          url: card.attributes.ImageUrl.data.attributes.url,
-        }));
+        this.cards = response.data.data;
+        this.cardData = this.cards.map(card => {
+          try {
+            let title;
+            try {
+              title = card.attributes.title;
+            } catch (e) {
+              title = '';
+            }
+
+            let description;
+            try {
+              description = card.attributes.description;
+            } catch (e) {
+              description = '';
+            }
+
+            let url;
+            try {
+              url = card.attributes.ImageUrl.data.attributes.url;
+            } catch (e) {
+              url = '';
+            }
+
+            return {title, description, url};
+          } catch (e) {
+            console.error('Error in mapping card data:', e);
+            return {};
+          }
+        });
       } catch (error) {
-        console.error("Error fetching data:");
+        console.error('Error fetching data:', error);
       }
     },
     changeQuote() {
       if (this.quoteList.length !== 0) {
         const randomIndex = Math.floor(Math.random() * this.quoteList.length);
-        this.Quote = this.quoteList[randomIndex].attributes.Quote;
-        this.Speaker = this.quoteList[randomIndex].attributes.Speaker;
+        try {
+          this.Quote = this.quoteList[randomIndex].attributes.Quote;
+        } catch (e) {
+          this.Quote = "N/A";
+        }
+        try {
+          this.Speaker = this.quoteList[randomIndex].attributes.Speaker;
+        } catch (e) {
+          this.Speaker = "N/A";
+        }
         setTimeout(() => {
-
         }, 3000);
       }
     },
@@ -186,7 +273,6 @@ export default {
       try {
         const response = await getSubTopics(id);
         this.partner_sub_topic = response.data.data.attributes.topic
-      
       } catch (error) {
         console.error("Error fetching data:");
       }

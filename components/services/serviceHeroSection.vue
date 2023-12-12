@@ -18,7 +18,7 @@
           <div class="flex justify-left mt-3 ">
               <ul class="text-black-100 list-none   text-md">
               <li class="flex item-start pb-4" v-for="(point, index) in CardBody" :key="index" >
-                <i class="fas fa-check text-green-500 mr-2 mt-1 "></i>{{ point.attributes.ListItems }}
+                <i class="fas fa-check text-green-500 mr-2 mt-1 "></i>{{ point }}
               </li>
             </ul>
             </div>
@@ -67,7 +67,3 @@
   
   <style scoped>
   </style> 
-  
-  
-  
-  

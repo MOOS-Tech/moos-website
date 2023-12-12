@@ -93,29 +93,66 @@
     },
     methods: {
       async fetchTitleSection() {
-  
         try {
           const response = await getDistributedStockTitle();
-          this.ComTitle = response.data.data[0].attributes.common_title.data.attributes.CommonTitle
-          this.boldText = response.data.data[0].attributes.common_title.data.attributes.boldText
-          this.Para = response.data.data[0].attributes.common_title.data.attributes.Paragraph
-          this.cardTitle = response.data.data[0].attributes.sub_topic
-          this.imageUrl = response.data.data[0].attributes.image_url.data.attributes.url
-          this.cardBbody = response.data.data[0].attributes.point.data.map(data => (data.attributes.point));
+          try {
+            this.ComTitle = response.data.data[0].attributes.common_title.data.attributes.CommonTitle;
+          } catch (e) {
+            this.ComTitle = '';
+          }
+          try {
+            this.boldText = response.data.data[0].attributes.common_title.data.attributes.boldText;
+          } catch (e) {
+            this.boldText = '';
+          }
+          try {
+            this.Para = response.data.data[0].attributes.common_title.data.attributes.Paragraph;
+          } catch (e) {
+            this.Para = '';
+          }
+          try {
+            this.cardTitle = response.data.data[0].attributes.sub_topic;
+          } catch (e) {
+            this.cardTitle = '';
+          }
+          try {
+            this.imageUrl = response.data.data[0].attributes.image_url.data.attributes.url;
+          } catch (e) {
+            this.imageUrl = '';
+          }
+          try {
+            this.cardBbody = response.data.data[0].attributes.point.data.map(data => (data.attributes.point));
+          } catch (e) {
+            this.cardBbody = [];
+          }
         } catch (error) {
-          console.error("Error fetching  data:");
+          // Handle or log the error as needed for the outer try block
+          console.error('Error occurred while fetching data', error);
         }
-  
       },
       async fetchBusinessGetStart() {
         try {
           const response = await BusinessGetStart();
           this.cards = response.data.data
-          this.cardData = this.cards.map(card => ({
-            title: card.attributes.title,
-            description: card.attributes.Paragraph,
-  
-          }));
+          // this.cardData = this.cards.map(card => ({
+          //   title: card.attributes.title,
+          //   description: card.attributes.Paragraph,
+          //
+          // }));
+          for (let i = 0; i < this.cards.length; i++) {
+            let card = {};
+            try {
+              card.title = this.cards[i].attributes.title;
+            } catch (e) {
+              card.title = "";
+            }
+            try {
+              card.description = this.cards[i].attributes.Paragraph;
+            } catch (e) {
+              card.description = "";
+            }
+            this.cardData.push(card);
+          }
         } catch (error) {
           console.error("Error fetching data:");
         }
@@ -124,15 +161,63 @@
         try {
           const response = await getStockKeepingMoosValues();
           this.cards = response.data.data
-          this.ValueDetails = this.cards.map(card => ({
-            moosWays: card.attributes.moosways.data.map(moosways => moosways.attributes.moosway),
-            oldWays: card.attributes.oldways.data.map(oldWays => oldWays.attributes.oldway),
-            pillTitle: card.attributes.main_title,
-            valuePercentage: card.attributes.percentage,
-            valueDes: card.attributes.percentage_description,
-            imageURL: card.attributes.pill_image.data.attributes.url
-  
-          }));
+          this.ValueDetails = this.cards.map(card => {
+            try {
+              let moosWays;
+              try {
+                moosWays = card.attributes.moosways.data.map(moosways => moosways.attributes.moosway);
+              } catch (e) {
+                moosWays = [];
+              }
+              let oldWays;
+              try {
+                oldWays = card.attributes.oldways.data.map(oldWays => oldWays.attributes.oldway);
+              } catch (e) {
+                oldWays = [];
+              }
+
+              let pillTitle;
+              try {
+                pillTitle = card.attributes.main_title;
+              } catch (e) {
+                pillTitle = '';
+              }
+
+              let valuePercentage;
+              try {
+                valuePercentage = card.attributes.percentage;
+              } catch (e) {
+                valuePercentage = '';
+              }
+
+              let valueDes;
+              try {
+                valueDes = card.attributes.percentage_description;
+              } catch (e) {
+                valueDes = '';
+              }
+
+              let imageURL;
+              try {
+                imageURL = card.attributes.pill_image.data.attributes.url ? card.attributes.pill_image.data.attributes.url : '';
+              } catch (e) {
+                imageURL = '';
+              }
+
+              return {
+                moosWays,
+                oldWays,
+                pillTitle,
+                valuePercentage,
+                valueDes,
+                imageURL
+              };
+            } catch (error) {
+              // Handle or log the error as needed for the inner try block
+              console.error('Error occurred while processing card', error);
+              return {};
+            }
+          });
           console.log("pill Title",this.pillTitle)
         } catch (error) {
           console.error("Error fetching data:");
@@ -146,7 +231,6 @@
       try {
         const response = await getSubTopics(id);
         this.business_sub_topic = response.data.data.attributes.topic
-      
       } catch (error) {
         console.error("Error fetching data:");
       }

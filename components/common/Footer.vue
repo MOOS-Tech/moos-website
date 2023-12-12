@@ -4,15 +4,15 @@
       <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-3">
         <div class="sm:col-span  ">
           <a href="#" class=" mr-6  inline-flex items-center">
-            <img :src="image" alt="Image Alt Text" class="h-25 w-30 mr-2"/>
+            <img :src="computeURL(image)" alt="Image Alt Text" class="h-25 w-30 mr-2"/>
 
           </a>
 
           <div class="flex flex-col mx-auto mt-6 space-y-3 md:space-y-0 md:flex-row ">
             <div>
               <div class="flex flex-col items-start mt-5 space-y-2 ">
-                <a class="text-white  dark:hover:text-blue-400 hover:underline hover:text-blue-500"
-                   v-for="(item, index) in columnOne" :key="index" :href="item.attributes.url_link"
+                <a   style="cursor: pointer;" class="text-white  dark:hover:text-blue-400 hover:underline hover:text-blue-500"
+                   v-for="(item, index) in columnOne" :key="index" @click="openNewTab(item)"
                    target="_blank" rel="noopener noreferrer">
                   {{ item.attributes.name }}</a>
               </div>
@@ -71,7 +71,8 @@ export default {
       columnOne: [],
       columnTwo: [],
       columnThree: [],
-      social: []
+      social: [],
+      baseUrl:""
     }
   },
   computed: {
@@ -80,13 +81,67 @@ export default {
     },
   },
   async mounted() {
-    const res = await getFooter();
-    this.image = res.image.data.attributes.url;
-    this.columnOne = res.footer_term_and_conditions.data;
-    this.columnTwo = res.footer_pages.data;
-    this.columnThree = res.footer_contacts.data[0].attributes;
-    this.social = res.footer_contacts.data[0].attributes.WEARE_MOOS.data;
-    console.log(this.social)
+    try {
+      const config = useRuntimeConfig();
+      try {
+        this.baseUrl = config.public.API_URL ? config.public.API_URL : 'http://localhost:1337';
+      } catch (e) {
+        this.baseUrl = 'http://localhost:1337';
+      }
+
+      try {
+        const res = await getFooter();
+        try {
+          this.image = res.image.data.attributes.url;
+        } catch (e) {
+          this.image = '';
+        }
+
+        try {
+          this.columnOne = res.footer_term_and_conditions.data;
+        } catch (e) {
+          this.columnOne = '';
+        }
+
+        try {
+          this.columnTwo = res.footer_pages.data;
+        } catch (e) {
+          this.columnTwo = '';
+        }
+
+        try {
+          this.columnThree = res.footer_contacts.data[0].attributes;
+        } catch (e) {
+          this.columnThree = {};
+        }
+
+        try {
+          this.social = res.footer_contacts.data[0].attributes.WEARE_MOOS.data;
+        } catch (e) {
+          this.social = '';
+        }
+      } catch (error) {
+        console.error('Error fetching footer data:', error);
+      }
+    } catch (error) {
+      console.error('Error with runtime config:', error);
+    }
+  },
+  methods: {
+    openNewTab(item) {
+      console.log("item",item)
+      localStorage.setItem('block1_title', item.attributes.name);
+      localStorage.setItem('block1_content', item.attributes.content);
+      window.open('https://dev.moos.nu/' + item.attributes.url_link, '_blank')
+      // window.open('http://localhost:3000/' + item.attributes.url_link, '_blank')
+    },
+    computeURL(imageURL) {
+     if (imageURL.includes("https://")) {
+       return imageURL
+     }else{
+       return this.baseUrl + imageURL
+     }
+   }
   }
 }
 </script>

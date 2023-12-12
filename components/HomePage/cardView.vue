@@ -34,14 +34,7 @@ export default {
     cards: [],
     cardData: []
   },
-  // computed: {
-  //   computeURL(imageURL) {
-  //     if (imageURL.includes("https://")) {
-  //       return imageURL
-  //     }
-  //     return this.baseUrl + imageURL
-  //   }
-  // },
+ 
   methods:{
     computeURL(imageURL) {
       if (imageURL.includes("https://")) {
