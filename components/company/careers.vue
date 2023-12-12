@@ -12,7 +12,7 @@
                 <div class="flex justify-left mt-3 ">
                   <ul>
                     <li v-for="description in card.qualifications" :key="description.id"
-                      class="sm:text-md flex item-start">
+                        class="sm:text-md flex item-start">
                       <span class="text-green-500 mr-2">
                         <i class="fas fa-check"></i>
                       </span>
@@ -28,7 +28,7 @@
                   </div>
                   <div>
                     <button class="bg-green-200 text-white px-4 py-1 rounded-md mt-4"
-                      @click="setSelectedPosition(card.title)">Apply
+                            @click="setSelectedPosition(card.title)">Apply
                     </button>
                   </div>
                 </div>
@@ -42,23 +42,24 @@
           </div>
           <div class="flex flex-col items-center justify-center">
             <FormSelectField ref="selectField" :name="selectedPosition" placeholder="Position" :options="options"
-              v-model="selectedPosition" :validationErrorMessage="positionValidationErrorMessage" />
+                             v-model="selectedPosition" :validationErrorMessage="positionValidationErrorMessage"/>
             <FormInput v-model="customerName" type="text" name="name" id="name" placeholder="Name" :isRequired="true"
-              :validationErrorMessage="nameValidationErrorMessage" />
-            <FormInput v-model="customerEmail" type="email" name="email" id="email" placeholder="Email" :isRequired="true"
-              :validationErrorMessage="emailValidationErrorMessage" @input="validateEmail" />
+                       :validationErrorMessage="nameValidationErrorMessage"/>
+            <FormInput v-model="customerEmail" type="email" name="email" id="email" placeholder="Email"
+                       :isRequired="true"
+                       :validationErrorMessage="emailValidationErrorMessage" @input="validateEmail"/>
             <FormInput v-model="customerLinkedin" type="text" name="linkedin" id="linkedin" :isRequired="true"
-              placeholder="LinkedIn Profile" :validationErrorMessage="linkedinValidationErrorMessage" />
+                       placeholder="LinkedIn Profile" :validationErrorMessage="linkedinValidationErrorMessage"/>
 
             <div class="mb-3 relative">
               <input
-                class="rounded-[4px] border p-3 pr-10 hover:outline-none focus:outline-none hover:border-green-200 h-10 w-72 sm:text-sm cursor-pointer"
-                placeholder="Upload Resume" :value="selectedFileName" />
+                  class="rounded-[4px] border p-3 pr-10 hover:outline-none focus:outline-none hover:border-green-200 h-10 w-72 sm:text-sm cursor-pointer"
+                  placeholder="Upload Resume" :value="selectedFileName"/>
 
               <label
-                class="absolute right-0 top-0 cursor-pointer h-full w-8 text-center self-center items-center bg-gray-300">
+                  class="absolute right-0 top-0 cursor-pointer h-full w-8 text-center self-center items-center bg-gray-300">
                 <i class="fas fa-paperclip text-gray-400 pt-3"></i>
-                <input id="file" type="file" class="hidden" accept=".pdf" @change="uploadFile" ref="fileInput" />
+                <input id="file" type="file" class="hidden" accept=".pdf" @change="uploadFile" ref="fileInput"/>
               </label>
 
             </div>
@@ -77,9 +78,9 @@ import FormInput from "@/components/common/Form/FormInputField";
 import FormButton from "@/components/common/Form/FormButton";
 import FormSelectField from "@/components/common/Form/FormSelectField";
 import FormLargeTextBox from "@/components/common/Form/FormLargeTextBox";
-import { joinWithUs, getCareerPositions, uploadFile } from "@/services/about.js";
+import {joinWithUs, getCareerPositions, uploadFile} from "@/services/about.js";
 import Notification from '../common/Notification.vue';
-import { getSubTopics } from "../../services/home.js";
+import {getSubTopics} from "../../services/home.js";
 import CheckEmail from "@/util/CheckEmail.js";
 
 export default {
@@ -117,7 +118,7 @@ export default {
       FileValidationErrorMessage: "",
       positionValidationErrorMessage: "",
       isFormSubmitted: false,
-      career_sub_topic:""
+      career_sub_topic: ""
     }
   },
 
@@ -218,16 +219,37 @@ export default {
       try {
         const response = await getCareerPositions();
         this.cards = response.data.data
-        this.cardData = this.cards.map(card => ({
-          title: card.attributes.job_title,
-          qualifications: card.attributes.qualifications.data.map(description => description.attributes.qualification),
-          link: card.attributes.pdf_file.data.attributes.url? card.attributes.pdf_file.data.attributes.url: ""
-        }));
+        console.log(this.cards)
+        // this.cardData = this.cards.map(card => ({
+        //   title: card.attributes.job_title,
+        //   qualifications: card.attributes.qualifications.data.map(description => description.attributes.qualification),
+        //   link: card.attributes.pdf_file.data.attributes.url ? card.attributes.pdf_file.data.attributes.url : ""
+        // }));
+        for (let i = 0; i < this.cards.length; i++) {
+          let job = {};
+          try {
+            job.title = this.cards[i].attributes.job_title;
+          } catch (e) {
+            job.title = 'Unknown Title';
+          }
+          try {
+            job.qualifications = this.cards[i].attributes.qualifications.data.map(description => description.attributes.qualification);
+          } catch (e) {
+            job.qualifications = [];
+          }
+          try {
+            job.link = this.cards[i].attributes.pdf_file.data.attributes.url;
+          } catch (e) {
+            job.link = '#'
+          }
+          this.cardData.push(job);
+        }
         this.options = [];
         for (let i = 0; i < this.cardData.length; i++) {
           this.options.push(this.cardData[i].title);
         }
       } catch (error) {
+        console.log(error)
         console.error("Error fetching  data:");
       }
 
@@ -235,11 +257,11 @@ export default {
     resetfn() {
       this.$refs.selectField.reset();
       this.customerName = '',
-        this.customerEmail = ''
+          this.customerEmail = ''
       this.customerLinkedin = '',
-        this.selectedFile = '',
-        this.selectedFileName = '',
-        this.selectedPosition = ''
+          this.selectedFile = '',
+          this.selectedFileName = '',
+          this.selectedPosition = ''
 
       this.isFormSubmitted = false;
 
@@ -251,18 +273,18 @@ export default {
     validateForm() {
 
       return (
-        this.customerName && this.customerEmail && this.customerLinkedin && this.selectedPosition && this.selectedFileName
+          this.customerName && this.customerEmail && this.customerLinkedin && this.selectedPosition && this.selectedFileName
 
       );
     },
     async getSubTopics() {
       const id = '5';
-     
+
       try {
         const response = await getSubTopics(id);
         this.career_sub_topic = response.data.data.attributes.topic
 
-      
+
       } catch (error) {
         console.error("Error fetching data:");
       }
