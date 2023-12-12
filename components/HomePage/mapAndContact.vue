@@ -101,7 +101,11 @@ export default {
     let res = await getContactTypes();
     this.options = [];
     for (let i = 0; i < res.length; i++) {
-      this.options.push(res[i].attributes.options);
+      try {
+        this.options.push(res[i].attributes.options);
+      } catch (e) {
+
+      }
     }
   },
   methods: {
@@ -135,7 +139,6 @@ export default {
       try {
         const response = await getSubTopics(id);
         this.contact_sub_topic = response.data.data.attributes.topic
-      
       } catch (error) {
         console.error("Error fetching data:");
       }
@@ -152,11 +155,7 @@ export default {
       this.isFormSubmitted = false; 
     },
     validateForm() {
-
-      return (
-        this.customerName && this.customerEmail && this.selectedOptionContact && this.customerMessage
-
-      );
+      return (this.customerName && this.customerEmail && this.selectedOptionContact && this.customerMessage);
     }
   }
 }

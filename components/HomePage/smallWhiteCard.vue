@@ -54,17 +54,45 @@ export default {
     try {
       const response = await smallWhiteCardGetAll();
       this.items = response.data.data;
+      this.itemCards = this.items.map(item => {
+        try {
+          let title;
+          try {
+            title = item.attributes.title;
+          } catch (e) {
+            title = '';
+          }
 
-      this.itemCards = this.items.map(item => ({
-        title: item.attributes.title,
-        description: item.attributes.description,
-        url: item.url,
-        blogs: item.attributes.learn_more_card_arrays.data.map(blog => blog.attributes.blogs),
-      }));
+          let description;
+          try {
+            description = item.attributes.description;
+          } catch (e) {
+            description = '';
+          }
+
+          let url;
+          try {
+            url = item.url;
+          } catch (e) {
+            url = '';
+          }
+
+          let blogs;
+          try {
+            blogs = item.attributes.learn_more_card_arrays.data.map(blog => blog.attributes.blogs);
+          } catch (e) {
+            blogs = [];
+          }
+
+          return { title, description, url, blogs };
+        } catch (e) {
+          console.error('Error in mapping item cards:', e);
+          return {};
+        }
+      });
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error('Error fetching data:', error);
     }
   },
-
 };
 </script>
