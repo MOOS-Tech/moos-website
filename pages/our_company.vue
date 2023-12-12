@@ -1,12 +1,13 @@
 <template>
   <div v-if="!loading">
-    <Card :CardTitle="cardTitle" :CardBody="cardBbody" :imageUrl="imageUrl" :ComTitle="ComTitle" :Para="Para"
+    <CompanyHeroSection :CardTitle="cardTitle" :CardBody="cardBbody" :imageUrl="imageUrl" :ComTitle="ComTitle" :Para="Para"
           :boldText="boldText" :baseUrl="baseUrl" data-aos="fade-up" data-aos-duration="1000"/>
 
     <!-- ====== career Section-->
-    <careers :cardData="cardData"/>
+    <careers :cardData="cardData" :baseUrl="baseUrl"/>
     <!-- ====== Our Team Section-->
     <OurTeam :people="people" :baseUrl="baseUrl"/>
+    
 
   </div>
 </template>
@@ -20,9 +21,10 @@ import careers from '~/components/company/careers.vue';
 import {getAboutTitle, getCareerPositions, getOurteam} from "@/services/about.js";
 import {loading, toggleLoading} from '../store/store';
 import OurTeam from '~/components/company/ourTeam.vue';
+import CompanyHeroSection from '~/components/company/companyHeroSection.vue';
 
 export default {
-  components: {Card, MapAndContact, CardImgRight, card, careers, OurTeam},
+  components: {Card, MapAndContact, CardImgRight, card, careers, OurTeam,CompanyHeroSection},
   name: "our_company",
 
   data() {

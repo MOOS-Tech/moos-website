@@ -1,6 +1,6 @@
 <template>
   <section class="relative flex mb-16  justify-center " data-aos="fade-up" data-aos-duration="1000">
-    <div class="bg-image"></div>
+    <div class="bg-image" :style="{ backgroundImage: `url('${computeURL(career_image)}')` }"></div>
     <div class=" mx-auto w-full lg:max-w-7xl relative ">
       <div class="grid md:grid-cols-2 md:gap-12 lg:gap-48 pt-12 pb-12">
 
@@ -77,7 +77,7 @@ import FormInput from "@/components/common/Form/FormInputField";
 import FormButton from "@/components/common/Form/FormButton";
 import FormSelectField from "@/components/common/Form/FormSelectField";
 import FormLargeTextBox from "@/components/common/Form/FormLargeTextBox";
-import { joinWithUs, getCareerPositions, uploadFile } from "@/services/about.js";
+import { joinWithUs, getCareerPositions, uploadFile ,getCareerPaeImage} from "@/services/about.js";
 import Notification from '../common/Notification.vue';
 import { getSubTopics } from "../../services/home.js";
 import CheckEmail from "@/util/CheckEmail.js";
@@ -87,6 +87,7 @@ export default {
   props: {
     cards: [],
     cardData: [],
+    baseUrl:String
   },
   components: {
     FormInput,
@@ -117,13 +118,15 @@ export default {
       FileValidationErrorMessage: "",
       positionValidationErrorMessage: "",
       isFormSubmitted: false,
-      career_sub_topic:""
+      career_sub_topic:"",
+      career_image:""
     }
   },
 
   async created() {
     await this.fetchCareerPositions();
     await this.getSubTopics();
+    await this.getCareerImage();
   },
   computed: {
     emailValidationErrorMessage() {
@@ -267,6 +270,20 @@ export default {
         console.error("Error fetching data:");
       }
     },
+    async getCareerImage(){
+      const id = '1'
+      const response = await getCareerPaeImage();
+        this.career_image = response.data.data.attributes.image_url.data.attributes.url
+        console.log("Image",this.career_image)
+    },
+    
+    computeURL(imageURL) {
+      if (imageURL.includes("https://")) {
+        return imageURL
+      }
+      return this.baseUrl + imageURL
+    
+  }
 
 
   }
@@ -279,8 +296,8 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('/assets/images/carreerBg.png');
-  background-size: cover;
+  /* background-image: url('/assets/images/carreerBg.png'); */
+ 
   background-repeat: no-repeat;
   z-index: 0;
 
