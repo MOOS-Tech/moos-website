@@ -12,7 +12,7 @@
             <div>
               <div class="flex flex-col items-start mt-5 space-y-2 ">
                 <a class="text-white  dark:hover:text-blue-400 hover:underline hover:text-blue-500"
-                   v-for="(item, index) in columnOne" :key="index" :href="item.attributes.url_link"
+                   v-for="(item, index) in columnOne" :key="index" @click="openNewTab(item)"
                    target="_blank" rel="noopener noreferrer">
                   {{ item.attributes.name }}</a>
               </div>
@@ -87,6 +87,13 @@ export default {
     this.columnThree = res.footer_contacts.data[0].attributes;
     this.social = res.footer_contacts.data[0].attributes.WEARE_MOOS.data;
     console.log(this.social)
+  },
+  methods: {
+    openNewTab(item) {
+      localStorage.setItem('block1_title', item.attributes.name);
+      localStorage.setItem('block1_content', item.attributes.content);
+      window.open('dev.moos.nu/' + item.attributes.url_links, '_blank')
+    }
   }
 }
 </script>
