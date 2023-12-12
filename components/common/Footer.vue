@@ -81,6 +81,7 @@ export default {
     },
   },
   async mounted() {
+    console.log("Moos version 0.2")
     try {
       const config = useRuntimeConfig();
       try {
