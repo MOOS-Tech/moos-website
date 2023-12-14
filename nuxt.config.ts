@@ -1,6 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+    
     store: true,
+    app:{
+        head: {
+            title:'Meet MOOS',
+          },
+    },
+ 
     devtools: { enabled: true },
     css: [
         '~/assets/css/main.css',
@@ -14,10 +21,12 @@ export default defineNuxtConfig({
     buildModules: [
         '@nuxtjs/router',
     ],
+    
     plugins: [{ src: "@/plugins/aos", ssr: false, mode: "client" }],
     runtimeConfig: {
         public: {
             API_URL: process.env.API_URL
         }
     },
+    
 })
