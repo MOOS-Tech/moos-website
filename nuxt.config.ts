@@ -4,7 +4,7 @@ export default defineNuxtConfig({
     store: true,
     app:{
         head: {
-            title:'Meet MOOS',
+            title:'MOOS - Effortless Inventory',
           },
     },
  

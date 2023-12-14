@@ -28,9 +28,9 @@ export default {
 };
 </script>
 <style scoped>
-.auto-zoom {
-  animation: zoomAnimation 3s infinite alternate; /* Adjust the duration as needed */
-}
+/* .auto-zoom {
+  animation: zoomAnimation 3s infinite alternate; 
+} */
 
 @keyframes zoomAnimation {
   0% {
