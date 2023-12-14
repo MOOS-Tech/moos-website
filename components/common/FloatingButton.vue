@@ -30,10 +30,12 @@
       this.icon = res.font_awsome_Icon_name
      
      
-      this.isBanner = localStorage.getItem('cookies_allowed') !== 'YES';
+      const isBannerVisible = localStorage.getItem('cookies_allowed') !== 'YES';
+      console.log(isBannerVisible)
+      this.isSectionVisible = isBannerVisible;
 
     } catch (e) {
-      this.isBanner = false;
+      this.isSectionVisible = false;
     }
   },
     methods: {
@@ -43,6 +45,7 @@
       },
       hideSection() {
       this.isSectionVisible = false;
+      localStorage.setItem('cookies_allowed', 'YES');
     },
     },
   };
