@@ -16,11 +16,12 @@
           </h2>
           <P class="text-black-100 text-md pb-6">{{ Para }}</P>
           <div class="flex justify-left mt-3 ">
-              <ul class="text-black-100 list-none   text-md">
-              <li class="flex item-start pb-4" v-for="(point, index) in CardBody" :key="index" >
-                <i class="fas fa-check text-green-500 mr-2 mt-1 "></i>{{ point }}
-              </li>
-            </ul>
+             
+            <ul class="text-black-200 list-disc text-md pl-5 text-left">
+            <li v-for="(point, index) in CardBody" :key="index" class="pb-2">
+              {{ point }}
+            </li>
+          </ul>
             </div>
         </div>
   
