@@ -133,7 +133,7 @@ export default {
       console.log("item",item)
       localStorage.setItem('block1_title', item.attributes.name);
       localStorage.setItem('block1_content', item.attributes.content);
-      window.open('https://dev.moos.nu/' + item.attributes.url_link, '_blank')
+      window.open('https://www.moos.nu/' + item.attributes.url_link, '_blank')
       // window.open('http://localhost:3000/' + item.attributes.url_link, '_blank')
     },
     computeURL(imageURL) {
