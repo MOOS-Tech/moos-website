@@ -7,7 +7,7 @@
         <div class="flex justify-center md:justify-end w-full self-center">
           <div class="overflow-y-auto w-full   " style="max-height: 400px;">
             <div class="flex flex-col space-y-4 p-4">
-              <div v-for="card in cardData" :key="card.id" class="bg-white p-4 rounded-lg shadow-md">
+              <div v-for="(card, index) in cardData" :key="card.id" class="bg-white p-4 rounded-lg shadow-md">
                 <h2 class="text-regular-title-heading font-semibold">{{ card.title }}</h2>
                 <div class="flex justify-left mt-3 ">
                   <ul>
@@ -28,8 +28,11 @@
                   </div>
                   <div>
                     <button class="bg-green-200 text-white px-4 py-1 rounded-md mt-4"
-                      @click="setSelectedPosition(card.title)">Apply
+                      @click="setSelectedPosition(index)">Apply
                     </button>
+                  </div>
+                  <div v-if="index === selectedCardIndex" class="text-green-200 text-sm mt-2 pt-3">
+                    Please fill in the rest of the details.
                   </div>
                 </div>
               </div>
@@ -120,7 +123,8 @@ export default {
       positionValidationErrorMessage: "",
       isFormSubmitted: false,
       career_sub_topic: "",
-      career_image:""
+      career_image:"",
+      selectedCardIndex: -1,
     }
   },
 
@@ -170,9 +174,10 @@ export default {
     openLink(val) {
       window.open(val, '_blank');
     },
-    setSelectedPosition(val) {
-      this.selectedPosition = val;
-    },
+    setSelectedPosition(index) {
+  this.selectedCardIndex = index;
+  this.selectedPosition = this.cardData[index].title;
+},
     openFileInput() {
       this.$refs.fileInput.click();
     },
@@ -200,7 +205,6 @@ export default {
           }
         }
         try {
-
           const response = await joinWithUs(payload);
 
           this.resetfn()
@@ -266,6 +270,7 @@ export default {
       this.selectedFileName = '';
       this.selectedPosition = '';
       this.isFormSubmitted = false;
+      this.selectedCardIndex = -1;
     },
     validateEmail() {
       this.isFormSubmitted = false;
